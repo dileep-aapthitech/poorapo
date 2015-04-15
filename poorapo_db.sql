@@ -31,7 +31,22 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('4559ei9ef7bq6u824qhre4jfn1','PHPSESSID',1429088388,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429088388.3504679;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('b7q7dtnntr65p1ls550to69sg1','PHPSESSID',1429102334,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429102334.7701581;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
+
+/*Table structure for table `tbl_bachelore_degrees` */
+
+DROP TABLE IF EXISTS `tbl_bachelore_degrees`;
+
+CREATE TABLE `tbl_bachelore_degrees` (
+  `degree_id` int(10) NOT NULL AUTO_INCREMENT,
+  `degree_name` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`degree_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_bachelore_degrees` */
 
 /*Table structure for table `tbl_categories` */
 
@@ -48,6 +63,24 @@ CREATE TABLE `tbl_categories` (
 
 /*Data for the table `tbl_categories` */
 
+/*Table structure for table `tbl_colleges` */
+
+DROP TABLE IF EXISTS `tbl_colleges`;
+
+CREATE TABLE `tbl_colleges` (
+  `college_id` int(10) NOT NULL AUTO_INCREMENT,
+  `country_id` int(10) DEFAULT NULL,
+  `state_id` int(10) DEFAULT NULL,
+  `district_id` int(10) DEFAULT NULL,
+  `college_name` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`college_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_colleges` */
+
 /*Table structure for table `tbl_countries` */
 
 DROP TABLE IF EXISTS `tbl_countries`;
@@ -57,9 +90,11 @@ CREATE TABLE `tbl_countries` (
   `name` varchar(200) DEFAULT NULL,
   `status` smallint(5) DEFAULT NULL,
   PRIMARY KEY (`id_countries`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_countries` */
+
+insert  into `tbl_countries`(`id_countries`,`name`,`status`) values (1,'India',1);
 
 /*Table structure for table `tbl_districts` */
 
@@ -88,9 +123,11 @@ CREATE TABLE `tbl_entrance_exam` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`entrance_exam_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_entrance_exam` */
+
+insert  into `tbl_entrance_exam`(`entrance_exam_id`,`country_id`,`entrance_exam_name`,`status`,`created_at`,`modified_at`) values (1,1,'Emacet',1,'2015-04-15 15:52:03','2015-04-15 15:52:12');
 
 /*Table structure for table `tbl_forget_tokens` */
 
@@ -142,6 +179,21 @@ CREATE TABLE `tbl_likes` (
 
 /*Data for the table `tbl_likes` */
 
+/*Table structure for table `tbl_masters_degree` */
+
+DROP TABLE IF EXISTS `tbl_masters_degree`;
+
+CREATE TABLE `tbl_masters_degree` (
+  `masters_degree_id` int(10) NOT NULL AUTO_INCREMENT,
+  `mas_degree_name` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`masters_degree_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_masters_degree` */
+
 /*Table structure for table `tbl_shares` */
 
 DROP TABLE IF EXISTS `tbl_shares`;
@@ -160,6 +212,21 @@ CREATE TABLE `tbl_shares` (
 
 /*Data for the table `tbl_shares` */
 
+/*Table structure for table `tbl_specialization` */
+
+DROP TABLE IF EXISTS `tbl_specialization`;
+
+CREATE TABLE `tbl_specialization` (
+  `specialined_id` int(10) NOT NULL AUTO_INCREMENT,
+  `specialined_name` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`specialined_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_specialization` */
+
 /*Table structure for table `tbl_states` */
 
 DROP TABLE IF EXISTS `tbl_states`;
@@ -174,6 +241,21 @@ CREATE TABLE `tbl_states` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_states` */
+
+/*Table structure for table `tbl_universities` */
+
+DROP TABLE IF EXISTS `tbl_universities`;
+
+CREATE TABLE `tbl_universities` (
+  `unversity_id` int(10) NOT NULL AUTO_INCREMENT,
+  `unversity_name` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`unversity_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_universities` */
 
 /*Table structure for table `tbl_user_education_info` */
 

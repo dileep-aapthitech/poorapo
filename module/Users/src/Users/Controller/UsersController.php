@@ -16,9 +16,12 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
+	public function registerAction(){
+	
+	
+	}
 	public function loginAction()
 	{
-		echo "sivareddy";
 	}
 	public function forgetPasswordAction()
 	{
