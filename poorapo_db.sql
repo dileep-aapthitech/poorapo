@@ -16,6 +16,23 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`poraapo_db` /*!40100 DEFAULT CHARACTER 
 
 USE `poraapo_db`;
 
+/*Table structure for table `session` */
+
+DROP TABLE IF EXISTS `session`;
+
+CREATE TABLE `session` (
+  `id` char(32) NOT NULL DEFAULT '',
+  `name` varchar(255) NOT NULL,
+  `modified` int(11) DEFAULT NULL,
+  `lifetime` int(11) DEFAULT NULL,
+  `data` text,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+/*Data for the table `session` */
+
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('4559ei9ef7bq6u824qhre4jfn1','PHPSESSID',1429088388,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429088388.3504679;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
+
 /*Table structure for table `tbl_categories` */
 
 DROP TABLE IF EXISTS `tbl_categories`;
