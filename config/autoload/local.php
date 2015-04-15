@@ -21,8 +21,8 @@ return array(
         'password' 		=> 	'',
     ),
 	'urls' 				=> 	array(
-		'baseUrl' 		=> 	'http://localhost/poorapo',
-		'basePath' 		=> 	'http://localhost/poorapo/public',
+		'baseUrl' 		=> 	'http://localhost/poorapo/trunk',
+		'basePath' 		=> 	'http://localhost/poorapo/trunk/public',
 		'imagesUrl'		=>	'#',
 	),
 	'service_manager' 	=> 	array(
