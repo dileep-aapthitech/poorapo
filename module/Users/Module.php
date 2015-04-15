@@ -48,7 +48,7 @@ class Module implements
     {
         return array(
             'factories' => array( 
-            	'Users\Model\UserFactory'=>'Users\Factory\Model\UserTableFactory',			
+            	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		
             	'Users\Model\UserPersonalFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
             	'Users\Model\LoginLinkExpiredFactory'=>'Users\Factory\Model\LoginLinkExpiredTableFactory',			

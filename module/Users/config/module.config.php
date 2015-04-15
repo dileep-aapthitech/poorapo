@@ -18,11 +18,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Users\Controller\Users',
-                        'action'     => 'login',
+                        'action'     => 'index',
                     ),
                 ),
             ),        	
-			
+			'login' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/login',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'login',
+						),
+					),
+			),
 			'forget-password' => array(
 					'type' => 'literal',
 					'options' => array(

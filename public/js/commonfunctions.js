@@ -45,33 +45,47 @@ function checkEmail(emailStr) {
 	return true;
 }
 function loginValidations(){
+	var flag=true;
+	$('#errorMsg').html('');
 	var userEmail=$('#email').val();
 	var userPassword=$('#password').val();
 	if(userEmail==''){
-		$('#emailError').html('Enter a email id');return false;
+		$('#emailError').html('Enter a email id');
+		flag=false;
 	}else if(checkEmail(userEmail)==false){
-		$('#emailError').html('Enter valid email id');return false;
+		$('#emailError').html('Enter valid email id');
+		flag=false;
+	}else{
+		$('#emailError').html('');
 	}
 	if(userPassword==''){
-		$('#passwordError').html('Enter a password');return false;
+		$('#passwordError').html('Enter a password');
+		flag=false;
+	}else{
+		$('#passwordError').html('');
 	}
-	$('#reload').html('<img src="public/images/spiffygif.gif"/>');
-	var url=BASE_URL+'users/login';
-	$.ajax({
-		type:'POST',
-		datatype:'json',
-		url:  url,
-		data:{inputEmail:userEmail,password:userPassword},
-		success: function(data){
-			$('#reload').html('');
-			if(data.output=='success'){
-				alert('sucess');return false;
-				//window.location=BASE_URL+'edit-user?user_id='+data.user_id;
-			}else{
-				alert('fail');return false;
-			}
-		}
-	});
+	//$('#reload').html('<img src="public/images/spiffygif.gif"/>');
+	if(flag==false){
+		return false;
+	}else{
+			var url=BASE_URL+'/users/login';
+			$.ajax({
+				type:'POST',
+				datatype:'json',
+				url:  url,
+				data:{inputEmail:userEmail,password:userPassword},
+				success: function(response){
+					alert(response);
+					$('#reload').html('');
+					if(response.output=='success'){
+						alert('sucess');
+						//window.location=BASE_URL+'edit-user?user_id='+data.user_id;
+					}else{
+						$('#errorMsg').html('Enter username and password are wrong');
+					}
+				}
+			});
+	}
 }
 function changePassword(){	
 	//var userId=$("#hid_user_id").val();	

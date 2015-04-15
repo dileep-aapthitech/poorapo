@@ -1,5 +1,5 @@
 <?php
-namespace Databoxuser\Model;
+namespace Users\Model;
 
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
@@ -69,9 +69,9 @@ class UserTable
 	public function checkEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('user_details', 'user_details.user_id=user.user_id',array('*'),'left');	
-		$select->where('user.email="'.$userInfo['email'].'"');
-		$select->where('user.password!="'.$userInfo['password'].'"');
+		//$select->join('user_details', 'user_details.user_id=user.user_id',array('*'),'left');	
+		$select->where('tbl_users.email_id="'.$userInfo['email'].'"');
+		$select->where('tbl_users.password="'.md5($userInfo['password']).'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
