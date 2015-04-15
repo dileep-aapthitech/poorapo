@@ -18,6 +18,14 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
+	public function registerAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		
+		
+	}
 	public function loginAction()
 	{
 		$baseUrls = $this->getServiceLocator()->get('config');

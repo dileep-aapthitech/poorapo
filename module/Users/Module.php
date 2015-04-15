@@ -20,6 +20,22 @@ use Users\Model\UserPersonalInfo;
 use Users\Model\UserPersonalInfoTable;
 use Users\Model\ForgotPassword;
 use Users\Model\ForgotPasswordTable;
+use Users\Model\Countries;
+use Users\Model\CountriesTable;
+use Users\Model\States;
+use Users\Model\StatesTable;
+use Users\Model\Districts;
+use Users\Model\DistrictsTable;
+use Users\Model\EntranceExam;
+use Users\Model\EntranceExamTable;
+use Users\Model\BacheloreDegrees;
+use Users\Model\BacheloreDegreesTable;
+use Users\Model\MastersDegree;
+use Users\Model\MastersDegreeTable;
+use Users\Model\Specialization;
+use Users\Model\SpecializationTable;
+use Users\Model\Universities;
+use Users\Model\UniversitiesTable;
 
 
 class Module implements 
@@ -52,7 +68,15 @@ class Module implements
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		
             	'Users\Model\UserPersonalFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
             	'Users\Model\LoginLinkExpiredFactory'=>'Users\Factory\Model\LoginLinkExpiredTableFactory',			
-            	'Users\Model\ForgotPasswordFactory'=>'Users\Factory\Model\ForgotPasswordTableFactory'			
+            	'Users\Model\ForgotPasswordFactory'=>'Users\Factory\Model\ForgotPasswordTableFactory',
+            	'Users\Model\CountriesFactory'=>'Users\Factory\Model\CountriesTableFactory',	
+            	'Users\Model\StatesFactory'=>'Users\Factory\Model\StatesTableFactory',	
+            	'Users\Model\DistrictsFactory'=>'Users\Factory\Model\DistrictsTableFactory',	
+            	'Users\Model\EntranceExamFactory'=>'Users\Factory\Model\EntranceExamTableFactory',	
+            	'Users\Model\BacheloreDegreesFactory'=>'Users\Factory\Model\BacheloreDegreesTableFactory',	
+            	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',
+            	'Users\Model\SpecializationFactory'=>'Users\Factory\Model\SpecializationTableFactory',
+            	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory',
 			),			
         );
     }
