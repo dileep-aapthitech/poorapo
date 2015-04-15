@@ -1,0 +1,27 @@
+<?
+global $loginType;
+$loginType='emailLogin';
+global $step;
+$step=2;
+?>
+<div class="body_main_container cat_top">
+	<div class="body_middle_container">
+		<div class=" form_top">
+			<div class="row">
+				<center>
+					<p>
+					A Verification mail has been sent to your email id
+					</p>
+					<p><?php echo $this->email; ?>
+					</p>
+					<br/><br/>
+					<p>
+					Kindly click on the link to complete Verification.
+					</p>
+					<p>(check your junk folders if you have not received.)
+					</p>
+				</center>
+			</div>
+		</div>
+	</div>
+</div>
