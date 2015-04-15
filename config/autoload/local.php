@@ -21,8 +21,8 @@ return array(
         'password' 		=> 	'',
     ),
 	'urls' 				=> 	array(
-		'baseUrl' 		=> 	'http://localhost/taggerzz',
-		'basePath' 		=> 	'http://localhost/taggerzz/public',
+		'baseUrl' 		=> 	'http://localhost/poorapo',
+		'basePath' 		=> 	'http://localhost/poorapo/public',
 		'imagesUrl'		=>	'#',
 	),
 	'service_manager' 	=> 	array(
