@@ -7,6 +7,7 @@ return array(
     'modules' => array(
         'Application',
 		'Slave',
+		'Users',
 		'ZfcAdmin',
 		'auth',
 		//'ZfcUser',

@@ -1,5 +1,5 @@
 <?php 
-namespace Databoxuser\Factory\Model;
+namespace Users\Factory\Model;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -8,19 +8,19 @@ use Zend\Stdlib\Hydrator\ObjectProperty;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
-use Databoxuser\Model\User;
-use Databoxuser\Model\UserTable;
+use Users\Model\UserDetails;
+use Users\Model\UserDetailsTable;
 
-class UserTableFactory implements FactoryInterface
+class UserDetailsTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
         $db = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
-        $resultSetPrototype->setObjectPrototype(new User());
-        $tableGateway       = new TableGateway('user', $db,array(),$resultSetPrototype);
-        $table              = new UserTable($tableGateway);
+        $resultSetPrototype->setObjectPrototype(new UserDetails());
+        $tableGateway       = new TableGateway('tbl_user_education_info', $db,array(),$resultSetPrototype);
+        $table              = new UserDetailsTable($tableGateway);
         return $table;
     }
 }

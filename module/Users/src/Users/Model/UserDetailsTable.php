@@ -1,5 +1,5 @@
 <?php
-namespace Databoxuser\Model;
+namespace Users\Model;
 
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;

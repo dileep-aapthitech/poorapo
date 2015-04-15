@@ -18,23 +18,20 @@ return array(
                     ),
                     'defaults' => array(
                         'controller' => 'Users\Controller\Users',
-                        'action'     => 'index',
+                        'action'     => 'login',
                     ),
                 ),
             ),        	
-			'newpassword' => array(
-				'type'    => 'segment',
-				'options' => array(
-					'route'    => '/newpassword[/:id]',
-					'constraints' => array(	
-						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-						'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+			
+			'forget-password' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/forget-password',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'forgetPassword',
+						),
 					),
-					'defaults' => array(
-						'controller' => 'Users\Controller\Users',
-						'action'     => 'updatepassword',
-					),
-				),
 			),
 			'profile' => array(
 				'type'    => 'Segment',

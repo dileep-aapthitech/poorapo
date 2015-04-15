@@ -1,7 +1,7 @@
 <?php
-namespace Databoxuser\Model;
+namespace Users\Model;
 
-class ForgotPassword
+class UserDetails
 {
 	// Add the following method:
 	public function getArrayCopy()

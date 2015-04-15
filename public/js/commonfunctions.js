@@ -1,0 +1,216 @@
+function checkEmail(emailStr) {
+	if (emailStr.length == 0) {
+		return true;
+	}
+	var emailPat=/^(.+)@(.+)$/;
+	var specialChars="\\(\\)<>@,;:\\\\\\\"\\.\\[\\]";
+	var validChars="\[^\\s" + specialChars + "\]";
+	var quotedUser="(\"[^\"]*\")";
+	var ipDomainPat=/^(\d{1,3})[.](\d{1,3})[.](\d{1,3})[.](\d{1,3})$/;
+	var atom=validChars + "+";
+	var word="(" + atom + "|" + quotedUser + ")";
+	var userPat=new RegExp("^" + word + "(\\." + word + ")*$");
+	var domainPat=new RegExp("^" + atom + "(\\." + atom + ")*$");
+	var matchArray=emailStr.match(emailPat);
+	if (matchArray == null) {
+		return false;
+	}
+	var user=matchArray[1];
+	var domain=matchArray[2];
+	if (user.match(userPat) == null) {
+		return false;
+	}
+	var IPArray = domain.match(ipDomainPat);
+	if (IPArray != null) {
+		for (var i = 1; i <= 4; i++) {
+			if (IPArray[i] > 255) {
+				return false;
+			}
+		}
+		return true;
+	}
+	var domainArray=domain.match(domainPat);
+	if (domainArray == null) {
+		return false;
+	}
+	var atomPat=new RegExp(atom,"g");
+	var domArr=domain.match(atomPat);
+	var len=domArr.length;
+	if ((domArr[domArr.length-1].length < 2) ||(domArr[domArr.length-1].length > 3)) {
+		return false;
+	}
+	if (len < 2) {
+	   return false;
+	}
+	return true;
+}
+function loginValidations(){
+	var userEmail=$('#email').val();
+	var userPassword=$('#password').val();
+	if(userEmail==''){
+		$('#emailError').html('Enter a email id');return false;
+	}else if(checkEmail(userEmail)==false){
+		$('#emailError').html('Enter valid email id');return false;
+	}
+	if(userPassword==''){
+		$('#passwordError').html('Enter a password');return false;
+	}
+	$('#reload').html('<img src="public/images/spiffygif.gif"/>');
+	var url=BASE_URL+'users/login';
+	$.ajax({
+		type:'POST',
+		datatype:'json',
+		url:  url,
+		data:{inputEmail:userEmail,password:userPassword},
+		success: function(data){
+			$('#reload').html('');
+			if(data.output=='success'){
+				alert('sucess');return false;
+				//window.location=BASE_URL+'edit-user?user_id='+data.user_id;
+			}else{
+				alert('fail');return false;
+			}
+		}
+	});
+}
+function changePassword(){	
+	//var userId=$("#hid_user_id").val();	
+	
+	var oldpasswrd=$("#oldPassword").val();		
+	var passwrd=$("#newPassword").val();
+	var cnfpwrd=$("#confirmPassword").val();
+	if(oldpasswrd==""){
+		alert('Enter old Password');return false;
+		$("#oldPassword").focus();
+	}		
+	if(passwrd==""){
+		alert("Enter the password");return false;
+		$("#newPassword").focus();
+	}	
+	if(cnfpwrd==""){
+		alert("Enter the confirm password");return false;
+		$("#confirmPassword").focus();
+	}	
+	if(passwrd==cnfpwrd){
+		$('#reload').html('<img src="public/images/spiffygif.gif"/>');
+		i/*f(regAuth=='admin'){
+			var  url =   ADMIN_BASE_URL+'admin/check-password';
+		} else if(regAuth=='user'){
+			var  url =  BASE_URL+'users/check-password';
+		}
+		$.ajax({
+			type:'POST',
+			url: url,
+			data:{oldpasswrd:oldpasswrd,userId:userId},
+			success: function(data){
+				if(data.output=='success'){	
+					if(regAuth=='admin'){
+							var  url2 =   ADMIN_BASE_URL+'admin/change-password';
+					} else if(regAuth=='user'){
+							var  url2 =  BASE_URL+'users/change-password';
+					}
+					$.ajax({
+						type:'POST',
+						url: url2, 
+						data:{cnfpwrd:cnfpwrd,userId:userId},
+						success: function(data){
+							if(regAuth=='admin'){
+								window.location=ADMIN_BASE_URL+'admin/user-lists';
+							}else if(regAuth=='user'){
+								window.location=BASE_URL+'users/change-password';
+							}
+							alert(change_passwordSucessMsg);return false;
+						}
+					});					
+				}else{
+					alert(change_passwordErrorMsg);return false;
+				}
+			}
+		});	*/				
+	}else{
+		alert('Do not match the new and confirm passwords');return false;
+		$("#confirmPassword").focus();
+	}	
+}	
+function forgetPassword(regAuth){	
+    var flag=true;
+	var emailcheck=$('#forgetMail').val();
+	if(emailcheck==''){
+		alert('Enter Email');return false;
+	}else if(checkEmail(emailcheck)==false){
+		alert('Enter valid email');return false;
+	}
+	if(flag==false){ 
+		return false;
+	}else{	
+		$('#reload').html('<img src="public/images/spiffygif.gif"/>');
+		/*if(regAuth=='user'){
+			var  url =  BASE_URL+'users/send-password-reset-url';
+		}
+		$.ajax({
+			type:'POST',
+			url:   url,
+			data:{email:emailcheck},
+			success: function(data){
+				if(data.output=='success'){	
+					alert(forget_passwordSuccessMsg);
+					if(regAuth=='admin'){
+						window.location=ADMIN_BASE_URL+'admin';
+					} else if(regAuth=='user'){
+						window.location=BASE_URL;
+					}
+				}else if(data.output=='notsuccess'){
+					$('#submit').removeAttr('disabled');
+					alert(forget_passwordErrorMsg);return false;
+				}else if(data.output=='server-error'){
+					$('#submit').removeAttr('disabled');
+					alert(forget_passwordServerErrorMsg);return false;
+				}
+			}
+		});		*/				
+	}		
+}
+function resetPassword(){	
+	var flag=true;
+	//var token=$('#hidtoken').val();	
+	var passwrd=$("#newPassword").val();
+	var cnfpwrd=$("#confirmPassword").val();		
+	if(passwrd==""&& cnfpwrd==""){
+		alert('Your Confirm Password do not match!');
+		flag=false;
+		$("#newPassword").focus();
+	}		
+	if(flag==false){ 
+			return false;
+	}else{			
+		if(passwrd==cnfpwrd){
+		$('#reload').html('<img src="public/images/spiffygif.gif"/>');
+			/*if(regAuth=='admin'){
+					var  url =  ADMIN_BASE_URL+'users/setnepassword';
+			} else if(regAuth=='user'){
+					var  url = BASE_URL+'users/setnepassword';
+			}
+			$.ajax({
+				type:'POST',
+				url:url,
+				data:{cnfpwrd:cnfpwrd,token:token},
+				success: function(data){
+					$('#reload').html('');
+					if(data.output=='success'){	
+						alert(update_passwordSucessMsg);
+						if(regAuth=='admin'){
+							window.location=ADMIN_BASE_URL+'admin';
+						} else if(regAuth=='user'){
+							window.location=BASE_URL;
+						}
+					}else{
+						alert(update_passwordAlreadyUpdateSucessMsg);
+					}
+				}
+			});*/
+		}else{
+			alert(update_passwordNotMatchedMsg);
+			$("#confirm-pwd").focus();
+		}
+	}		
+}

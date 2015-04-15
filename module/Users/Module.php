@@ -1,5 +1,5 @@
 <?php
-namespace Databoxuser;
+namespace Users;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 use Zend\Db\ResultSet\ResultSet;
@@ -12,12 +12,14 @@ use Zend\ModuleManager\ModuleManager;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
 
-use Databoxuser\Model\User;
-use Databoxuser\Model\UserTable;
-use Databoxuser\Model\UserDetails;
-use Databoxuser\Model\UserDetailsTable;
-use Databoxuser\Model\ForgotPassword;
-use Databoxuser\Model\ForgotPasswordTable;
+use Users\Model\User;
+use Users\Model\UserTable;
+use Users\Model\UserDetails;
+use Users\Model\UserDetailsTable;
+use Users\Model\UserPersonalInfo;
+use Users\Model\UserPersonalInfoTable;
+use Users\Model\ForgotPassword;
+use Users\Model\ForgotPasswordTable;
 
 
 class Module implements 
@@ -46,10 +48,11 @@ class Module implements
     {
         return array(
             'factories' => array( 
-            	'Databoxuser\Model\UserFactory'=>'Databoxuser\Factory\Model\UserTableFactory',			
-            	'Databoxuser\Model\UserDetailsFactory'=>'Databoxuser\Factory\Model\UserDetailsTableFactory',		
-            	'Databoxuser\Model\LoginLinkExpiredFactory'=>'Databoxuser\Factory\Model\LoginLinkExpiredTableFactory',			
-            	'Databoxuser\Model\ForgotPasswordFactory'=>'Databoxuser\Factory\Model\ForgotPasswordTableFactory'			
+            	'Users\Model\UserFactory'=>'Users\Factory\Model\UserTableFactory',			
+            	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		
+            	'Users\Model\UserPersonalFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
+            	'Users\Model\LoginLinkExpiredFactory'=>'Users\Factory\Model\LoginLinkExpiredTableFactory',			
+            	'Users\Model\ForgotPasswordFactory'=>'Users\Factory\Model\ForgotPasswordTableFactory'			
 			),			
         );
     }

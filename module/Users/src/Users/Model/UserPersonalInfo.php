@@ -1,7 +1,7 @@
 <?php
-namespace Databoxuser\Model;
+namespace Users\Model;
 
-class User
+class UserPersonalInfo
 {
 	// Add the following method:
 	public function getArrayCopy()
