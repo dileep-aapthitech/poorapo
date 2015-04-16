@@ -48,20 +48,24 @@ class AdminController extends AbstractActionController
 	}
 	public function IssuesAction()
 	{
-		
-		/*$getIssues = $this->getIssuesTable()->getIssues();
+		$getIssues = $this->getIssuesTable()->getIssues();
 		$data = array();$i=0;
-		if(isset($getallcategories) && $getallcategories!=''){
-			foreach($getallcategories as $categories){
-                $id=$categories->category_id;
+		if(isset($getIssues) && $getIssues->count()!=0){
+			foreach($getIssues as $issues){
+                $id=$issues->issue_id;
 				$data[$i]['sno']=$i+1;
-				$data[$i]['category_name']= $categories->category_name;
-				$data[$i]['action'] ='<a style="color: #000000;font-size: 15px;" href="'.$baseUrl.'/products/add-category?cat_id='.$id.'"><img src="'.$basepath.'/images/edit.png" title="Edit"></a>&nbsp;/&nbsp;<a style="color: #000000;font-size: 15px;" href="javascript:void(0);" onClick="deleteCategory('.$id.')"><img src="'.$basepath.'/images/delete.png" title="Delete"></a>';
+				$data[$i]['issue_title']= $issues->issue_title;
+				$data[$i]['issue_decription']= $issues->issue_decription;
+				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editIssue('.$id.')">EDIT</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteIssue('.$id.')">Delete</a>';
 				$i++;
 			}
+		
+			$data['aaData'] = $data;
+			print_r(json_encode($data['aaData']));exit;
+		}else{
+			echo '1'; exit;
 		}
-		$data['aaData'] = $data;
-		print_r(json_encode($data['aaData']));exit;*/
+		//print_r());
 	}
 	public function getUserTable()
     {

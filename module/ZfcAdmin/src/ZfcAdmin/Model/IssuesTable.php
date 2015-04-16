@@ -20,8 +20,15 @@ class IssuesTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	public function getIssues()
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('status="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	
-	public function getIssues( $userId,$email,$token )
+	public function addFpNewRow( $userId,$email,$token )
     {	
 		$data = array(
 			'user_id' 	         => $userId,
