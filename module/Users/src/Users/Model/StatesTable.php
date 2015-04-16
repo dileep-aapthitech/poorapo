@@ -30,9 +30,9 @@ class StatesTable
 		return $row;
 	}
 	/************** Based on Country *********/
-	public function getCountryBasedStates($countryid){
+	public function getBasedcountry($countryid){
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('country_id='.$countryid);
+		$select->where('id_countries='.$countryid);
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet;

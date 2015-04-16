@@ -29,6 +29,23 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
+	public function getStatesAction(){	
+		$html="";
+		if(isset($_POST['countryid']) && $_POST['countryid']!=''){
+			$states=$this->getSatesTable()->getSates($_POST['countryid']);
+			$html.='<option value="">State</option>';
+			foreach($states as $statename){
+				$html.='<option value="'.$statename->state_id.'">'.$statename->state_name.'</option>';
+			}			
+			$result = new JsonModel(array(					
+				'output' => 'success',
+				'success'=>true,
+				'statenames'=>$html,
+				));
+			return $result;
+		}
+	}
+	
 	public function registerAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
