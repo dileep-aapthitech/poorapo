@@ -94,4 +94,5 @@ class UsersController extends AbstractActionController
         }
         return $this->userDetailsTable;
     }
+	
 }

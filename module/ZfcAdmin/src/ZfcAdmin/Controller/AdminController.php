@@ -18,15 +18,42 @@ class AdminController extends AbstractActionController
 		
 	}
 	//public function headerAction view  header page returns view part
-	public function headerAction($params)
+	public function loginAction()
     {
-		$baseUrls = $this->getServiceLocator()->get('config');
-		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl = $baseUrlArr['baseUrl'];
-		return $this->layout()->setVariable(
-			"headerarray",array(
-				'baseUrl' => $baseUrl,
-			)
-		);
+		$userInfo["email"] = $_POST['inputEmail'];
+		$userInfo["password"] = md5($_POST['password']);
+		$userInfo["type_id"] = $_POST['type_id'];
+		$userRow = $this->getUserTable()->checkAdminEmailExists( $userInfo )->current();
+		$user_session = new Container('admininfo');
+		if($userRow!=0){
+			$user_session->userId=$userRow->user_id;
+			$user_session->email=$userRow->email;
+			
+			$result = new ViewModel(array(
+				'result'  	=> 'success',
+			));
+			//return $this->redirect()->toUrl('admin-dashboard.phtml');
+		}else{
+			$result = new ViewModel(array(
+				'result'  	=> 'fail',
+			));
+		}
+		return 	$result;
 	}
+	public function getAdminReportsTable()
+    {
+        if (!$this->adminReportsTable) {				
+            $sm = $this->getServiceLocator();
+            $this->adminReportsTable = $sm->get('ZfcAdmin\Model\AdminReportsFactory');			
+        }
+        return $this->adminReportsTable;
+    }
+	public function getUserTable()
+    {
+        if (!$this->userTable) {				
+            $sm = $this->getServiceLocator();
+            $this->userTable = $sm->get('Users\Model\UserTableFactory');			
+        }
+        return $this->userTable;
+    }
 }

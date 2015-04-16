@@ -137,7 +137,7 @@ class UserTable
 		//$select->join('user_details', 'user_details.user_id=user.user_id',array('*'),'left');
 		$select->where('email="'.$userInfo['email'].'"');
 		$select->where('password="'.$userInfo['password'].'"');
-		$select->where('type="0"');
+		$select->where('user_type_id="'.$userInfo['type_id'].'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet;
 		return $row;

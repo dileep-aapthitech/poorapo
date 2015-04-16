@@ -44,7 +44,7 @@ function checkEmail(emailStr) {
 	}
 	return true;
 }
-function loginValidations(){
+function loginValidations(type_id){
 	var flag=true;
 	$('#errorMsg').html('');
 	var userEmail=$('#email').val();
@@ -68,12 +68,17 @@ function loginValidations(){
 	if(flag==false){
 		return false;
 	}else{
-			var url=BASE_URL+'/users/login';
+			if(type_id==1){
+				var url=BASE_URL+'/users/login';
+			}else{
+				var url=BASE_URL+'/admin/login';
+			}
+			
 			$.ajax({
 				type:'POST',
 				datatype:'json',
 				url:  url,
-				data:{inputEmail:userEmail,password:userPassword},
+				data:{inputEmail:userEmail,password:userPassword,type_id:type_id},
 				success: function(response){
 					alert(response);
 					$('#reload').html('');
