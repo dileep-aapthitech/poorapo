@@ -10,4 +10,4 @@ CREATE TABLE `tbl_category_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
 
 
-/*[2:06:05 PM][1210 ms]*/ ALTER TABLE `poraapo_db`.`tbl_issues` ADD COLUMN `category_type_id` INT(11) NULL AFTER `modified_at`; 
+/*[2:11:04 PM][1249 ms]*/ ALTER TABLE `poraapo_db`.`tbl_issues` DROP COLUMN `issue_type`; 
