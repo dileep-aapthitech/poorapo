@@ -38,7 +38,8 @@ use Users\Model\Specialization;
 use Users\Model\SpecializationTable;
 use Users\Model\Universities;
 use Users\Model\UniversitiesTable;
-
+use Users\Model\Colleges;
+use Users\Model\CollegesTable;
 
 class Module implements 
 	Feature\AutoloaderProviderInterface,
@@ -66,7 +67,7 @@ class Module implements
     {
         return array(
             'factories' => array( 
-            	'Users\Model\UserTypeFactory'=>'Users\Factory\Model\UsertypeTableFactory',			
+            	'Users\Model\UserTypeFactory'=>'Users\Factory\Model\UserTypeTableFactory',			
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		
             	'Users\Model\UserPersonalFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
@@ -75,6 +76,7 @@ class Module implements
             	'Users\Model\CountriesFactory'=>'Users\Factory\Model\CountriesTableFactory',	
             	'Users\Model\StatesFactory'=>'Users\Factory\Model\StatesTableFactory',	
             	'Users\Model\DistrictsFactory'=>'Users\Factory\Model\DistrictsTableFactory',	
+            	'Users\Model\CollegesFactory'=>'Users\Factory\Model\CollegesTableFactory',	
             	'Users\Model\EntranceExamFactory'=>'Users\Factory\Model\EntranceExamTableFactory',	
             	'Users\Model\BacheloreDegreesFactory'=>'Users\Factory\Model\BacheloreDegreesTableFactory',	
             	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',

@@ -16,8 +16,16 @@ class UsersController extends AbstractActionController
 	protected  $userTable;
 	protected  $userDetailsTable;
 	protected  $userpersonalinfoTable;
-	protected  $CountriesinfoTable;
-	protected  $UserTypeTable;
+	protected  $countriesinfoTable;
+	protected  $userTypeTable;
+	protected  $statesTable;
+	protected  $districtsTable;
+	protected  $collegeTable;
+	protected  $entranceexamsTable;
+	protected  $bacheloredegreeTable;
+	protected  $specializationsTable;
+	protected  $unversitiesTable;
+	protected  $mastersdegreesTable;
 	public function indexAction()
 	{
 	}
@@ -26,6 +34,17 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+		$getUserTypes=$this->getUserTypeTable()->getUserTypes();
+		$getCountries=$this->getCountriesTable()->getCountries();
+		$getStates=$this->getSatesTable()->getSates();
+		$getDistricts=$this->getDistrictsTable()->getDistricts();
+		$getColleges=$this->getCollegeTable()->getColleges();
+		$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
+		$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
+		$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
+		$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
+		$getUnversities=$this->getUnversitiesTable()->getUnversities();
+		echo "<pre>";print_r($getUnversities);exit;
 		
 		
 	}
@@ -82,7 +101,7 @@ class UsersController extends AbstractActionController
     {
         if (!$this->userpersonalinfoTable) {				
             $sm = $this->getServiceLocator();
-            $this->userTable = $sm->get('Users\Model\UserPersonalInfoTableFactory');			
+            $this->userpersonalinfoTable = $sm->get('Users\Model\UserPersonalInfoTableFactory');			
         }
         return $this->userpersonalinfoTable;
     }
@@ -94,5 +113,84 @@ class UsersController extends AbstractActionController
         }
         return $this->userDetailsTable;
     }
-	
+	public function getUserTypeTable()
+    {
+        if (!$this->userTypeTable) {		
+            $sm = $this->getServiceLocator();
+            $this->userTypeTable = $sm->get('Users\Model\UserTypeFactory');			
+        }
+        return $this->userTypeTable;
+    }
+	public function getCountriesTable()
+    {
+        if (!$this->countriesinfoTable) {		
+            $sm = $this->getServiceLocator();
+            $this->countriesinfoTable = $sm->get('Users\Model\CountriesFactory');			
+        }
+        return $this->countriesinfoTable;
+    }
+	public function getSatesTable()
+    {
+        if (!$this->statesTable) {		
+            $sm = $this->getServiceLocator();
+            $this->statesTable = $sm->get('Users\Model\StatesFactory');			
+        }
+        return $this->statesTable;
+    }
+	public function getDistrictsTable()
+    {
+        if (!$this->districtsTable) {		
+            $sm = $this->getServiceLocator();
+            $this->districtsTable = $sm->get('Users\Model\DistrictsFactory');			
+        }
+        return $this->districtsTable;
+    }
+	public function getCollegeTable()
+    {
+        if (!$this->collegeTable) {		
+            $sm = $this->getServiceLocator();
+            $this->collegeTable = $sm->get('Users\Model\CollegesFactory');			
+        }
+        return $this->collegeTable;
+    }
+	public function getEntranceExamsTable()
+    {
+        if (!$this->entranceexamsTable) {		
+            $sm = $this->getServiceLocator();
+            $this->entranceexamsTable = $sm->get('Users\Model\EntranceExamFactory');			
+        }
+        return $this->entranceexamsTable;
+    }
+	public function getBacheloreDegreeTable()
+    {
+        if (!$this->bacheloredegreeTable) {		
+            $sm = $this->getServiceLocator();
+            $this->bacheloredegreeTable = $sm->get('Users\Model\BacheloreDegreesFactory');			
+        }
+        return $this->bacheloredegreeTable;
+    }
+	public function getSpecializationsTable()
+    {
+        if (!$this->specializationsTable) {		
+            $sm = $this->getServiceLocator();
+            $this->specializationsTable = $sm->get('Users\Model\SpecializationFactory');			
+        }
+        return $this->specializationsTable;
+    }
+	public function getMastersDegreeTable()
+    {
+        if (!$this->mastersdegreesTable) {		
+            $sm = $this->getServiceLocator();
+            $this->mastersdegreesTable = $sm->get('Users\Model\MastersDegreeFactory');			
+        }
+        return $this->mastersdegreesTable;
+    }
+	public function getUnversitiesTable()
+    {
+        if (!$this->unversitiesTable) {		
+            $sm = $this->getServiceLocator();
+            $this->unversitiesTable = $sm->get('Users\Model\UniversitiesFactory');			
+        }
+        return $this->unversitiesTable;
+    }
 }

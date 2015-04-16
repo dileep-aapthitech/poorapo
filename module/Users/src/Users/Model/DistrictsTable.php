@@ -16,28 +16,17 @@ class DistrictsTable
     protected $tableGateway;
 	protected $select;
 
-	protected $userCategoriesTg;
-	protected $categoryLinksTg;
-
-    public function __construct(TableGateway $tableGateway)
+	public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
-		$this->userCategoriesTg = new TableGateway('user_categories', $this->tableGateway->getAdapter());
-		$this->categoryLinksTg = new TableGateway('category_links', $this->tableGateway->getAdapter());
     }
-
-	public function addUserDetails($user_id)
-    {	
-		$data = array(
-			'user_id' 	     => $user_id, 
-			'details_set' 	 => "1", 
-			'status' 	     => "1",
-			'montage_image'	 => $_SESSION['Zend_Auth']->photoURL
-		);	
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
-    }
-
+	/************* List All Districts **********/
+	public function getDistricts(){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }

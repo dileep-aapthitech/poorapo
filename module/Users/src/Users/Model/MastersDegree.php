@@ -1,7 +1,7 @@
 <?php
 namespace Users\Model;
 
-class MastersDegrees
+class MastersDegree
 {
 	// Add the following method:
 	public function getArrayCopy()
