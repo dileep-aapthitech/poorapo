@@ -35,7 +35,7 @@ class UsersController extends AbstractActionController
 	public function checkEmailExistsAction(){
 		if(isset($_POST['user_email']) && $_POST['user_email']!=''){
 			$existsEmail=$this->getUserTable()->checkEmail($_POST['user_email']);
-			if($existsEmail!=''){
+			if($existsEmail!=0){
 				$result = new JsonModel(array(					
 					'output' => 'exists',
 					'success'=>true,
@@ -46,6 +46,40 @@ class UsersController extends AbstractActionController
 					'success'=>false,
 				));	
 			}
+		}
+		return $result;
+	}
+	public function statesAndEntranceexamAction(){
+		$htmlStates = '';
+		$htmlEntanceExames = '';
+		$htmlDistricts = '';
+		if(isset($_POST['stateid']) && $_POST['stateid']!=''){
+			$districts=$this->getDistrictsTable()->getLocationBasedDistricts($_POST['countryid'],$_POST['stateid']);
+			$htmlDistricts.='<option value="">Select a Districts</option>';
+			foreach($districts as $dists){
+				$htmlDistricts.='<option value="'.$dists->district_id.'">'.$dists->district_name.'</option>';
+			}	
+			$result = new JsonModel(array(					
+				'output' => 'success',
+				'success'=>true,
+				'dist_names'=>$htmlDistricts,
+			));
+		}else if(isset($_POST['countryid']) && $_POST['countryid']!=''){
+			$entranceExams=$this->getEntranceExamsTable()->getBasedOnCountry($_POST['countryid']);
+			$htmlEntanceExames.='<option value="">Select a Entrance Exams</option>';
+			foreach($entranceExams as $entranceExams){
+				$htmlEntanceExames.='<option value="'.$entranceExams->entrance_exam_id.'">'.$entranceExams->entrance_exam_name.'</option>';
+			}
+			$states=$this->getSatesTable()->getSates($_POST['countryid']);
+			$htmlStates.='<option value="">Select a State</option>';
+			foreach($states as $statename){
+				$htmlStates.='<option value="'.$statename->state_id.'">'.$statename->state_name.'</option>';
+			}			
+			$result = new JsonModel(array(					
+				'output' => 'success',
+				'statenames'=>$htmlStates,
+				'entranceExams'=>$htmlEntanceExames,
+			));			
 		}
 		return $result;
 	}
@@ -116,11 +150,11 @@ class UsersController extends AbstractActionController
 			'countries' 		=> $getCountries,
 			'states' 		    => $getStates,
 			'districts' 		=> $getDistricts,
-			'colleges' 		    => $getColleges,
+			'colleges' 		    => $getColleges->buffer(),
 			'entranceexams'     => $getEntranceExams,			
 			'b_degrees'         => $getBacheloreDegree,			
-			'specializations'   => $getSpecializations,			
-			'unversities'       => $getUnversities,			
+			'specializations'   => $getSpecializations->buffer(),			
+			'unversities'       => $getUnversities->buffer(),			
 			'm_degrees'         => $getMasterDegrees,			
 			'baseUrl' 			=> $baseUrl,
 			'basePath' 			=> $basePath,

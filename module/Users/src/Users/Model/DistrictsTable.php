@@ -32,8 +32,8 @@ class DistrictsTable
 	/************** Based on States and Country *********/
 	public function getLocationBasedDistricts($countryid,$stateid){
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('country_id='.$countryid);
-		$select->where('state_id='.$stateid);
+		// $select->where('country_id='.$countryid);
+		$select->where('state_id="'.$stateid.'"');	
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet;

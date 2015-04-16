@@ -1,3 +1,74 @@
+function getDistricts(){
+	var country_id = $('#user_country').val();
+	var state_id = $('#user_state').val();
+	if(country_id!=''){
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/states-and-entranceexam',
+			data:{countryid:country_id,stateid:state_id},
+			success: function(data){
+				if(data.output=='success'){
+					$("#user_district").html(data.dist_names);					
+				}else{
+					$("#user_district").html('');	
+				}
+			}
+		});
+	}else{
+		alert('Select a country');return false;
+	}
+}
+function ajaxData(){
+	var country_id = $('#user_country').val();
+	if(country_id!=''){
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/states-and-entranceexam',
+			data:{countryid:country_id,},
+			success: function(data){
+				if(data.output=='success'){
+					$("#user_state").html(data.statenames);
+					$("#user_entrance_exam").html(data.entranceExams);
+				}
+			}
+		});
+	}else{
+		alert('Select a country');return false;
+	}
+}
+function checkEmailVaild(){
+	var emailcheck = $("#user_email").val();
+	if(emailcheck!==''){
+	if(checkEmail(emailcheck)==false)
+	{
+		alert('Please email format not correct');return false;
+	}
+	else{	
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/check-email-exists',
+			data:{user_email:emailcheck},
+			success: function(data){
+				if(data.output=='exists'){
+					alert('Already Email Exits'); return false;
+				}else if(data.output=='notexists'){
+					alert('valid Email'); return false;
+				}
+			}
+		});
+	}
+  }
+}
+function switchinUser(){
+	var userCheck = $("#user_type").val();
+	if(userCheck==2){
+		$("#hideemployeeDiv").hide();
+		$("#employeeDiv").show();
+	}else if(userCheck==1){
+		$("#employeeDiv").hide();
+		$("#hideemployeeDiv").show();
+	}
+}
 function checkEmail(emailStr) {
 	if (emailStr.length == 0) {
 		return true;

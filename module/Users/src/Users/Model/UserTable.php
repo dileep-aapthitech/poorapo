@@ -274,14 +274,10 @@ class UserTable
 	}
 	public function checkEmail($email)
     {	
-		//echo "<pre>";print_r($email);exit;
 		$select = $this->tableGateway->getSql()->select();			
 		$select->where('email_id="'.$email.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->count();
-		if (!$row) {
-			throw new \Exception("Could not find row $email");
-		}
+		$row = $resultSet->count();		
 		return $row;		
 	}
 	
