@@ -19,12 +19,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="<?php echo $basePath; ?>/favicon.ico">  
-	<!--- CSS Start --->	
+    <link rel="shortcut icon" href="<?php echo $basePath; ?>/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="<?php echo $basePath; ?>/img/favicon.ico" type="image/x-icon">	
+	<!-- CSS Start -->	
     <link href="<?php echo $basePath; ?>/css/bootstrap.css" rel="stylesheet">
     <link href="<?php echo $basePath; ?>/css/custom.css" rel="stylesheet">
     <link href="<?php echo $basePath; ?>/css/sticky-footer-navbar.css" rel="stylesheet">
-	<!------- Js Script----->
+	<!-- Js Script-->
 	<script src="<?php echo $basePath; ?>/js/jquery-112min.js"></script>
     <script src="<?php echo $basePath; ?>/js/bootstrap.min.js"></script>
     <script src="<?php echo $basePath; ?>/js/commonfunctions.js"></script>
@@ -51,6 +52,7 @@
 						{?><li><a href="#"><?php echo $currentCategoryData["category_name"]; ?></a></li><?php }
 					}?></ul>
 			</li>
+			<li><a href="#payments">Payments</a></li>
 			<li><a href="#contact">Contact</a></li>
 			<?php if(isset($_SESSION['user'])){?>
 			<li><a href="#">Get Out</a></li>

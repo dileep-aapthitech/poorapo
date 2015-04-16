@@ -99,7 +99,7 @@
 
 .testimonial-author {
     margin: 0 0 0 25px;
-    width: 60%;
+    width: 30%;
     color: #999;
     text-align: left;
 	float:left;
@@ -140,7 +140,7 @@
 .social_count div{
 	float:left;
 	margin-left:10px;
-	color:#f58740;
+	color:#ffa500;
 }
 .social_count span{
 	margin-right:5px;
@@ -150,22 +150,26 @@
 		margin-left:0;
 	}
 	.testimonial-author{
-		width:200px
+		width:85px
 	}
 }
 @media (max-width: 480px) { 
 	.social_count{
-		float:none;
-		text-align:center;
+		float:right;
+		text-align:right;
+		padding-top:3px;
 	}
 	.social_count div{
 		float:none;
 		display:inline-block;
 		text-align:center;
-		margin-top:10px;
+		margin-top:3px;
 	}
 	.panel-body{
 		padding:10px;
+	}
+	.testimonial-author{
+		margin:0;
 	}
 	.navbar-brand img{
 		width:170px;
