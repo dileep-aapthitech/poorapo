@@ -18,15 +18,14 @@
 .copy_right {
     background: #424242 none repeat scroll 0 0;
     border-top: 1px solid #121212;
-    padding: 5px 15px;
+    padding: 5px;
 }
 .copy_right p{
 	 color: #7a7d7e;
 	 font-size:14px;
 	 margin:0;
 	 padding:0;
-	 float:left;
-	 margin-top:10px;
+	 text-align:center;
 }
 /*.navbar-default-custom-c{
 	background:#fff !important;
@@ -100,10 +99,10 @@
 
 .testimonial-author {
     margin: 0 0 0 25px;
-    width: 100%;
+    width: 60%;
     color: #999;
     text-align: left;
-    font-style: italic;
+	float:left;
 }
 
 .testimonial-author span {
@@ -128,16 +127,47 @@
 }
 .panel-body a{
 	margin-right:2px;
-}
-.social_icons{
-	float:right;
+	margin-top:5px;
 }
 .social_icons img{
-	width:35px;
-	margin-left:20px;
+	width:30px;
+	margin-right:5px;
+}
+.social_count{
+	float:right;
+	padding-top:7px;
+}
+.social_count div{
+	float:left;
+	margin-left:10px;
+	color:#f58740;
+}
+.social_count span{
+	margin-right:5px;
 }
 @media (max-width: 767px) {
 	.columan_divs{
 		margin-left:0;
 	}
+	.testimonial-author{
+		width:200px
+	}
 }
+@media (max-width: 480px) { 
+	.social_count{
+		float:none;
+		text-align:center;
+	}
+	.social_count div{
+		float:none;
+		display:inline-block;
+		text-align:center;
+		margin-top:10px;
+	}
+	.panel-body{
+		padding:10px;
+	}
+	.navbar-brand img{
+		width:170px;
+	}
+ }

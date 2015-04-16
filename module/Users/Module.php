@@ -12,6 +12,8 @@ use Zend\ModuleManager\ModuleManager;
 use Zend\Stdlib\Hydrator\ClassMethods;
 
 
+use Users\Model\UserType;
+use Users\Model\UserTypeTable;
 use Users\Model\User;
 use Users\Model\UserTable;
 use Users\Model\UserDetails;
@@ -64,6 +66,7 @@ class Module implements
     {
         return array(
             'factories' => array( 
+            	'Users\Model\UserTypeFactory'=>'Users\Factory\Model\UsertypeTableFactory',			
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		
             	'Users\Model\UserPersonalFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
@@ -76,7 +79,7 @@ class Module implements
             	'Users\Model\BacheloreDegreesFactory'=>'Users\Factory\Model\BacheloreDegreesTableFactory',	
             	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',
             	'Users\Model\SpecializationFactory'=>'Users\Factory\Model\SpecializationTableFactory',
-            	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory',
+            	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory'
 			),			
         );
     }

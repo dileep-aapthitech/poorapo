@@ -15,6 +15,9 @@ class UsersController extends AbstractActionController
 {
 	protected  $userTable;
 	protected  $userDetailsTable;
+	protected  $userpersonalinfoTable;
+	protected  $CountriesinfoTable;
+	protected  $UserTypeTable;
 	public function indexAction()
 	{
 	}
@@ -75,12 +78,19 @@ class UsersController extends AbstractActionController
         }
         return $this->userTable;
     }
-
+	public function getUserPersonalInfoTable()
+    {
+        if (!$this->userpersonalinfoTable) {				
+            $sm = $this->getServiceLocator();
+            $this->userTable = $sm->get('Users\Model\UserPersonalInfoTableFactory');			
+        }
+        return $this->userpersonalinfoTable;
+    }
 	public function getUserDetailsTable()
     {
         if (!$this->userDetailsTable) {				
             $sm = $this->getServiceLocator();
-            $this->userDetailsTable = $sm->get('Users\Model\UserDetailsFactory');			
+            $this->userDetailsTable = $sm->get('Users\Model\UserDetailsTableFactory');			
         }
         return $this->userDetailsTable;
     }
