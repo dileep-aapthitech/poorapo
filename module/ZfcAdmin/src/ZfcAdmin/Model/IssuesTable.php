@@ -64,5 +64,19 @@ class IssuesTable
 		$res=$this->tableGateway->delete( array('user_id' => $userId) );
         return $res;	
 	}
+
+	public function getAllMenuIssues( $categoryId )
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('tbl_categories', 'tbl_issues.category_id=tbl_categories.category_id',array('category_name','category_type_id'),'left');
+		$select->where('tbl_categories.category_type_id=2');
+		if( $categoryId > 0 )
+		{
+			$select->where('tbl_issues.category_id="'.$categoryId.'"');
+		}
+		$select->order('tbl_issues.created_at DESC');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	
 }
