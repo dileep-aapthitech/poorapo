@@ -27,6 +27,20 @@ class IssuesTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+
+	public function addIssue($issue_data)
+    {	
+		$data = array(
+			'category_id' 	         => $issue_data['category_id'],
+			'issue_title' 	         => $issue_data['title'],
+			'issue_decription' 	     => $issue_data['article-body'],
+			'created_at' 	         => date('y-m-d'),
+			'modified_at' 	         => date('y-m-d'),
+			'status' 	      		 => 1	,
+		);	
+		$this->tableGateway->insert($data);		
+		return $this->tableGateway->lastInsertValue;
+    }
 	
 	public function addFpNewRow( $userId,$email,$token )
     {	
@@ -64,7 +78,11 @@ class IssuesTable
 		$res=$this->tableGateway->delete( array('user_id' => $userId) );
         return $res;	
 	}
-
+	public function deleteIssue( $issue_id )
+	{		
+		$res=$this->tableGateway->delete( array('issue_id' => $issue_id) );
+        return $res;	
+	}
 	public function getAllMenuIssues( $categoryId )
     {
 		$select = $this->tableGateway->getSql()->select();

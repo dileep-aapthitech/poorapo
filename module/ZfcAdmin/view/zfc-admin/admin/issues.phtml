@@ -4,6 +4,7 @@
   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"></script>
   <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jquery.dataTables/1.9.4/jquery.dataTables.min.js"></script>
 </head>
+<p><input type="button" id="add" name="add" value="ADD" onclick="addissFunction()"></p>
   <table id="example">
     <thead>
       <tr><th>Sno</th>
@@ -44,4 +45,12 @@
 		}
 	});
 });
-  </script>
+function addissFunction(){
+window.location=BASE_URL+'/admin/addissue';
+}
+
+function deleteIssue(id){
+window.location=BASE_URL+'/admin/issues?delid='+id;
+}
+
+</script>

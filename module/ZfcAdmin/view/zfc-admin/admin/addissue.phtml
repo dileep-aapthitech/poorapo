@@ -1,0 +1,73 @@
+<div class="container mar_t">
+	<script src="<?php echo $this->basepath; ?>/js/ckeditor/ckeditor.js"></script>
+	<style>
+		.cke_textarea_inline
+		{
+			padding: 10px;
+			height: 200px;
+			overflow: auto;
+
+			border: 1px solid gray;
+			-webkit-appearance: textfield;
+		}
+    </style>
+ 
+ <form id="addIssue" method="post">
+	<center>
+	    <h1>Add Issue</h1>
+		<p>
+			Title:<br>
+			<input type="text" name="title" id="title" ><span id="errortitle" name="errortitle" style="color:red;" ></span></p>
+		<p>
+			Description:<br>
+			<textarea name="article-body" id= "article-body" style="height:90px" >
+			</textarea><span id="erroreditor" name="erroreditor" style="color:red;" ></span>
+		</p>
+		<p>
+			SelectCategory:
+			<select id="category_id" name="category_id" >
+			<option  value="" >Select Categories</option>
+			<?php foreach($this->categories as $category){ ?>
+			<option value="<?php echo $category['category_id'];?>"> <?php echo $category['category_name'];?></option>
+			<?}?>
+			</select>
+			<span id="errorCat" name="errorCat" style="color:red;" ></span>
+		</p>
+		<p>
+			<input type="button" value="Add" onclick="addIssueFunction()">
+		</p>
+		</center>
+	</form>
+
+	<script>
+		CKEDITOR.inline( 'article-body' );
+		function addIssueFunction(){
+		  var flag=true;
+		  var title= $("#title").val();
+		  var selectcat=$('#category_id').val();
+		  if(title==""){
+		     $("#errortitle").html("Required");
+			 flag=false;
+		  }else{
+		      $("#errortitle").html("");
+		  }
+		  var ckeditor= CKEDITOR.instances['article-body'].getData().replace(/<[^>]*>/gi, '').length;
+          if( !ckeditor ){
+            $("#erroreditor").html("Required");
+			 flag=false;
+          }else{
+		    $("#erroreditor").html(""); 
+		  }
+		  if(selectcat==""){
+			$('#errorCat').html('Required');
+			 flag=false;
+		  }else{
+			$('#errorCat').html('');
+		  }
+		  if(flag==true){
+			$('#addIssue').submit();
+		    //window.location=BASE_URL+'/admin/issue';
+		  }
+		  
+		}
+	</script>

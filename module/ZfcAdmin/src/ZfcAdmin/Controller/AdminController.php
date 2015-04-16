@@ -15,6 +15,7 @@ class AdminController extends AbstractActionController
 {
 	protected  $userTable;
 	protected  $issuesTable;
+	protected  $categoriesTable;
 	public function indexAction()
 	{
 		
@@ -22,6 +23,10 @@ class AdminController extends AbstractActionController
 	//public function headerAction view  header page returns view part
 	public function loginAction()
     {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		$userInfo["email"] = $_POST['inputEmail'];
 		$userInfo["password"] = md5($_POST['password']);
 		$userInfo["type_id"] = $_POST['type_id'];
@@ -42,16 +47,45 @@ class AdminController extends AbstractActionController
 			));
 		}
 	}
-	public function DashboardAction()
+	public function dashBoardAction()
 	{
 		
 	}
+	public function addIssueAction()
+	{
+		$getCategories=$this->getCategoryTable()->getCategories();
+		$baseUrls 	= $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl 	= $baseUrlArr['baseUrl'];
+		$basePath 	= $baseUrlArr['basePath'];
+		if($_POST){
+			$addIssue = $this->getIssuesTable()->addIssue($_POST);
+			return $this->redirect()->toUrl($basePath .'/admin/issues');
+		}else{
+			return  $result = new ViewModel(array(					
+				'basepath' 		=> $basePath ,
+				'categories'	=> $getCategories->toArray(),
+			));
+		}
+	}
 	public function issuesAction()
 	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_GET['delid'])){
+			$deleteissue=$this->getIssuesTable()->deleteIssue($_GET['delid']);
+			return $this->redirect()->toUrl($basePath .'/admin/issues');
+		}
 		
 	}
 	public function issuesAjaxAction()
 	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		$getIssues = $this->getIssuesTable()->getIssues();
 		$data = array();$i=0;
 		if(isset($getIssues) && $getIssues->count()!=0){
@@ -85,4 +119,13 @@ class AdminController extends AbstractActionController
        }
        return $this->issuesTable;
    }
+   
+   public function getCategoryTable()
+    {
+        if (!$this->categoriesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
+        }
+        return $this->categoriesTable;
+    }
 }

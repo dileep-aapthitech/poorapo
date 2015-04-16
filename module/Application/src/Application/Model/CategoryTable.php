@@ -42,5 +42,12 @@ class CategoryTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
-
+	
+	public function getCategories()
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 }
