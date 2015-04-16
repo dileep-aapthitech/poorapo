@@ -21,7 +21,17 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
-            ),        	
+            ),  
+			'edit-profile' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/edit-profile',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'editProfile',
+						),
+					),
+			),	
 			'login' => array(
 					'type' => 'literal',
 					'options' => array(

@@ -29,6 +29,9 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
+	public function editProfileAction(){
+	
+	}
 	public function checkEmailExistsAction(){
 		if(isset($_POST['user_email']) && $_POST['user_email']!=''){
 			$existsEmail=$this->getUserTable()->checkEmail($_POST['user_email']);
