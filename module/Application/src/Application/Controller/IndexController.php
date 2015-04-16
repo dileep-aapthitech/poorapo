@@ -8,6 +8,7 @@ class IndexController extends AbstractActionController
 {
 	protected  $categoriesTable;
 	protected  $categoryTypesTable;
+	protected  $issuesTable;
 	
     public function indexAction()
     {
@@ -15,10 +16,28 @@ class IndexController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
+
+		$categoryId = 0;
+		if($this->params()->fromRoute('id', 0)!="")
+		{
+			$params=$this->params()->fromRoute('id', 0);
+			$paramss=explode("-",$params);
+			$paramssCount = count($paramss);
+			$catIdPortion = $paramssCount-1;
+			if( isset($paramss[$catIdPortion]) && $paramss[$catIdPortion] != "" )
+			{
+				$categoryId=$paramss[$catIdPortion];
+			}
+		}
+		
+		$menuIssuesArr = $this->getIssuesTable()->getAllMenuIssues( $categoryId )->toArray();
+		// echo "<pre>";print_r($menuIssuesArr);exit;
+
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
-				'basePath' 					=> $basePath				
+				'basePath' 					=> $basePath,
+				'menuIssuesArr' 			=> $menuIssuesArr
 		));
 		return $viewModel;
     }	
@@ -67,6 +86,15 @@ class IndexController extends AbstractActionController
             $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
         }
         return $this->categoriesTable;
+    }
+	
+	public function getIssuesTable()
+    {
+        if (!$this->issuesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->issuesTable = $sm->get('ZfcAdmin\Model\IssuesFactory');			
+        }
+        return $this->issuesTable;
     }
 
 }

@@ -8,12 +8,16 @@ return array(
 	'router' 					=> 	array(
 		'routes' 				=> 	array(
 			'home' 				=> 	array(
-				'type' 			=> 	'Zend\Mvc\Router\Http\Literal',
+				// 'type' 			=> 	'Zend\Mvc\Router\Http\Literal',
+				'type'    => 'segment',
 				'options' 		=> 	array(
-					'route'    	=> 	'/',
-					'defaults' 	=> 	array(
-						'controller' 	=> 	'Application\Controller\Index',
-						'action'     	=> 	'index',
+					'route' => '/[:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&+;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'index',
 					),
 				),
 			),

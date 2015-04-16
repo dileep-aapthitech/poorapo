@@ -1,186 +1,217 @@
  <div class="container">
 		<div class="mar_t">
-			<div class="row">
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+			<div class="row"><?php if( isset($this->menuIssuesArr) && count($this->menuIssuesArr) > 0 )
+				{
+					foreach( $this->menuIssuesArr as $key=>$currentMIssueData )
+					{
+					?><div class="col-md-4 columan_divs">
+							<div class="panel panel-default">
+								<div class="panel-heading"><h3><?php echo trim($currentMIssueData["category_name"]); ?> - <?php echo trim($currentMIssueData["issue_title"]); ?></h3></div>
+								<div class="panel-body">
+									<div>
+									<div class="testimonial">
+									<p class="testimonial_f"><?php echo $currentMIssueData["issue_decription"]; ?></p>
+									</div>
+									<div class="arrow-down"></div>
+									<p class="testimonial-author">
+									<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModal" >Share </a>
+									<a href="#" class="btn btn-primary btn-xs">Like</a></p>
+									<div class="social_count">
+									<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+									<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+									</div>
+									
+									</div>
+								</div>
 							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModal" >Share </a>
-							<a href="#" class="btn btn-primary btn-xs">Like</a></p>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
-							
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs">Share </a>	
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs">Share </a>	
-							<a href="#" class="btn btn-primary btn-xs">Like</a>	
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
+						</div><?php }
+				}
+				else{
+				?>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModal" >Share </a>
+								<a href="#" class="btn btn-primary btn-xs">Like</a></p>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs">Share </a>	
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs">Share </a>
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs">Share </a>	
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs">Share </a>	
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
-							</div>
-						</div>
-					</div>
-				</div><div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs">Share </a>		
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs">Share </a>	
+								<a href="#" class="btn btn-primary btn-xs">Like</a>	
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">Share </a>	
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4 columan_divs">
-					<div class="panel panel-default">
-						<div class="panel-heading"><h3>Education - syllabus problem problem</h3></div>
-						<div class="panel-body">
-							<div>
-							<div class="testimonial">
-							<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
-							</div>
-							<div class="arrow-down"></div>
-							<p class="testimonial-author">
-							<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">Share </a>	
-							<a href="#" class="btn btn-primary btn-xs">Like</a>
-							<div class="social_count">
-							<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
-							<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
-							</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs">Share </a>	
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs">Share </a>
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs">Share </a>	
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div><div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs">Share </a>		
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">Share </a>	
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 columan_divs">
+						<div class="panel panel-default">
+							<div class="panel-heading"><h3>Education - syllabus problem problem</h3></div>
+							<div class="panel-body">
+								<div>
+								<div class="testimonial">
+								<p class="testimonial_f">Thanks for the fantastic job done to our site molsons.in. It was a pleasure working with the team as they worked closely with us every step of the way.</p>
+								</div>
+								<div class="arrow-down"></div>
+								<p class="testimonial-author">
+								<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target=".bs-example-modal-lg">Share </a>	
+								<a href="#" class="btn btn-primary btn-xs">Like</a>
+								<div class="social_count">
+								<div><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>200</div>
+								<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php
+				}
+				?>				
+				
 			</div>
 		</div>
     </div> 
