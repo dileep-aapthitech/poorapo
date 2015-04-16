@@ -8,3 +8,6 @@ CREATE TABLE `tbl_category_types` (
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`category_type_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
+
+/*[2:06:05 PM][1210 ms]*/ ALTER TABLE `poraapo_db`.`tbl_issues` ADD COLUMN `category_type_id` INT(11) NULL AFTER `modified_at`; 
