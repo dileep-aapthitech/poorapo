@@ -6,6 +6,9 @@ use Zend\Session\Container;
 use Zend\View\Model\JsonModel;
 class IndexController extends AbstractActionController
 {
+	protected  $categoriesTable;
+	protected  $categoryTypesTable;
+	
     public function indexAction()
     {
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -32,4 +35,38 @@ class IndexController extends AbstractActionController
 			)
 		);
 	}
+	public function supplyHeaderCategoriesAction($params)
+    {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];	
+
+		$categoriesArr = $this->getCategoryTable()->getAllMenuCategories()->toArray();
+		
+		return $this->layout()->setVariable(
+			"catsInfoarray",array(
+				'categoriesArr' => 	$categoriesArr
+			)
+		);
+	}
+	
+	public function getCategoryTypesTable()
+    {
+        if (!$this->categoryTypesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->categoryTypesTable = $sm->get('Application\Model\CategoryTypesFactory');			
+        }
+        return $this->categoryTypesTable;
+    }
+	
+	public function getCategoryTable()
+    {
+        if (!$this->categoriesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->categoriesTable = $sm->get('Application\Model\CategoryFactory');			
+        }
+        return $this->categoriesTable;
+    }
+
 }

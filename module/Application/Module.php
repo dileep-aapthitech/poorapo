@@ -14,6 +14,10 @@ use Zend\Mvc\MvcEvent;
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 use Zend\Session\Container;
 
+use Application\Model\CategoryTypes;
+use Application\Model\CategoryTypesTable;
+use Application\Model\Category;
+use Application\Model\CategoryTable;
 
 class Module implements AutoloaderProviderInterface
 {
@@ -101,7 +105,10 @@ class Module implements AutoloaderProviderInterface
 	 public function getServiceConfig() {
         return array(
             'factories' => array(
-					'Zend\Session\SessionManager' => function ($sm) {
+				'Application\Model\CategoryTypesFactory'=>'Application\Factory\Model\CategoryTypesTableFactory',
+				'Application\Model\CategoryFactory'=>'Application\Factory\Model\CategoryTableFactory',
+				
+				'Zend\Session\SessionManager' => function ($sm) {
                     $config = $sm->get('config');
                     if (isset($config['session'])) {
                         $session = $config['session'];

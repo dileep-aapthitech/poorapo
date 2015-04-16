@@ -3,6 +3,10 @@
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
 ?>
+<?php
+	$header=$this->action('Application\Controller\IndexController', 'supplyHeaderCategoriesAction',array('30','40'));
+	$categoriesArr = $header->catsInfoarray['categoriesArr'];
+?>
 <script> 	
 	var BASE_URL = '<?php echo $baseUrl;?>';
 	var BASE_PATH = '<?php echo $basePath;?>';	
@@ -41,12 +45,11 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <li class="active"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories<span class="caret"></span></a>
-			<ul class="dropdown-menu" role="menu">
-                <li><a href="#">Education</a></li>
-                <li><a href="#">Sports</a></li>
-                <li><a href="#">Movies</a></li>
-                <li><a href="#">News</a></li>
-              </ul>
+			<ul class="dropdown-menu" role="menu"><?php if( isset($categoriesArr) )
+					{
+						foreach( $categoriesArr as $key=>$currentCategoryData )
+						{?><li><a href="#"><?php echo $currentCategoryData["category_name"]; ?></a></li><?php }
+					}?></ul>
 			</li>
 			<li><a href="#contact">Contact</a></li>
             <li><a href="login.html">Get In</a></li>

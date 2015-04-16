@@ -43,6 +43,19 @@ return array(
 					),
 				),
 			),
+			'header-categories' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/header-categories[/:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'supplyHeaderCategories',
+					),
+				),
+			),
 		),
 	),
 	'service_manager' 			=> 	array(
