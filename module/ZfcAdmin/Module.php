@@ -14,7 +14,8 @@ use Zend\Stdlib\Hydrator\ClassMethods;
 
 use ZfcAdmin\Model\UserType;
 use ZfcAdmin\Model\UserTypeTable;
-
+use ZfcAdmin\Model\Issues;
+use ZfcAdmin\Model\IssuesTable;
 
 class Module implements 
 	Feature\AutoloaderProviderInterface,
@@ -42,7 +43,7 @@ class Module implements
     {
         return array(
             'factories' => array( 
-            	'Users\Model\UserTypeFactory'=>'Users\Factory\Model\UsertypeTableFactory',			
+            	'ZfcAdmin\Model\IssuesFactory'=>'ZfcAdmin\Factory\Model\IssuessTableFactory'
 			),			
         );
     }

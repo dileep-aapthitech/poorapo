@@ -9,9 +9,9 @@ use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
 use ZfcAdmin\Model\Issuess;
-use ZfcAdmin\Model\IssuessTable;
+use ZfcAdmin\Model\IssuesTable;
 
-class ForgotPasswordTableFactory implements FactoryInterface
+class IssuessTableFactory implements FactoryInterface
 {
     public function createService(ServiceLocatorInterface $serviceLocator)
     {
@@ -20,7 +20,7 @@ class ForgotPasswordTableFactory implements FactoryInterface
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new Issuess());
         $tableGateway       = new TableGateway('tbl_issues', $db,array(),$resultSetPrototype);
-        $table              = new IssuessTable($tableGateway);
+        $table              = new IssuesTable($tableGateway);
         return $table;
     }
 }
