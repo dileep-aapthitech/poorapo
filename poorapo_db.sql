@@ -31,7 +31,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('b7q7dtnntr65p1ls550to69sg1','PHPSESSID',1429103357,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429103356.9646239;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('tgdplpggfspcemtdkhmcb3l4r3','PHPSESSID',1429174590,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429174590.0141289;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('b7q7dtnntr65p1ls550to69sg1','PHPSESSID',1429103357,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429103356.9646239;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('g2kvrc9ds87hhl5ba8qtiebg65','PHPSESSID',1429193490,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429193490.8451951;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
 
 /*Table structure for table `tbl_bachelore_degrees` */
 
