@@ -12,25 +12,25 @@
 				<div class="form-group">
 				<label for="inputtype" class="col-sm-2 control-label">User Type</label>
 				<div class="col-sm-10">
-				<select class="form-control" id="select">
-				<option>Select User Type</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+				<select class="form-control" id="user_type" name="user_type">
+					<option>Select User Type</option>
+					<? if(count($usertypes)!='') {
+						foreach($usertypes as $user_type){?>
+						<option value="<? echo $user_type->user_type_id?>"><? echo ucfirst($user_type->user_type_name);?></option>
+					<?}	}?>
 				</select>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">Email</label>
 				<div class="col-sm-10">
-				<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+				<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email">
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">Password</label>
 				<div class="col-sm-10">
-				<input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+				<input type="password" class="form-control" id="user_password" name="user_password" placeholder="Password">
 				</div>
 				</div>
 				<div class="form-group">
@@ -50,13 +50,13 @@
 				<div class="form-group">
 				<label for="inputfname" class="col-sm-2 control-label">First Name</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputfname" placeholder="First Name">
+				<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name">
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputlname" class="col-sm-2 control-label">Last Name</label>
 				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputlname" placeholder="Last Name">
+				<input type="text" class="form-control" id="user_last_name" name="user_last_name" placeholder="Last Name">
 				</div>
 				</div>
 				<div class="form-group">
@@ -64,13 +64,13 @@
 				<div class="col-lg-10">
 				<div class="radio">
 				<label>
-				<input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked="">
+				<input type="radio" name="gendermf" id="gendermf" value="Male" checked="">
 				Male
 				</label>
 				</div>
 				<div class="radio">
 				<label>
-				<input type="radio" name="optionsRadios" id="optionsRadios2" value="option2">
+				<input type="radio" name="gendermf" id="gendermf" value="Female">
 				Female
 				</label>
 				</div>
@@ -79,30 +79,27 @@
 				<div class="form-group">
 				<label for="inputEmail3" class="col-sm-2 control-label">Date of Birth</label>
 				<div class="col-sm-3">
-				<select class="form-control" id="select">
-				<option>Date</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+				<select class="form-control" id="date" name="date">
+				<option value="">Date</option>
+				<? $i=1;for($i=1;$i<=31;$i++){?>
+					<option value="<? echo $i;?>"><? echo $i;?></option>
+				<?}?>
 				</select>
 				</div>
 				<div class="col-sm-3">
-				<select class="form-control" id="select">
-				<option>Month</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+				<select class="form-control" id="month" name="month">
+				<option value="">Month</option>
+				<? $i=1;for($i=1;$i<=12;$i++){?>
+					<option value="<? echo $i;?>"><? echo $i;?></option>
+				<?}?>
 				</select>
 				</div>
 				<div class="col-sm-3">
-				<select class="form-control" id="select">
-				<option>Year</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+				<select class="form-control" id="year" name="year">
+				<option value="">Year</option>
+				<? $i=1;for($i=1960;$i<=2015;$i++){?>
+					<option value="<? echo $i;?>"><? echo $i;?></option>
+				<?}?>
 				</select>
 				</div>
 				</div>
@@ -110,14 +107,92 @@
 				<label for="inputPassword3" class="col-sm-2 control-label">Country</label>
 				<div class="col-sm-10">
 				<select class="form-control" id="select">
-				<option>Select Country</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
+				<option value="">Select a Country</option>
+				<? if(count($countries)!='') {
+						foreach($countries as $country){?>
+						<option value="<? echo $country->id_countries;?>"><? echo ucfirst($country->name);?></option>
+					<?}	}?>
 				</select>
 				</div>
+				</div>	
+				<div class="form-group">
+				<label for="inputpname" class="col-sm-2 control-label">Mobile Number</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_mobile" name="user_mobile" placeholder="Parent First Name">
 				</div>
+				</div>	
+				<div id="hideemployeeDiv">				
+				<div class="form-group">
+				<label for="inputpname" class="col-sm-2 control-label">Parent First Name</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_parent_name" name="user_parent_name"  placeholder="Parent First Name">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputplname" class="col-sm-2 control-label">Parent Last Name</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_parent_lastname" name="user_parent_lastname" placeholder="Parent Last Name">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputpnm" class="col-sm-2 control-label">Parent Mobile Number</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_mobile_number" name="user_mobile_number"  placeholder="Parent Mobile Number">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputpem" class="col-sm-2 control-label">Parent Email</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_parent_email" name="user_parent_email" placeholder="Parent Email">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputppin" class="col-sm-2 control-label">Parent Pincode</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_parent_pincode" name="user_parent_pincode" placeholder="Parent Pincode">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputperpin" class="col-sm-2 control-label">Permanent Pincode</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="user_perment_pincode" name="user_perment_pincode" placeholder="Permanent Pincode">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputafi" class="col-sm-2 control-label">Annual Family Income</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputafi" placeholder="Annual Family Income">
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputfn" class="col-sm-2 control-label"> Family Network</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputfn" placeholder="Family Network">
+				</div>
+				</div>
+				</div>
+				<div id="employeeDiv" style="display:none">
+				<div class="form-group">
+				<label for="inputectc" class="col-sm-2 control-label">Employee CTC</label>
+				<div class="col-sm-10">
+				<input type="text" class="form-control" id="inputectc" placeholder="Employee CTC">
+				</div>
+				</div>
+				</div>
+				<div class="form-group">
+				<div class="col-lg-10 col-lg-offset-2">
+				<button type="reset" class="btn btn-default">Cancel</button>
+				<button type="submit" class="btn btn-primary ">Continue</button>
+				</div>
+				</div>
+				</form>
+				</div>
+			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" onclick="regTab1(3)">12th Class College Information 
+				<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
+				<div class="panel-body" id="tab_3_hide" style="display:none;">
+				<form class="form-horizontal">
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-2 control-label">State</label>
 				<div class="col-sm-10">
@@ -142,74 +217,6 @@
 				</select>
 				</div>
 				</div>
-				<div class="form-group">
-				<label for="inputpname" class="col-sm-2 control-label">Parent First Name</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputpname" placeholder="Parent First Name">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputplname" class="col-sm-2 control-label">Parent Last Name</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputplname" placeholder="Parent Last Name">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputpnm" class="col-sm-2 control-label">Parent Mobile Number</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputpnm" placeholder="Parent Mobile Number">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputpem" class="col-sm-2 control-label">Parent Email</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputpem" placeholder="Parent Email">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputppin" class="col-sm-2 control-label">Parent Pincode</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputppin" placeholder="Parent Pincode">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputperpin" class="col-sm-2 control-label">Permanent Pincode</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputperpin" placeholder="Permanent Pincode">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputafi" class="col-sm-2 control-label">Annual Family Income</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputafi" placeholder="Annual Family Income">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputfn" class="col-sm-2 control-label"> Family Network</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputfn" placeholder="Family Network">
-				</div>
-				</div>
-				<div class="form-group">
-				<label for="inputectc" class="col-sm-2 control-label">Employee CTC</label>
-				<div class="col-sm-10">
-				<input type="text" class="form-control" id="inputectc" placeholder="Employee CTC">
-				</div>
-				</div>
-				<div class="form-group">
-				<div class="col-lg-10 col-lg-offset-2">
-				<button type="reset" class="btn btn-default">Cancel</button>
-				<button type="submit" class="btn btn-primary ">Continue</button>
-				</div>
-				</div>
-				</form>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading" onclick="regTab1(3)">12th Class College Information 
-				<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
-				<div class="panel-body" id="tab_3_hide" style="display:none;">
-				<form class="form-horizontal">
 				<div class="form-group">
 				<label for="inputcname" class="col-sm-2 control-label">College Name</label>
 				<div class="col-sm-10">
