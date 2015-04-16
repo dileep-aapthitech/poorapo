@@ -44,7 +44,7 @@ class UsersController extends AbstractActionController
 		$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
 		$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
 		$getUnversities=$this->getUnversitiesTable()->getUnversities();
-		echo "<pre>";print_r($getUnversities);exit;
+		// echo "<pre>";print_r($getUnversities);exit;
 		
 		
 	}
