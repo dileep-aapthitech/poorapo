@@ -68,6 +68,20 @@ return array(
                     ),
                 ),
             ),
+			'addissues' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/addissues[/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ZfcAdmin\Controller\AdminController',
+                        'action'     => 'addissues',
+                    ),
+                ),
+            ),
 			
     'view_manager' => array(
         'template_path_stack' => array(
