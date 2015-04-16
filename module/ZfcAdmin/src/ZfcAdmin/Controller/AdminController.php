@@ -13,6 +13,7 @@ use Zend\Cache\StorageFactory;
 use ScnSocialAuth\Mapper\UserProviderInterface;
 class AdminController extends AbstractActionController
 {
+	protected  $userTable;
 	public function indexAction()
 	{
 		
@@ -23,31 +24,27 @@ class AdminController extends AbstractActionController
 		$userInfo["email"] = $_POST['inputEmail'];
 		$userInfo["password"] = md5($_POST['password']);
 		$userInfo["type_id"] = $_POST['type_id'];
-		$userRow = $this->getUserTable()->checkAdminEmailExists( $userInfo )->current();
+		$userRow = $this->getUserTable()->checkAdminEmailExists( $userInfo )->toArray();
 		$user_session = new Container('admininfo');
-		if($userRow!=0){
-			$user_session->userId=$userRow->user_id;
-			$user_session->email=$userRow->email;
+		if(count($userRow)!=0){
+			$user_session->userId=$userRow[0]['user_id'];
+			$user_session->email=$userRow[0]['email_id'];
+			$user_session->type_id=$userRow[0]['user_type_id'];
 			
-			$result = new ViewModel(array(
-				'result'  	=> 'success',
+			return $result = new JsonModel(array(					
+				'output' => 'success',
 			));
 			//return $this->redirect()->toUrl('admin-dashboard.phtml');
 		}else{
-			$result = new ViewModel(array(
-				'result'  	=> 'fail',
+			return $result = new JsonModel(array(					
+				'output' => 'fail',
 			));
 		}
-		return 	$result;
 	}
-	public function getAdminReportsTable()
-    {
-        if (!$this->adminReportsTable) {				
-            $sm = $this->getServiceLocator();
-            $this->adminReportsTable = $sm->get('ZfcAdmin\Model\AdminReportsFactory');			
-        }
-        return $this->adminReportsTable;
-    }
+	public function DashboardAction()
+	{
+		
+	}
 	public function getUserTable()
     {
         if (!$this->userTable) {				

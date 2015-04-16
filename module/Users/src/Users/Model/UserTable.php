@@ -135,12 +135,11 @@ class UserTable
     {
 		$select = $this->tableGateway->getSql()->select();
 		//$select->join('user_details', 'user_details.user_id=user.user_id',array('*'),'left');
-		$select->where('email="'.$userInfo['email'].'"');
+		$select->where('email_id="'.$userInfo['email'].'"');
 		$select->where('password="'.$userInfo['password'].'"');
 		$select->where('user_type_id="'.$userInfo['type_id'].'"');
 		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet;
-		return $row;
+		return $resultSet;
 	}
 	public function getUsersSet($offset,$limit)
     {

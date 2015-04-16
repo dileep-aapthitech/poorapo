@@ -40,17 +40,31 @@ return array(
                 ),
             ),
 			
-			'addpage' => array(
+			'dashboard' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/addpage[/:id]',
+                    'route'    => '/dashboard[/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'ZfcAdmin\Controller\AdminController',
-                        'action'     => 'addpage',
+                        'action'     => 'dashboard',
+                    ),
+                ),
+            ),
+			'issues' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/issues[/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ZfcAdmin\Controller\AdminController',
+                        'action'     => 'issues',
                     ),
                 ),
             ),
