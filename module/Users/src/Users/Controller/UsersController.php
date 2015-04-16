@@ -58,17 +58,17 @@ class UsersController extends AbstractActionController
 			$usersTable=$this->getUserTable();
 			$userDetails = $usersTable->checkEmailExists($_POST);
 			if($userDetails!=''){
-				//$user_session = new Container('user');
-				//$user_session->username=$userDetails->user_name;
-				//$user_session->email=$userDetails->email_id;
-				//$user_session->user_id=$userDetails->user_id;
-				//$user_session->user_type=$userDetails->user_type_id;
-				return $result = new JsonModel(array(					
+				$user_session = new Container('user');
+				$user_session->username=$userDetails->user_name;
+				$user_session->email=$userDetails->email_id;
+				$user_session->user_id=$userDetails->user_id;
+				$user_session->user_type=$userDetails->user_type_id;
+				$result = new JsonModel(array(					
 					'output' => 'success',
-					'user_id' => $userDetails->user_id,
+					'user_id' => json_decode($userDetails->user_id),
 				));
 			}else{
-				return $result = new JsonModel(array(					
+				 $result = new JsonModel(array(					
 					'output' => 'not success',
 				));
 			}
@@ -76,17 +76,50 @@ class UsersController extends AbstractActionController
 		}	
 	}
 	public function logoutAction(){	
-       unset($_SESSION['user']);
-	   unset($_SESSION['usersinfo']);
-	   unset($_SESSION['products']);
-	   $result = new JsonModel(array(					
-			'output' => 'success',
-			'success'=>false,
-		));
-		return $result;
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		unset($_SESSION['user']);
+		return $this->redirect()->toUrl($baseUrl);
 	}
-	public function forgetPasswordAction()
+	public function changePasswordAction()
 	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['cnfpwrd'])){
+			$usersTable=$this->getUserTable();
+			$changepwd = $usersTable->changepwd($_POST['cnfpwrd'],$_POST['userId']);	
+			if($changepwd>0){			
+				$result = new JsonModel(array(					
+					'output' => 'success',
+				));			
+			}else{
+				$result = new JsonModel(array(					
+					'output' => 'not success',
+				));
+			}
+			return $result;	
+		}		
+	
+	}
+	public function checkPasswordAction(){ 
+		$usersTable=$this->getUserTable();
+		$pwdExit = $usersTable->getpassword($_POST['oldpasswrd'],$_POST['userId']);		
+		if($pwdExit>0){			
+			$result = new JsonModel(array(					
+				'output' => 'success',
+			));			
+		}else{
+			$result = new JsonModel(array(					
+				'output' => 'not success',
+			));
+		}
+		return $result;		
+	}	
+	public function forgetPasswordAction(){	
+		//echo 'sivareddy';exit;
 	}
 	//public function headerAction view  header page returns view part
 	public function getUserTable()

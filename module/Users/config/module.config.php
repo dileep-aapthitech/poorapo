@@ -32,6 +32,26 @@ return array(
 						),
 					),
 			),
+			'change-password' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/change-password',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'changePassword',
+						),
+					),
+			),
+			'check-password' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/check-password',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'checkPassword',
+						),
+					),
+			),
 			'forget-password' => array(
 					'type' => 'literal',
 					'options' => array(

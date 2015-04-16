@@ -255,5 +255,23 @@ class UserTable
 		$row=$this->tableGateway->update($data, array('user_id' => $userId));
 		return $row;
 	}
+	public function getpassword($pwd,$userid){ 
+		$pwd=md5($pwd);
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('password="'.$pwd.'"');
+		$select->where('user_id="'.$userid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->count();			
+		return $row;
+	}
+	public function changepwd($pwd,$userid){
+		$password=md5($pwd);
+		$data = array(
+				'user_id'       =>$userid,
+				'password'      =>$password,
+				);
+		$changepassword=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
+		return 	$changepassword;			
+	}
 	
 }

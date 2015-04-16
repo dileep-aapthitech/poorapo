@@ -52,7 +52,11 @@
 					}?></ul>
 			</li>
 			<li><a href="#contact">Contact</a></li>
+			<?php if(isset($_SESSION['user'])){?>
+			<li><a href="#">Get Out</a></li>
+			<?}else{?>
             <li><a href="login.html">Get In</a></li>
+			<?}?>
             <li><a href="register.html" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Register</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->
