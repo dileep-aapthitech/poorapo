@@ -259,3 +259,11 @@ function resetPassword(){
 		}
 	}		
 }
+//Admin category Function 
+function CategoryFunction(ad_type){
+	if(ad_type==0){
+		//window.location=BASE_URL+"/admin/dashboard";
+	}else{
+		window.location=BASE_URL+"/admin/issues";
+	}
+}

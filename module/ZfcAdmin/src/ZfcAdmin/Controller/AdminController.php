@@ -14,6 +14,7 @@ use ScnSocialAuth\Mapper\UserProviderInterface;
 class AdminController extends AbstractActionController
 {
 	protected  $userTable;
+	protected  $issuesTable;
 	public function indexAction()
 	{
 		
@@ -45,6 +46,23 @@ class AdminController extends AbstractActionController
 	{
 		
 	}
+	public function IssuesAction()
+	{
+		
+		/*$getIssues = $this->getIssuesTable()->getIssues();
+		$data = array();$i=0;
+		if(isset($getallcategories) && $getallcategories!=''){
+			foreach($getallcategories as $categories){
+                $id=$categories->category_id;
+				$data[$i]['sno']=$i+1;
+				$data[$i]['category_name']= $categories->category_name;
+				$data[$i]['action'] ='<a style="color: #000000;font-size: 15px;" href="'.$baseUrl.'/products/add-category?cat_id='.$id.'"><img src="'.$basepath.'/images/edit.png" title="Edit"></a>&nbsp;/&nbsp;<a style="color: #000000;font-size: 15px;" href="javascript:void(0);" onClick="deleteCategory('.$id.')"><img src="'.$basepath.'/images/delete.png" title="Delete"></a>';
+				$i++;
+			}
+		}
+		$data['aaData'] = $data;
+		print_r(json_encode($data['aaData']));exit;*/
+	}
 	public function getUserTable()
     {
         if (!$this->userTable) {				
@@ -53,4 +71,12 @@ class AdminController extends AbstractActionController
         }
         return $this->userTable;
     }
+	public function getIssuesTable()
+    {
+       if (!$this->issuesTable) {                                
+           $sm = $this->getServiceLocator();
+           $this->issuesTable = $sm->get('ZfcAdmin\Model\IssuesFactory');                        
+       }
+       return $this->issuesTable;
+   }
 }
