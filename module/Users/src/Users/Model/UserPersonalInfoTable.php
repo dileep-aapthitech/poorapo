@@ -15,146 +15,118 @@ class UserPersonalInfoTable
 {
     protected $tableGateway;
 	protected $select;
-
-	protected $userCategoriesTg;
-	protected $categoryLinksTg;
-
-    public function __construct(TableGateway $tableGateway)
+	 public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
-		$this->userCategoriesTg = new TableGateway('user_categories', $this->tableGateway->getAdapter());
-		$this->categoryLinksTg = new TableGateway('category_links', $this->tableGateway->getAdapter());
     }
-
-	public function addUserDetails($user_id)
-    {	
-		$data = array(
-			'user_id' 	     => $user_id, 
-			'details_set' 	 => "1", 
-			'status' 	     => "1",
-			'montage_image'	 => $_SESSION['Zend_Auth']->photoURL
-		);	
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
-    }
-
-	public function addEmailLogin( $user_id,$userDetails )
-    {	
-		$data = array(
-			'user_id' 	     	=> $user_id, 
-			'montage_image' 	=> $userDetails['image'],
-			'details_set' 	 	=> "1", 
-			'status' 	     	=> "1"	
-		);	
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
-    }
-
-	public function checkDetailsRecorded($user_id)
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->columns(array('countUser' => new \Zend\Db\Sql\Expression('COUNT(*)')));
-		$select->where('user_id="'.$user_id.'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->current();
-		return $row;
-	}
-	
-	public function checkDetailsSetStatus($user_id)
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->columns(array( 'details_set' ));
-		$select->where('user_id="'.$user_id.'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->current();
-		return $row;
-	}
-
-	public function updateDetails( $userDetails,$userId )
-    {	
-		$data = array(
-			'mobile' 	          	=> $userDetails['mobile'],
-			'montage_image' 		=> $userDetails['image'],
-			'details_set' 	     	=> "1"
-		);	
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function addText( $userId,$montage )
-    {
-		if($montage['type']=='hash'){
-			$data = array(
-				'montage_hash_name' => $montage['text'],
-			);	
-		}else if($montage['type']=='title'){
-			$data = array(
-				'montage_title' => $montage['text'],
-			);
+	public function addPersonalInfo($usersinfo,$user_id){
+		if($usersinfo['user_first_name']!=''){
+			$fisrt_name = $usersinfo['user_first_name'];
 		}else{
-			$data = array(
-				'montage_paragraph' => $montage['text'],
-			);
+			$fisrt_name = '';			
 		}
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function addImage( $userId,$image )
-    {
+		if($usersinfo['user_last_name']!=''){
+			$last_name=$usersinfo['user_last_name'];			
+		}else{			
+			$last_name='';
+		}
+		if($usersinfo['user_gendermf']!=''){
+			$gender=$usersinfo['user_gendermf'];			
+		}else{			
+			$gender='';
+		}
+		if($usersinfo['user_date']!='' && $usersinfo['user_month']!='' && $usersinfo['user_year']!=''){
+			$dob=$usersinfo['user_date'].'/'.$usersinfo['user_month'].'/'.$usersinfo['user_year'];			
+		}else{			
+			$dob='';
+		}
+		if($usersinfo['user_mobile']!=''){
+			$mobilenumber=$usersinfo['user_mobile'];			
+		}else{			
+			$mobilenumber='';
+		}if($usersinfo['user_country']!=''){
+			$country=$usersinfo['user_country'];			
+		}else{			
+			$country='';
+		}
+		if($usersinfo['user_state']!=''){
+			$state=$usersinfo['user_state'];			
+		}else{			
+			$state='';
+		}
+		if($usersinfo['user_district']!=''){
+			$districtid=$usersinfo['user_district'];			
+		}else{			
+			$districtid='';
+		}
+		if($usersinfo['user_parent_name']!=''){
+			$parent_name=$usersinfo['user_parent_name'];			
+		}else{			
+			$parent_name='';
+		}
+		if($usersinfo['user_parent_lastname']!=''){
+			$user_parent_lastname=$usersinfo['user_parent_lastname'];			
+		}else{			
+			$user_parent_lastname='';
+		}
+		if($usersinfo['user_mobile_number']!=''){
+			$user_mobile_number=$usersinfo['user_mobile_number'];			
+		}else{			
+			$user_mobile_number='';
+		}
+		if($usersinfo['user_parent_email']!=''){
+			$user_parent_email=$usersinfo['user_parent_email'];			
+		}else{			
+			$user_parent_email='';
+		}
+		if($usersinfo['user_parent_pincode']!=''){
+			$user_parent_pincode=$usersinfo['user_parent_pincode'];			
+		}else{			
+			$user_parent_pincode='';
+		}
+		if($usersinfo['user_perment_pincode']!=''){
+			$user_perment_pincode=$usersinfo['user_perment_pincode'];			
+		}else{			
+			$user_perment_pincode='';
+		}
+		if($usersinfo['user_afi']!=''){
+			$user_afi=$usersinfo['user_afi'];			
+		}else{			
+			$user_afi='';
+		}
+		if($usersinfo['user_fnw']!=''){
+			$user_fnw=$usersinfo['user_fnw'];			
+		}else{			
+			$user_fnw='';
+		}
+		if($usersinfo['user_emp_ctc']!=''){
+			$user_emp_ctc=$usersinfo['user_emp_ctc'];			
+		}else{			
+			$user_emp_ctc='';
+		}
 		$data = array(
-			'montage_image' => $image,
+			'user_id' 		        => $user_id,  		
+			'first_name' 		    => $fisrt_name, 	
+			'last_name'  	        => $last_name,  	
+			'gender'  	            => $gender,  	
+			'date_of_birth'  	    => $dob,  	
+			'mobile_number'  	    => $mobilenumber,  	
+			'id_countries'  	    => $country,  	
+			'state_id'  	        => $state,  	
+			'district_id'    	    => $districtid,  	
+			'parents _name'  	    => $parent_name,  	
+			'user_parent_lastname'  => $user_parent_lastname,  	
+			'p_phone_number'  	    => $user_mobile_number,  	
+			'p_email_id'  	        => $user_parent_email,  	
+			'p_pincode'  	        => $user_parent_pincode,  	
+			'permant_pincode'  	    => $user_perment_pincode,  	
+			'annual_family_income'  => $user_afi,  	
+			'family_net_worth'  	=> $user_fnw,  	
+			'employee_ctc'  	    => $user_emp_ctc,
+			'modified_at' 	        => date('Y-m-d H:i:s')
 		);
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
+		$insertresult=$this->tableGateway->insert($data);
+		return $this->tableGateway->lastInsertValue;	
 	}
-	public function addMontageMainImage( $userId,$image )
-    {
-		$data = array(
-			'montage_main_image' => $image,
-		);
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function getHomeMontageBoxes( $boxesPerPage,$offset )
-	{
-		$catWiseLinksCountSqSelect = $this->categoryLinksTg->getSql()->select();
-		$catWiseLinksCountSqSelect->columns(array('catWiseLinksCount1' => new Expression('COUNT(link)'),'clUserCatId1'=>'user_category_id','clLvs1'=>'link_validity_status'));
-		$catWiseLinksCountSqSelect->group('clUserCatId1');
-		$catWiseLinksCountSqSelect->group('clLvs1');
-		$catWiseLinksCountSqSelect->having('clLvs1="1"');
-
-		$userWisePdbListSqSelect = $this->userCategoriesTg->getSql()->select();
-		$userWisePdbListSqSelect->columns(array('ucUserId1'=>'user_id','ucCatType'=>'category_type','ucCatId'=>'category_id','ucStatus'=>'STATUS'));
-		$userWisePdbListSqSelect->join(array('catWiseLinksCountRj' => $catWiseLinksCountSqSelect), 'clUserCatId1=category_id',array('userWiseLinksCount1' => new Expression('SUM(catWiseLinksCount1)'),'clUserCatId'=>'clUserCatId1'),'right');
-		$userWisePdbListSqSelect->group('ucUserId1');
-		$userWisePdbListSqSelect->group('ucCatType');
-		$userWisePdbListSqSelect->group('ucStatus');
-		$userWisePdbListSqSelect->having('ucCatType="1"');
-		$userWisePdbListSqSelect->having('ucStatus="1"');
-		// $resultSet1 = $this->userCategoriesTg->selectWith($userWisePdbListSqSelect);
-		// echo "<pre>;";print_r($resultSet1);exit;
-
-		$select = $this->tableGateway->getSql()->select();
-		$select->join('user', 'user_details.user_id=user.user_id',array('ustatus'=>'status','montageOrder'=>'montage_prior_order'),'left');
-		$select->join(array('userPublicBoxesRj' => $userWisePdbListSqSelect), 'user_details.user_id=ucUserId1',array('userWiseLinksCount' => 'userWiseLinksCount1','ucUserId'=>'ucUserId1'),'right');
-		$select->where('user.status="1"');
-		$select->limit(intval($boxesPerPage));
-		$select->offset(intval($offset));
-		$select->order('montageOrder ASC');
-		$select->order('user_details.user_id DESC');
-		$resultSet = $this->tableGateway->selectWith($select);
-		// echo "<pre>";print_r($resultSet);exit;
-		return $resultSet;
-	}
-
-	public function getUcUserMontageDetails( $userId )
-	{
-		$select = $this->tableGateway->getSql()->select();
-		$select->where('user_details.user_id="'. $userId .'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet->current();
-	}
-
 }

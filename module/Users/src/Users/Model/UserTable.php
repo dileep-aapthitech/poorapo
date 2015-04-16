@@ -20,7 +20,6 @@ class UserTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-
 	public function getCurrentUserId()
     {
 		$select = $this->tableGateway->getSql()->select();
@@ -36,20 +35,18 @@ class UserTable
 		return $row;
 	}
 	
-	public function addUser( $userInfo )
-    {	
+	public function addUser($users)
+    {
+		$password=md5($users['user_password']);
 		$data = array(
-			'email' 	         => $userInfo['email'], 
-			'password' 	         => $userInfo['password'], 
-			'created_date' 	     => date('Y-m-d H:i:s'), 	
-			'last_updated_date'  => date('Y-m-d H:i:s'), 	
-			'status' 	         => "0"	,
-			'type' 	         	 => "1"	,
-			'display_name' 	     => $userInfo['displayname'] 
-		);	
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
+			'email_id' 		=> $users['user_email'],  		
+			'password' 		=> $password, 	
+			'user_type_id'  	=> $users['user_type'],  	
+			'created_at' 	=> date('Y-m-d H:i:s'),   
+			'status' 		=> 1,  		
+		);
+		$insertresult=$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;		
     }
 	
 	public function updateUser( $userInfo,$userId )
@@ -98,8 +95,9 @@ class UserTable
 	public function getUser( $userId )
     {
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('user_details', 'user_details.user_id=user.user_id',array('*'),'left');	
-		$select->where('user.user_id="'.$userId.'"');
+		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->where('tbl_users.user_id="'.$userId.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;

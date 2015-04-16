@@ -3,12 +3,13 @@
 		<div class="panel-heading reg_bg">
 			<h3 class="panel-title">Register  to Poraapo</h3>
 		</div>  
+	<form  id="frm_meth" name="frm_meth" method="post" action="<? echo $this->baseUrl;?>/users/register">	
 		<div class="panel-body">
 			<div class="panel panel-default">
 				<div class="panel-heading" id="tab_1" onclick="regTab1(1)">Login Deatils
 				<i id="icon1" class="glyphicon glyphicon-triangle-top  pull-right"></i></div>
 				<div class="panel-body" id="tab_1_hide">
-				<form class="form-horizontal">
+				<div class="form-horizontal">
 				<div class="form-group">
 				<label for="inputtype" class="col-sm-3 control-label">User Type</label>
 				<div class="col-sm-8">
@@ -39,14 +40,14 @@
 				<button type="button" class="btn btn-primary ">Continue</button>
 				</div>
 				</div>
-				</form>
+				<!--</form>--->
 				</div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading" onclick="regTab1(2)">Personal Information 
 				<i  id="icon2"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
 				<div class="panel-body" id="tab_2_hide" style="display:none;">
-				<form class="form-horizontal">
+				<div class="form-horizontal">
 				<div class="form-group">
 				<label for="inputfname" class="col-sm-3 control-label">First Name</label>
 				<div class="col-sm-8">
@@ -196,14 +197,14 @@
 				<button type="submit" class="btn btn-primary ">Continue</button>
 				</div>
 				</div>
-				</form>
+				<!--</form>--->
 				</div>
 			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading" onclick="regTab1(3)">12th Class College Information 
 				<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
 				<div class="panel-body" id="tab_3_hide" style="display:none;">
-				<form class="form-horizontal">
+				<div class="form-horizontal">
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-3 control-label">State</label>
 				<div class="col-sm-8">
@@ -219,7 +220,7 @@
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-3 control-label">District</label>
 				<div class="col-sm-8">
-				<select class="form-control" id="user_district" name="user_district">
+				<select class="form-control" id="user_district" name="user_district" onChange="return getColleges();">
 				<option>Select a District</option>
 				<? if(count($districts)!='') {
 					foreach($districts as $district){?>
@@ -264,7 +265,7 @@
 				<button type="submit" class="btn btn-primary ">Continue</button>
 				</div>
 				</div>
-				</form>
+				</div>
 				</div>
 			</div>
 			<div class="panel panel-default">
@@ -349,7 +350,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Specialization</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_speclization" name="user_bac_speclization">
+							<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
 							<option value="">Select a Specialization </option>
 							<? if(count($specializations)!='') {
 								foreach($specializations as $specialization){?>
@@ -361,7 +362,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
+							<select class="form-control" id="user_bac_year" name="user_bac_year">
 							<option value="">Select a year</option>
 							<? $i=1;for($i=1960;$i<=2015;$i++){?>
 								<option value="<? echo $i;?>"><? echo $i;?></option>
@@ -398,7 +399,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Master University</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_mast_university" name="user_mast_spec">
+							<select class="form-control" id="user_mast_university" name="user_mast_university">
 							<option value="">Select a University</option>
 							<? if(count($unversities)!='') {
 								foreach($unversities as $unversity){?>
@@ -410,7 +411,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">College</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_mast_college" name="user_mast_spec">
+							<select class="form-control" id="user_mast_college" name="user_mast_college">
 							<option value="">Select a college </option>
 							<? if(count($colleges)!='') {
 								foreach($colleges as $college){?>
@@ -459,13 +460,13 @@
 						<div class="form-group">
 						<label for="inputcname" class="col-sm-3 control-label">PHD</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="user_doctor_php" name="user_doctor_php" value="PHD" placeholder="PHD">
+							<input type="text" class="form-control" id="user_doctor_phd" name="user_doctor_phd" value="PHD" placeholder="PHD">
 						</div>
 						</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">University</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_mast_university" name="user_mast_spec">
+							<select class="form-control" id="user_doctor_university" name="user_doctor_university">
 							<option value="">Select a University</option>
 							<? if(count($unversities)!='') {
 								foreach($unversities as $unversity){?>
@@ -477,7 +478,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">College</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_mast_college" name="user_mast_spec">
+							<select class="form-control" id="user_doctor_college" name="user_doctor_college">
 							<option value="">Select a college </option>
 							<? if(count($colleges)!='') {
 								foreach($colleges as $college){?>
@@ -489,7 +490,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Specialization</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_mast_spec" name="user_mast_spec">
+							<select class="form-control" id="user_doctor_spec" name="user_doctor_spec">
 							<option value="">Select a Specialization </option>
 							<? if(count($specializations)!='') {
 								foreach($specializations as $specialization){?>
@@ -501,7 +502,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="user_mast_year" name="user_mast_year">
+							<select class="form-control" id="user_doctor_year" name="user_doctor_year">
 							<option value="">Select a year</option>
 							<? $i=1;for($i=1960;$i<=2015;$i++){?>
 								<option value="<? echo $i;?>"><? echo $i;?></option>
@@ -518,6 +519,8 @@
 					</div>
 				</div>
 			</div>
+					</form>
+
 		</div> 
 		<input type="hidden" id="opentabId" value="1">
 	</div>

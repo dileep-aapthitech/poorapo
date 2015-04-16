@@ -32,9 +32,9 @@ class CollegesTable
 	/************ Location Based Colleges **************/
 	public function getLocationBasedColleges($countryid,$stateid,$districtid){
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('country_id='.$countryid);
-		$select->where('state_id='.$stateid);
-		$select->where('district_id='.$districtid);
+		$select->where('country_id="'.$countryid.'"');
+		$select->where('state_id="'.$stateid.'"');
+		$select->where('district_id="'.$districtid.'"');
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet;

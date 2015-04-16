@@ -16,145 +16,152 @@ class UserDetailsTable
     protected $tableGateway;
 	protected $select;
 
-	protected $userCategoriesTg;
-	protected $categoryLinksTg;
-
-    public function __construct(TableGateway $tableGateway)
+	 public function __construct(TableGateway $tableGateway)
     {
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
-		$this->userCategoriesTg = new TableGateway('user_categories', $this->tableGateway->getAdapter());
-		$this->categoryLinksTg = new TableGateway('category_links', $this->tableGateway->getAdapter());
     }
-
-	public function addUserDetails($user_id)
-    {	
+	public function addDetails($usersinfo,$user_id){
+		if($usersinfo['user_colleges']!=''){
+			$user_colleges = $usersinfo['user_colleges'];
+		}else{
+			$user_colleges = '';			
+		}
+		if($usersinfo['user_principal_name']!=''){
+			$user_principal_name=$usersinfo['user_principal_name'];			
+		}else{			
+			$user_principal_name='';
+		}
+		if($usersinfo['user_princi_phone']!=''){
+			$user_princi_phone=$usersinfo['user_princi_phone'];			
+		}else{			
+			$user_princi_phone='';
+		}
+		if($usersinfo['user_princi_email']!=''){
+			$user_princi_email=$usersinfo['user_princi_email'];			
+		}else{			
+			$user_princi_email='';
+		}
+		if($usersinfo['user_entrance_year']!=''){
+			$user_entrance_year=$usersinfo['user_entrance_year'];			
+		}else{			
+			$user_entrance_year='';
+		}
+		if($usersinfo['user_entrance_exam']!=''){
+			$user_entrance_exam=$usersinfo['user_entrance_exam'];			
+		}else{			
+			$user_entrance_exam='';
+		}
+		if($usersinfo['user_entrance_rank']!=''){
+			$user_entrance_rank=$usersinfo['user_entrance_rank'];			
+		}else{			
+			$user_entrance_rank='';
+		}
+		if($usersinfo['user_bac_degree']!=''){
+			$user_bac_degree=$usersinfo['user_bac_degree'];			
+		}else{			
+			$user_bac_degree='';
+		}
+		if($usersinfo['user_bac_unversity']!=''){
+			$user_bac_unversity=$usersinfo['user_bac_unversity'];			
+		}else{			
+			$user_bac_unversity='';
+		}
+		if($usersinfo['user_bac_college']!=''){
+			$user_bac_college=$usersinfo['user_bac_college'];			
+		}else{			
+			$user_bac_college='';
+		}
+		if($usersinfo['user_bac_speclization']!=''){
+			$user_bac_speclization=$usersinfo['user_bac_speclization'];			
+		}else{			
+			$user_bac_speclization='';
+		}
+		if($usersinfo['user_bac_year']!=''){
+			$user_bac_year=$usersinfo['user_bac_year'];			
+		}else{			
+			$user_bac_year='';
+		}
+		if($usersinfo['user_master_degree']!=''){
+			$user_master_degree=$usersinfo['user_master_degree'];			
+		}else{			
+			$user_master_degree='';
+		}
+		if($usersinfo['user_mast_university']!=''){
+			$user_mast_university=$usersinfo['user_mast_university'];			
+		}else{			
+			$user_mast_university='';
+		}
+		if($usersinfo['user_mast_college']!=''){
+			$user_mast_college=$usersinfo['user_mast_college'];			
+		}else{			
+			$user_mast_college='';
+		}
+		if($usersinfo['user_mast_spec']!=''){
+			$user_mast_spec=$usersinfo['user_mast_spec'];			
+		}else{			
+			$user_mast_spec='';
+		}
+		if($usersinfo['user_mast_year']!=''){
+			$user_mast_year=$usersinfo['user_mast_year'];			
+		}else{			
+			$user_mast_year='';
+		}
+		if($usersinfo['user_doctor_phd']!=''){
+			$user_doctor_phd=$usersinfo['user_doctor_phd'];			
+		}else{			
+			$user_doctor_phd='';
+		}
+		if($usersinfo['user_doctor_university']!=''){
+			$user_doctor_university=$usersinfo['user_doctor_university'];			
+		}else{			
+			$user_doctor_university='';
+		}
+		if($usersinfo['user_doctor_college']!=''){
+			$user_doctor_college=$usersinfo['user_doctor_college'];			
+		}else{			
+			$user_doctor_college='';
+		}
+		if($usersinfo['user_doctor_spec']!=''){
+			$user_doctor_spec=$usersinfo['user_doctor_spec'];			
+		}else{			
+			$user_doctor_spec='';
+		}
+		if($usersinfo['user_doctor_year']!=''){
+			$user_doctor_year=$usersinfo['user_doctor_year'];			
+		}else{			
+			$user_doctor_year='';
+		}
 		$data = array(
-			'user_id' 	     => $user_id, 
-			'details_set' 	 => "1", 
-			'status' 	     => "1",
-			'montage_image'	 => $_SESSION['Zend_Auth']->photoURL
-		);	
+			'user_id' 		            => $user_id,  		
+			'college_name' 		        => $user_colleges, 	
+			'principal_name'  	        => $user_principal_name,  	
+			'principal_phone_num'       => $user_princi_phone,  	
+			'principal_email_id'        => $user_princi_email,  	
+			'entrance_exam'  	        => $user_entrance_exam,  	
+			'which_year'  	            => $user_entrance_year,  	
+			'entrance_rank'  	        => $user_entrance_rank,  	
+			'bachelors_degree_name'     => $user_bac_degree,  	
+			'bachelors_university_name' => $user_bac_unversity,  	
+			'bachelors_college'         => $user_bac_college,  	
+			'bachelors_specialization'  => $user_bac_speclization,  	
+			'bachelors_year_admission'  => $user_bac_year,  	
+			'masters_degree'  	        => $user_master_degree,  	
+			'masters_university'  	    => $user_mast_university,  	
+			'masters_college'           => $user_mast_college,  	
+			'masters_specialization'  	=> $user_mast_spec,  	
+			'masters_year_admission'  	=> $user_mast_year,
+			'doctorate_name'  	        => $user_doctor_phd,
+			'doctorate_college'  	    => $user_doctor_university,
+			'doctorate_university'  	=> $user_doctor_college,
+			'doctorate_specialization' 	=> $user_doctor_spec,
+			'doctorate_year' 	        => $user_doctor_year,
+			'modified_at' 	            => date('Y-m-d H:i:s'),   
+		);
+		$insertresult=$this->tableGateway->insert($data);	
+		return $this->tableGateway->lastInsertValue;	
 		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
-    }
-
-	public function addEmailLogin( $user_id,$userDetails )
-    {	
-		$data = array(
-			'user_id' 	     	=> $user_id, 
-			'montage_image' 	=> $userDetails['image'],
-			'details_set' 	 	=> "1", 
-			'status' 	     	=> "1"	
-		);	
-		
-		$this->tableGateway->insert($data);		
-		return $this->tableGateway->lastInsertValue;
-    }
-
-	public function checkDetailsRecorded($user_id)
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->columns(array('countUser' => new \Zend\Db\Sql\Expression('COUNT(*)')));
-		$select->where('user_id="'.$user_id.'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->current();
-		return $row;
 	}
 	
-	public function checkDetailsSetStatus($user_id)
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->columns(array( 'details_set' ));
-		$select->where('user_id="'.$user_id.'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->current();
-		return $row;
-	}
-
-	public function updateDetails( $userDetails,$userId )
-    {	
-		$data = array(
-			'mobile' 	          	=> $userDetails['mobile'],
-			'montage_image' 		=> $userDetails['image'],
-			'details_set' 	     	=> "1"
-		);	
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function addText( $userId,$montage )
-    {
-		if($montage['type']=='hash'){
-			$data = array(
-				'montage_hash_name' => $montage['text'],
-			);	
-		}else if($montage['type']=='title'){
-			$data = array(
-				'montage_title' => $montage['text'],
-			);
-		}else{
-			$data = array(
-				'montage_paragraph' => $montage['text'],
-			);
-		}
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function addImage( $userId,$image )
-    {
-		$data = array(
-			'montage_image' => $image,
-		);
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function addMontageMainImage( $userId,$image )
-    {
-		$data = array(
-			'montage_main_image' => $image,
-		);
-		$row=$this->tableGateway->update($data, array('user_id' => $userId));
-		return $row;
-	}
-	public function getHomeMontageBoxes( $boxesPerPage,$offset )
-	{
-		$catWiseLinksCountSqSelect = $this->categoryLinksTg->getSql()->select();
-		$catWiseLinksCountSqSelect->columns(array('catWiseLinksCount1' => new Expression('COUNT(link)'),'clUserCatId1'=>'user_category_id','clLvs1'=>'link_validity_status'));
-		$catWiseLinksCountSqSelect->group('clUserCatId1');
-		$catWiseLinksCountSqSelect->group('clLvs1');
-		$catWiseLinksCountSqSelect->having('clLvs1="1"');
-
-		$userWisePdbListSqSelect = $this->userCategoriesTg->getSql()->select();
-		$userWisePdbListSqSelect->columns(array('ucUserId1'=>'user_id','ucCatType'=>'category_type','ucCatId'=>'category_id','ucStatus'=>'STATUS'));
-		$userWisePdbListSqSelect->join(array('catWiseLinksCountRj' => $catWiseLinksCountSqSelect), 'clUserCatId1=category_id',array('userWiseLinksCount1' => new Expression('SUM(catWiseLinksCount1)'),'clUserCatId'=>'clUserCatId1'),'right');
-		$userWisePdbListSqSelect->group('ucUserId1');
-		$userWisePdbListSqSelect->group('ucCatType');
-		$userWisePdbListSqSelect->group('ucStatus');
-		$userWisePdbListSqSelect->having('ucCatType="1"');
-		$userWisePdbListSqSelect->having('ucStatus="1"');
-		// $resultSet1 = $this->userCategoriesTg->selectWith($userWisePdbListSqSelect);
-		// echo "<pre>;";print_r($resultSet1);exit;
-
-		$select = $this->tableGateway->getSql()->select();
-		$select->join('user', 'user_details.user_id=user.user_id',array('ustatus'=>'status','montageOrder'=>'montage_prior_order'),'left');
-		$select->join(array('userPublicBoxesRj' => $userWisePdbListSqSelect), 'user_details.user_id=ucUserId1',array('userWiseLinksCount' => 'userWiseLinksCount1','ucUserId'=>'ucUserId1'),'right');
-		$select->where('user.status="1"');
-		$select->limit(intval($boxesPerPage));
-		$select->offset(intval($offset));
-		$select->order('montageOrder ASC');
-		$select->order('user_details.user_id DESC');
-		$resultSet = $this->tableGateway->selectWith($select);
-		// echo "<pre>";print_r($resultSet);exit;
-		return $resultSet;
-	}
-
-	public function getUcUserMontageDetails( $userId )
-	{
-		$select = $this->tableGateway->getSql()->select();
-		$select->where('user_details.user_id="'. $userId .'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet->current();
-	}
 
 }

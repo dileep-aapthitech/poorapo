@@ -70,7 +70,7 @@ class Module implements
             	'Users\Model\UserTypeFactory'=>'Users\Factory\Model\UserTypeTableFactory',			
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		
-            	'Users\Model\UserPersonalFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
+            	'Users\Model\UserPersonalInfoFactory'=>'Users\Factory\Model\UserPersonalInfoTableFactory',		
             	'Users\Model\LoginLinkExpiredFactory'=>'Users\Factory\Model\LoginLinkExpiredTableFactory',			
             	'Users\Model\ForgotPasswordFactory'=>'Users\Factory\Model\ForgotPasswordTableFactory',
             	'Users\Model\CountriesFactory'=>'Users\Factory\Model\CountriesTableFactory',	

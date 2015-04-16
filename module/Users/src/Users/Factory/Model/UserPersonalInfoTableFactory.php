@@ -18,9 +18,9 @@ class UserPersonalInfoTableFactory implements FactoryInterface
         $db = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
-        $resultSetPrototype->setObjectPrototype(new User());
+        $resultSetPrototype->setObjectPrototype(new UserPersonalInfo());
         $tableGateway       = new TableGateway('tbl_user_personal_info', $db,array(),$resultSetPrototype);
-        $table              = new UserTable($tableGateway);
+        $table              = new UserPersonalInfoTable($tableGateway);
         return $table;
     }
 }

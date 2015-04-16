@@ -1,3 +1,24 @@
+function getColleges(){
+	var country_id = $('#user_country').val();
+	var state_id = $('#user_state').val();
+	var district_id = $('#user_district').val();
+	if(country_id!=''){
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/get-ajax-info',
+			data:{countryid:country_id,stateid:state_id,distid:district_id},
+			success: function(data){
+				if(data.output=='success'){
+					$("#user_colleges").html(data.dist_names);					
+				}else{
+					$("#user_colleges").html('');	
+				}
+			}
+		});
+	}else{
+		alert('Select a country');return false;
+	}	
+}
 function getDistricts(){
 	var country_id = $('#user_country').val();
 	var state_id = $('#user_state').val();

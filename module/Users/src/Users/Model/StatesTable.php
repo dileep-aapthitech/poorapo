@@ -32,7 +32,7 @@ class StatesTable
 	/************** Based on Country *********/
 	public function getBasedcountry($countryid){
 		$select = $this->tableGateway->getSql()->select();
-		$select->where('id_countries='.$countryid);
+		$select->where('id_countries="'.$countryid.'"');
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet;

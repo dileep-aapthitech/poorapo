@@ -70,7 +70,7 @@ class UsersController extends AbstractActionController
 			foreach($entranceExams as $entranceExams){
 				$htmlEntanceExames.='<option value="'.$entranceExams->entrance_exam_id.'">'.$entranceExams->entrance_exam_name.'</option>';
 			}
-			$states=$this->getSatesTable()->getSates($_POST['countryid']);
+			$states=$this->getSatesTable()->getBasedcountry($_POST['countryid']);
 			$htmlStates.='<option value="">Select a State</option>';
 			foreach($states as $statename){
 				$htmlStates.='<option value="'.$statename->state_id.'">'.$statename->state_name.'</option>';
@@ -86,81 +86,71 @@ class UsersController extends AbstractActionController
 	public function getAjaxInfoAction(){	
 		$html="";
 		$result='';		
-		if(isset($_POST['type']) && $_POST['type']!=''){
-			if($_POST['type']=='entrance_exam_info'){
-				$entranceExams=$this->getEntranceExamsTable()->getBasedOnCountry($_POST['countryid']);
-				$html.='<option value="">Select a Entrance Exams</option>';
-				foreach($entranceExams as $entranceExams){
-					$html.='<option value="'.$entranceExams->entrance_exam_id.'">'.$entranceExams->entrance_exam_name.'</option>';
-				}			
-			}else if($_POST['type']=='college_info'){
+		if(isset($_POST['countryid'])&& $_POST['countryid']!=""){
 				$colleges=$this->getCollegeTable()->getLocationBasedColleges($_POST['countryid'],$_POST['stateid'],$_POST['distid']);
 				$html.='<option value="">Select a Colleges</option>';
 				foreach($colleges as $college){
 					$html.='<option value="'.$college->college_id.'">'.$college->college_name.'</option>';
 				}
-			}
 			$result = new JsonModel(array(					
 				'output' => 'success',
 				'success'=>true,
 				'ajaxinfo'=>$html,
 			));
-		}else if(isset($_POST['stateid']) && $_POST['stateid']!=''){
-			$districts=$this->getDistrictsTable()->getLocationBasedDistricts($_POST['countryid'],$_POST['stateid']);
-			$html.='<option value="">Select a Districts</option>';
-			foreach($districts as $dists){
-				$html.='<option value="'.$dists->district_id.'">'.$dists->district_name.'</option>';
-			}			
-			$result = new JsonModel(array(					
-				'output' => 'success',
-				'success'=>true,
-				'dist_names'=>$html,
-				));
-		}else if(isset($_POST['countryid']) && $_POST['countryid']!=''){
-			$states=$this->getSatesTable()->getSates($_POST['countryid']);
-			$html.='<option value="">Select a State</option>';
-			foreach($states as $statename){
-				$html.='<option value="'.$statename->state_id.'">'.$statename->state_name.'</option>';
-			}			
-			$result = new JsonModel(array(					
-				'output' => 'success',
-				'success'=>true,
-				'statenames'=>$html,
-			));
 		}
 		return $result;
 	}	
 	public function registerAction(){
-		$baseUrls = $this->getServiceLocator()->get('config');
-		$baseUrlArr = $baseUrls['urls'];
-		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];
-		$getUserTypes=$this->getUserTypeTable()->getUserTypes();
-		$getCountries=$this->getCountriesTable()->getCountries();
-		$getStates=$this->getSatesTable()->getSates();
-		$getDistricts=$this->getDistrictsTable()->getDistricts();
-		$getColleges=$this->getCollegeTable()->getColleges();
-		$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
-		$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
-		$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
-		$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
-		$getUnversities=$this->getUnversitiesTable()->getUnversities();
-		return new ViewModel(array(				
-			'usertypes' 		=> $getUserTypes,
-			'countries' 		=> $getCountries,
-			'states' 		    => $getStates,
-			'districts' 		=> $getDistricts,
-			'colleges' 		    => $getColleges->buffer(),
-			'entranceexams'     => $getEntranceExams,			
-			'b_degrees'         => $getBacheloreDegree,			
-			'specializations'   => $getSpecializations->buffer(),			
-			'unversities'       => $getUnversities->buffer(),			
-			'm_degrees'         => $getMasterDegrees,			
-			'baseUrl' 			=> $baseUrl,
-			'basePath' 			=> $basePath,
-		));
-		
-		
+			$baseUrls = $this->getServiceLocator()->get('config');
+			$baseUrlArr = $baseUrls['urls'];
+			$baseUrl = $baseUrlArr['baseUrl'];
+			$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['user_type']) && $_POST['user_type']!=''){
+			$user_id=$this->getUserTable()->addUser($_POST);
+			if($user_id!=0){
+					//$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id);
+				//if($userpersonalInfo!=0){
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$user_id);					
+					if($userDetailsInfo!=0){
+						$usersTable=$this->getUserTable();
+						$userDetails = $usersTable->getUser($user_id);
+						if($userDetails!=''){
+							$user_session = new Container('user');
+							$user_session->username=$userDetails->first_name;
+							$user_session->email=$userDetails->email_id;
+							$user_session->user_id=$userDetails->user_id;
+							$user_session->user_type=$userDetails->user_type_id;
+							echo "<pre>";print_r($_SESSION['user']);exit;
+						}						
+					}
+				//}
+			}
+		}else{
+			$getUserTypes=$this->getUserTypeTable()->getUserTypes();
+			$getCountries=$this->getCountriesTable()->getCountries();
+			$getStates=$this->getSatesTable()->getSates();
+			$getDistricts=$this->getDistrictsTable()->getDistricts();
+			$getColleges=$this->getCollegeTable()->getColleges();
+			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
+			$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
+			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
+			$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
+			$getUnversities=$this->getUnversitiesTable()->getUnversities();
+			return new ViewModel(array(				
+				'usertypes' 		=> $getUserTypes,
+				'countries' 		=> $getCountries,
+				'states' 		    => $getStates,
+				'districts' 		=> $getDistricts,
+				'colleges' 		    => $getColleges->buffer(),
+				'entranceexams'     => $getEntranceExams,			
+				'b_degrees'         => $getBacheloreDegree,			
+				'specializations'   => $getSpecializations->buffer(),			
+				'unversities'       => $getUnversities->buffer(),			
+				'm_degrees'         => $getMasterDegrees,			
+				'baseUrl' 			=> $baseUrl,
+				'basePath' 			=> $basePath,
+			));	
+		}
 	}
 	public function loginAction()
 	{
@@ -353,7 +343,7 @@ class UsersController extends AbstractActionController
     {
         if (!$this->userpersonalinfoTable) {				
             $sm = $this->getServiceLocator();
-            $this->userpersonalinfoTable = $sm->get('Users\Model\UserPersonalInfoTableFactory');			
+            $this->userpersonalinfoTable = $sm->get('Users\Model\UserPersonalInfoFactory');			
         }
         return $this->userpersonalinfoTable;
     }
@@ -361,7 +351,7 @@ class UsersController extends AbstractActionController
     {
         if (!$this->userDetailsTable) {				
             $sm = $this->getServiceLocator();
-            $this->userDetailsTable = $sm->get('Users\Model\UserDetailsTableFactory');			
+            $this->userDetailsTable = $sm->get('Users\Model\UserDetailsFactory');			
         }
         return $this->userDetailsTable;
     }
