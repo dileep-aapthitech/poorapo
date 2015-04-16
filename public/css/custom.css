@@ -145,12 +145,25 @@
 .social_count span{
 	margin-right:5px;
 }
+.reg_w_12{
+	width:60%;
+}
+.reg_bg{
+	background:#317eac !important;
+}
+.reg_bg h3{
+	color:#fff;
+	font-size:18px;
+}
 @media (max-width: 767px) {
 	.columan_divs{
 		margin-left:0;
 	}
 	.testimonial-author{
 		width:85px
+	}
+	.reg_w_12{
+		width:100%;
 	}
 }
 @media (max-width: 480px) { 
