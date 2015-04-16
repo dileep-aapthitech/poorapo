@@ -31,7 +31,7 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('b7q7dtnntr65p1ls550to69sg1','PHPSESSID',1429102334,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429102334.7701581;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('b7q7dtnntr65p1ls550to69sg1','PHPSESSID',1429103357,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429103356.9646239;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('tgdplpggfspcemtdkhmcb3l4r3','PHPSESSID',1429174590,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1429174590.0141289;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}');
 
 /*Table structure for table `tbl_bachelore_degrees` */
 
@@ -44,9 +44,11 @@ CREATE TABLE `tbl_bachelore_degrees` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`degree_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_bachelore_degrees` */
+
+insert  into `tbl_bachelore_degrees`(`degree_id`,`degree_name`,`status`,`created_at`,`modified_at`) values (1,'Degree1',1,'2015-04-16 10:49:10','2015-04-16 10:49:14'),(2,'Degree2',1,'2015-04-16 10:49:24','2015-04-16 10:49:27'),(3,'Degree3',1,'2015-04-16 10:49:39','2015-04-16 10:49:41'),(4,'Degree4',1,'2015-04-16 10:50:00','2015-04-16 10:50:03'),(5,'Degree',1,'2015-04-16 10:50:15','2015-04-16 10:50:17');
 
 /*Table structure for table `tbl_categories` */
 
@@ -58,10 +60,29 @@ CREATE TABLE `tbl_categories` (
   `status` smallint(5) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
+  `category_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_categories` */
+
+insert  into `tbl_categories`(`category_id`,`category_name`,`status`,`created_at`,`modified_at`,`category_type_id`) values (1,'Category1',1,'2015-04-16 10:50:53','2015-04-16 10:51:02',2),(2,'Category2',1,'2015-04-16 10:50:57','2015-04-16 10:51:04',2),(3,'Category3',1,'2015-04-16 10:50:55','2015-04-16 10:51:05',2),(4,'Category4',1,'2015-04-16 10:50:59',NULL,2);
+
+/*Table structure for table `tbl_category_types` */
+
+DROP TABLE IF EXISTS `tbl_category_types`;
+
+CREATE TABLE `tbl_category_types` (
+  `category_type_id` int(11) NOT NULL AUTO_INCREMENT,
+  `category_type_name` varchar(100) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`category_type_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_category_types` */
+
+insert  into `tbl_category_types`(`category_type_id`,`category_type_name`,`created_at`,`modified_at`) values (1,'Page','2015-04-16 14:20:48','2015-04-16 14:20:50'),(2,'Menu','2015-04-16 14:20:56','2015-04-16 14:20:59');
 
 /*Table structure for table `tbl_colleges` */
 
@@ -77,9 +98,11 @@ CREATE TABLE `tbl_colleges` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`college_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_colleges` */
+
+insert  into `tbl_colleges`(`college_id`,`country_id`,`state_id`,`district_id`,`college_name`,`status`,`created_at`,`modified_at`) values (1,1,1,1,'CollegeName1',1,'2015-04-16 10:51:47','2015-04-16 10:51:50'),(2,1,1,1,'CollegeName2',1,'2015-04-16 10:52:04','2015-04-16 10:52:06'),(3,1,1,1,'CollegeName3',1,'2015-04-16 10:52:35','2015-04-16 10:52:38'),(4,1,1,1,NULL,NULL,NULL,NULL);
 
 /*Table structure for table `tbl_countries` */
 
@@ -90,11 +113,11 @@ CREATE TABLE `tbl_countries` (
   `name` varchar(200) DEFAULT NULL,
   `status` smallint(5) DEFAULT NULL,
   PRIMARY KEY (`id_countries`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_countries` */
 
-insert  into `tbl_countries`(`id_countries`,`name`,`status`) values (1,'India',1);
+insert  into `tbl_countries`(`id_countries`,`name`,`status`) values (1,'India',1),(2,'USA',1);
 
 /*Table structure for table `tbl_districts` */
 
@@ -102,14 +125,17 @@ DROP TABLE IF EXISTS `tbl_districts`;
 
 CREATE TABLE `tbl_districts` (
   `district_id` int(10) NOT NULL AUTO_INCREMENT,
+  `district_name` varchar(150) DEFAULT NULL,
   `state_id` int(150) DEFAULT NULL,
   `status` smallint(5) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`district_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_districts` */
+
+insert  into `tbl_districts`(`district_id`,`district_name`,`state_id`,`status`,`created_at`,`modified_at`) values (1,'DistrictName1',1,1,'2015-04-16 10:54:06','2015-04-16 10:54:09'),(2,'DistrictName2',1,1,'2015-04-16 10:54:23','2015-04-16 10:54:26'),(3,'DistrictName3',1,1,'2015-04-16 10:54:35','2015-04-16 10:54:37');
 
 /*Table structure for table `tbl_entrance_exam` */
 
@@ -123,11 +149,11 @@ CREATE TABLE `tbl_entrance_exam` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`entrance_exam_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_entrance_exam` */
 
-insert  into `tbl_entrance_exam`(`entrance_exam_id`,`country_id`,`entrance_exam_name`,`status`,`created_at`,`modified_at`) values (1,1,'Emacet',1,'2015-04-15 15:52:03','2015-04-15 15:52:12');
+insert  into `tbl_entrance_exam`(`entrance_exam_id`,`country_id`,`entrance_exam_name`,`status`,`created_at`,`modified_at`) values (1,1,'Emacet',1,'2015-04-15 15:52:03','2015-04-15 15:52:12'),(2,2,'Tofil',1,'2015-04-16 11:32:09','2015-04-16 11:32:10');
 
 /*Table structure for table `tbl_forget_tokens` */
 
@@ -223,9 +249,11 @@ CREATE TABLE `tbl_specialization` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`specialined_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_specialization` */
+
+insert  into `tbl_specialization`(`specialined_id`,`specialined_name`,`status`,`created_at`,`modified_at`) values (1,'SpecializationsName1',1,'2015-04-16 11:33:23','2015-04-16 11:33:35'),(2,'SpecializationsName2',1,'2015-04-16 11:33:24','2015-04-16 11:33:37'),(3,'SpecializationsName3',1,'2015-04-16 11:33:29','2015-04-16 11:33:39'),(4,'SpecializationsName4',1,'2015-04-16 11:33:27','2015-04-16 11:33:40'),(5,'SpecializationsName5',1,'2015-04-16 11:33:30','2015-04-16 11:33:42');
 
 /*Table structure for table `tbl_states` */
 
@@ -238,9 +266,11 @@ CREATE TABLE `tbl_states` (
   `status` smallint(5) DEFAULT NULL,
   PRIMARY KEY (`state_id`),
   KEY `idx_ts_ci` (`id_countries`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 /*Data for the table `tbl_states` */
+
+insert  into `tbl_states`(`state_id`,`state_name`,`id_countries`,`status`) values (1,'AP',1,1),(2,'TS',1,1),(3,'KR',1,1);
 
 /*Table structure for table `tbl_universities` */
 
@@ -253,9 +283,11 @@ CREATE TABLE `tbl_universities` (
   `created_at` datetime DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`unversity_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_universities` */
+
+insert  into `tbl_universities`(`unversity_id`,`unversity_name`,`status`,`created_at`,`modified_at`) values (1,'UnvesityName1',1,'2015-04-16 11:34:55','2015-04-16 11:34:56'),(2,'UnvesityName2',1,'2015-04-16 11:35:19','2015-04-16 11:35:25'),(3,'UnvesityName3',1,'2015-04-16 11:35:20','2015-04-16 11:35:26'),(4,'UnvesityName4',1,'2015-04-16 11:35:22','2015-04-16 11:35:28'),(5,'UnvesityName5',1,'2015-04-16 11:35:23',NULL);
 
 /*Table structure for table `tbl_user_education_info` */
 
