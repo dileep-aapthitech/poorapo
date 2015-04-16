@@ -8,7 +8,7 @@ use Zend\Stdlib\Hydrator\ObjectProperty;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
-use ZfcAdmin\Model\Issuess;
+use ZfcAdmin\Model\Issues;
 use ZfcAdmin\Model\IssuesTable;
 
 class IssuessTableFactory implements FactoryInterface
@@ -18,7 +18,7 @@ class IssuessTableFactory implements FactoryInterface
         $db = $serviceLocator->get('Zend\Db\Adapter\Adapter');
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
-        $resultSetPrototype->setObjectPrototype(new Issuess());
+        $resultSetPrototype->setObjectPrototype(new Issues());
         $tableGateway       = new TableGateway('tbl_issues', $db,array(),$resultSetPrototype);
         $table              = new IssuesTable($tableGateway);
         return $table;
