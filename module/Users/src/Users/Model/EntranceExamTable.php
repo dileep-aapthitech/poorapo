@@ -29,4 +29,13 @@ class EntranceExamTable
 		$row = $resultSet;
 		return $row;
 	}
+	/************ Country Based Entrance Exams ************/
+	public function getBasedOnCountry($countryid){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('country_id='.$countryid);
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }

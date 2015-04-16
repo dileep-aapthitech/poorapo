@@ -29,5 +29,13 @@ class StatesTable
 		$row = $resultSet;
 		return $row;
 	}
-
+	/************** Based on Country *********/
+	public function getCountryBasedStates($countryid){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('country_id='.$countryid);
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }
