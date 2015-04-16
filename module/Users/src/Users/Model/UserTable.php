@@ -272,5 +272,16 @@ class UserTable
 		$changepassword=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
 		return 	$changepassword;			
 	}
+	public function checkEmail($email)
+    {	
+		$select = $this->tableGateway->getSql()->select();			
+		$select->where('email="'.$email.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->count();
+		if (!$row) {
+			throw new \Exception("Could not find row $email");
+		}
+		return $row;		
+	}
 	
 }

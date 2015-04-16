@@ -52,13 +52,33 @@ return array(
 						),
 					),
 			),
-			'forget-password' => array(
+			'logout' => array(
 					'type' => 'literal',
 					'options' => array(
-						'route'    => '/forget-password',
+						'route'    => '/logout',
 						'defaults' => array(
 							'controller' => 'Users\Controller\UsersController',
-							'action'     => 'forgetPassword',
+							'action'     => 'logout',
+						),
+					),
+			),
+			'forgot-password' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/forgot-password',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'forgotPassword',
+						),
+					),
+			),
+			'send-password-reset-url' => array(
+					'type' => 'literal',
+					'options' => array(
+						'route'    => '/send-password-reset-url',
+						'defaults' => array(
+							'controller' => 'Users\Controller\UsersController',
+							'action'     => 'sendPasswordResetUrl',
 						),
 					),
 			),

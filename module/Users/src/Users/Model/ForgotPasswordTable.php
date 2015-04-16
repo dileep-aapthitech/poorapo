@@ -20,41 +20,36 @@ class ForgotPasswordTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addFpNewRow( $userId,$email,$token )
-    {	
+	public function addForgetpwd($forget_id,$email,$userId,$token)
+    {
 		$data = array(
-			'user_id' 	         => $userId,
-			'email' 	         => $email,
-			'token' 	         => $token,
-			'status' 	         => "0"	,
-		);	
-		
-		$this->tableGateway->insert($data);		
+			'user_id' 	  	=> $userId, 	
+			'email' 		=> $email,  		
+			'token_id'		=> $token, 
+			'status' 		=> 1, 				
+		);
+		if($forget_id!=""){
+			$this->tableGateway->update($data, array('forget_id' => $forget_id));
+		}else{
+			$this->tableGateway->insert($data);	
+		};	
 		return $this->tableGateway->lastInsertValue;
     }
-	
-	public function updateLoginLinkExpired($id)
-    {	
-		$data = array(
-			'status' 	         => "1"
-		);	
-		$row=$this->tableGateway->update($data, array('user_id' => $id));
-		return $row;
+	public function getmailfromfgtpwd($email){
+		$select = $this->tableGateway->getSql()->select()			
+				->where('email= "'.$email.'"');					 
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet->current();
 	}
-
-	public function checkFpTokenExists( $token )
-    {
-		$select = $this->tableGateway->getSql()->select();
-		$select->where('token="'.$token.'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet;
-		return $row;
+	public function gettoken($token){
+		$select = $this->tableGateway->getSql()->select()			
+				->where('token_id= "'.$token.'"');					 
+		$resultSet = $this->tableGateway->selectWith($select);				
+        return $resultSet;		
 	}
-
-	public function deleteToken( $userId )
-	{		
-		$res=$this->tableGateway->delete( array('user_id' => $userId) );
-        return $res;	
+	public function deletetoken($forget_id){		
+		$this->tableGateway->delete(array('forget_id' => $forget_id));			
+        return $this->tableGateway->lastInsertValue;	
 	}
 	
 }

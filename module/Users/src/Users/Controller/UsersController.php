@@ -146,8 +146,53 @@ class UsersController extends AbstractActionController
 		}
 		return $result;		
 	}	
-	public function forgetPasswordAction(){	
-		//echo 'sivareddy';exit;
+	public function forgotPasswordAction(){	
+	
+	}
+	public function sendPasswordResetUrlAction(){	
+		//echo "<pre>";print_r($_POST);exit;
+		$baseUrls = $this->getServiceLocator()->get('config');
+        $baseUrlArr = $baseUrls['urls'];
+        $baseUrl = $baseUrlArr['baseUrl'];
+		$sentMail=0;
+		if(isset($_POST['email']) && $_POST['email']!=""){
+			$usersTable=$this->getUserTable();
+			$usersTable=$this->getForgotPasswordTable();
+			$emailCount = $usersTable->checkEmail($_POST['email']);
+			if($emailCount!=''){				
+				$user_id=$emailCount->user_id;
+				$username=$emailCount->user_name;
+				$token = getUniqueCode('10');
+				$user_type_id=$emailCount->user_type_id;
+				$mailExit=$forgetTable->getmailfromfgtpwd($_POST['email']);
+				if($mailExit!=""){
+					$alreadyexitid=$mailExit->forget_id;
+					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
+				}else{
+					$alreadyexitid='';
+					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
+				}
+				global $forgotPasswordSubject;				
+				global $frogotPasswordMessage;
+				$frogotPasswordMessage = str_replace("<FULLNAME>","$username", $frogotPasswordMessage);
+				$frogotPasswordMessage = str_replace("<PASSWORDLINK>",$baseUrl.$type."newpassword?token=".$token, $frogotPasswordMessage);	
+				$to=$emailCount->email;	
+				$sentMail=sendMail($to,$forgotPasswordSubject,$frogotPasswordMessage);
+				if($sentMail>0){
+					return $result = new JsonModel(array(					
+						'output' => 'success',
+					));	
+				}else{
+					return $result = new JsonModel(array(	
+						'output' => 'server-error',
+					));	
+				}				
+			}else{
+				return $result = new JsonModel(array(					
+					'output' 	=> 'notsuccess',
+				));
+			}
+		}		
 	}
 	//public function headerAction view  header page returns view part
 	public function getUserTable()
@@ -157,6 +202,14 @@ class UsersController extends AbstractActionController
             $this->userTable = $sm->get('Users\Model\UserTableFactory');			
         }
         return $this->userTable;
+    }
+	public function getForgotPasswordTable()
+    {
+        if (!$this->forgotPasswordTable) {				
+            $sm = $this->getServiceLocator();
+            $this->forgotPasswordTable = $sm->get('Users\Model\ForgotPasswordFactory');			
+        }
+        return $this->forgotPasswordTable;
     }
 	public function getUserPersonalInfoTable()
     {

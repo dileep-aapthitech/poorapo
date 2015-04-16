@@ -2,7 +2,7 @@
 /*Forget Password*/
 global $forgotPasswordSubject;
 global $frogotPasswordMessage;
-$forgotPasswordSubject = "Request For New Password for Chemicals";
+$forgotPasswordSubject = "Request For New Password for Poraapo";
 $frogotPasswordMessage = '<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
@@ -21,7 +21,7 @@ $frogotPasswordMessage = '<body>
 						<tr><td>Note: If you did not request for new password, please ignore this email.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Cbay.org team</td></tr>
+						<tr><td>Poraapo.com team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -30,7 +30,7 @@ $frogotPasswordMessage = '<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Cbay.org Customer Service
+Poraapo.com 
 </body>';
 /*End Forget Password*/
 

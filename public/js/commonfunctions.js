@@ -84,6 +84,7 @@ function loginValidations(type_id){
 					if(response.output=='success'){
 						if(type_id==1){
 							alert('Success');
+							window.location=BASE_URL+"/users/change-password";
 						}else if(type_id==3){
 							window.location=BASE_URL+"/admin/dashboard";
 						}
@@ -95,79 +96,101 @@ function loginValidations(type_id){
 			});
 	}
 }
-function changePassword(){	
-	//var userId=$("#hid_user_id").val();	
-	
+function changePassword(regAuth){	
+	$('#errorMsg').html('');
+	$('#sucessMsg').html('');
+	var flag=true;
+	var userId=$("#hidUserId").val();
 	var oldpasswrd=$("#oldPassword").val();		
 	var passwrd=$("#newPassword").val();
 	var cnfpwrd=$("#confirmPassword").val();
 	if(oldpasswrd==""){
-		alert('Enter old Password');return false;
+		$('#oldPwdError').html('Enter old Password');
 		$("#oldPassword").focus();
+		flag=false;
+	}else{
+		$('#oldPwdError').html('');
 	}		
 	if(passwrd==""){
-		alert("Enter the password");return false;
+		$('#newPwdError').html('Enter the password');
 		$("#newPassword").focus();
-	}	
-	if(cnfpwrd==""){
-		alert("Enter the confirm password");return false;
-		$("#confirmPassword").focus();
-	}	
-	if(passwrd==cnfpwrd){
-		$('#reload').html('<img src="public/images/spiffygif.gif"/>');
-		i/*f(regAuth=='admin'){
-			var  url =   ADMIN_BASE_URL+'admin/check-password';
-		} else if(regAuth=='user'){
-			var  url =  BASE_URL+'users/check-password';
-		}
-		$.ajax({
-			type:'POST',
-			url: url,
-			data:{oldpasswrd:oldpasswrd,userId:userId},
-			success: function(data){
-				if(data.output=='success'){	
-					if(regAuth=='admin'){
-							var  url2 =   ADMIN_BASE_URL+'admin/change-password';
-					} else if(regAuth=='user'){
-							var  url2 =  BASE_URL+'users/change-password';
-					}
-					$.ajax({
-						type:'POST',
-						url: url2, 
-						data:{cnfpwrd:cnfpwrd,userId:userId},
-						success: function(data){
-							if(regAuth=='admin'){
-								window.location=ADMIN_BASE_URL+'admin/user-lists';
-							}else if(regAuth=='user'){
-								window.location=BASE_URL+'users/change-password';
-							}
-							alert(change_passwordSucessMsg);return false;
-						}
-					});					
-				}else{
-					alert(change_passwordErrorMsg);return false;
-				}
-			}
-		});	*/				
+		flag=false;
 	}else{
-		alert('Do not match the new and confirm passwords');return false;
+		$('#newPwdError').html('');
+	}		
+	if(cnfpwrd==""){
+		$('#confirmPwdError').html('Enter the confirm password');
 		$("#confirmPassword").focus();
-	}	
+		flag=false;
+	}else{
+		$('#confirmPwdError').html('');
+	}		
+	if(flag==false){
+		return false;
+	}else{
+		if(passwrd==cnfpwrd){
+			if(regAuth=='admin'){
+				var  url =   ADMIN_BASE_URL+'/admin/check-password';
+			} else if(regAuth=='user'){
+				var  url =  BASE_URL+'/users/check-password';
+			}
+			$.ajax({
+				type:'POST',
+				url: url,
+				data:{oldpasswrd:oldpasswrd,userId:userId},
+				success: function(data){
+					if(data.output=='success'){
+						if(regAuth=='admin'){
+								var  url2 =   ADMIN_BASE_URL+'/admin/change-password';
+						} else if(regAuth=='user'){
+								var  url2 =  BASE_URL+'/users/change-password';
+						}
+						$.ajax({
+							type:'POST',
+							url: url2, 
+							data:{cnfpwrd:cnfpwrd,userId:userId},
+							success: function(data){
+								/*if(regAuth=='admin'){
+									window.location=ADMIN_BASE_URL+'/admin/user-lists';
+								}else if(regAuth=='user'){
+									window.location=BASE_URL+'/users/change-password';
+								}*/
+								//alert('change_passwordSucessMsg');return false;
+								$("#oldPassword").val('');
+								$("#newPassword").val('');
+								$("#confirmPassword").val('');
+								$('#sucessMsg').html('change password sucessfully updated');
+							}
+						});					
+					}else{
+						$('#errorMsg').html('old password is wrong');
+					}
+				}
+			});			
+		}else{
+			alert('Do not match the new and confirm passwords');return false;
+			$('#oldPwdError').html('Enter old Password');
+			$("#confirmPassword").focus();
+		}
+	}		
 }	
 function forgetPassword(regAuth){	
     var flag=true;
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
-		alert('Enter Email');return false;
+		$('#emailError').html('Enter a email');
 	}else if(checkEmail(emailcheck)==false){
-		alert('Enter valid email');return false;
+		$('#emailError').html('Enter valid email');
+	}else{
+		$('#emailError').html('');
 	}
 	if(flag==false){ 
 		return false;
 	}else{	
-		$('#reload').html('<img src="public/images/spiffygif.gif"/>');
-		/*if(regAuth=='user'){
-			var  url =  BASE_URL+'users/send-password-reset-url';
+		if(regAuth==1){
+			var  url =  BASE_URL+'/users/send-password-reset-url';
+		}else{
+			var  url =  BASE_URL+'/admin/send-password-reset-url';
 		}
 		$.ajax({
 			type:'POST',
@@ -175,7 +198,7 @@ function forgetPassword(regAuth){
 			data:{email:emailcheck},
 			success: function(data){
 				if(data.output=='success'){	
-					alert(forget_passwordSuccessMsg);
+					alert('forget_passwordSuccessMsg');
 					if(regAuth=='admin'){
 						window.location=ADMIN_BASE_URL+'admin';
 					} else if(regAuth=='user'){
@@ -183,13 +206,13 @@ function forgetPassword(regAuth){
 					}
 				}else if(data.output=='notsuccess'){
 					$('#submit').removeAttr('disabled');
-					alert(forget_passwordErrorMsg);return false;
+					alert('forget_passwordErrorMsg');return false;
 				}else if(data.output=='server-error'){
 					$('#submit').removeAttr('disabled');
-					alert(forget_passwordServerErrorMsg);return false;
+					alert('forget_passwordServerErrorMsg');return false;
 				}
 			}
-		});		*/				
+		});			
 	}		
 }
 function resetPassword(){	

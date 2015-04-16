@@ -1,5 +1,5 @@
 <?php 
-namespace Databoxuser\Factory\Model;
+namespace Users\Factory\Model;
 
 use Zend\ServiceManager\FactoryInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
@@ -8,8 +8,8 @@ use Zend\Stdlib\Hydrator\ObjectProperty;
 use Zend\Db\ResultSet\HydratingResultSet;
 use Zend\Db\TableGateway\Feature;
 
-use Databoxuser\Model\ForgotPassword;
-use Databoxuser\Model\ForgotPasswordTable;
+use Users\Model\ForgotPassword;
+use Users\Model\ForgotPasswordTable;
 
 class ForgotPasswordTableFactory implements FactoryInterface
 {
@@ -19,7 +19,7 @@ class ForgotPasswordTableFactory implements FactoryInterface
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new ForgotPassword());
-        $tableGateway       = new TableGateway('forgot_pwd_tokens', $db,array(),$resultSetPrototype);
+        $tableGateway       = new TableGateway('tbl_forget_tokens', $db,array(),$resultSetPrototype);
         $table              = new ForgotPasswordTable($tableGateway);
         return $table;
     }
