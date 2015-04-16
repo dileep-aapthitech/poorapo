@@ -270,12 +270,13 @@ class UserTable
 				'password'      =>$password,
 				);
 		$changepassword=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
-		return 	$changepassword;			
+		return 	$changepassword;	
 	}
 	public function checkEmail($email)
     {	
+		//echo "<pre>";print_r($email);exit;
 		$select = $this->tableGateway->getSql()->select();			
-		$select->where('email="'.$email.'"');
+		$select->where('email_id="'.$email.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->count();
 		if (!$row) {

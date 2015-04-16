@@ -208,9 +208,11 @@ class UsersController extends AbstractActionController
         $baseUrl = $baseUrlArr['baseUrl'];
 		$sentMail=0;
 		if(isset($_POST['email']) && $_POST['email']!=""){
+		
 			$usersTable=$this->getUserTable();
-			$usersTable=$this->getForgotPasswordTable();
+			$forgetTable=$this->getForgotPasswordTable();
 			$emailCount = $usersTable->checkEmail($_POST['email']);
+			//echo "<pre>";print_r($emailCount);exit;
 			if($emailCount!=''){				
 				$user_id=$emailCount->user_id;
 				$username=$emailCount->user_name;
@@ -227,7 +229,7 @@ class UsersController extends AbstractActionController
 				global $forgotPasswordSubject;				
 				global $frogotPasswordMessage;
 				$frogotPasswordMessage = str_replace("<FULLNAME>","$username", $frogotPasswordMessage);
-				$frogotPasswordMessage = str_replace("<PASSWORDLINK>",$baseUrl.$type."newpassword?token=".$token, $frogotPasswordMessage);	
+				$frogotPasswordMessage = str_replace("<PASSWORDLINK>",$baseUrl."/users/reset-password?token=".$token, $frogotPasswordMessage);	
 				$to=$emailCount->email;	
 				$sentMail=sendMail($to,$forgotPasswordSubject,$frogotPasswordMessage);
 				if($sentMail>0){
@@ -246,6 +248,56 @@ class UsersController extends AbstractActionController
 			}
 		}		
 	}
+	public function resetPasswordAction(){
+		$token=$_GET['token'];
+		$tokeninfo=array();
+		$exitToke=0;
+		$forgetTable=$this->getForgotPasswordTable();
+		$tokenExit=$forgetTable->gettoken($token)->toArray();	
+		if(count($tokenExit)!=0){				
+			$result = new ViewModel(array(					
+				'output' => 'success',
+				'existtoken' =>'1'
+			));			
+		}else{
+			$result = new ViewModel(array(					
+				'output' => 'not success',
+				'existtoken' =>'0'
+			));
+		}
+		return $result;		
+	}
+	public function setnepasswordAction(){
+		if(isset($_POST['token']) && $_POST['token']!=""){
+			$token=$_POST['token'];		
+			$tokeninfo=array();
+			$forgetTable=$this->getForgotPasswordTable();
+			$usersTable=$this->getUserTable();
+			$tokenExit=$forgetTable->gettoken($token);
+			foreach($tokenExit as $tokeninfo){}
+			if($tokeninfo->user_id>0){
+				$changepwd = $usersTable->changepwd($_POST['cnfpwrd'],$tokeninfo->user_id);	
+				if($changepwd>=0){
+					$deletetokenid=$forgetTable->deletetoken($tokeninfo->forget_pwd_id);
+					$result = new JsonModel(array(					
+						'output' => 'success',
+						'success'=>false,
+					));			
+				}else{
+					$result = new JsonModel(array(					
+						'output' => 'not success',
+						'not success'=>false,
+					));
+				}				
+			}else{
+				$result = new JsonModel(array(					
+					'output' => 'not success',
+					'not success'=>false,
+				));	
+			}
+			return $result;	
+	}
+	}	
 	//public function headerAction view  header page returns view part
 	public function getUserTable()
     {

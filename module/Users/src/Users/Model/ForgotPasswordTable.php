@@ -27,6 +27,7 @@ class ForgotPasswordTable
 			'email' 		=> $email,  		
 			'token_id'		=> $token, 
 			'status' 		=> 1, 				
+			'created_at'    => date('Y-m-d H:i:s'),		
 		);
 		if($forget_id!=""){
 			$this->tableGateway->update($data, array('forget_id' => $forget_id));
@@ -48,7 +49,7 @@ class ForgotPasswordTable
         return $resultSet;		
 	}
 	public function deletetoken($forget_id){		
-		$this->tableGateway->delete(array('forget_id' => $forget_id));			
+		$this->tableGateway->delete(array('forget_pwd_id' => $forget_id));			
         return $this->tableGateway->lastInsertValue;	
 	}
 	

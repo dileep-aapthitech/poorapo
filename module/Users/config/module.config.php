@@ -92,6 +92,20 @@ return array(
 						),
 					),
 			),
+			'reset-password' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route'    => '/reset-password[/:id]',
+					'constraints' => array(	
+						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+						'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Users\Controller\UsersController',
+						'action'     => 'resetPassword',
+					),
+				),
+			),
 			'profile' => array(
 				'type'    => 'Segment',
 				'options' => array(

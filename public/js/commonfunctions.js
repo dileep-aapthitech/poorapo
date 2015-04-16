@@ -128,6 +128,8 @@ function changePassword(regAuth){
 	if(flag==false){
 		return false;
 	}else{
+		$('#errorMsg').html('');
+		$('#sucessMsg').html('');
 		if(passwrd==cnfpwrd){
 			if(regAuth=='admin'){
 				var  url =   ADMIN_BASE_URL+'/admin/check-password';
@@ -168,7 +170,7 @@ function changePassword(regAuth){
 				}
 			});			
 		}else{
-			alert('Do not match the new and confirm passwords');return false;
+			$('#errorMsg').html('Do not match the new and confirm passwords');
 			$('#oldPwdError').html('Enter old Password');
 			$("#confirmPassword").focus();
 		}
@@ -179,8 +181,10 @@ function forgetPassword(regAuth){
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
 		$('#emailError').html('Enter a email');
+		flag=false;
 	}else if(checkEmail(emailcheck)==false){
 		$('#emailError').html('Enter valid email');
+		flag=false;
 	}else{
 		$('#emailError').html('');
 	}
@@ -198,7 +202,7 @@ function forgetPassword(regAuth){
 			data:{email:emailcheck},
 			success: function(data){
 				if(data.output=='success'){	
-					alert('forget_passwordSuccessMsg');
+					$('#sucessMsg').html('Sucessfully sending the mail');
 					if(regAuth=='admin'){
 						window.location=ADMIN_BASE_URL+'admin';
 					} else if(regAuth=='user'){
@@ -206,56 +210,48 @@ function forgetPassword(regAuth){
 					}
 				}else if(data.output=='notsuccess'){
 					$('#submit').removeAttr('disabled');
-					alert('forget_passwordErrorMsg');return false;
+					$('#errorMsg').html('mail is not sending');
+					
 				}else if(data.output=='server-error'){
 					$('#submit').removeAttr('disabled');
-					alert('forget_passwordServerErrorMsg');return false;
+					$('#errorMsg').html('mail is not sending');
 				}
 			}
 		});			
 	}		
 }
-function resetPassword(){	
+function resetPassword(regAuth){	
 	var flag=true;
-	//var token=$('#hidtoken').val();	
+	var token=$('#hidToken').val();	
 	var passwrd=$("#newPassword").val();
 	var cnfpwrd=$("#confirmPassword").val();		
 	if(passwrd==""&& cnfpwrd==""){
-		alert('Your Confirm Password do not match!');
+		$('#newPwdError').html('Your Confirm Password do not match!');
 		flag=false;
 		$("#newPassword").focus();
 	}		
 	if(flag==false){ 
 			return false;
-	}else{			
+	}else{	
+		$('#errorMsg').html('');
 		if(passwrd==cnfpwrd){
-		$('#reload').html('<img src="public/images/spiffygif.gif"/>');
-			/*if(regAuth=='admin'){
-					var  url =  ADMIN_BASE_URL+'users/setnepassword';
-			} else if(regAuth=='user'){
-					var  url = BASE_URL+'users/setnepassword';
-			}
+		var  url = BASE_URL+'/users/setnepassword';
 			$.ajax({
 				type:'POST',
 				url:url,
 				data:{cnfpwrd:cnfpwrd,token:token},
 				success: function(data){
-					$('#reload').html('');
 					if(data.output=='success'){	
-						alert(update_passwordSucessMsg);
-						if(regAuth=='admin'){
-							window.location=ADMIN_BASE_URL+'admin';
-						} else if(regAuth=='user'){
+						$('#sucessMsg').html('Sucessfully reset the password');
 							window.location=BASE_URL;
-						}
 					}else{
-						alert(update_passwordAlreadyUpdateSucessMsg);
+						$('#errorMsg').html('All ready reset the password');
 					}
 				}
-			});*/
+			});
 		}else{
-			alert(update_passwordNotMatchedMsg);
-			$("#confirm-pwd").focus();
+			$('#errorMsg').html('Do not match the new and confirm passwords');
+			$("#confirmPassword").focus();
 		}
 	}		
 }
