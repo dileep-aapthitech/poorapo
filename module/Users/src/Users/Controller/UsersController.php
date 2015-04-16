@@ -29,23 +29,59 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
-	public function getStatesAndDistrictsAction(){	
+	public function checkEmailExistsAction(){
+		if(isset($_POST['user_email']) && $_POST['user_email']!=''){
+			$existsEmail=$this->getUserTable()->checkEmail($_POST['user_email']);
+			if($existsEmail!=''){
+				$result = new JsonModel(array(					
+					'output' => 'exists',
+					'success'=>true,
+				));			
+			}else{
+				$result = new JsonModel(array(					
+					'output' => 'notexists',
+					'success'=>false,
+				));	
+			}
+		}
+		return $result;
+	}
+	public function getAjaxInfoAction(){	
 		$html="";
-		if(isset($_POST['stateid']) && $_POST['stateid']!=''){
-			$states=$this->getSatesTable()->getSates($_POST['countryid']);
-			$html.='<option value="">State</option>';
-			foreach($states as $statename){
-				$html.='<option value="'.$statename->state_id.'">'.$statename->state_name.'</option>';
+		$result='';		
+		if(isset($_POST['type']) && $_POST['type']!=''){
+			if($_POST['type']=='entrance_exam_info'){
+				$entranceExams=$this->getEntranceExamsTable()->getBasedOnCountry($_POST['countryid']);
+				$html.='<option value="">Select a Entrance Exams</option>';
+				foreach($entranceExams as $entranceExams){
+					$html.='<option value="'.$entranceExams->entrance_exam_id.'">'.$entranceExams->entrance_exam_name.'</option>';
+				}			
+			}else if($_POST['type']=='college_info'){
+				$colleges=$this->getCollegeTable()->getLocationBasedColleges($_POST['countryid'],$_POST['stateid'],$_POST['distid']);
+				$html.='<option value="">Select a Colleges</option>';
+				foreach($colleges as $college){
+					$html.='<option value="'.$college->college_id.'">'.$college->college_name.'</option>';
+				}
+			}
+			$result = new JsonModel(array(					
+				'output' => 'success',
+				'success'=>true,
+				'ajaxinfo'=>$html,
+			));
+		}else if(isset($_POST['stateid']) && $_POST['stateid']!=''){
+			$districts=$this->getDistrictsTable()->getLocationBasedDistricts($_POST['countryid'],$_POST['stateid']);
+			$html.='<option value="">Select a Districts</option>';
+			foreach($districts as $dists){
+				$html.='<option value="'.$dists->district_id.'">'.$dists->district_name.'</option>';
 			}			
 			$result = new JsonModel(array(					
 				'output' => 'success',
 				'success'=>true,
-				'statenames'=>$html,
+				'dist_names'=>$html,
 				));
-			return $result;
 		}else if(isset($_POST['countryid']) && $_POST['countryid']!=''){
 			$states=$this->getSatesTable()->getSates($_POST['countryid']);
-			$html.='<option value="">State</option>';
+			$html.='<option value="">Select a State</option>';
 			foreach($states as $statename){
 				$html.='<option value="'.$statename->state_id.'">'.$statename->state_name.'</option>';
 			}			
@@ -53,9 +89,9 @@ class UsersController extends AbstractActionController
 				'output' => 'success',
 				'success'=>true,
 				'statenames'=>$html,
-				));
-			return $result;
+			));
 		}
+		return $result;
 	}	
 	public function registerAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -72,7 +108,20 @@ class UsersController extends AbstractActionController
 		$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
 		$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
 		$getUnversities=$this->getUnversitiesTable()->getUnversities();
-		// echo "<pre>";print_r($getUnversities);exit;
+		return new ViewModel(array(				
+			'usertypes' 		=> $getUserTypes,
+			'countries' 		=> $getCountries,
+			'states' 		    => $getStates,
+			'districts' 		=> $getDistricts,
+			'colleges' 		    => $getColleges,
+			'entranceexams'     => $getEntranceExams,			
+			'b_degrees'         => $getBacheloreDegree,			
+			'specializations'   => $getSpecializations,			
+			'unversities'       => $getUnversities,			
+			'm_degrees'         => $getMasterDegrees,			
+			'baseUrl' 			=> $baseUrl,
+			'basePath' 			=> $basePath,
+		));
 		
 		
 	}
