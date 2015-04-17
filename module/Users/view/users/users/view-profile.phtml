@@ -1,4 +1,3 @@
-<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){?>
 	<div class="container reg_w_12">
 	<div class="panel panel panel-default mar_t">
 		<div class="panel-heading reg_bg">
@@ -429,6 +428,3 @@ $("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-tr
 $('#opentabId').val(tabid);
 }
 </script>
-<? } else{?>
-	<script> window.location= BASE_URL+'/users/login'; </script>
-<? } ?>
