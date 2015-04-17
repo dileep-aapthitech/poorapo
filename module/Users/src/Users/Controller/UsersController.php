@@ -149,7 +149,7 @@ class UsersController extends AbstractActionController
 					}
 				}
 			}
-		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){
+		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){ 
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
 			if($user_id!=0){
 				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id);

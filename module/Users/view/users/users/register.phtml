@@ -52,13 +52,13 @@
 				<div class="form-group">
 					<div class="col-sm-8 col-lg-offset-3">
 						<button type="reset" class="btn btn-default">Cancel</button>
-						<button type="button" class="btn btn-primary " onClick="openDiv();">Continue</button>
+						<button type="button" class="btn btn-primary " onClick="validateReg(1);">Continue</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-			<div class="panel panel-default" style="dispaly:none;">
+	<div class="panel panel-default">
 				<div class="panel-heading" onclick="regTab1(2)">Personal Information 
 					<i  id="icon2"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
 				</div>
@@ -252,12 +252,12 @@
 				<div class="form-group">
 					<div class="col-sm-8 col-lg-offset-3">
 						<button type="reset" class="btn btn-default">Cancel</button>
-						<button type="submit" class="btn btn-primary ">Continue</button>
+						<button type="button" class="btn btn-primary" onClick="validateReg(2);">Continue</button>
 					</div>
 				</div>
 			</div>
 			</div>
-			</div>
+	</div>
 			<div class="panel panel-default">
 				<div class="panel-heading" onclick="regTab1(3)">12th Class College Information 
 					<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
@@ -334,7 +334,7 @@
 						<div class="form-group">
 							<div class="col-sm-8 col-lg-offset-3">
 								<button type="reset" class="btn btn-default">Cancel</button>
-								<button type="submit" class="btn btn-primary ">Continue</button>
+								<button type="button" class="btn btn-primary" onClick="validateReg(3);">Continue</button>
 							</div>
 						</div>
 					</div>
@@ -378,10 +378,11 @@
 								<span class="error_msg_disp" id="user_entrance_rank_req"></span>
 								<input class="form-control" id="user_entrance_rank" name="user_entrance_rank" type="text" value="<? if(isset($details->entrance_rank) && $details->entrance_rank!='') {echo $details->entrance_rank;}else{}?>" placeholder="Exam Rank">
 							</div>
-							<!--<div class="col-sm-3">
+							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">&nbsp;</label><br/>
-								<button type="submit" class="btn btn-primary ">Add Another</button>
-							</div>-->
+								<!--<button type="submit" class="btn btn-primary ">Add Another</button>-->
+								<button type="button" class="btn btn-primary" onClick="validateReg(4);">Continue</button>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -470,7 +471,7 @@
 					<div class="form-group">
 					<div class="col-sm-8 col-lg-offset-3">
 					<button type="reset" class="btn btn-default">Cancel</button>
-					<button type="submit" class="btn btn-primary ">Continue</button>
+					<button type="button" class="btn btn-primary" onClick="validateReg(5);">Continue</button>
 					</div>
 					</div>
 				</div>
@@ -562,7 +563,7 @@
 			<div class="form-group">
 			<div class="col-sm-8 col-lg-offset-3">
 			<button type="reset" class="btn btn-default">Cancel</button>
-			<button type="submit" class="btn btn-primary ">Continue</button>
+			<button type="button" class="btn btn-primary" onClick="validateReg(6);">Continue</button>
 			</div>
 			</div>
 			</div>
@@ -646,7 +647,7 @@
 			<div class="form-group">
 			<div class="col-sm-8 col-lg-offset-3">
 			<button type="reset" class="btn btn-default">Cancel</button>
-			<button type="button" class="btn btn-primary" onClick="return validateReg();">Save</button>
+			<button type="button" class="btn btn-primary" onClick="validateReg(7);">Save</button>
 			</div>
 			</div>
 			</div>
@@ -662,12 +663,12 @@
 </div>
 
 <script> 
-function regTab1(tabid){
-var closeTadId=$('#opentabId').val();
-$("#tab_"+closeTadId+"_hide").slideUp("slow");
-$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
-$("#tab_"+tabid+"_hide").slideDown("slow");
-$("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
-$('#opentabId').val(tabid);
-}
+// function regTab1(tabid){
+// var closeTadId=$('#opentabId').val();
+// $("#tab_"+closeTadId+"_hide").slideUp("slow");
+// $("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
+// $("#tab_"+tabid+"_hide").slideDown("slow");
+// $("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
+// $('#opentabId').val(tabid);
+// }
 </script>
