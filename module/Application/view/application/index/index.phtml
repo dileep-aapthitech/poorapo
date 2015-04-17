@@ -1,5 +1,4 @@
- <? if(isset($_SESSION['user'])&& $_SESSION['user']['user_type']!=3 ){?>
- <div class="container">
+<div class="container">
 		<div class="mar_t">
 			<div class="row"><?php if( isset($this->menuIssuesArr) && count($this->menuIssuesArr) > 0 )
 				{
@@ -144,6 +143,3 @@ $( "a[id^='shares-']" ).each(function(index) {
 		
 	}
 </script>
-<? } else {?>
-	<script> window.location=BASE_URL+"/admin/dashboard"; </script>
-<? }?>
