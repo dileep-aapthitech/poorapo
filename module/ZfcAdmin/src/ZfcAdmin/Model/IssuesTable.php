@@ -85,7 +85,14 @@ class IssuesTable
 	}
 	public function getAllMenuIssues( $categoryId )
     {
-		$userId=$_SESSION['user']['user_id'];
+		if( isset($_SESSION['user_id']) && isset($_SESSION['user']['user_id']) )
+		{
+			$userId=$_SESSION['user']['user_id'];
+		}
+		else
+		{
+			$userId="";
+		}
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('tbl_categories', 'tbl_issues.category_id=tbl_categories.category_id',array('category_name','category_type_id'),'left');
 		$select->join('tbl_likes', new Expression('tbl_likes.issue_id=tbl_issues.issue_id AND tbl_likes.liked_from="'.$userId.'"'),array('like_value'),'left');
