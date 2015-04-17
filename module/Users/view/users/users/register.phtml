@@ -37,7 +37,7 @@
 						<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?>" <? if(isset($details->email_id) && $details->email_id!='') {?> readonly="readonly" <?}?> onblur="return checkEmailVaild();">
 					</div>
 				</div>
-				<? if(isset($_GET['user_id']) && $_GET['user_id']==""){?>
+				<? if($details==""){?>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 					<div class="col-sm-8">
