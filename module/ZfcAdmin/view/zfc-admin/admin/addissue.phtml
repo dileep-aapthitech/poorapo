@@ -1,15 +1,7 @@
 <div class="container mar_t">
 	<script src="<?php echo $this->basepath;?>/js/ckeditor/ckeditor.js"></script>
 	<style>
-		.cke_textarea_inline
-		{
-			padding: 10px;
-			height: 200px;
-			overflow: auto;
-
-			border: 1px solid gray;
-			-webkit-appearance: textfield;
-		}
+		
     </style>
  
   <div class="modal-body">
@@ -35,9 +27,9 @@
             </div>
             <div class="form-group">
 			<? if(isset($this->edit_issue[0]['issue_id'])!=""){?>
-				<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="addIssueFunction(1);">Update</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="backFunction();">Back</button>
+				<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="addIssueFunction(1);">Update</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="backFunction(0);">Back</button>
 			<?}else{ ?>
-				<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="addIssueFunction(0);">Add</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="backFunction();">Back</button>
+				<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="addIssueFunction(0);">Add</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="backFunction(0);">Back</button>
 			<?}?>
 			<input type="hidden" value="<?php echo $this->edit_issue[0]['issue_id'];?>" id="issue_id" name="issue_id" ></p>
 			<input type="hidden" value="" id="hidbutton_value" name="hidbutton_value" >
@@ -47,35 +39,4 @@
 </div>
 	<script>
 		CKEDITOR.inline( 'article-body' );
-	function addIssueFunction(type){
-		  var flag=true;
-		  var title= $("#title").val();
-		  var buttontype=$('#hidbutton_value').val(type);
-		  var selectcat=$('#category_id').val();
-		  if(title==""){
-		     $("#errortitle").html("Required");
-			 flag=false;
-		  }else{
-		      $("#errortitle").html("");
-		  }
-		  var ckeditor= CKEDITOR.instances['article-body'].getData().replace(/<[^>]*>/gi, '').length;
-          if( !ckeditor ){
-            $("#erroreditor").html("Required");
-			 flag=false;
-          }else{
-		    $("#erroreditor").html(""); 
-		  }
-		  if(selectcat==""){
-			$('#errorCat').html('Required');
-			 flag=false;
-		  }else{
-			$('#errorCat').html('');
-		  }
-		  if(flag==true){
-			$('#addIssue').submit();
-		  }
-	}
-	function backFunction(){
-		window.location=BASE_URL+'/admin/issues';
-	}
 	</script>

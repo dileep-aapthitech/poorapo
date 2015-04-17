@@ -4,27 +4,30 @@
   <link href="<?php echo $basepath; ?>/css/jquery.datatable.css" rel="stylesheet">
   <script src="<?php echo $this->basepath;?>/js/jquery.datatable.min.js"></script>
 </head>
-<p><button type="button" class="btn btn-primary btn-lg btn-bloconclick" id="add" name="add"  onclick="addissFunction();">Add</button></p>
-
-  <table id="example">
+<p><button type="button" class="btn btn-primary btn-lg btn-bloconclick" id="add" name="add"  onclick="addissFunction();">Add</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" id="add" name="add"  onclick="backFunction(1);">Back</button></p>
+<table id="example">
     <thead>
-      <tr><th>Sno</th>
-     <th>IssuesTitle</th>
-     <th>IssuesDescription</th>
-     <th>Action</th>
-	 </tr>
+    <tr>
+		 <th>Sno</th>
+		 <th>IssuesTitle</th>
+		 <th>IssuesDescription</th>
+		 <th>Action</th>
+	</tr>
     </thead>
     <tbody>
     </tbody>
-  </table>
-  </div>
+</table>
+<center><span id="reload"></span></center>
+</div>
   <script>
-  $(function(){
+$(function(){
+$('#reload').html('<img src=<?php echo $basepath; ?>/images/ajax-loader.gif />');
   $.ajax({
 		type		:	'GET',
 		dataType	:   'json',
 		url			:    BASE_PATH+'/admin/issuesAjax',
 		success: function(data){
+		$('#reload').html('');
 			eval(data);
 			var oTable = $('#example').dataTable( {
 				aoColumnDefs: [{bSortable: false,
@@ -46,14 +49,4 @@
 		}
 	});
 });
-function addissFunction(){
-window.location=BASE_URL+'/admin/addissue';
-}
-
-function deleteIssue(id){
-window.location=BASE_URL+'/admin/issues?delid='+id;
-}
-function editIssue(edit_id){
-	window.location=BASE_URL+'/admin/addissue?ediid='+edit_id;
-}
 </script>

@@ -182,6 +182,7 @@ class UsersController extends AbstractActionController
 				$result = new JsonModel(array(					
 					'output' => 'success',
 					'user_id' => json_decode($userDetails->user_id),
+					'user_type_id' => json_decode($userDetails->user_type_id),
 				));
 			}else{
 				 $result = new JsonModel(array(					

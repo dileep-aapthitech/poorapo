@@ -1,3 +1,48 @@
+function addIssueFunction(type){
+	  var flag=true;
+	  var title= $("#title").val();
+	  var buttontype=$('#hidbutton_value').val(type);
+	  var selectcat=$('#category_id').val();
+	  if(title==""){
+		 $("#errortitle").html("Required");
+		 flag=false;
+	  }else{
+		  $("#errortitle").html("");
+	  }
+	  var ckeditor= CKEDITOR.instances['article-body'].getData().replace(/<[^>]*>/gi, '').length;
+	  if( !ckeditor ){
+		$("#erroreditor").html("Required");
+		 flag=false;
+	  }else{
+		$("#erroreditor").html(""); 
+	  }
+	  if(selectcat==""){
+		$('#errorCat').html('Required');
+		 flag=false;
+	  }else{
+		$('#errorCat').html('');
+	  }
+	  if(flag==true){
+		$('#addIssue').submit();
+	  }
+	}
+function backFunction(back_type){
+	if(back_type==0){
+		window.location=BASE_URL+'/admin/issues';
+	}else{
+		window.location=BASE_URL+'/admin/dashboard';
+	}
+}
+function addissFunction(){
+window.location=BASE_URL+'/admin/addissue';
+}
+
+function deleteIssue(id){
+window.location=BASE_URL+'/admin/issues?delid='+id;
+}
+function editIssue(edit_id){
+	window.location=BASE_URL+'/admin/addissue?ediid='+edit_id;
+}
 function getColleges(){
 	var country_id = $('#user_country').val();
 	var state_id = $('#user_state').val();
@@ -136,7 +181,7 @@ function checkEmail(emailStr) {
 	}
 	return true;
 }
-function loginValidations(type_id){
+function loginValidations(){
 	var flag=true;
 	$('#errorMsg').html('');
 	var userEmail=$('#email').val();
@@ -156,30 +201,24 @@ function loginValidations(type_id){
 	}else{
 		$('#passwordError').html('');
 	}
-	//$('#reload').html('<img src="public/images/spiffygif.gif"/>');
+	$('#reload').html('<img src="public/images/spiffygif.gif"/>');
 	if(flag==false){
 		return false;
 	}else{
-			if(type_id==1){
-				var url=BASE_URL+'/users/login';
-			}else{
-				var url=BASE_URL+'/admin/login';
-			}
-			
+			var url=BASE_URL+'/users/login';
 			$.ajax({
 				type:'POST',
 				datatype:'json',
 				url:  url,
-				data:{inputEmail:userEmail,password:userPassword,type_id:type_id},
+				data:{inputEmail:userEmail,password:userPassword},
 				success: function(response){
 					$('#reload').html('');
 					if(response.output=='success'){
-						if(type_id==1){
+						if(response.user_type_id==1){
 							window.location=BASE_URL+"/users/change-password";
-						}else if(type_id==3){
+						}else if(response.user_type_id==3){
 							window.location=BASE_URL+"/admin/dashboard";
 						}
-						//window.location=BASE_URL+'edit-user?user_id='+data.user_id;
 					}else{
 						$('#errorMsg').html('Enter username and password are wrong');
 					}

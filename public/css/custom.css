@@ -222,3 +222,12 @@
 		width:170px;
 	}
  }
+ .cke_textarea_inline
+	{
+		padding: 10px;
+		height: 200px;
+		overflow: auto;
+
+		border: 1px solid gray;
+		-webkit-appearance: textfield;
+	}
