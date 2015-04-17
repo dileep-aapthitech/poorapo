@@ -40,7 +40,8 @@ function validateReg(typeTab){
 		}	
 		if(flag == false){
 			return false;
-		}else{			
+		}else{	
+			$("#hidCheckValue").val('0');
 			var typeTabNext = typeTab+1;
 			regTab1(typeTabNext);
 		}
@@ -504,6 +505,7 @@ function validateReg(typeTab){
 		if(flag == false){
 			return false;
 		}else{
+			$("#hidCheckValue").val('0');
 			$("#frm_meth").submit();			
 		}
 	}	
