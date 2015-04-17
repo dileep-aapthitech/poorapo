@@ -60,6 +60,19 @@ return array(
 					),
 				),
 			),
+			'cms' => array(
+				'type'    => 'segment',
+				'options' => array(
+					'route' => '/cms[/:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&+;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'cms',
+					),
+				),
+			),
 		),
 	),
 	'service_manager' 			=> 	array(

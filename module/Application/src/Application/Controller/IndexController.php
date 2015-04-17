@@ -46,11 +46,22 @@ class IndexController extends AbstractActionController
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
-		$basePath = $baseUrlArr['basePath'];	
+		$basePath = $baseUrlArr['basePath'];
+		
+		$footer = "";
+		$footerArr = $this->getIssuesTable()->getFooterHtml()->toArray();
+		if( isset($footerArr) && count($footerArr) > 0  && isset($footerArr[0])  && isset($footerArr[0]['issue_decription']) )
+		{
+			$footer = $footerArr[0]['issue_decription'];
+			// echo "<pre>";print_r($cmsPageHtml);exit;
+		}
+		
+		
 		return $this->layout()->setVariable(
 			"headerarray",array(
 				'baseUrl' 		=> 	$baseUrl,
-				'basePath'		=>	$basePath,				
+				'basePath'		=>	$basePath,
+				'footer'		=>	$footer,
 			)
 		);
 	}
@@ -70,6 +81,43 @@ class IndexController extends AbstractActionController
 		);
 	}
 	
+	public function cmsAction()
+	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		
+		$issueId = 0;
+		if($this->params()->fromRoute('id', 0)!="")
+		{
+			$params=$this->params()->fromRoute('id', 0);
+			$paramss=explode("-",$params);
+			$paramssCount = count($paramss);
+			$issueIdPortion = $paramssCount-1;
+			if( isset($paramss[$issueIdPortion]) && $paramss[$issueIdPortion] != "" )
+			{
+				$issueId=$paramss[$issueIdPortion];
+			}
+		}
+		
+		$cmsPageHtml = "";
+		$cmsPageArr = $this->getIssuesTable()->getCmsPageHtml( $issueId )->toArray();
+		if( isset($cmsPageArr) && count($cmsPageArr) > 0  && isset($cmsPageArr[0])  && isset($cmsPageArr[0]['issue_decription']) )
+		{
+			$cmsPageHtml = $cmsPageArr[0]['issue_decription'];
+			// echo "<pre>";print_r($cmsPageHtml);exit;
+		}
+
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				=> $baseUrl,
+				'basePath' 				=> $basePath,
+				'cmsPageHtml'		 	=> $cmsPageHtml
+		));
+		return $viewModel;
+	}
+
 	public function getCategoryTypesTable()
     {
         if (!$this->categoryTypesTable) {				

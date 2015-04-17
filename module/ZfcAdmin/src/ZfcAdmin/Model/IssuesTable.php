@@ -117,5 +117,27 @@ class IssuesTable
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;
 	}
+
+	public function getCmsPageHtml( $issueId )
+    {
+		$select = $this->tableGateway->getSql()->select();
+		if( $issueId > 0 )
+		{
+			$select->where('tbl_issues.issue_id="'.$issueId.'"');
+		}
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+
+	}
+
+	public function getFooterHtml()
+    {
+		$footerTitle = "footer";
+
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->expression('LOWER(tbl_issues.issue_title) LIKE ?', $footerTitle);
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	
 }
