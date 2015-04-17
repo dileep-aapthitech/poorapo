@@ -74,10 +74,9 @@
 			<li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>
 			<?}else{?>
             <li><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
+			<li><a href="<?php echo $baseUrl; ?>/users/register" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Register</span></a></li>
 			<?}?>
-			<?php if(isset($_SESSION['user'])){?>
-            <li><a href="<?php echo $baseUrl; ?>/users/register" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Register</span></a></li>
-          </ul>
+		  </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>

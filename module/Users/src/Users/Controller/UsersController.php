@@ -120,7 +120,7 @@ class UsersController extends AbstractActionController
 							$user_session->email=$userDetails->email_id;
 							$user_session->user_id=$userDetails->user_id;
 							$user_session->user_type=$userDetails->user_type_id;
-							echo "<pre>";print_r($_SESSION['user']);exit;
+							return $this->redirect()->toUrl($baseUrl);
 						}						
 					}
 				}
