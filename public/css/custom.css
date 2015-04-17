@@ -1,3 +1,11 @@
+.cke_textarea_inline{
+		padding: 10px;
+		height: 200px;
+		overflow: auto;
+
+		border: 1px solid gray;
+		-webkit-appearance: textfield;
+	}
 .body_bg{
 	background: white none repeat scroll 0 0;
     padding-left: 20px !important;
