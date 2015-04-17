@@ -1,9 +1,11 @@
+<? if(isset($_SESSION['user']) && $_SESSION['user']!=""){?>
 	<div class="container reg_w_12">
 	<div class="panel panel panel-default mar_t">
 		<div class="panel-heading reg_bg">
 			<h3 class="panel-title">View Profile</h3>
-			<div class="view_profile_r"><a href="#">Edit Profile</a></div>
+			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/users/register?user_id=<? echo $_SESSION['user']['user_id']?>">Edit Profile</a></div>
 		</div> 
+		<? if(count($this->userDetails)!=0){ foreach($this->userDetails as $details){?>
 		<div class="panel-body">
 			<div class="panel panel-default">
 				<div class="panel-heading" id="tab_1" onclick="regTab1(1)">Login Deatils
@@ -13,20 +15,21 @@
 				<div class="form-group">
 				<label for="inputtype" class="col-sm-3 control-label">User Type :</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">Employee</p>
+					<p class="form-control-static">
+						<? if(count($usertypes)!='') {
+						foreach($usertypes as $user_type){ if($details->user_type_id == $user_type->user_type_id){?>
+						<? echo ucfirst($user_type->user_type_name);?>
+						<?}	} } ?>
+					</p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">Email :</label>
 				<div class="col-sm-8">
-				<p class="form-control-static">info@aapthitech.com</p>
+				<p class="form-control-static"><? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?></p>
 				</div>
 				</div>
-				<div class="form-group">
-				<label for="inputPassword3" class="col-sm-3 control-label">Password :</label>
-				<div class="col-sm-8">
-				<p class="form-control-static">**********</p>
-				</div>
+				
 				</div>
 				</form>
 				</div>
@@ -39,91 +42,104 @@
 				<div class="form-group">
 				<label for="inputfname" class="col-sm-3 control-label">First Name</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">xxxxxxxxxxx</p>
+					<p class="form-control-static"><? if(isset($details->first_name) && $details->first_name!='') {echo ucfirst($details->first_name);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputlname" class="col-sm-3 control-label">Last Name</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">xxxxxxxxxxx</p>
+					<p class="form-control-static"><? if(isset($details->last_name) && $details->last_name!='') {echo ucfirst($details->last_name);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label class="col-sm-3 control-label">Gender</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">male</p>
+					<p class="form-control-static"><? if(isset($details->gender) && $details->gender!='') {echo ucfirst($details->gender);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputEmail3" class="col-sm-3 control-label">Date of Birth</label>
 				<div class="col-sm-3">
-					<p class="form-control-static">10/08/1988</p>
+					<p class="form-control-static"><? if(isset($details->date_of_birth) && $details->date_of_birth!='') {echo ucfirst($details->date_of_birth);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-3 control-label">Country</label>
 				<div class="col-sm-8">
-				<p class="form-control-static">India</p>
+				<p class="form-control-static"><? if(count($countries)!='') {
+							foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
+							<? echo ucfirst($country->name);?>
+							<?}	}}?></p>
 				</div>
 				</div>	
 				<div class="form-group">
 				<label for="inputpname" class="col-sm-3 control-label">Mobile Number</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">+91 9908085654</p>
+					<p class="form-control-static"><? if(isset($details->mobile_number) && $details->mobile_number!='') {echo $details->mobile_number;}else{}?></p>
 				</div>
 				</div>	
+			<?if(isset($details->user_type_id) && $details->user_type_id==1){?>
 				<div id="hideemployeeDiv">				
 				<div class="form-group">
 				<label for="inputpname" class="col-sm-3 control-label">Parent First Name</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">xxxxxxxxxxx</p>
+					<p class="form-control-static"><? if(isset($details->parents_name) && $details->parents_name!='') {echo ucfirst($details->parents_name);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputplname" class="col-sm-3 control-label">Parent Last Name</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">xxxxxxxxxxx</p>
+					<p class="form-control-static"><? if(isset($details->user_parent_lastname) && $details->user_parent_lastname!='') {echo ucfirst($details->user_parent_lastname);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputpnm" class="col-sm-3 control-label">Parent Mobile Number</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">+91 9908669986</p>
+					<p class="form-control-static"><? if(isset($details->p_phone_number) && $details->p_phone_number!='') {echo $details->p_phone_number;}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputpem" class="col-sm-3 control-label">Parent Email</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">infoparent@gmal.com</p>
+					<p class="form-control-static"><? if(isset($details->p_email_id) && $details->p_email_id!='') {echo $details->p_email_id;}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputppin" class="col-sm-3 control-label">Parent Pincode</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">************</p>
+					<p class="form-control-static"><? if(isset($details->p_pincode) && $details->p_pincode!='') {echo $details->p_pincode;}else{}?></p>
+				</div>
+				</div>
+				<div class="form-group">
+				<label for="inputppin" class="col-sm-3 control-label">Permant Pincode</label>
+				<div class="col-sm-8">
+					<p class="form-control-static"><? if(isset($details->permant_pincode) && $details->permant_pincode!='') {echo $details->permant_pincode;}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputafi" class="col-sm-3 control-label">Annual Family Income</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">20,0000</p>
+					<p class="form-control-static"><? if(isset($details->annual_family_income) && $details->annual_family_income!='') {echo $details->annual_family_income;}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputfn" class="col-sm-3 control-label"> Family Network</label>
 				<div class="col-sm-8">
-					<p class="form-control-static">10</p>
+					<p class="form-control-static"><? if(isset($details->family_net_worth) && $details->family_net_worth!='') {echo $details->family_net_worth;}else{}?></p>
 				</div>
 				</div>
 				</div>
-				<div id="employeeDiv">
-				<div class="form-group">
-				<label for="inputectc" class="col-sm-3 control-label">Employee CTC</label>
-				<div class="col-sm-8">
-					<p class="form-control-static">50,000</p>
-				</div>
-				</div>
-				</div>
+				<? } ?>
+				<?if(isset($details->user_type_id) && $details->user_type_id==2){?>
+					<div id="employeeDiv">
+					<div class="form-group">
+					<label for="inputectc" class="col-sm-3 control-label">Employee CTC</label>
+					<div class="col-sm-8">
+						<p class="form-control-static"><? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?></p>
+					</div>
+					</div>
+					</div>
+				<? } ?>
 				</form>
 				</div>
 			</div>
@@ -135,49 +151,50 @@
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-3 control-label">State</label>
 				<div class="col-sm-8">
-				<select class="form-control" id="select">
-				<option>Select State</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-				</select>
+				<p class="form-control-static"> <? if(count($states)!='') {
+					foreach($states as $state){ if($state->state_id == $details->state_id){?>
+					<? echo ucfirst($state->state_name);?>
+				<?}	} } ?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputPassword3" class="col-sm-3 control-label">Deistic</label>
 				<div class="col-sm-8">
-				<select class="form-control" id="select">
-				<option>Select Deistic</option>
-				<option>2</option>
-				<option>3</option>
-				<option>4</option>
-				<option>5</option>
-				</select>
+				<p class="form-control-static">
+					<? if(count($districts)!='') {
+					foreach($districts as $district){ if($district->district_id == $details->district_id){?>
+					<? echo ucfirst($district->district_name);?>
+					<?}	} }?>
+				</p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputcname" class="col-sm-3 control-label">College Name</label>
 				<div class="col-sm-8">
-				<input type="text" class="form-control" id="inputcname" placeholder="College Name">
+					<p class="form-control-static">
+						<? if(count($colleges)!='') {
+							foreach($colleges as $college){ if($college->college_id == $details->college_name){?>
+							<? echo ucfirst($college->college_name);?>
+						<?}	}}?>
+					</p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputpname" class="col-sm-3 control-label">Principal Name</label>
 				<div class="col-sm-8">
-				<input type="text" class="form-control" id="inputpname" placeholder="Principal Name">
+					<p class="form-control-static"><? if(isset($details->principal_name) && $details->principal_name!='') {echo ucfirst($details->principal_name);}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputpnmb" class="col-sm-3 control-label">Principal Mobile Number</label>
 				<div class="col-sm-8">
-				<input type="text" class="form-control" id="inputpnmb" placeholder="Principal Mobile Number">
+					<p class="form-control-static"><? if(isset($details->principal_phone_num) && $details->principal_phone_num!='') {echo $details->principal_phone_num;}else{}?></p>
 				</div>
 				</div>
 				<div class="form-group">
 				<label for="inputpemail" class="col-sm-3 control-label">Principal Email</label>
 				<div class="col-sm-8">
-				<input type="text" class="form-control" id="inputpemail" placeholder="Principal Email">
+					<p class="form-control-static"><? if(isset($details->principal_email_id) && $details->principal_email_id!='') {echo $details->principal_email_id;}else{}?></p>
 				</div>
 				</div>
 				</form>
@@ -191,22 +208,25 @@
 						<div class="form-group">
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Year</label>
-								<select class="form-control" id="select">
-								<option>Select Year</option>
-								<option>2</option>
-								<option>3</option>
-								<option>4</option>
-								<option>5</option>
-								</select>
+								<p class="form-control-static">
+									<? if(isset($details->which_year) && $details->which_year!='') {echo $details->which_year;}else{}?>
+								</p>
 							</div>
 						
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Name</label>
-								<input class="form-control" id="focusedInput" type="text" value="" placeholder="Exam Name">
+								<p class="form-control-static">
+									<? if(count($entranceexams)!='') {
+										foreach($entranceexams as $entranceExam){ if( $entranceExam->entrance_exam_id == $details->entrance_exam){?>
+										<? echo ucfirst($entranceExam->entrance_exam_name);?>
+									<?} } }?>
+								</p>
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Rank</label>
-								<input class="form-control" id="focusedInput" type="text" value="" placeholder="Exam Rank">
+								<p class="form-control-static">
+									<? if(isset($details->entrance_rank) && $details->entrance_rank!='') {echo $details->entrance_rank;}else{}?>
+								</p>
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">&nbsp;</label><br/>
@@ -224,61 +244,53 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Degree</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>BA</option>
-							<option>BE/B.TECH</option>
-							<option>BSC</option>
-							<option>BCOM</option>
-							<option>BCA</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($b_degrees)!='') {
+									foreach($b_degrees as $bachDegree){ if($bachDegree->degree_id == $details->bachelors_degree_name ){?>
+									<? echo ucfirst($bachDegree->degree_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">University</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>Osmania University</option>
-							<option>Jawaharlal University</option>
-							<option>Andhra Pradesh Open University</option>
-							<option>University Hyderabad</option>
-							<option>Nagarjuna University</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($unversities)!='') {
+									foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->bachelors_university_name){?>
+									<? echo ucfirst($unversity->unversity_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">College</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>CVSR College</option>
-							<option>Muffakham Jah College</option>
-							<option>Deccan College</option>
-							<option>Vasavi College </option>
-							<option>K.S.Raju College</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($colleges)!='') {
+									foreach($colleges as $college){ if($college->college_id == $details->bachelors_college){?>
+									<? echo ucfirst($college->college_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Specialization</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>CVSR College</option>
-							<option>Muffakham Jah College</option>
-							<option>Deccan College</option>
-							<option>Vasavi College </option>
-							<option>K.S.Raju College</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($specializations)!='') {
+								foreach($specializations as $specialization){ if($specialization->specialined_id == $details->bachelors_specialization){?>
+									<? echo ucfirst($specialization->specialined_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>1988</option>
-							<option>1989</option>
-							<option>1990</option>
-							<option>1991</option>
-							<option>1992</option>
-							</select>
+							<p class="form-control-static">
+									<? if(isset($details->bachelors_year_admission) && $details->bachelors_year_admission!='') {echo $details->bachelors_year_admission;}else{}?>
+								</p>
 						</div>
 					</div>
 				</div>
@@ -292,61 +304,53 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Master Degree</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>BA</option>
-							<option>BE/B.TECH</option>
-							<option>BSC</option>
-							<option>BCOM</option>
-							<option>BCA</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($m_degrees)!='') {
+									foreach($m_degrees as $masdegrees){ if($masdegrees->masters_degree_id == $details->masters_degree){?>
+									<? echo ucfirst($masdegrees->mas_degree_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Master University</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>Osmania University</option>
-							<option>Jawaharlal University</option>
-							<option>Andhra Pradesh Open University</option>
-							<option>University Hyderabad</option>
-							<option>Nagarjuna University</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($unversities)!='') {
+									foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->masters_university){?>
+									<? echo ucfirst($unversity->unversity_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">College</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>CVSR College</option>
-							<option>Muffakham Jah College</option>
-							<option>Deccan College</option>
-							<option>Vasavi College </option>
-							<option>K.S.Raju College</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($colleges)!='') {
+									foreach($colleges as $college){ if($college->college_id == $details->masters_college){?>
+									<? echo ucfirst($college->college_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Specialization</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>CVSR College</option>
-							<option>Muffakham Jah College</option>
-							<option>Deccan College</option>
-							<option>Vasavi College </option>
-							<option>K.S.Raju College</option>
-							</select>
+							<p class="form-control-static">
+								<? if(count($specializations)!='') {
+								foreach($specializations as $specialization){ if($specialization->specialined_id == $details->masters_specialization){?>
+									<? echo ucfirst($specialization->specialined_name);?>
+								<?}	}}?>
+							</p>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year</label>
 						<div class="col-sm-8">
-							<select class="form-control" id="select">
-							<option>1988</option>
-							<option>1989</option>
-							<option>1990</option>
-							<option>1991</option>
-							<option>1992</option>
-							</select>
+							<p class="form-control-static">
+									<? if(isset($details->masters_year_admission) && $details->masters_year_admission!='') {echo $details->masters_year_admission;}else{}?>
+								</p>
 						</div>
 					</div>
 				</div>
@@ -360,13 +364,57 @@
 						<div class="form-group">
 						<label for="inputcname" class="col-sm-3 control-label">PHD</label>
 						<div class="col-sm-8">
-						<input type="text" class="form-control" id="inputcname" placeholder="PHD">
+							<p class="form-control-static">
+								<? if(isset($details->doctorate_name) && $details->doctorate_name!='') {echo $details->doctorate_name;}else{}?>
+							</p>
 						</div>
+						</div>
+						<div class="form-group">
+							<label for="select" class="col-sm-3 control-label">University</label>
+							<div class="col-sm-8">
+								<p class="form-control-static">
+								<? if(count($unversities)!='') {
+									foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->doctorate_university){?>
+									<? echo ucfirst($unversity->unversity_name);?>
+								<?}	}}?>
+							</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="select" class="col-sm-3 control-label">College</label>
+							<div class="col-sm-8">
+								<p class="form-control-static">
+								<? if(count($colleges)!='') {
+									foreach($colleges as $college){ if($college->college_id == $details->doctorate_college){?>
+									<? echo ucfirst($college->college_name);?>
+								<?}	}}?>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="select" class="col-sm-3 control-label">Specialization</label>
+							<div class="col-sm-8">
+								<p class="form-control-static">
+									<? if(count($specializations)!='') {
+									foreach($specializations as $specialization){ if($specialization->specialined_id == $details->doctorate_specialization){?>
+										<? echo ucfirst($specialization->specialined_name);?>
+									<?}	}}?>
+								</p>
+							</div>
+						</div>
+						<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Year</label>
+						<div class="col-sm-8">
+							<p class="form-control-static">
+									<? if(isset($details->doctorate_year) && $details->doctorate_year!='') {echo $details->doctorate_year;}else{}?>
+								</p>
 						</div>
 					</div>
+					</div>					
 				</div>
 			</div>
 		</div> 
+		<? } }?>
 		<input type="hidden" id="opentabId" value="1">
 	</div>
 </div>
@@ -381,3 +429,6 @@ $("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-tr
 $('#opentabId').val(tabid);
 }
 </script>
+<? } else{?>
+	<script> window.location= BASE_URL+'/users/login'; </script>
+<? } ?>

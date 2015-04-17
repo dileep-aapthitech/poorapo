@@ -30,10 +30,39 @@ class UsersController extends AbstractActionController
 	{
 	}
 	public function viewProfileAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		if(isset($_GET['user_id']) && $_GET['user_id']!=""){
 			$getUserDetails = $this->getUserTable()->getUserDetails($_GET['user_id']);
-			echo "<pre>";print_r($getUserDetails);exit;
-		
+			$getUserTypes=$this->getUserTypeTable()->getUserTypes();
+			$getCountries=$this->getCountriesTable()->getCountries();
+			$getStates=$this->getSatesTable()->getSates();
+			$getDistricts=$this->getDistrictsTable()->getDistricts();
+			$getColleges=$this->getCollegeTable()->getColleges();
+			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
+			$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
+			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
+			$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
+			$getUnversities=$this->getUnversitiesTable()->getUnversities();
+			if($getUserDetails!=''){
+				return new ViewModel(array(				
+					'userDetails' 		=> $getUserDetails,						
+					'usertypes' 		=> $getUserTypes,
+					'countries' 		=> $getCountries,
+					'states' 		    => $getStates,
+					'districts' 		=> $getDistricts,
+					'colleges' 		    => $getColleges->buffer(),
+					'entranceexams'     => $getEntranceExams,			
+					'b_degrees'         => $getBacheloreDegree,			
+					'specializations'   => $getSpecializations->buffer(),			
+					'unversities'       => $getUnversities->buffer(),			
+					'm_degrees'         => $getMasterDegrees,			
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath,
+				));		
+			}
 		}
 	}
 	public function checkEmailExistsAction(){
@@ -105,12 +134,23 @@ class UsersController extends AbstractActionController
 		return $result;
 	}	
 	public function registerAction(){
-			$baseUrls = $this->getServiceLocator()->get('config');
-			$baseUrlArr = $baseUrls['urls'];
-			$baseUrl = $baseUrlArr['baseUrl'];
-			$basePath = $baseUrlArr['basePath'];
-		if(isset($_POST['user_type']) && $_POST['user_type']!=''){
-			$user_id=$this->getUserTable()->addUser($_POST);
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){
+			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
+			if($user_id>=0){
+				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$_POST['hid_user_id']);
+				if($userpersonalInfo>=0){
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id']);					
+					if($userDetailsInfo>=0){
+						return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$_POST['hid_user_id']);
+					}
+				}
+			}
+		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){
+			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
 			if($user_id!=0){
 				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id);
 				if($userpersonalInfo!=0){
@@ -136,6 +176,35 @@ class UsersController extends AbstractActionController
 						}						
 					}
 				}
+			}
+		}else if(isset($_GET['user_id']) && $_GET['user_id']!=""){
+			$getUserDetails = $this->getUserTable()->getUserDetails($_GET['user_id']);
+			$getUserTypes=$this->getUserTypeTable()->getUserTypes();
+			$getCountries=$this->getCountriesTable()->getCountries();
+			$getStates=$this->getSatesTable()->getSates();
+			$getDistricts=$this->getDistrictsTable()->getDistricts();
+			$getColleges=$this->getCollegeTable()->getColleges();
+			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
+			$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
+			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
+			$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
+			$getUnversities=$this->getUnversitiesTable()->getUnversities();
+			if($getUserDetails!=''){
+				return new ViewModel(array(				
+					'userDetails' 		=> $getUserDetails,						
+					'usertypes' 		=> $getUserTypes,
+					'countries' 		=> $getCountries,
+					'states' 		    => $getStates,
+					'districts' 		=> $getDistricts,
+					'colleges' 		    => $getColleges->buffer(),
+					'entranceexams'     => $getEntranceExams,			
+					'b_degrees'         => $getBacheloreDegree,			
+					'specializations'   => $getSpecializations->buffer(),			
+					'unversities'       => $getUnversities->buffer(),			
+					'm_degrees'         => $getMasterDegrees,			
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath,
+				));		
 			}
 		}else{
 			$getUserTypes=$this->getUserTypeTable()->getUserTypes();

@@ -158,8 +158,13 @@ class UserDetailsTable
 			'doctorate_year' 	        => $user_doctor_year,
 			'modified_at' 	            => date('Y-m-d H:i:s'),   
 		);
-		$insertresult=$this->tableGateway->insert($data);	
-		return $this->tableGateway->lastInsertValue;	
+		if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
+			$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
+			return $updateresult;
+		}else{
+			$insertresult=$this->tableGateway->insert($data);
+			return $this->tableGateway->lastInsertValue;	
+		}	
 		
 	}
 	
