@@ -1,4 +1,4 @@
- <?php if(isset($_SESSION['user']) && $_SESSION['user']['user_type']!=3){?>
+ <? if(isset($_SESSION['user'])&& $_SESSION['user']['user_type']!=3 ){?>
  <div class="container">
 		<div class="mar_t">
 			<div class="row"><?php if( isset($this->menuIssuesArr) && count($this->menuIssuesArr) > 0 )
@@ -15,7 +15,7 @@
 									</div>
 									<div class="arrow-down"></div>
 									<p class="testimonial-author">
-									<a href="#" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModal" >Share </a>
+									<a href="#" id="shares-<?php echo $key; ?>" class="btn btn-info btn-xs" data-toggle="modal" data-target="#exampleModal" >Share </a>
 									<?php if(isset($_SESSION['user'])){
 										if($currentMIssueData["like_value"]==1){
 									?>
@@ -27,8 +27,10 @@
 									<? }?>
 									</p>
 									<div class="social_count">
-									<div id="likeCount<?php echo $key; ?>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><?php echo $currentMIssueData["total_likes"]; ?></div>
-									<div><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> 20000</div>
+									<div id="likeCount<?php echo $key; ?>"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> <?php echo $currentMIssueData["total_likes"]; ?></div>
+									<div id="shareCount<?php echo $key; ?>"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> <?php echo $currentMIssueData["total_shares"]; ?></div>
+									<input type="hidden" id="hid-share-<? echo $key; ?>" value="<? echo $currentMIssueData["total_shares"]; ?>" >
+									<input type="hidden" id="hid-issue-<? echo $key; ?>" value="<? echo $currentMIssueData["issue_id"]; ?>" >
 									</div>
 									
 									</div>
@@ -42,6 +44,106 @@
 			</div>
 		</div>
     </div> 
+	<div class="modal fade" id="exampleModal"  role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">Share this message</h4>
+      </div>
+      <div class="modal-body">
+	  <div class="form-horizontal">
+	  <div class="form-group">
+			<label for="inputcname" class="col-sm-3 control-label">From</label>
+				<div class="col-sm-8">
+				<span class="error_msg_disp" id="errorfromEmail"></span>
+				<?php if(isset($_SESSION['user'])){ ?>
+				<input type="text" class="form-control" id="fromMail" name="fromMail" value="<?php echo $_SESSION['user']['email']; ?>" readonly>
+				<?php }else{ ?>
+				<input type="text" class="form-control" id="fromMail" name="fromMail"  placeholder="Enter sender mails">
+				<?php } ?>
+				</div>
+		</div>
+       <div class="form-group">
+			<label for="inputcname" class="col-sm-3 control-label">To</label>
+				<div class="col-sm-8">
+				<span class="error_msg_disp" id="errorSendEmail"></span>
+				<input type="text" class="form-control" id="email_send" name="email_send"  placeholder="Enter sender mails">
+				</div>
+		</div>
+		<div class="form-group">
+			<label for="inputcname" class="col-sm-3 control-label">Message</label>
+			<div class="col-sm-8">
+			<span class="error_msg_disp" id="errorSendMsg"></span>
+			<textarea  class="form-control" id="message_send" name="message_send"  placeholder="Enter message"></textarea>
+			</div>
+		</div>
+	</div>	
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" id="button" onclick="addShareCount();" class="btn btn-primary">Send message</button>
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" id="present-share-id" >
+<script>
+$( "a[id^='shares-']" ).each(function(index) {
+   $(this).on("click", function(){
+       var pSharesId = $(this).attr('id'); 
+	   var pSid=pSharesId.split('-');
+	   $('#present-share-id').val(pSid[1]);
+   });
+});
+	function addShareCount(){
+		$('#exampleModal').modal('show');
+		var pShareValue=$('#present-share-id').val();
+		var pTotalShares=$('#hid-share-'+pShareValue).val();
+		var issue_id=$('#hid-issue-'+pShareValue).val();
+		var totalShares=parseInt(pTotalShares)+1;
+		var flag=true;
+		var sendMail=$('#email_send').val();
+		var toMail=$('#fromMail').val();
+		var message=$('#message_send').val();
+		if(toMail==""){
+			$("#errorfromEmail").html('Enter the email ');
+			flag=false;
+		}else if(checkEmail(toMail)==false){
+			$('#errorfromEmail').html('Enter valid to email');
+			flag=false;
+		}else{
+			$("#errorfromEmail").html('');
+		}
+		if(sendMail==""){
+			$("#errorSendEmail").html('Enter the sender emails');
+			flag=false;
+		}else{
+			$('#errorSendEmail').html('');
+		}
+		if(message==""){
+			$("#errorSendMsg").html('Enter the message');
+			flag=false;
+		}else{
+			$("#errorSendMsg").html('');
+		}
+		if(flag==false){
+			return false;
+		}else{
+			var  url =  BASE_URL+'/share';
+			$.ajax({
+				type:'POST',
+				url: url,
+				data:{sendMail:sendMail,fromMail:toMail,message:message,issue_id:issue_id,total_shares:totalShares},
+				success: function(data){
+					$('#exampleModal').modal('hide');
+					$('#shareCount'+pShareValue).html('<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>'+totalShares);
+				}
+			});	
+		}
+		
+	}
+</script>
 <? } else {?>
 	<script> window.location=BASE_URL+"/admin/dashboard"; </script>
 <? }?>

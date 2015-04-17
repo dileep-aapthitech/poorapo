@@ -83,6 +83,16 @@ return array(
 					),
 				),
 			),
+			'share' => array(
+				'type' => 'literal',
+				'options' => array(
+					'route'    => '/share',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'share',
+					),
+				),
+			),
 		),
 	),
 	'service_manager' 			=> 	array(

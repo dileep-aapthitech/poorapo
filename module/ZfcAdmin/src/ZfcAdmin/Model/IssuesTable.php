@@ -134,6 +134,15 @@ class IssuesTable
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;
 	}
+	public function updateTotalShares($isue_data)
+    {	
+		$data = array(
+			'total_shares' 	         => $isue_data['total_shares'],
+			'modified_at' 	         => date('y-m-d'),
+		);	
+		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
+		return $update;
+	}
 	public function getCmsPageHtml( $issueId )
     {
 		$select = $this->tableGateway->getSql()->select();

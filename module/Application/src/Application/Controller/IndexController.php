@@ -10,6 +10,7 @@ class IndexController extends AbstractActionController
 	protected  $categoryTypesTable;
 	protected  $issuesTable;
 	protected  $likeTable;
+	protected  $shareTable;
 	
     public function indexAction()
     {
@@ -101,6 +102,20 @@ class IndexController extends AbstractActionController
 		));
 		return $viewModel;
 	}
+	public function shareAction()
+    {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$getIssuesTable = $this->getIssuesTable()->updateTotalShares($_POST);
+		$getShareTable = $this->getShareTable()->addShareMsg($_POST);
+		$viewModel = new JsonModel(
+		array(
+			'output'  => 1	
+		));
+		return $viewModel;
+	}
 	
 	public function cmsAction()
 	{
@@ -172,6 +187,14 @@ class IndexController extends AbstractActionController
             $this->likeTable = $sm->get('Application\Model\LikeFactory');			
         }
         return $this->likeTable;
+    }
+	public function getShareTable()
+    {
+        if (!$this->shareTable) {				
+            $sm = $this->getServiceLocator();
+            $this->shareTable = $sm->get('Application\Model\ShareTableFactory');			
+        }
+        return $this->shareTable;
     }
 
 }

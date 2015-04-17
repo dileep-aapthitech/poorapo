@@ -108,6 +108,7 @@ class Module implements AutoloaderProviderInterface
 				'Application\Model\CategoryTypesFactory'=>'Application\Factory\Model\CategoryTypesTableFactory',
 				'Application\Model\CategoryFactory'=>'Application\Factory\Model\CategoryTableFactory',
 				'Application\Model\LikeFactory'=>'Application\Factory\Model\LikeTableFactory',
+				'Application\Model\ShareTableFactory'=>'Application\Factory\Model\ShareTableFactory',
 				
 				'Zend\Session\SessionManager' => function ($sm) {
                     $config = $sm->get('config');
