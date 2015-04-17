@@ -106,8 +106,18 @@ CREATE TABLE `tbl_districts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1
 
 /*[5:14:26 PM][3470 ms]*/ ALTER TABLE `poraapo_db`.`tbl_issues` ADD COLUMN `total_shares` INT(11) DEFAULT 0 NULL AFTER `total_likes`; 
-/*[7:03:51 PM][91 ms]*/ ALTER TABLE `poraapo_db`.`tbl_shares` CHANGE `status` `status` TINYINT(4) DEFAULT 1 NULL; 
-/*[7:01:02 PM][2142 ms]*/ ALTER TABLE `poraapo_db`.`tbl_shares` CHANGE `shared_from` `shared_from` TEXT NULL COMMENT 'Logged user id', CHANGE `issue_id` `issue_id` INT(13) NULL, CHANGE `shared_to_email` `shared_to_email` TEXT CHARSET latin1 COLLATE latin1_swedish_ci NULL, CHANGE `status` `status` TINYINT NULL; 
-/*[7:07:56 PM][110 ms]*/ ALTER TABLE `poraapo_db`.`tbl_shares` CHANGE `shared_from` `shared_from_email` TEXT CHARSET latin1 COLLATE latin1_swedish_ci NULL COMMENT 'Logged user id'; 
+DROP TABLE IF EXISTS `tbl_shares`;
+CREATE TABLE `tbl_shares` (
+  `shared_id` int(15) NOT NULL AUTO_INCREMENT,
+  `shared_from_email` text COMMENT 'Logged user id',
+  `issue_id` int(13) DEFAULT NULL,
+  `shared_to_email` text,
+  `shared_message` text,
+  `status` tinyint(4) DEFAULT '1',
+  `created_at` datetime DEFAULT NULL,
+  `modified_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`shared_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1
+
 
 
