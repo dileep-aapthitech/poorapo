@@ -73,6 +73,16 @@ return array(
 					),
 				),
 			),
+			'like-unlike' => array(
+				'type' => 'literal',
+				'options' => array(
+					'route'    => '/like-unlike',
+					'defaults' => array(
+						'controller' => 'Application\Controller\Index',
+						'action'     => 'likeUnlike',
+					),
+				),
+			),
 		),
 	),
 	'service_manager' 			=> 	array(

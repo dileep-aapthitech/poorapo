@@ -377,6 +377,31 @@ function resetPassword(regAuth){
 		}
 	}		
 }
+function addLikeCount(status,key,issueId,totalLikes){
+		var pTotalLikes=0;
+		if(status==2){
+			window.location =  BASE_URL+'/users/login';
+		}else{
+			if(status==1){
+				pTotalLikes=totalLikes+1;
+				$('#likeStatus'+key).html('<a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(0,'+key+','+issueId+','+pTotalLikes+');">UnLike</a>');
+				$('#likeCount'+key).html('<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>'+pTotalLikes);
+			}else{
+				pTotalLikes=totalLikes-1;
+				$('#likeStatus'+key).html('<a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(1,'+key+','+issueId+','+pTotalLikes+');">Like</a>');
+				$('#likeCount'+key).html('<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>'+pTotalLikes);
+			}
+			var  url =  BASE_URL+'/like-unlike';
+			$.ajax({
+				type:'POST',
+				url: url,
+				data:{total_likes:pTotalLikes,issue_id:issueId,like_type:status},
+				success: function(data){
+
+				}
+			});		
+		}
+	}
 //Admin category Function 
 function CategoryFunction(ad_type){
 	if(ad_type==0){

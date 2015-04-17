@@ -9,6 +9,7 @@ class IndexController extends AbstractActionController
 	protected  $categoriesTable;
 	protected  $categoryTypesTable;
 	protected  $issuesTable;
+	protected  $likeTable;
 	
     public function indexAction()
     {
@@ -80,6 +81,26 @@ class IndexController extends AbstractActionController
 			)
 		);
 	}
+	public function likeUnlikeAction()
+    {
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];	
+
+		$getIssuesTable = $this->getIssuesTable()->updateTotalLikes($_POST);
+		$getlikeTable = $this->getLikeTable()->checkUserLikesExits($_POST)->toArray();
+		if(count($getlikeTable)!=0){
+			$addLikeTable = $this->getLikeTable()->updateLikedDetails($_POST,$getlikeTable[0]['liked_id']);
+		}else{
+			$addLikeTable = $this->getLikeTable()->addlikesDetails($_POST);
+		}
+		$viewModel = new JsonModel(
+		array(
+			'output'  => 1	
+		));
+		return $viewModel;
+	}
 	
 	public function cmsAction()
 	{
@@ -143,6 +164,14 @@ class IndexController extends AbstractActionController
             $this->issuesTable = $sm->get('ZfcAdmin\Model\IssuesFactory');			
         }
         return $this->issuesTable;
+    }
+	public function getLikeTable()
+    {
+        if (!$this->likeTable) {				
+            $sm = $this->getServiceLocator();
+            $this->likeTable = $sm->get('Application\Model\LikeFactory');			
+        }
+        return $this->likeTable;
     }
 
 }

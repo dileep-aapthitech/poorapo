@@ -85,8 +85,10 @@ class IssuesTable
 	}
 	public function getAllMenuIssues( $categoryId )
     {
+		$userId=$_SESSION['user']['user_id'];
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('tbl_categories', 'tbl_issues.category_id=tbl_categories.category_id',array('category_name','category_type_id'),'left');
+		$select->join('tbl_likes', new Expression('tbl_likes.issue_id=tbl_issues.issue_id AND tbl_likes.liked_from="'.$userId.'"'),array('like_value'),'left');
 		$select->where('tbl_categories.category_type_id=2');
 		if( $categoryId > 0 )
 		{
@@ -117,7 +119,15 @@ class IssuesTable
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;
 	}
-
+	public function updateTotalLikes($isue_data)
+    {	
+		$data = array(
+			'total_likes' 	         => $isue_data['total_likes'],
+			'modified_at' 	         => date('y-m-d'),
+		);	
+		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
+		return $update;
+	}
 	public function getCmsPageHtml( $issueId )
     {
 		$select = $this->tableGateway->getSql()->select();

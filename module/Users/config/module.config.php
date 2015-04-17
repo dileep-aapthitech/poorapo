@@ -106,6 +106,7 @@ return array(
 					),
 				),
 			),
+			
 			'profile' => array(
 				'type'    => 'Segment',
 				'options' => array(

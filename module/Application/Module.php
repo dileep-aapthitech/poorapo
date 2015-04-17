@@ -107,6 +107,7 @@ class Module implements AutoloaderProviderInterface
             'factories' => array(
 				'Application\Model\CategoryTypesFactory'=>'Application\Factory\Model\CategoryTypesTableFactory',
 				'Application\Model\CategoryFactory'=>'Application\Factory\Model\CategoryTableFactory',
+				'Application\Model\LikeFactory'=>'Application\Factory\Model\LikeTableFactory',
 				
 				'Zend\Session\SessionManager' => function ($sm) {
                     $config = $sm->get('config');
