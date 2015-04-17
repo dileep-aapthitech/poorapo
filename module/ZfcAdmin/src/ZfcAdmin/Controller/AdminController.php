@@ -27,7 +27,7 @@ class AdminController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		$userInfo["email"] = $_POST['inputEmail'];
+		$userInfo["inputEmail"] = $_POST['inputEmail'];
 		$userInfo["password"] = md5($_POST['password']);
 		$userInfo["type_id"] = $_POST['type_id'];
 		$userRow = $this->getUserTable()->checkAdminEmailExists( $userInfo )->toArray();
@@ -90,6 +90,10 @@ class AdminController extends AbstractActionController
 		if(isset($_GET['delid'])){
 			$deleteissue=$this->getIssuesTable()->deleteIssue($_GET['delid']);
 			return $this->redirect()->toUrl($basePath .'/admin/issues');
+		}else{
+			return  $result = new ViewModel(array(					
+				'basepath' 		=> $basePath ,
+			));
 		}
 	}
 	public function issuesAjaxAction()

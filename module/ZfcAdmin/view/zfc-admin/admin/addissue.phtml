@@ -12,46 +12,42 @@
 		}
     </style>
  
- <form id="addIssue" method="post">
-	<center>
-	    <h1>Add Issue</h1>
-		<p>
-			Title:<br>
-			<input type="text" name="title" id="title" value='<? if(isset($this->edit_issue[0]['issue_title'])){ echo $this->edit_issue[0]['issue_title']; }?>'><span id="errortitle" name="errortitle" style="color:red;" ></span></p>
-		<p>
-			Description:<br>
-			<textarea name="article-body" id= "article-body" style="height:90px" >
-			<?php if(isset($this->edit_issue[0]['issue_decription'])){ echo $this->edit_issue[0]['issue_decription'];}?></textarea><span id="erroreditor" name="erroreditor" style="color:red;" ></span>
-		</p>
-		<p>
-			SelectCategory:
-			<select id="category_id" name="category_id" >
-			<option  value="" >Select Categories</option>
-			<?php foreach($this->categories as $category){ 
-			if($category['category_id']==$this->edit_issue[0]['category_id']){?>
-			<option value="<?php echo $category['category_id'];?>" selected > <?php echo $category['category_name'];?></option>
-			<?}else{?>
+  <div class="modal-body">
+          <form id="addIssue" class="form col-md-12 center-block" method="POST">
+            <div class="form-group">
+             <input type="text" name="title" class="form-control input-lg" id="title" value='<? if(isset($this->edit_issue[0]['issue_title'])){ echo $this->edit_issue[0]['issue_title']; }?>' placeholder="Issue Title" ><span id="errortitle" name="errortitle" style="color:red;" ></span>
+            </div>
+            <div class="form-group">
+              <textarea name="article-body" class="form-control input-lg" id= "article-body" style="height:90px" placeholder="Description"  >
+				<?php if(isset($this->edit_issue[0]['issue_decription'])){ echo $this->edit_issue[0]['issue_decription'];}?></textarea><span id="erroreditor" name="erroreditor" style="color:red;" ></span>
+            </div>
+			 <div class="form-group">
+              <select id="category_id" name="category_id" class="form-control input-lg" >
+				<option  value="" >Select Categories</option>
+				<?php foreach($this->categories as $category){ 
+				if($category['category_id']==$this->edit_issue[0]['category_id']){?>
+				<option value="<?php echo $category['category_id'];?>" selected > <?php echo $category['category_name'];?></option>
+				<?}else{?>
 				<option value="<?php echo $category['category_id'];?>"  > <?php echo $category['category_name'];?></option>
-			<?}}?>
-			</select>
-			<span id="errorCat" name="errorCat" style="color:red;" ></span>
-		</p>
-		<p>
+				<?}}?>
+			  </select>
+				<span id="errorCat" name="errorCat" style="color:red;" ></span>
+            </div>
+            <div class="form-group">
 			<? if(isset($this->edit_issue[0]['issue_id'])!=""){?>
-				<input type="button" value="Update" onclick="addIssueFunction(1)">
+				<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="addIssueFunction(1);">Update</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="backFunction();">Back</button>
 			<?}else{ ?>
-				<input type="button" value="Add" onclick="addIssueFunction(0)"></p>
+				<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="addIssueFunction(0);">Add</button>&nbsp;<button type="button" class="btn btn-primary btn-lg btn-bloconclick" onclick="backFunction();">Back</button>
 			<?}?>
 			<input type="hidden" value="<?php echo $this->edit_issue[0]['issue_id'];?>" id="issue_id" name="issue_id" ></p>
-			<input type="hidden" value="" id="hidbutton_value" name="hidbutton_value" ></p>
-			
-		</p>
-		</center>
-	</form>
-
+			<input type="hidden" value="" id="hidbutton_value" name="hidbutton_value" >
+            </div>
+          </form>
+      </div><div class="clearfix"></div>
+</div>
 	<script>
 		CKEDITOR.inline( 'article-body' );
-		function addIssueFunction(type){
+	function addIssueFunction(type){
 		  var flag=true;
 		  var title= $("#title").val();
 		  var buttontype=$('#hidbutton_value').val(type);
@@ -77,8 +73,9 @@
 		  }
 		  if(flag==true){
 			$('#addIssue').submit();
-		    //window.location=BASE_URL+'/admin/issue';
 		  }
-		  
-		}
+	}
+	function backFunction(){
+		window.location=BASE_URL+'/admin/issues';
+	}
 	</script>
