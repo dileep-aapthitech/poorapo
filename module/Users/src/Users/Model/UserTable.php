@@ -56,7 +56,7 @@ class UserTable
 		return $this->tableGateway->lastInsertValue;		
     }
 	
-	public function updateUser( $userInfo,$userId )
+	/*public function updateUser( $userInfo,$userId )
     {	
 		$data = array(
 			'email' 	          => $userInfo['email'],
@@ -68,20 +68,20 @@ class UserTable
 		);	
 		$row=$this->tableGateway->update($data, array('user_id' => $userId));
 		return $row;
-	}
+	}*/
 
 	public function checkEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
 		//$select->join('user_details', 'user_details.user_id=user.user_id',array('*'),'left');	
-		$select->where('tbl_users.email_id="'.$userInfo['email'].'"');
+		$select->where('tbl_users.email_id="'.$userInfo['inputEmail'].'"');
 		$select->where('tbl_users.password="'.md5($userInfo['password']).'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
 	}
 	
-	public function checkUserExists( $userInfo )
+	/*public function checkUserExists( $userInfo )
     {
 		$validStatus = 1;
 		$deactivatedStatus = 2;
@@ -98,7 +98,7 @@ class UserTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
-	}
+	}*/
 	public function getUser( $userId )
     {
 		$select = $this->tableGateway->getSql()->select();
@@ -109,7 +109,7 @@ class UserTable
 		$row = $resultSet->current();
 		return $row;
 	}
-	public function updateAccount( $user )
+	/*public function updateAccount( $user )
     {
 		if(isset($user['password'])){
 			if($user['password'] !=""){
@@ -135,7 +135,7 @@ class UserTable
 		);	
 		$row=$this->tableGateway->update($data, array('user_id' => $user['userId']));
 		return $row;
-	}
+	}*/
 	public function checkAdminEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
@@ -146,7 +146,7 @@ class UserTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
-	public function getUsersSet($offset,$limit)
+	/*public function getUsersSet($offset,$limit)
     {
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('user_details', 'user_details.user_id=user.user_id',array('montage_hash_name'),'left');
@@ -258,7 +258,7 @@ class UserTable
 		);	
 		$row=$this->tableGateway->update($data, array('user_id' => $userId));
 		return $row;
-	}
+	}*/
 	public function getpassword($pwd,$userid){ 
 		$pwd=md5($pwd);
 		$select = $this->tableGateway->getSql()->select();

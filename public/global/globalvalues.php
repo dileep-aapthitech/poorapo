@@ -50,9 +50,7 @@ $regMessage='<body>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
 						<tr><td><a href="javascript:void(0);" style="color:#D63C2B ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
-						<tr><td>Login Credential:</td></tr>
-						<tr><td>User Id:&nbsp;&nbsp;&nbsp;<EMAIL></td></tr>
-						<tr><td>Password:<PASSWORD></td></tr>
+						<tr><td>Successfully register with Poraapo.com</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
 						<tr><td>Poraapo.com team</td></tr>
@@ -64,7 +62,7 @@ $regMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Cbay.org Customer Service
+Poraapo.com Customer Service
 </body>';
 /* end register subject*/
 /* register subject */

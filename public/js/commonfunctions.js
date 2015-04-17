@@ -262,7 +262,7 @@ function changePassword(regAuth){
 			});			
 		}else{
 			$('#errorMsg').html('Do not match the new and confirm passwords');
-			$('#oldPwdError').html('Enter old Password');
+			//$('#oldPwdError').html('Enter old Password');
 			$("#confirmPassword").focus();
 		}
 	}		
