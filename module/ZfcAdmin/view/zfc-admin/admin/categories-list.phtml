@@ -1,0 +1,53 @@
+<div class="container mar_t">
+<head>
+  <link rel="stylesheet" type="text/css" href="">
+  <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
+  <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
+</head>
+ <p>
+ <button type="button" class="btn btn-primary btn-bloconclick" id="add" name="add"  onclick="addCategory();">Add</button>&nbsp;<button type="button" class="btn btn-primary  btn-bloconclick" id="back" name="back"  onclick="backFunction(0);">Back</button>
+ </p>
+  <table id="example">
+    <thead>
+      <tr><th>Category ID</th>
+     <th>Category Name</th>
+	 <th>Category Type ID</th>
+     <th>Action</th>
+     </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+  <center><span id="reload"></span></center>
+  <script>
+  $(function(){
+  $('#reload').html('<img src=<?php echo $basePath; ?>/images/ajax-loader.gif />');
+  $.ajax({
+        type:    'GET',
+        dataType:'json',
+        url: BASE_PATH+'/admin/categoryAjax',
+        success: function(data){
+		$('#reload').html('');
+            eval(data);
+            var oTable = $('#example').dataTable( {
+                aoColumnDefs: [{bSortable: false,
+                                aTargets: [ 0 ]
+                                }],
+                "bStateSave": true,
+                "bAutoWidth": true,
+                "sRowSelect": "multi",
+                "sPaginationType": "full_numbers",
+                "bProcessing": true,
+                "aaData": data,
+                "aoColumns": [
+                    { "mData": "category_id" },
+                    { "mData": "category_name" },
+                    { "mData": "category_type_id" },
+                    { "mData": "action" }                        
+                ] 
+            });    
+        }
+    });
+});
+  </script>

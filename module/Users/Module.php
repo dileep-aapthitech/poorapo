@@ -41,6 +41,7 @@ use Users\Model\UniversitiesTable;
 use Users\Model\Colleges;
 use Users\Model\CollegesTable;
 
+
 class Module implements 
 	Feature\AutoloaderProviderInterface,
     Feature\ConfigProviderInterface,
@@ -82,6 +83,7 @@ class Module implements
             	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',
             	'Users\Model\SpecializationFactory'=>'Users\Factory\Model\SpecializationTableFactory',
             	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory'
+            	
 			),			
         );
     }

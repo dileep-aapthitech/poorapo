@@ -119,9 +119,8 @@ class IssuesTable
 			'category_id' 	         => $isue_data['category_id'],
 			'issue_title' 	         => $isue_data['title'],
 			'issue_decription' 	     => $isue_data['article-body'],
-			'created_at' 	         => date('y-m-d'),
 			'modified_at' 	         => date('y-m-d'),
-			'status' 	      		 => 1	,
+			'status' 	      		 => 1,
 		);	
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;

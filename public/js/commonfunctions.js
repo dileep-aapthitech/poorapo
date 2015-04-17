@@ -217,8 +217,10 @@ function addIssueFunction(type){
 	  }
 	}
 function backFunction(back_type){
-	if(back_type==0){
+	if(back_type==1){
 		window.location=BASE_URL+'/admin/issues';
+	}else if(back_type==2){
+		window.location=BASE_URL+'/admin/categories-list';
 	}else{
 		window.location=BASE_URL+'/admin/dashboard';
 	}
@@ -593,8 +595,22 @@ function addLikeCount(status,key,issueId,totalLikes){
 //Admin category Function 
 function CategoryFunction(ad_type){
 	if(ad_type==0){
-		//window.location=BASE_URL+"/admin/dashboard";
+		window.location=BASE_URL+"/admin/categories-list";
 	}else{
 		window.location=BASE_URL+"/admin/issues";
 	}
+}
+
+function editCategory(editcatid){
+	window.location=BASE_URL+"/admin/add-category?editid="+editcatid;
+	
+}
+function deleteCategory(delcatid){
+	window.location=BASE_URL+"/admin/delete-category?id="+delcatid;
+	
+}
+function addCategory(){
+	
+	window.location=BASE_URL+"/admin/add-category";
+	
 }

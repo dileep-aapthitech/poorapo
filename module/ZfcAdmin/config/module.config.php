@@ -68,20 +68,63 @@ return array(
                     ),
                 ),
             ),
-			'addissues' => array(
+			'categories-list' => array(
                 'type'    => 'segment',
                 'options' => array(
-                    'route'    => '/addissues[/:id]',
+                    'route'    => '/categories-list[/:id]',
                     'constraints' => array(
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
                         'id'     => '[0-9]+',
                     ),
                     'defaults' => array(
                         'controller' => 'ZfcAdmin\Controller\AdminController',
-                        'action'     => 'addissues',
+                        'action'     => 'categoriesList',
                     ),
                 ),
-            ),
+			),	
+				'add-category' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/add-category[/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ZfcAdmin\Controller\AdminController',
+                        'action'     => 'addCategory',
+                    ),
+                ),
+			),
+			'edit-category' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/edit-category[/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ZfcAdmin\Controller\AdminController',
+                        'action'     => 'editCategory',
+                    ),
+                ),
+			),
+			'delete-category' => array(
+                'type'    => 'segment',
+                'options' => array(
+                    'route'    => '/delete-category[/:id]',
+                    'constraints' => array(
+                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
+                    ),
+                    'defaults' => array(
+                        'controller' => 'ZfcAdmin\Controller\AdminController',
+                        'action'     => 'deleteCategory',
+                    ),
+                ),
+			),
+			
 			
     'view_manager' => array(
         'template_path_stack' => array(

@@ -92,6 +92,100 @@ class AdminController extends AbstractActionController
 			echo '1'; exit;
 		}
 	}
+	public function addCategoryAction()
+	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if ($_POST){
+			if($_POST['hidbutton_value']==1){
+				$updatecatid = $this->getCategoryTable()->updatecatid($_POST);
+				return $this->redirect()->toUrl('categories-list');
+			}else{
+				$addcatid = $this->getCategoryTable()->addCategories($_POST);
+				return $this->redirect()->toUrl('categories-list');
+			}
+		}
+		if(isset($_GET['editid']) && $_GET['editid']!=""){
+			$editcatid = $this->getCategoryTable()->editCategories($_GET['editid']);
+			return new ViewModel(array(
+				'editcatdata'	=>  $editcatid->toArray(),
+				'basePath'		=>  $basePath,	
+			));
+		}
+			
+	}
+	public function categoriesListAction()
+	{
+		
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view= new ViewModel(array(
+					'basePath'=>$basePath,
+				));
+			return $view;
+	}
+	
+	public function categoryAjaxAction()
+	{
+		$getCategoryList = $this->getCategoryTable()->getCategoryList();
+		$data = array();
+		$i=0;
+		if(isset($getCategoryList) && $getCategoryList->count()!=0){
+		 $catTypeName="";
+			foreach($getCategoryList as $categories){
+				if($categories->category_type_id==1){
+					$catTypeName='Cmspage';
+				}else{
+					$catTypeName='Headerpage';
+				}
+                $id=$categories->category_id;
+				$data[$i]['category_id']=$i+1;
+				$data[$i]['category_name']= $categories->category_name;
+				$data[$i]['category_type_id']= $catTypeName;
+				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editCategory('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteCategory('.$id.')">Delete</a>';
+				$i++;
+			}
+			$data['aaData'] = $data;
+			echo json_encode($data['aaData']); exit;
+		}else{
+			echo '1'; exit;
+		}
+	}
+	public function editCategoryAction()
+	{
+	  $editcatid=$_GET['id'];
+	  //echo $id; exit;
+	  $baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+			$editcatid = $this->getCategoryTable()->editCategories($editcatid);
+			$view= new ViewModel(array(
+					'editcatdata'=>$editcatid->toArray(),
+					// 'url' => $this->redirect()->toRoute('fetch-all'),
+				));
+			return $view;
+		}	
+		public function deleteCategoryAction()
+		{
+		  //$deletecatid=$_GET['id'];
+		  //echo $id; exit;
+		  $baseUrls = $this->getServiceLocator()->get('config');
+		  $baseUrlArr = $baseUrls['urls'];
+		  $baseUrl = $baseUrlArr['baseUrl'];
+		  $basePath = $baseUrlArr['basePath'];
+		  if(isset($_GET['id']))
+		  {
+            $deleteissue=$this->getCategoryTable()->deleteCategory($_GET['id']);
+            return $this->redirect()->toUrl($basePath .'/admin/categories-list');
+          }
+		}
+		
+	  
 	public function getUserTable()
     {
         if (!$this->userTable) {				
