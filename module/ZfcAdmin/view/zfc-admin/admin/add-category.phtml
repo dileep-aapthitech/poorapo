@@ -1,3 +1,4 @@
+ <?php if(isset($_SESSION['user']['email'])){?>
  <div class="container">
   <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
   <div class="modal-dialog">
@@ -70,3 +71,6 @@
 	//window.location=BASE_URl+'/admin/add-category';
 	}
 	</script>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/users/login";</script>
+<?}?>

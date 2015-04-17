@@ -1,3 +1,4 @@
+<?php if(isset($_SESSION['user']['email'])){?>
 <div class="container mar_t">
 <head>
   <link rel="stylesheet" type="text/css" href="">
@@ -50,3 +51,6 @@ $('#reload').html('<img src=<?php echo $basepath; ?>/images/ajax-loader.gif />')
 	});
 });
 </script>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/users/login";</script>
+<?}?>
