@@ -55,7 +55,7 @@ $regMessage='<body>
 						<tr><td>Password:<PASSWORD></td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Cbay.org team</td></tr>
+						<tr><td>Poraapo.com team</td></tr>
 					</table>
 				</td>
 			</tr>  

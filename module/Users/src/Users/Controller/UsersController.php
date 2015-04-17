@@ -120,6 +120,26 @@ class UsersController extends AbstractActionController
 							$user_session->email=$userDetails->email_id;
 							$user_session->user_id=$userDetails->user_id;
 							$user_session->user_type=$userDetails->user_type_id;
+								include('public/PHPMailer_5.2.4/sendmail.php');	
+								global $regSubject;				
+								global $regMessage;
+								$to=$userDetails->email_id;
+								if(sendMail($to,$regSubject,$regMessage)){
+									$result = new JsonModel(array(					
+											'output' => 'success',
+											'success'=>true,
+										));	
+								}else{
+									 $result = new JsonModel(array(					
+									'output' 	=> 'notsuccess',
+									));
+								}
+								return $result;
+							}else{
+								return $result = new JsonModel(array(					
+									'output' 	=> 'notsuccess',
+								));
+							}
 							return $this->redirect()->toUrl($baseUrl);
 						}						
 					}
@@ -260,7 +280,7 @@ class UsersController extends AbstractActionController
 							'success'=>true,
 						));	
 				}else{
-					return $result = new JsonModel(array(					
+					 $result = new JsonModel(array(					
 					'output' 	=> 'notsuccess',
 					));
 				}
@@ -270,7 +290,7 @@ class UsersController extends AbstractActionController
 					'output' 	=> 'notsuccess',
 				));
 			}
-			
+			return $this->redirect()->toUrl($baseUrl);
 		}		
 	}
 	public function resetPasswordAction(){
