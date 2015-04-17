@@ -175,7 +175,6 @@ function loginValidations(type_id){
 					$('#reload').html('');
 					if(response.output=='success'){
 						if(type_id==1){
-							alert('Success');
 							window.location=BASE_URL+"/users/change-password";
 						}else if(type_id==3){
 							window.location=BASE_URL+"/admin/dashboard";
@@ -268,7 +267,7 @@ function changePassword(regAuth){
 		}
 	}		
 }	
-function forgetPassword(regAuth){	
+function forgetPassword(){	
     var flag=true;
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
@@ -283,28 +282,20 @@ function forgetPassword(regAuth){
 	if(flag==false){ 
 		return false;
 	}else{	
-		if(regAuth==1){
-			var  url =  BASE_URL+'/users/send-password-reset-url';
-		}else{
-			var  url =  BASE_URL+'/admin/send-password-reset-url';
-		}
+		var  url =  BASE_URL+'/users/send-password-reset-url';
 		$.ajax({
 			type:'POST',
 			url:   url,
 			data:{email:emailcheck},
-			success: function(data){
-				if(data.output=='success'){	
+			success: function(result){
+				alert(result);
+				if(result.output=='success'){	
 					$('#sucessMsg').html('Sucessfully sending the mail');
-					if(regAuth=='admin'){
-						window.location=ADMIN_BASE_URL+'admin';
-					} else if(regAuth=='user'){
 						window.location=BASE_URL;
-					}
-				}else if(data.output=='notsuccess'){
-					$('#submit').removeAttr('disabled');
+				}else if(result.output=='notsuccess'){
+					//$('#submit').removeAttr('disabled');
 					$('#errorMsg').html('mail is not sending');
-					
-				}else if(data.output=='server-error'){
+				}else if(result.output=='server-error'){
 					$('#submit').removeAttr('disabled');
 					$('#errorMsg').html('mail is not sending');
 				}

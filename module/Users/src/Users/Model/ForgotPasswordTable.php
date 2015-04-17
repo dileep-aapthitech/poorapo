@@ -39,7 +39,7 @@ class ForgotPasswordTable
 	public function getmailfromfgtpwd($email){
 		$select = $this->tableGateway->getSql()->select()			
 				->where('email= "'.$email.'"');					 
-		$resultSet = $this->tableGateway->selectWith($select);	
+		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current();
 	}
 	public function gettoken($token){

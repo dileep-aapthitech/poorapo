@@ -158,7 +158,7 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		if(isset($_POST['email']) && $_POST['email']!=""){
+		if(isset($_POST['inputEmail']) && $_POST['inputEmail']!=""){
 			$usersTable=$this->getUserTable();
 			$userDetails = $usersTable->checkEmailExists($_POST);
 			if($userDetails!=''){
@@ -225,8 +225,7 @@ class UsersController extends AbstractActionController
 	public function forgotPasswordAction(){	
 	
 	}
-	public function sendPasswordResetUrlAction(){	
-		//echo "<pre>";print_r($_POST);exit;
+	public function sendPasswordResetUrlAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
         $baseUrlArr = $baseUrls['urls'];
         $baseUrl = $baseUrlArr['baseUrl'];
@@ -236,40 +235,42 @@ class UsersController extends AbstractActionController
 			$usersTable=$this->getUserTable();
 			$forgetTable=$this->getForgotPasswordTable();
 			$emailCount = $usersTable->checkEmail($_POST['email']);
-			//echo "<pre>";print_r($emailCount);exit;
-			if($emailCount!=''){				
+			if($emailCount!=0){	
 				$user_id=$emailCount->user_id;
 				$username=$emailCount->user_name;
 				$token = getUniqueCode('10');
 				$user_type_id=$emailCount->user_type_id;
 				$mailExit=$forgetTable->getmailfromfgtpwd($_POST['email']);
-				if($mailExit!=""){
+				if($mailExit!=0){
 					$alreadyexitid=$mailExit->forget_id;
 					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
 				}else{
 					$alreadyexitid='';
 					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
 				}
+				include('public/PHPMailer_5.2.4/sendmail.php');	
 				global $forgotPasswordSubject;				
 				global $frogotPasswordMessage;
 				$frogotPasswordMessage = str_replace("<FULLNAME>","$username", $frogotPasswordMessage);
 				$frogotPasswordMessage = str_replace("<PASSWORDLINK>",$baseUrl."/users/reset-password?token=".$token, $frogotPasswordMessage);	
-				$to=$emailCount->email;	
-				$sentMail=sendMail($to,$forgotPasswordSubject,$frogotPasswordMessage);
-				if($sentMail>0){
-					return $result = new JsonModel(array(					
-						'output' => 'success',
-					));	
+				$to=$emailCount->email;
+				if(sendMail($to,$forgotPasswordSubject,$frogotPasswordMessage)){
+						$result = new JsonModel(array(					
+							'output' => 'success',
+							'success'=>true,
+						));	
 				}else{
-					return $result = new JsonModel(array(	
-						'output' => 'server-error',
-					));	
-				}				
+					return $result = new JsonModel(array(					
+					'output' 	=> 'notsuccess',
+					));
+				}
+				return $result;
 			}else{
 				return $result = new JsonModel(array(					
 					'output' 	=> 'notsuccess',
 				));
 			}
+			
 		}		
 	}
 	public function resetPasswordAction(){

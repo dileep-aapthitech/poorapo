@@ -71,7 +71,7 @@
 			<li><a href="#payments">Payments</a></li>
 			<li><a href="#contact">Contact</a></li>
 			<?php if(isset($_SESSION['user'])){?>
-			<li><a href="#">Get Out</a></li>
+			<li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>
 			<?}else{?>
             <li><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
 			<?}?>
