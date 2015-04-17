@@ -29,8 +29,12 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
-	public function editProfileAction(){
-	
+	public function viewProfileAction(){
+		if(isset($_GET['user_id']) && $_GET['user_id']!=""){
+			$getUserDetails = $this->getUserTable()->getUserDetails($_GET['user_id']);
+			echo "<pre>";print_r($getUserDetails);exit;
+		
+		}
 	}
 	public function checkEmailExistsAction(){
 		if(isset($_POST['user_email']) && $_POST['user_email']!=''){
@@ -120,27 +124,15 @@ class UsersController extends AbstractActionController
 							$user_session->email=$userDetails->email_id;
 							$user_session->user_id=$userDetails->user_id;
 							$user_session->user_type=$userDetails->user_type_id;
-								include('public/PHPMailer_5.2.4/sendmail.php');	
-								global $regSubject;				
-								global $regMessage;
-								$to=$userDetails->email_id;
-								if(sendMail($to,$regSubject,$regMessage)){
-									$result = new JsonModel(array(					
-											'output' => 'success',
-											'success'=>true,
-										));	
-								}else{
-									 $result = new JsonModel(array(					
-									'output' 	=> 'notsuccess',
-									));
-								}
-								return $result;
-							}else{
-								return $result = new JsonModel(array(					
-									'output' 	=> 'notsuccess',
-								));
-							}
-							return $this->redirect()->toUrl($baseUrl);
+							include('public/PHPMailer_5.2.4/sendmail.php');	
+							global $regSubject;				
+							global $regMessage;
+							$to=$userDetails->email_id;
+							//if(sendMail($to,$regSubject,$regMessage)){
+								//return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
+							//}else{
+								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
+							//}							
 						}						
 					}
 				}

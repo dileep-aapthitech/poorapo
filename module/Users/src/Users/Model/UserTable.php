@@ -34,7 +34,14 @@ class UserTable
 		
 		return $row;
 	}
-	
+	public function getUserDetails($user_id){
+		$select = $this->tableGateway->getSql()->select();		
+		$select	->join('tbl_user_personal_info', 'tbl_users.user_id=tbl_user_personal_info.user_id',array('*'),'left');
+		$select	->join('tbl_user_education_info', 'tbl_users.user_id=tbl_user_education_info.user_id',array('*'),'left');
+		$select->where('tbl_users.user_id="'.$user_id.'"');	
+		$resultSet = $this->tableGateway->selectWith($select);	
+		return $resultSet;		
+	}
 	public function addUser($users)
     {
 		$password=md5($users['user_password']);

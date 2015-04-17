@@ -22,13 +22,13 @@ return array(
                     ),
                 ),
             ),  
-			'edit-profile' => array(
+			'view-profile' => array(
 					'type' => 'literal',
 					'options' => array(
-						'route'    => '/edit-profile',
+						'route'    => '/view-profile',
 						'defaults' => array(
 							'controller' => 'Users\Controller\UsersController',
-							'action'     => 'editProfile',
+							'action'     => 'viewProfile',
 						),
 					),
 			),	
