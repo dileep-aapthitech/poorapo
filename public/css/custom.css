@@ -176,6 +176,19 @@
 .pad_0{
 	padding:0;
 }
+.col-sm-8{
+	position:relative;
+}
+.error_msg_disp{
+	position:absolute;
+	top:-18px;
+	right:20px;
+	color:red;
+	font-size:11px;
+}
+.form-horizontal{
+	margin-top:5px;
+}
 @media (max-width: 767px) {
 	.columan_divs{
 		margin-left:0;
