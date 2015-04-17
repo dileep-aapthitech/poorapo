@@ -96,5 +96,26 @@ class IssuesTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
+	public function editIssue( $edit_issid )
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('tbl_categories', 'tbl_issues.category_id=tbl_categories.category_id',array('category_name','category_type_id'),'left');
+		$select->where('tbl_issues.issue_id="'.$edit_issid.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
+	public function updateIssue($isue_data)
+    {	
+		$data = array(
+			'category_id' 	         => $isue_data['category_id'],
+			'issue_title' 	         => $isue_data['title'],
+			'issue_decription' 	     => $isue_data['article-body'],
+			'created_at' 	         => date('y-m-d'),
+			'modified_at' 	         => date('y-m-d'),
+			'status' 	      		 => 1	,
+		);	
+		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
+		return $update;
+	}
 	
 }

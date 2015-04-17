@@ -1,5 +1,5 @@
 <div class="container mar_t">
-	<script src="<?php echo $this->basepath; ?>/js/ckeditor/ckeditor.js"></script>
+	<script src="<?php echo $this->basepath;?>/js/ckeditor/ckeditor.js"></script>
 	<style>
 		.cke_textarea_inline
 		{
@@ -17,33 +17,44 @@
 	    <h1>Add Issue</h1>
 		<p>
 			Title:<br>
-			<input type="text" name="title" id="title" ><span id="errortitle" name="errortitle" style="color:red;" ></span></p>
+			<input type="text" name="title" id="title" value='<? if(isset($this->edit_issue[0]['issue_title'])){ echo $this->edit_issue[0]['issue_title']; }?>'><span id="errortitle" name="errortitle" style="color:red;" ></span></p>
 		<p>
 			Description:<br>
 			<textarea name="article-body" id= "article-body" style="height:90px" >
-			</textarea><span id="erroreditor" name="erroreditor" style="color:red;" ></span>
+			<?php if(isset($this->edit_issue[0]['issue_decription'])){ echo $this->edit_issue[0]['issue_decription'];}?></textarea><span id="erroreditor" name="erroreditor" style="color:red;" ></span>
 		</p>
 		<p>
 			SelectCategory:
 			<select id="category_id" name="category_id" >
 			<option  value="" >Select Categories</option>
-			<?php foreach($this->categories as $category){ ?>
-			<option value="<?php echo $category['category_id'];?>"> <?php echo $category['category_name'];?></option>
-			<?}?>
+			<?php foreach($this->categories as $category){ 
+			if($category['category_id']==$this->edit_issue[0]['category_id']){?>
+			<option value="<?php echo $category['category_id'];?>" selected > <?php echo $category['category_name'];?></option>
+			<?}else{?>
+				<option value="<?php echo $category['category_id'];?>"  > <?php echo $category['category_name'];?></option>
+			<?}}?>
 			</select>
 			<span id="errorCat" name="errorCat" style="color:red;" ></span>
 		</p>
 		<p>
-			<input type="button" value="Add" onclick="addIssueFunction()">
+			<? if(isset($this->edit_issue[0]['issue_id'])!=""){?>
+				<input type="button" value="Update" onclick="addIssueFunction(1)">
+			<?}else{ ?>
+				<input type="button" value="Add" onclick="addIssueFunction(0)"></p>
+			<?}?>
+			<input type="hidden" value="<?php echo $this->edit_issue[0]['issue_id'];?>" id="issue_id" name="issue_id" ></p>
+			<input type="hidden" value="" id="hidbutton_value" name="hidbutton_value" ></p>
+			
 		</p>
 		</center>
 	</form>
 
 	<script>
 		CKEDITOR.inline( 'article-body' );
-		function addIssueFunction(){
+		function addIssueFunction(type){
 		  var flag=true;
 		  var title= $("#title").val();
+		  var buttontype=$('#hidbutton_value').val(type);
 		  var selectcat=$('#category_id').val();
 		  if(title==""){
 		     $("#errortitle").html("Required");

@@ -59,8 +59,21 @@ class AdminController extends AbstractActionController
 		$baseUrl 	= $baseUrlArr['baseUrl'];
 		$basePath 	= $baseUrlArr['basePath'];
 		if($_POST){
-			$addIssue = $this->getIssuesTable()->addIssue($_POST);
-			return $this->redirect()->toUrl($basePath .'/admin/issues');
+			if($_POST['hidbutton_value']==0){
+				$addIssue = $this->getIssuesTable()->addIssue($_POST);
+				return $this->redirect()->toUrl($basePath .'/admin/issues');
+			}else{
+				$updateIssue = $this->getIssuesTable()->updateIssue($_POST);
+				return $this->redirect()->toUrl($basePath .'/admin/issues');
+			}
+		}else if(isset($_GET['ediid'])!=""){
+			$getCategories=$this->getCategoryTable()->getCategories();
+			$editIssue = $this->getIssuesTable()->editIssue($_GET['ediid']);
+			return  $result = new ViewModel(array(					
+				'basepath' 		=> $basePath ,
+				'edit_issue'	=> $editIssue->toArray(),
+				'categories'	=> $getCategories->toArray(),
+			));
 		}else{
 			return  $result = new ViewModel(array(					
 				'basepath' 		=> $basePath ,
@@ -78,7 +91,6 @@ class AdminController extends AbstractActionController
 			$deleteissue=$this->getIssuesTable()->deleteIssue($_GET['delid']);
 			return $this->redirect()->toUrl($basePath .'/admin/issues');
 		}
-		
 	}
 	public function issuesAjaxAction()
 	{
