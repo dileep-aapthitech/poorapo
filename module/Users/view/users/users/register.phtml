@@ -4,8 +4,8 @@
 			<h3 class="panel-title">Register  to Poraapo</h3>
 		</div>  
 		<form  id="frm_meth" name="frm_meth" method="post" action="<? echo $this->baseUrl;?>/users/register">	
-			<div class="panel-body">
-				<div class="panel panel-default">
+	<div class="panel-body">
+			<div class="panel panel-default">
 				<div class="panel-heading" id="tab_1" onclick="regTab1(1)">Login Deatils
 					<i id="icon1" class="glyphicon glyphicon-triangle-top  pull-right"></i>
 				</div>
@@ -44,12 +44,13 @@
 				<!--</form>--->
 				</div>
 			</div>
+			</div>
 			<div class="panel panel-default">
 				<div class="panel-heading" onclick="regTab1(2)">Personal Information 
 					<i  id="icon2"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
 				</div>
 			<div class="panel-body" id="tab_2_hide" style="display:none;">
-				<div class="form-horizontal">
+			<div class="form-horizontal">
 					<div class="form-group">
 						<label for="inputfname" class="col-sm-3 control-label">First Name</label>
 						<div class="col-sm-8">
@@ -79,306 +80,307 @@
 							</div>
 						</div>
 					</div>
-			<div class="form-group">
-				<label for="inputEmail3" class="col-sm-3 control-label">Date of Birth</label>
-				<div class="col-sm-3">
-					<select class="form-control" id="user_date" name="user_date">
-						<option value="">Date</option>
-						<? $i=1;for($i=1;$i<=31;$i++){?>
-						<option value="<? echo $i;?>"><? echo $i;?></option>
-						<?}?>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<select class="form-control" id="user_month" name="user_month">
-						<option value="">Month</option>
-						<?  $jan='Jan'; $feb='Feb'; $mar='Mar'; $april="Apr"; $may="May"; $june="June"; $july="July"; 
-						$aug="Aug"; $sept="Sept"; $oct="Oct"; $nov="Nov"; $dec="Dec";
-						$i=1;for($i=1;$i<=12;$i++){?>
-						<option value="<? echo $i;?>">
-							<?	if($i=='1'){echo $jan;} else if($i=='2'){ echo $feb;}
-							else if($i=='3'){ echo $mar;}else if($i=='4'){ echo $april;}
-							else if($i=='5'){ echo $may;}else if($i=='6'){ echo $june;}
-							else if($i=='7'){ echo $july;}else if($i=='8'){ echo $aug;}
-							else if($i=='9'){ echo $sept;}else if($i=='10'){ echo $oct;}
-							else if($i=='11'){ echo $nov;}else if($i=='12'){ echo $dec;}
-							?>
-						</option>
-						<?}?>
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<select class="form-control" id="user_year" name="user_year">
-						<option value="">Year</option>
-						<? $i=1;for($i=1960;$i<=2015;$i++){?>
-						<option value="<? echo $i;?>"><? echo $i;?></option>
-						<?}?>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label for="inputPassword3" class="col-sm-3 control-label">Country</label>
-				<div class="col-sm-8">
-					<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
-						<option value="">Select a Country</option>
-						<? if(count($countries)!='') {
-						foreach($countries as $country){?>
-						<option value="<? echo $country->id_countries;?>"><? echo ucfirst($country->name);?></option>
-						<?}	}?>
-					</select>
-				</div>
-			</div>	
-			<div class="form-group">
-				<label for="inputpname" class="col-sm-3 control-label">Mobile Number</label>
-				<div class="col-sm-8">
-					<input type="text" class="form-control" id="user_mobile" name="user_mobile" placeholder="Parent First Name">
-				</div>
-			</div>	
-			<div id="hideemployeeDiv">				
 				<div class="form-group">
-					<label for="inputpname" class="col-sm-3 control-label">Parent First Name</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_parent_name" name="user_parent_name"  placeholder="Parent First Name">
+					<label for="inputEmail3" class="col-sm-3 control-label">Date of Birth</label>
+					<div class="col-sm-3">
+						<select class="form-control" id="user_date" name="user_date">
+							<option value="">Date</option>
+							<? $i=1;for($i=1;$i<=31;$i++){?>
+							<option value="<? echo $i;?>"><? echo $i;?></option>
+							<?}?>
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<select class="form-control" id="user_month" name="user_month">
+							<option value="">Month</option>
+							<?  $jan='Jan'; $feb='Feb'; $mar='Mar'; $april="Apr"; $may="May"; $june="June"; $july="July"; 
+							$aug="Aug"; $sept="Sept"; $oct="Oct"; $nov="Nov"; $dec="Dec";
+							$i=1;for($i=1;$i<=12;$i++){?>
+							<option value="<? echo $i;?>">
+								<?	if($i=='1'){echo $jan;} else if($i=='2'){ echo $feb;}
+								else if($i=='3'){ echo $mar;}else if($i=='4'){ echo $april;}
+								else if($i=='5'){ echo $may;}else if($i=='6'){ echo $june;}
+								else if($i=='7'){ echo $july;}else if($i=='8'){ echo $aug;}
+								else if($i=='9'){ echo $sept;}else if($i=='10'){ echo $oct;}
+								else if($i=='11'){ echo $nov;}else if($i=='12'){ echo $dec;}
+								?>
+							</option>
+							<?}?>
+						</select>
+					</div>
+					<div class="col-sm-3">
+						<select class="form-control" id="user_year" name="user_year">
+							<option value="">Year</option>
+							<? $i=1;for($i=1960;$i<=2015;$i++){?>
+							<option value="<? echo $i;?>"><? echo $i;?></option>
+							<?}?>
+						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputplname" class="col-sm-3 control-label">Parent Last Name</label>
+					<label for="inputPassword3" class="col-sm-3 control-label">Country</label>
 					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_parent_lastname" name="user_parent_lastname" placeholder="Parent Last Name">
+						<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
+							<option value="">Select a Country</option>
+							<? if(count($countries)!='') {
+							foreach($countries as $country){?>
+							<option value="<? echo $country->id_countries;?>"><? echo ucfirst($country->name);?></option>
+							<?}	}?>
+						</select>
+					</div>
+				</div>	
+				<div class="form-group">
+					<label for="inputpname" class="col-sm-3 control-label">Mobile Number</label>
+					<div class="col-sm-8">
+						<input type="text" class="form-control" id="user_mobile" name="user_mobile" placeholder="Parent First Name">
+					</div>
+				</div>	
+				<div id="hideemployeeDiv">				
+					<div class="form-group">
+						<label for="inputpname" class="col-sm-3 control-label">Parent First Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_parent_name" name="user_parent_name"  placeholder="Parent First Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputplname" class="col-sm-3 control-label">Parent Last Name</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_parent_lastname" name="user_parent_lastname" placeholder="Parent Last Name">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputpnm" class="col-sm-3 control-label">Parent Mobile Number</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_mobile_number" name="user_mobile_number"  placeholder="Parent Mobile Number">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputpem" class="col-sm-3 control-label">Parent Email</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_parent_email" name="user_parent_email" placeholder="Parent Email">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputppin" class="col-sm-3 control-label">Parent Pincode</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_parent_pincode" name="user_parent_pincode" placeholder="Parent Pincode">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputperpin" class="col-sm-3 control-label">Permanent Pincode</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_perment_pincode" name="user_perment_pincode" placeholder="Permanent Pincode">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputafi" class="col-sm-3 control-label">Annual Family Income</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_afi" name="user_afi" placeholder="Annual Family Income">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputfn" class="col-sm-3 control-label"> Family Net Worth</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_fnw" name="user_fnw" placeholder="Family Net Worth">
+						</div>
+					</div>
+				</div>
+				<div id="employeeDiv" style="display:none">
+					<div class="form-group">
+						<label for="inputectc" class="col-sm-3 control-label">Employee CTC</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Employee CTC">
+						</div>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputpnm" class="col-sm-3 control-label">Parent Mobile Number</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_mobile_number" name="user_mobile_number"  placeholder="Parent Mobile Number">
+					<div class="col-sm-8 col-lg-offset-3">
+						<button type="reset" class="btn btn-default">Cancel</button>
+						<button type="submit" class="btn btn-primary ">Continue</button>
 					</div>
 				</div>
-				<div class="form-group">
-					<label for="inputpem" class="col-sm-3 control-label">Parent Email</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_parent_email" name="user_parent_email" placeholder="Parent Email">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputppin" class="col-sm-3 control-label">Parent Pincode</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_parent_pincode" name="user_parent_pincode" placeholder="Parent Pincode">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputperpin" class="col-sm-3 control-label">Permanent Pincode</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_perment_pincode" name="user_perment_pincode" placeholder="Permanent Pincode">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputafi" class="col-sm-3 control-label">Annual Family Income</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_afi" name="user_afi" placeholder="Annual Family Income">
-					</div>
-				</div>
-				<div class="form-group">
-					<label for="inputfn" class="col-sm-3 control-label"> Family Net Worth</label>
-					<div class="col-sm-8">
-						<input type="text" class="form-control" id="user_fnw" name="user_fnw" placeholder="Family Net Worth">
-					</div>
-				</div>
-			</div>
-			<div id="employeeDiv" style="display:none">
-			<div class="form-group">
-			<label for="inputectc" class="col-sm-3 control-label">Employee CTC</label>
-			<div class="col-sm-8">
-			<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Employee CTC">
-			</div>
-			</div>
-			</div>
-			<div class="form-group">
-			<div class="col-sm-8 col-lg-offset-3">
-			<button type="reset" class="btn btn-default">Cancel</button>
-			<button type="submit" class="btn btn-primary ">Continue</button>
-			</div>
-			</div>
-			<!--</form>--->
-			</div>
-			</div>
-			<div class="panel panel-default">
-			<div class="panel-heading" onclick="regTab1(3)">12th Class College Information 
-			<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
-			<div class="panel-body" id="tab_3_hide" style="display:none;">
-			<div class="form-horizontal">
-			<div class="form-group">
-			<label for="inputPassword3" class="col-sm-3 control-label">State</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_state" name="user_state" onChange="return getDistricts();">
-			<option>Select a State</option>
-			<? if(count($states)!='') {
-			foreach($states as $state){?>
-			<option value="<? echo $state->state_id;?>"><? echo ucfirst($state->state_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="inputPassword3" class="col-sm-3 control-label">District</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_district" name="user_district" onChange="return getColleges();">
-			<option>Select a District</option>
-			<? if(count($districts)!='') {
-			foreach($districts as $district){?>
-			<option value="<? echo $district->district_id;?>"><? echo ucfirst($district->district_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="inputcname" class="col-sm-3 control-label">College Name</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_colleges" name="user_colleges">
-			<option>Select a College</option>
-			<? if(count($colleges)!='') {
-			foreach($colleges as $college){?>
-			<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="inputpname" class="col-sm-3 control-label">Principal Name</label>
-			<div class="col-sm-8">
-			<input type="text" class="form-control" id="user_principal_name" name="user_principal_name" placeholder="Principal Name">
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="inputpnmb" class="col-sm-3 control-label">Principal Mobile Number</label>
-			<div class="col-sm-8">
-			<input type="text" class="form-control" id="user_princi_phone" name="user_princi_phone" placeholder="Principal Mobile Number">
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="inputpemail" class="col-sm-3 control-label">Principal Email</label>
-			<div class="col-sm-8">
-			<input type="text" class="form-control" id="user_princi_email" name="user_princi_email" placeholder="Principal Email">
-			</div>
-			</div>
-			<div class="form-group">
-			<div class="col-sm-8 col-lg-offset-3">
-			<button type="reset" class="btn btn-default">Cancel</button>
-			<button type="submit" class="btn btn-primary ">Continue</button>
-			</div>
-			</div>
 			</div>
 			</div>
 			</div>
 			<div class="panel panel-default">
-			<div class="panel-heading" onclick="regTab1(4)">Entrance Exam Information
-			<i  id="icon4"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
-			<div class="panel-body" id="tab_4_hide" style="display:none;">
-			<div class="form-horizontal">
-			<div class="form-group">
-			<div class="col-sm-3">
-			<label class="control-label" for="focusedInput">Year</label>
-			<select class="form-control" id="user_entrance_year" name="user_entrance_year">
-			<option value="">Year</option>
-			<? $i=1;for($i=1960;$i<=2015;$i++){?>
-			<option value="<? echo $i;?>"><? echo $i;?></option>
-			<?}?>
-			</select>
-			</div>
-
-			<div class="col-sm-3">
-			<label class="control-label" for="focusedInput">Exam Name</label>
-			<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
-			<option>Select a Entrance Exam</option>
-			<? if(count($entranceexams)!='') {
-			foreach($entranceexams as $entranceExam){?>
-			<option value="<? echo $entranceExam->entrance_exam_id;?>"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			<div class="col-sm-3">
-			<label class="control-label" for="focusedInput">Exam Rank</label>
-			<input class="form-control" id="user_entrance_rank" name="user_entrance_rank" type="text" value="" placeholder="Exam Rank">
-			</div>
-			<div class="col-sm-3">
-			<label class="control-label" for="focusedInput">&nbsp;</label><br/>
-			<button type="submit" class="btn btn-primary ">Add Another</button>
-			</div>
-			</div>
-			</div>
-			</div>
+				<div class="panel-heading" onclick="regTab1(3)">12th Class College Information 
+					<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
+				</div>
+				<div class="panel-body" id="tab_3_hide" style="display:none;">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-3 control-label">State</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="user_state" name="user_state" onChange="return getDistricts();">
+									<option>Select a State</option>
+									<? if(count($states)!='') {
+									foreach($states as $state){?>
+									<option value="<? echo $state->state_id;?>"><? echo ucfirst($state->state_name);?></option>
+									<?}	}?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputPassword3" class="col-sm-3 control-label">District</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="user_district" name="user_district" onChange="return getColleges();">
+								<option>Select a District</option>
+								<? if(count($districts)!='') {
+								foreach($districts as $district){?>
+								<option value="<? echo $district->district_id;?>"><? echo ucfirst($district->district_name);?></option>
+								<?}	}?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputcname" class="col-sm-3 control-label">College Name</label>
+							<div class="col-sm-8">
+								<select class="form-control" id="user_colleges" name="user_colleges">
+									<option>Select a College</option>
+									<? if(count($colleges)!='') {
+									foreach($colleges as $college){?>
+									<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
+									<?}	}?>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputpname" class="col-sm-3 control-label">Principal Name</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="user_principal_name" name="user_principal_name" placeholder="Principal Name">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputpnmb" class="col-sm-3 control-label">Principal Mobile Number</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="user_princi_phone" name="user_princi_phone" placeholder="Principal Mobile Number">
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="inputpemail" class="col-sm-3 control-label">Principal Email</label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="user_princi_email" name="user_princi_email" placeholder="Principal Email">
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="col-sm-8 col-lg-offset-3">
+								<button type="reset" class="btn btn-default">Cancel</button>
+								<button type="submit" class="btn btn-primary ">Continue</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<div class="panel panel-default">
-			<div class="panel-heading" onclick="regTab1(5)">Under Graduation Information
-			<i  id="icon5"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
-			<div class="panel-body" id="tab_5_hide" style="display:none;">
-			<div class="form-horizontal">
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Degree</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_bac_degree" name="user_bac_degree">
-			<option value="">Select a Bachelore Degree</option>
-			<? if(count($b_degrees)!='') {
-			foreach($b_degrees as $bachDegree){?>
-			<option value="<? echo $bachDegree->degree_id;?>"><? echo ucfirst($bachDegree->degree_name);?></option>
-			<?}	}?>
-			</select>
+				<div class="panel-heading" onclick="regTab1(4)">Entrance Exam Information
+					<i  id="icon4"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
+				</div>
+				<div class="panel-body" id="tab_4_hide" style="display:none;">
+					<div class="form-horizontal">
+						<div class="form-group">
+							<div class="col-sm-3">
+								<label class="control-label" for="focusedInput">Year</label>
+								<select class="form-control" id="user_entrance_year" name="user_entrance_year">
+								<option value="">Year</option>
+								<? $i=1;for($i=1960;$i<=2015;$i++){?>
+								<option value="<? echo $i;?>"><? echo $i;?></option>
+								<?}?>
+								</select>
+							</div>
+							<div class="col-sm-3">
+								<label class="control-label" for="focusedInput">Exam Name</label>
+								<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
+								<option>Select a Entrance Exam</option>
+								<? if(count($entranceexams)!='') {
+								foreach($entranceexams as $entranceExam){?>
+								<option value="<? echo $entranceExam->entrance_exam_id;?>"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<?}	}?>
+								</select>
+							</div>
+							<div class="col-sm-3">
+								<label class="control-label" for="focusedInput">Exam Rank</label>
+								<input class="form-control" id="user_entrance_rank" name="user_entrance_rank" type="text" value="" placeholder="Exam Rank">
+							</div>
+							<div class="col-sm-3">
+								<label class="control-label" for="focusedInput">&nbsp;</label><br/>
+								<button type="submit" class="btn btn-primary ">Add Another</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
-			</div>
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">University</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_bac_unversity" name="user_bac_unversity">
-			<option value="">Select a University</option>
-			<? if(count($unversities)!='') {
-			foreach($unversities as $unversity){?>
-			<option value="<? echo $unversity->unversity_id;?>"><? echo ucfirst($unversity->unversity_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">College</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_bac_college" name="user_bac_college">
-			<option value="">Select a college </option>
-			<? if(count($colleges)!='') {
-			foreach($colleges as $college){?>
-			<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Specialization</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
-			<option value="">Select a Specialization </option>
-			<? if(count($specializations)!='') {
-			foreach($specializations as $specialization){?>
-			<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Year</label>
-			<div class="col-sm-8">
-			<select class="form-control" id="user_bac_year" name="user_bac_year">
-			<option value="">Select a year</option>
-			<? $i=1;for($i=1960;$i<=2015;$i++){?>
-			<option value="<? echo $i;?>"><? echo $i;?></option>
-			<?}?>
-			</select>
-			</div>
-			</div>
-			<div class="form-group">
-			<div class="col-sm-8 col-lg-offset-3">
-			<button type="reset" class="btn btn-default">Cancel</button>
-			<button type="submit" class="btn btn-primary ">Continue</button>
-			</div>
-			</div>
-			</div>
-			</div>
+			<div class="panel panel-default">
+				<div class="panel-heading" onclick="regTab1(5)">Under Graduation Information
+				<i  id="icon5"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
+				<div class="panel-body" id="tab_5_hide" style="display:none;">
+				<div class="form-horizontal">
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Degree</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="user_bac_degree" name="user_bac_degree">
+								<option value="">Select a Bachelore Degree</option>
+								<? if(count($b_degrees)!='') {
+								foreach($b_degrees as $bachDegree){?>
+								<option value="<? echo $bachDegree->degree_id;?>"><? echo ucfirst($bachDegree->degree_name);?></option>
+								<?}	}?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">University</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="user_bac_unversity" name="user_bac_unversity">
+							<option value="">Select a University</option>
+							<? if(count($unversities)!='') {
+							foreach($unversities as $unversity){?>
+							<option value="<? echo $unversity->unversity_id;?>"><? echo ucfirst($unversity->unversity_name);?></option>
+							<?}	}?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">College</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="user_bac_college" name="user_bac_college">
+							<option value="">Select a college </option>
+							<? if(count($colleges)!='') {
+							foreach($colleges as $college){?>
+							<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
+							<?}	}?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Specialization</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
+								<option value="">Select a Specialization </option>
+								<? if(count($specializations)!='') {
+								foreach($specializations as $specialization){?>
+								<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
+								<?}	}?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Year</label>
+						<div class="col-sm-8">
+							<select class="form-control" id="user_bac_year" name="user_bac_year">
+							<option value="">Select a year</option>
+							<? $i=1;for($i=1960;$i<=2015;$i++){?>
+							<option value="<? echo $i;?>"><? echo $i;?></option>
+							<?}?>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+					<div class="col-sm-8 col-lg-offset-3">
+					<button type="reset" class="btn btn-default">Cancel</button>
+					<button type="submit" class="btn btn-primary ">Continue</button>
+					</div>
+					</div>
+				</div>
+				</div>
 			</div>
 			<div class="panel panel-default">
 			<div class="panel-heading" onclick="regTab1(6)">Post Graduation Information
@@ -522,7 +524,6 @@
 			</div>
 		</form>
 
-		</div> 
 			<input type="hidden" id="opentabId" value="1">
 		</div>
 		</div>	
