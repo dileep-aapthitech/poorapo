@@ -108,8 +108,8 @@ class UsersController extends AbstractActionController
 		if(isset($_POST['user_type']) && $_POST['user_type']!=''){
 			$user_id=$this->getUserTable()->addUser($_POST);
 			if($user_id!=0){
-					//$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id);
-				//if($userpersonalInfo!=0){
+				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id);
+				if($userpersonalInfo!=0){
 					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$user_id);					
 					if($userDetailsInfo!=0){
 						$usersTable=$this->getUserTable();
@@ -123,7 +123,7 @@ class UsersController extends AbstractActionController
 							echo "<pre>";print_r($_SESSION['user']);exit;
 						}						
 					}
-				//}
+				}
 			}
 		}else{
 			$getUserTypes=$this->getUserTypeTable()->getUserTypes();

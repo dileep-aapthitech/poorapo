@@ -75,6 +75,7 @@
 			<?}else{?>
             <li><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
 			<?}?>
+			<?php if(isset($_SESSION['user'])){?>
             <li><a href="<?php echo $baseUrl; ?>/users/register" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Register</span></a></li>
           </ul>
         </div><!--/.nav-collapse -->

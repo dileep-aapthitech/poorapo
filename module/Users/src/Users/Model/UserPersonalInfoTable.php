@@ -115,7 +115,7 @@ class UserPersonalInfoTable
 			'id_countries'  	    => $country,  	
 			'state_id'  	        => $state,  	
 			'district_id'    	    => $districtid,  	
-			'parents _name'  	    => $parent_name,  	
+			'parents_name'  	    => $parent_name,  	
 			'user_parent_lastname'  => $user_parent_lastname,  	
 			'p_phone_number'  	    => $user_mobile_number,  	
 			'p_email_id'  	        => $user_parent_email,  	
