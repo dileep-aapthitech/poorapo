@@ -108,5 +108,24 @@ class UserTable
 		$row = $resultSet->count();		
 		return $row;		
 	}
+	public function getUser( $userId )
+    {
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
+		// $select->join('tbl_user_type', 'tbl_user_type.user_type_id=tbl_users.user_type_id',array('*'),'left');	
+		// $select->join('tbl_countries', 'tbl_countries.id_countries=tbl_user_personal_info.id_countries',array('*'),'left');	
+		// $select->join('tbl_states', 'tbl_states.state_id=tbl_user_personal_info.state_id',array('*'),'left');	
+		// $select->join('tbl_colleges', 'tbl_colleges.college_id=tbl_user_education_info.college_name',array('*'),'left');	
+		// $select->join('tbl_bachelore_degrees', 'tbl_bachelore_degrees.user_id=tbl_users.user_id',array('*'),'left');	
+		// $select->join('tbl_masters_degree', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
+		// $select->join('tbl_universities', 'tbl_masters_degree.user_id=tbl_users.user_id',array('*'),'left');	
+		// $select->join('tbl_specialization', 'tbl_specialization.user_id=tbl_users.user_id',array('*'),'left');	
+		// $select->join('tbl_entrance_exam', 'tbl_entrance_exam.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->where('tbl_users.user_id="'.$userId.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->current();
+		return $row;
+	}
 	
 }

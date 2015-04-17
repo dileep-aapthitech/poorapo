@@ -9,7 +9,7 @@
 				$dobex = explode("/",$dob);
 			}		
 		?>
-<form  id="frm_meth" name="frm_meth" method="post" action="<? echo $this->baseUrl;?>/users/register">	
+<form  id="frm_meth" name="frm_meth" method="post" action="">	
 	<div class="panel-body">
 	<div class="panel panel-default">
 		<div class="panel-heading" id="tab_1" onclick="regTab1(1)">Login Deatils
@@ -20,8 +20,9 @@
 				<div class="form-group">
 					<label for="inputtype" class="col-sm-3 control-label">User Type</label>
 					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_type_req"></span>
 						<select class="form-control" id="user_type" name="user_type" onChange="return switchinUser();">
-							<option>Select User Type</option>
+							<option value=''>Select User Type</option>
 							<? if(count($usertypes)!='') {
 							foreach($usertypes as $user_type){ if($details->user_type_id == $user_type->user_type_id){?>
 								<option value="<? echo $user_type->user_type_id?>" selected="selected"><? echo ucfirst($user_type->user_type_name);?></option>
@@ -34,13 +35,16 @@
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_email_req"></span>
 						<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?>" <? if(isset($details->email_id) && $details->email_id!='') {?> readonly="readonly" <?}?> onblur="return checkEmailVaild();">
 					</div>
 				</div>
+				<input type="hidden" id="hidCheckValue" name="hidCheckValue" value='0'>
 				<? if($details==""){?>
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-3 control-label">Password</label>
 					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_pwd_req"></span>
 						<input type="password" class="form-control" id="user_password" name="user_password" value="" placeholder="Password">
 					</div>
 				</div>
@@ -48,13 +52,13 @@
 				<div class="form-group">
 					<div class="col-sm-8 col-lg-offset-3">
 						<button type="reset" class="btn btn-default">Cancel</button>
-						<button type="button" class="btn btn-primary ">Continue</button>
+						<button type="button" class="btn btn-primary " onClick="openDiv();">Continue</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-			<div class="panel panel-default">
+			<div class="panel panel-default" style="dispaly:none;">
 				<div class="panel-heading" onclick="regTab1(2)">Personal Information 
 					<i  id="icon2"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
 				</div>
@@ -63,18 +67,21 @@
 					<div class="form-group">
 						<label for="inputfname" class="col-sm-3 control-label">First Name</label>
 						<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_firstname_req"></span>
 							<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->first_name) && $details->first_name!='') {echo ucfirst($details->first_name);}else{}?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputlname" class="col-sm-3 control-label">Last Name</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_lastname_req"></span>
 							<input type="text" class="form-control" id="user_last_name" name="user_last_name" placeholder="Last Name" value="<? if(isset($details->last_name) && $details->last_name!='') {echo ucfirst($details->last_name);}else{}?>">
 						</div>
 					</div>
 					<div class="form-group">
 						<label class="col-sm-3 control-label">Gender</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_gender_req"></span>
 							<div class="radio">
 								<label>
 								<? if(isset($details->gender) && $details->gender=='Male') {?>
@@ -141,6 +148,7 @@
 						</select>
 					</div>
 					<div class="col-sm-3">
+					<span class="error_msg_disp" id="user_dob_req"></span>
 						<select class="form-control" id="user_year" name="user_year">
 							<option value="">Year</option>
 							<? $i=1;for($i=1960;$i<=2015;$i++){ if( $dobex['2'] == $i){?>
@@ -155,6 +163,7 @@
 				<div class="form-group">
 					<label for="inputPassword3" class="col-sm-3 control-label">Country</label>
 					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_country_req"></span>
 						<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
 							<option value="">Select a Country</option>
 							<? if(count($countries)!='') {
@@ -169,12 +178,14 @@
 				<div class="form-group">
 					<label for="inputpname" class="col-sm-3 control-label">Mobile Number</label>
 					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_mobile_req"></span>
 						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->mobile_number) && $details->mobile_number!='') {echo $details->mobile_number;}else{}?>" placeholder="Mobile Number">
 					</div>
 				</div>
 				<div id="hideemployeeDiv">				
 					<div class="form-group">
 						<label for="inputpname" class="col-sm-3 control-label">Parent First Name</label>
+						<span class="error_msg_disp" id="user_parent_name_req"></span>
 						<div class="col-sm-8">
 							<input type="text" class="form-control" id="user_parent_name" name="user_parent_name"  value="<? if(isset($details->parents_name) && $details->parents_name!='') {echo ucfirst($details->parents_name);}else{}?>" placeholder="Parent First Name">
 						</div>
@@ -182,42 +193,49 @@
 					<div class="form-group">
 						<label for="inputplname" class="col-sm-3 control-label">Parent Last Name</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_parent_lastname_req"></span>
 							<input type="text" class="form-control" id="user_parent_lastname" name="user_parent_lastname" value="<? if(isset($details->user_parent_lastname) && $details->user_parent_lastname!='') {echo ucfirst($details->user_parent_lastname);}else{}?>" placeholder="Parent Last Name">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputpnm" class="col-sm-3 control-label">Parent Mobile Number</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_parent_mobile_req"></span>
 							<input type="text" class="form-control" id="user_mobile_number" name="user_mobile_number" value="<? if(isset($details->p_phone_number) && $details->p_phone_number!='') {echo $details->p_phone_number;}else{}?>"  placeholder="Parent Mobile Number">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputpem" class="col-sm-3 control-label">Parent Email</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_parent_email_req"></span>
 							<input type="text" class="form-control" id="user_parent_email" name="user_parent_email" value="<? if(isset($details->p_email_id) && $details->p_email_id!='') {echo $details->p_email_id;}else{}?>" placeholder="Parent Email">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputppin" class="col-sm-3 control-label">Parent Pincode</label>
+						<label for="inputppin" class="col-sm-3 control-label">Parent Pincode</label>						
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_parent_pincode_req"></span>
 							<input type="text" class="form-control" id="user_parent_pincode" name="user_parent_pincode" value="<? if(isset($details->p_pincode) && $details->p_pincode!='') {echo $details->p_pincode;}else{}?>" placeholder="Parent Pincode">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputperpin" class="col-sm-3 control-label">Permanent Pincode</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_parent_perment_pincode_req"></span>
 							<input type="text" class="form-control" id="user_perment_pincode" name="user_perment_pincode" value="<? if(isset($details->permant_pincode) && $details->permant_pincode!='') {echo $details->permant_pincode;}else{}?>" placeholder="Permanent Pincode">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputafi" class="col-sm-3 control-label">Annual Family Income</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_annual_afi_req"></span>
 							<input type="text" class="form-control" id="user_afi" name="user_afi" placeholder="Annual Family Income" value="<? if(isset($details->annual_family_income) && $details->annual_family_income!='') {echo $details->annual_family_income;}else{}?>" >
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputfn" class="col-sm-3 control-label"> Family Net Worth</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_fnw_req"></span>
 							<input type="text" class="form-control" id="user_fnw" name="user_fnw" placeholder="Family Net Worth" value="<? if(isset($details->family_net_worth) && $details->family_net_worth!='') {echo $details->family_net_worth;}else{}?>">
 						</div>
 					</div>
@@ -226,6 +244,7 @@
 						<div class="form-group">
 							<label for="inputectc" class="col-sm-3 control-label">Employee CTC</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_emp_ctc_req"></span>
 								<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Employee CTC" value="<? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?>">
 							</div>
 						</div>
@@ -248,8 +267,9 @@
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-3 control-label">State</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_state_req"></span>
 								<select class="form-control" id="user_state" name="user_state" onChange="return getDistricts();">
-									<option>Select a State</option>
+									<option value="">Select a State</option>
 									<? if(count($states)!='') {
 									foreach($states as $state){ if($state->state_id == $details->state_id){?>
 									<option value="<? echo $state->state_id;?>" selected="selected"><? echo ucfirst($state->state_name);?></option>
@@ -262,8 +282,9 @@
 						<div class="form-group">
 							<label for="inputPassword3" class="col-sm-3 control-label">District</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_district_req"></span>
 								<select class="form-control" id="user_district" name="user_district" onChange="return getColleges();">
-								<option>Select a District</option>
+								<option value="">Select a District</option>
 								<? if(count($districts)!='') {
 								foreach($districts as $district){ if($details->district_id== $district->district_id){?>
 								<option value="<? echo $district->district_id;?>" selected="selected"><? echo ucfirst($district->district_name);?></option>
@@ -277,8 +298,9 @@
 						<div class="form-group">
 							<label for="inputcname" class="col-sm-3 control-label">College Name</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_colleges_req"></span>
 								<select class="form-control" id="user_colleges" name="user_colleges">
-									<option>Select a College</option>
+									<option value="">Select a College</option>
 									<? if(count($colleges)!='') {
 									foreach($colleges as $college){ if( $details->college_name==$college->college_id){?>
 									<option value="<? echo $college->college_id;?>" selected="selected"><? echo ucfirst($college->college_name);?></option>
@@ -291,18 +313,21 @@
 						<div class="form-group">
 							<label for="inputpname" class="col-sm-3 control-label">Principal Name</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_principal_name_req"></span>
 								<input type="text" class="form-control" id="user_principal_name" name="user_principal_name" placeholder="Principal Name" value="<? if(isset($details->principal_name) && $details->principal_name!='') {echo ucfirst($details->principal_name);}else{}?>" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputpnmb" class="col-sm-3 control-label">Principal Mobile Number</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_princi_phone_req"></span>
 								<input type="text" class="form-control" id="user_princi_phone" name="user_princi_phone" placeholder="Principal Mobile Number" value="<? if(isset($details->principal_phone_num) && $details->principal_phone_num!='') {echo $details->principal_phone_num;}else{}?>" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputpemail" class="col-sm-3 control-label">Principal Email</label>
 							<div class="col-sm-8">
+								<span class="error_msg_disp" id="user_princi_email_req"></span>
 								<input type="text" class="form-control" id="user_princi_email" name="user_princi_email" value="<? if(isset($details->principal_email_id) && $details->principal_email_id!='') {echo $details->principal_email_id;}else{}?>" placeholder="Principal Email">
 							</div>
 						</div>
@@ -323,6 +348,7 @@
 					<div class="form-horizontal">
 						<div class="form-group">
 							<div class="col-sm-3">
+								<span class="error_msg_disp" id="user_entrance_year_req"></span>
 								<label class="control-label" for="focusedInput">Year</label>
 								<select class="form-control" id="user_entrance_year" name="user_entrance_year">
 								<option value="">Year</option>
@@ -336,8 +362,9 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Name</label>
+								<span class="error_msg_disp" id="user_entrance_exam_req"></span>
 								<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
-								<option>Select a Entrance Exam</option>
+								<option value="">Select a Entrance Exam</option>
 								<? if(count($entranceexams)!='') {
 								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam == $entranceExam->entrance_exam_id){?>
 									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
@@ -348,6 +375,7 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Rank</label>
+								<span class="error_msg_disp" id="user_entrance_rank_req"></span>
 								<input class="form-control" id="user_entrance_rank" name="user_entrance_rank" type="text" value="<? if(isset($details->entrance_rank) && $details->entrance_rank!='') {echo $details->entrance_rank;}else{}?>" placeholder="Exam Rank">
 							</div>
 							<div class="col-sm-3">
@@ -366,6 +394,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Degree</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_degree_req"></span>
 							<select class="form-control" id="user_bac_degree" name="user_bac_degree">
 								<option value="">Select a Bachelore Degree</option>
 								<? if(count($b_degrees)!='') {
@@ -380,6 +409,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">University</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_unversity_req"></span>
 							<select class="form-control" id="user_bac_unversity" name="user_bac_unversity">
 							<option value="">Select a University</option>
 							<? if(count($unversities)!='') {
@@ -394,6 +424,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">College</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_college_req"></span>
 							<select class="form-control" id="user_bac_college" name="user_bac_college">
 							<option value="">Select a college </option>
 							<? if(count($colleges)!='') {
@@ -408,6 +439,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Specialization</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_speclization_req"></span>
 							<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
 								<option value="">Select a Specialization </option>
 								<? if(count($specializations)!='') {
@@ -423,6 +455,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year</label>
 						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_year_req"></span>
 							<select class="form-control" id="user_bac_year" name="user_bac_year">
 							<option value="">Select a year</option>
 							<? $i=1;for($i=1960;$i<=2015;$i++){ if( $i == $details->bachelors_year_admission){?>
@@ -451,6 +484,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Master Degree</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_master_degree_req"></span>
 			<select class="form-control" id="user_master_degree" name="user_master_degree">
 			<option value="">Select a Master Degree</option>
 			<? if(count($m_degrees)!='') {
@@ -466,6 +500,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Master University</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_mast_university_req"></span>
 			<select class="form-control" id="user_mast_university" name="user_mast_university">
 			<option value="">Select a University</option>
 			<? if(count($unversities)!='') {
@@ -480,6 +515,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">College</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_mast_college_req"></span>
 			<select class="form-control" id="user_mast_college" name="user_mast_college">
 			<option value="">Select a college </option>
 			<? if(count($colleges)!='') {
@@ -495,6 +531,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Specialization</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_mast_spec_req"></span>
 			<select class="form-control" id="user_mast_spec" name="user_mast_spec">
 			<option value="">Select a Specialization </option>
 			<? if(count($specializations)!='') {
@@ -510,6 +547,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Year</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_mast_year_req"></span>
 			<select class="form-control" id="user_mast_year" name="user_mast_year">
 			<option value="">Select a year</option>
 			<? $i=1;for($i=1960;$i<=2015;$i++){ if( $i == $details->masters_year_admission){?>
@@ -538,12 +576,14 @@
 			<div class="form-group">
 			<label for="inputcname" class="col-sm-3 control-label">PHD</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_doctor_phd_req"></span>
 			<input type="text" class="form-control" id="user_doctor_phd" name="user_doctor_phd" value="<? if(isset($details->doctorate_name) && $details->doctorate_name!='') {echo $details->doctorate_name;}else{}?>" placeholder="PHD">
 			</div>
 			</div>
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">University</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_doctor_university_req"></span>
 			<select class="form-control" id="user_doctor_university" name="user_doctor_university">
 			<option value="">Select a University</option>
 			<? if(count($unversities)!='') {
@@ -559,6 +599,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">College</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_doctor_college_req"></span>
 			<select class="form-control" id="user_doctor_college" name="user_doctor_college">
 			<option value="">Select a college </option>
 			<? if(count($colleges)!='') {
@@ -574,6 +615,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Specialization</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_doctor_spec_req"></span>
 			<select class="form-control" id="user_doctor_spec" name="user_doctor_spec">
 			<option value="">Select a Specialization </option>
 			<? if(count($specializations)!='') {
@@ -589,6 +631,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Year</label>
 			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_doctor_year_req"></span>
 			<select class="form-control" id="user_doctor_year" name="user_doctor_year">
 			<option value="">Select a year</option>
 			<? $i=1;for($i=1960;$i<=2015;$i++){ if( $i == $details->doctorate_year){?>
@@ -603,7 +646,7 @@
 			<div class="form-group">
 			<div class="col-sm-8 col-lg-offset-3">
 			<button type="reset" class="btn btn-default">Cancel</button>
-			<button type="submit" class="btn btn-primary ">Continue</button>
+			<button type="button" class="btn btn-primary" onClick="return validateReg();">Save</button>
 			</div>
 			</div>
 			</div>
