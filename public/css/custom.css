@@ -99,7 +99,7 @@
 
 .testimonial-author {
     margin: 0 0 0 25px;
-    width: 38%;
+    width: 42%;
     color: #999;
     text-align: left;
 	float:left;
@@ -189,6 +189,9 @@
 .form-horizontal{
 	margin-top:5px;
 }
+.dropdown:hover .dropdown-menu {
+    display: block;
+ }
 @media (max-width: 767px) {
 	.columan_divs{
 		margin-left:0;
