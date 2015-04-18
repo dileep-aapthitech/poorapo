@@ -272,6 +272,23 @@ function formFinalSubmit(){
 			$("#frm_meth").submit();	
 		}
 	}
+	
+	if( ! tab1flag )
+	{
+		regTab1(1,0); validateReg(1); return  false;
+	}
+	else if( ! tab2flag )
+	{
+		regTab1(2,0); validateReg(2); return  false;
+	}
+	else if( ! tab3flag )
+	{
+		regTab1(3,0); validateReg(3); return  false;
+	}
+	else if( ! tab4flag )
+	{
+		regTab1(4,0); validateReg(4); return  false;
+	}
 	return  false;
 }
 function allFormValdation(){
