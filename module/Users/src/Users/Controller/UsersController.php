@@ -403,8 +403,34 @@ class UsersController extends AbstractActionController
 				));	
 			}
 			return $result;	
-	}
+		}
 	}	
+	public function contactUsAction(){
+		if($_POST){
+			$baseUrls = $this->getServiceLocator()->get('config');
+			$baseUrlArr = $baseUrls['urls'];
+			$baseUrl = $baseUrlArr['baseUrl'];
+			include('public/PHPMailer_5.2.4/sendmail.php');	
+			global $contactSubject;				
+			global $contactMessage;
+			$contactMessage = str_replace("<FIRSTNAME>",$_POST['firstName'], $contactMessage);
+			$contactMessage = str_replace("<CONTACTEMAIL>",$_POST['contactEmail'], $contactMessage);
+			$contactMessage = str_replace("<LASTNAME>",$_POST['lastName'], $contactMessage);
+			$contactMessage = str_replace("<PHONENUMBER>",$_POST['mobileNumber'], $contactMessage);
+			$contactMessage = str_replace("<CONTACTMESSAGE>",$_POST['contactMessage'], $contactMessage);
+			$to='info@poraapo.com';
+			if(sendMail($to,$contactSubject,$contactMessage)){
+					$result = new ViewModel(array(					
+						'output' 	=> 'success',
+					));	
+			}else{
+				   $result = new ViewModel(array(					
+						'output' 	=> 'notsuccess',
+				   ));
+			}
+			return $result;
+		}
+	}
 	//public function headerAction view  header page returns view part
 	public function getUserTable()
     {
