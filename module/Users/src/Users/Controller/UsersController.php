@@ -346,12 +346,12 @@ class UsersController extends AbstractActionController
 					'output' 	=> 'notsuccess',
 					));
 				}
-				return $result;
 			}else{
-				return $result = new JsonModel(array(					
+				$result = new JsonModel(array(					
 					'output' 	=> 'notsuccess',
 				));
 			}
+			return $result;
 			return $this->redirect()->toUrl($baseUrl);
 		}		
 	}

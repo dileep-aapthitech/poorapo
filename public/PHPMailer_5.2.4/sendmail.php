@@ -1,22 +1,22 @@
 <?php
 	include_once('class.phpmailer.php');
-		
 	function sendMail($to,$subject,$message,$fromAddress='',$fromUserName='',$toName='',$bcc='',$upload_dir='', $filename='')
 	{	
 		
-		$mail = new PHPMailer();
-		$mail->IsSMTP(); // send via SMTP
-		$mail->Host     = "smtp.gmail.com"; // SMTP servers
-		$mail->SMTPAuth   = true; // enable SMTP authentication
-		$mail->SMTPSecure = "ssl"; // use ssl
-		//$mail->Host = "mail.vivateachers.org"; // GMAIL's SMTP server
-		$mail->Port  = 465; // SMTP port used by GMAIL server
-		$mail->IsHTML(true); // [optional] send as HTML
-		$mail->Username = "chandra.jampana@gmail.com";  // SMTP username
-		$mail->Password = "CHANDRA8143155535!"; // SMTP password
+		try{
+		$mail             	= new PHPMailer();
+		$mail->IsSMTP();
+		$mail->Host     	= "sm4.siteground.biz";
+		$mail->Port  		= 2525;
+		$mail->SMTPAuth = true; 
+		$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+
+		// Enable SMTP authentication
+		$mail->Username = 'noreply@poraapo.org';                // SMTP username
+		$mail->Password = 'samarasa@1234';                  // SMTP password
+		$mail->IsHTML(true);
 		$mail->ClearAddresses();
 		$find = strpos($to,',');		
-		
 		if($find)
 		{
 			$ids = explode(',',$to);
@@ -33,24 +33,22 @@
 		if($fromAddress!=''){
 			$mail->From     = $fromAddress;
 		} else {
-			$mail->From     = "chandra.jampana@gmail.com";
+			$mail->From     = "noreply@poraapo.org";
 		}
 		if($fromUserName!=''){
 			$mail->FromName = $fromUserName;
 		} else {
-			$mail->FromName = "Classifieds";	
+			$mail->FromName = "Poraapo.com";	
 		}
-		
 		$mail->WordWrap = 50; 
 		$mail->IsHTML(true);
-		
-		$mail->Subject = $subject;			
-		$mail->Body = $message;
+		$mail->Subject 	= $subject;			
+		$mail->Body 	= $message;
 		if($upload_dir!='')
 		{
 			foreach($upload_dir as $uploaddirs)
 			{
-			$mail->AddAttachment($uploaddirs, $filename); 
+				$mail->AddAttachment($uploaddirs, $filename); 
 			}
 		}
 		if($mail->Send())
@@ -62,6 +60,11 @@
 		{
 			return 0;	
 		}
-		
+		} catch (phpmailerException $e) {
+		  echo $e->errorMessage(); //Pretty error messages from PHPMailer
+		} catch (Exception $e) {
+		  echo $e->getMessage(); //Boring error messages from anything else!
+		}
 	}
+	//sendMail('sivareddybtech@gmail.com','subject','mesaage')
 ?>

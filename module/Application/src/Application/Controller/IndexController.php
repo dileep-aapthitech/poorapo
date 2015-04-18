@@ -33,7 +33,6 @@ class IndexController extends AbstractActionController
 		}
 		
 		$menuIssuesArr = $this->getIssuesTable()->getAllMenuIssues( $categoryId )->toArray();
-		// echo "<pre>";print_r($menuIssuesArr);exit;
 
 		$viewModel = new ViewModel(
 			array(
@@ -55,7 +54,6 @@ class IndexController extends AbstractActionController
 		if( isset($footerArr) && count($footerArr) > 0  && isset($footerArr[0])  && isset($footerArr[0]['issue_decription']) )
 		{
 			$footer = $footerArr[0]['issue_decription'];
-			// echo "<pre>";print_r($cmsPageHtml);exit;
 		}
 		
 		
@@ -102,6 +100,7 @@ class IndexController extends AbstractActionController
 		));
 		return $viewModel;
 	}
+	
 	public function shareAction()
     {
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -110,11 +109,31 @@ class IndexController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		$getIssuesTable = $this->getIssuesTable()->updateTotalShares($_POST);
 		$getShareTable = $this->getShareTable()->addShareMsg($_POST);
-		$viewModel = new JsonModel(
-		array(
-			'output'  => 1	
-		));
-		return $viewModel;
+		include('public/PHPMailer_5.2.4/sendmail.php');	
+		global $sentShareMsgSubject;				
+		global $sentShareMessage;
+		$message=$_POST['message'];
+		$getIssuesDetails = $this->getIssuesTable()->editIssue($_POST);
+		$title=$getIssuesDetails->issue_title;
+		$description=$getIssuesDetails->issue_decription;
+		$categoryName=$getIssuesDetails->category_name;
+		$sentShareMessage = str_replace("<MESSAGE>","$message", $sentShareMessage);
+		$sentShareMessage = str_replace("<TITLE>","$title", $sentShareMessage);
+		$sentShareMessage = str_replace("<CATEGORYNAME>","$categoryName", $sentShareMessage);
+		$sentShareMessage = str_replace("<DESCRIPTION>","$description", $sentShareMessage);
+		if(sendMail($to,$sentShareMsgSubject,$sentShareMessage)){
+				$result = new JsonModel(
+				array(
+				'output'  => 1	
+				));	
+		}else{
+			$result = new JsonModel(
+				array(
+				'output'  => 0	
+				));	
+		}
+		
+		return $result;
 	}
 	
 	public function cmsAction()

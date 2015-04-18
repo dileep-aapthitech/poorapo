@@ -68,7 +68,7 @@ Poraapo.com Customer Service
 /* register subject */
 global $sentShareMsgSubject;
 global $sentShareMessage;
-$sentShareMsgSubject= "<sentShareMsgSubject>";
+$sentShareMsgSubject= "Share the information";
 $sentShareMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
@@ -80,8 +80,9 @@ $sentShareMessage='<body>
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
-						<tr><td><a href="javascript:void(0);" style="color:#D63C2B ; font:bold 12px arial; text-decoration:none;">Dear&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
-						<tr><td><CREATEDUSERNAME>&nbsp;&nbsp; is  successfully created by a &nbsp;&nbsp;<CREATEDUSERTYPE></td></tr>						
+						<tr><td><MESSAGE></td></tr>
+						<tr><td><CATEGORYNAME>&nbsp;&nbsp;<TITLE></td></tr>						
+						<tr><td><DESCRIPTION></td></tr>						
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
 						<tr><td>Poraapo.com team</td></tr>

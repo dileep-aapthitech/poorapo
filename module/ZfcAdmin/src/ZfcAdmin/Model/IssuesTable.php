@@ -27,7 +27,6 @@ class IssuesTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
-
 	public function addIssue($issue_data)
     {	
 		$data = array(
