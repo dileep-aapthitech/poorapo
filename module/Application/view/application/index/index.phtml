@@ -135,8 +135,12 @@ $( "a[id^='shares-']" ).each(function(index) {
 				url: url,
 				data:{sendMail:sendMail,fromMail:toMail,message:message,issue_id:issue_id,total_shares:totalShares},
 				success: function(data){
+					$('#email_send').val('');
+					$('#fromMail').val('');
+					$('#message_send').val('');
 					$('#exampleModal').modal('hide');
 					$('#shareCount'+pShareValue).html('<span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span>'+totalShares);
+					
 				}
 			});	
 		}
