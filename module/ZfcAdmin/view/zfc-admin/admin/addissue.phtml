@@ -1,5 +1,5 @@
 <?php if(isset($_SESSION['user']['email'])){?>
-<div class="container mar_t">
+<div class="container mar_t min_height">
 	<script src="<?php echo $this->basepath;?>/js/ckeditor/ckeditor.js"></script>
 	<style>
 		
@@ -8,14 +8,14 @@
   <div class="modal-body">
           <form id="addIssue" class="form col-md-12 center-block" method="POST">
             <div class="form-group">
-             <input type="text" name="title" class="form-control input-lg" id="title" value='<? if(isset($this->edit_issue[0]['issue_title'])){ echo $this->edit_issue[0]['issue_title']; }?>' placeholder="Issue Title" ><span id="errortitle" name="errortitle" style="color:red;" ></span>
+             <input type="text" name="title" class="form-control" id="title" value='<? if(isset($this->edit_issue[0]['issue_title'])){ echo $this->edit_issue[0]['issue_title']; }?>' placeholder="Issue Title" ><span id="errortitle" name="errortitle" style="color:red;" ></span>
             </div>
             <div class="form-group">
-              <textarea name="article-body" class="form-control input-lg" id= "article-body" style="height:90px" placeholder="Description"  >
+              <textarea name="article-body" class="form-control" id= "article-body"  placeholder="Description"  >
 				<?php if(isset($this->edit_issue[0]['issue_decription'])){ echo $this->edit_issue[0]['issue_decription'];}?></textarea><span id="erroreditor" name="erroreditor" style="color:red;" ></span>
             </div>
 			 <div class="form-group">
-              <select id="category_id" name="category_id" class="form-control input-lg" >
+              <select id="category_id" name="category_id" class="form-control" >
 				<option  value="" >Select Categories</option>
 				<?php foreach($this->categories as $category){ 
 				if($category['category_id']==$this->edit_issue[0]['category_id']){?>

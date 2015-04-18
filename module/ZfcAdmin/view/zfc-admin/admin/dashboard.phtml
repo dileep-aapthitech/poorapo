@@ -1,5 +1,5 @@
  <?php if(isset($_SESSION['user']['email'])){?>
-<div class="container">
+<div class="container mar_t min_height">
 	<div id="loginModal" class="show"  role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content">
@@ -10,8 +10,8 @@
 	   <div class="modal-body">
 		  <div>
 			  <center>
-				<p><a href="javascript:void(0)" onclick="CategoryFunction(0)" >Category</a></p>
-				<p><a href="javascript:void(0)" onclick="CategoryFunction(1)" >Issues</a></p>
+				<p><a class="btn btn-primary  btn-block" href="javascript:void(0)" onclick="CategoryFunction(0)" >Category</a></p>
+				<p><a class="btn btn-primary  btn-block" href="javascript:void(0)" onclick="CategoryFunction(1)" >Issues</a></p>
 			  </center>
 		  </div>
 	  </div>
