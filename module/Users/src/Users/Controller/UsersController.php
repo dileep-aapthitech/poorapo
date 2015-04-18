@@ -406,7 +406,7 @@ class UsersController extends AbstractActionController
 		}
 	}	
 	public function contactUsAction(){
-		if($_POST){
+		if(isset($_POST['contactEmail']) && $_POST['contactEmail']!=""){
 			$baseUrls = $this->getServiceLocator()->get('config');
 			$baseUrlArr = $baseUrls['urls'];
 			$baseUrl = $baseUrlArr['baseUrl'];
