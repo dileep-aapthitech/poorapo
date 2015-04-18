@@ -9,31 +9,32 @@ return array(
     'router' => array(
         'routes' => array(
             'cms' => array(
-                'type'    => 'segment',
+                'type' => 'Literal',
+                'priority' => 1000,
                 'options' => array(
-                    'route'    => '/cms[/:action][/:id]',
-                    'constraints' => array(
-                        'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        'id'     => '[0-9]+',
-                    ),
+                    'route' => '/cms',
                     'defaults' => array(
                         'controller' => 'Cms\Controller\Cms',
                         'action'     => 'index',
                     ),
                 ),
-            ), 
-// Start			
-			'privacy-policies' => array(
-				'type' => 'literal',
-				'options' => array(
-					'route'    => '/privacy-policies',
-					'defaults' => array(
-						'controller' => 'Cms\Controller\CmsController',
-						'action'     => 'privacyPolicies',
-					),
-				),
-			),
-// end			
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'refunds-payments' => array(
+                        'type' => 'segment',
+                        'options' => array(
+                            'route' => '/refunds-payments[/:id]',
+							'constraints' => array(
+							   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
+							),
+                            'defaults' => array(
+                                'controller' => 'Cms\Controller\Cms',
+                                'action'     => 'paymentsRefunds',
+                            ),
+                        ),
+                    ),
+                ),
+            ),
 		),
 	),     
     'view_manager' => array(

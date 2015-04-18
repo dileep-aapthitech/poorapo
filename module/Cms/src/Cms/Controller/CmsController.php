@@ -12,12 +12,21 @@ use Zend\View\Model\JsonModel;
 use Zend\Cache\StorageFactory;
 class CmsController extends AbstractActionController
 {
-	
 	public function indexAction()
 	{
-		
 	}
-	public function privacyPoliciesAction(){
-		
-	}	
+	public function paymentsRefundsAction()
+	{
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				=> $baseUrl,
+				'basePath' 				=> $basePath
+		));
+		return $viewModel;
+	}
 }
