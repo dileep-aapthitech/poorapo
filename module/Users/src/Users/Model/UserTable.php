@@ -103,10 +103,9 @@ class UserTable
 	public function checkEmail($email)
     {	
 		$select = $this->tableGateway->getSql()->select();			
-		$select->where('email_id="'.$email.'"');
-		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->count();		
-		return $row;		
+		$select->where('email_id = "'.$email.'"');
+		$resultSet = $this->tableGateway->selectWith($select);				
+        return $resultSet;
 	}
 	public function getUser( $userId )
     {
@@ -123,6 +122,14 @@ class UserTable
 		// $select->join('tbl_specialization', 'tbl_specialization.user_id=tbl_users.user_id',array('*'),'left');	
 		// $select->join('tbl_entrance_exam', 'tbl_entrance_exam.user_id=tbl_users.user_id',array('*'),'left');	
 		$select->where('tbl_users.user_id="'.$userId.'"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->current();
+		return $row;
+	}
+	public function fpcheckEmail($email)
+    {	
+		$select = $this->tableGateway->getSql()->select();			
+		$select->where('email_id="'.$email.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;

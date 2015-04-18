@@ -40,14 +40,13 @@ class ForgotPasswordTable
 		$select = $this->tableGateway->getSql()->select()			
 				->where('email= "'.$email.'"');					 
 		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->count();	
-		return $row;
+		return $resultSet;
 	}
-	public function updateForgetPassword($id,$tocken){
-		$password=md5($pwd);
+	public function updateForgetPassword($id,$tocken,$userId){
 		$data = array(
-				'token_id'      =>$tocken,
-				);
+			'user_id'       =>$userId,
+			'token_id'      =>$tocken,
+		);
 		$changepassword=$this->tableGateway->update($data, array('forget_pwd_id' => $id));
 		return 	$changepassword;	
 	}

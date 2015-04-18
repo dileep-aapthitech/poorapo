@@ -113,7 +113,8 @@ class IndexController extends AbstractActionController
 		global $sentShareMsgSubject;				
 		global $sentShareMessage;
 		$message=$_POST['message'];
-		$getIssuesDetails = $this->getIssuesTable()->editIssue($_POST);
+		$to=$_POST['sendMail'];
+		$getIssuesDetails = $this->getIssuesTable()->editIssue($_POST['issue_id'])->current();
 		$title=$getIssuesDetails->issue_title;
 		$description=$getIssuesDetails->issue_decription;
 		$categoryName=$getIssuesDetails->category_name;
@@ -132,7 +133,6 @@ class IndexController extends AbstractActionController
 				'output'  => 0	
 				));	
 		}
-		
 		return $result;
 	}
 	

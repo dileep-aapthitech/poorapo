@@ -26,6 +26,7 @@ class UsersController extends AbstractActionController
 	protected  $specializationsTable;
 	protected  $unversitiesTable;
 	protected  $mastersdegreesTable;
+	protected  $forgotPasswordTable;
 	public function indexAction()
 	{
 	}
@@ -313,21 +314,20 @@ class UsersController extends AbstractActionController
         $baseUrl = $baseUrlArr['baseUrl'];
 		$sentMail=0;
 		if(isset($_POST['email']) && $_POST['email']!=""){
+			$username=$_POST['email'];
 			$usersTable=$this->getUserTable();
 			$forgetTable=$this->getForgotPasswordTable();
-			$emailCount = $usersTable->checkEmail($_POST['email']);
-			$username=$_POST['email'];
-			if($emailCount!=0){	
-				$user_id=$emailCount->user_id;
+			$emailCount = $usersTable->checkEmail($_POST['email'])->toArray();
+			if(count($emailCount)!=0){
+				$user_id=$emailCount[0]['user_id'];
 				$token = getUniqueCode('10');
-				$user_type_id=$emailCount->user_type_id;
-				$mailExit=$forgetTable->getmailfromfgtpwd($_POST['email']);
-				if($mailExit!=0){
-					$alreadyexitid=$mailExit->forget_id;
-					$getuserId=$forgetTable->updateForgetPassword($alreadyexitid,$token);
+				$mailExit=$forgetTable->getmailfromfgtpwd($_POST['email'])->toArray();
+				if(count($mailExit)!=0){
+					$alreadyexitid=$mailExit[0]['forget_pwd_id'];
+					$getuserId=$forgetTable->updateForgetPassword($alreadyexitid,$token,$user_id);
 				}else{
 					$alreadyexitid='';
-					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
+					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$user_id,$token);
 				}
 				include('public/PHPMailer_5.2.4/sendmail.php');	
 				global $forgotPasswordSubject;				
@@ -351,7 +351,6 @@ class UsersController extends AbstractActionController
 				));
 			}
 			return $result;
-			//return $this->redirect()->toUrl($baseUrl);
 		}		
 	}
 	public function resetPasswordAction(){

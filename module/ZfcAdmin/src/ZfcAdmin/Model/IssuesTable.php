@@ -138,7 +138,7 @@ class IssuesTable
 		$data = array(
 			'total_shares' 	         => $isue_data['total_shares'],
 			'modified_at' 	         => date('y-m-d'),
-		);	
+		);		
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;
 	}

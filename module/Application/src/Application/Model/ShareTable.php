@@ -31,8 +31,7 @@ class ShareTable
 			'shared_message'  => $data['message'],
 			'created_at' 	 => date('Y-m-d'),
 			'modified_at' 	 => date('Y-m-d'),
-		);
-		//echo "<pre>";print_r($dataa);exit;		
+		);	
 		$this->tableGateway->insert($dataa);		
 		return $this->tableGateway->lastInsertValue;
     }

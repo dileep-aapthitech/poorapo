@@ -21,7 +21,7 @@ $frogotPasswordMessage = '<body>
 						<tr><td>Note: If you did not request for new password, please ignore this email.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com team</td></tr>
+						<tr><td>Poraapo.com Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -53,7 +53,7 @@ $regMessage='<body>
 						<tr><td>Successfully register with Poraapo.com</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com team</td></tr>
+						<tr><td>Poraapo.com Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -62,18 +62,18 @@ $regMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Poraapo.com Customer Service
+Poraapo.com
 </body>';
 /* end register subject*/
 /* register subject */
 global $sentShareMsgSubject;
 global $sentShareMessage;
-$sentShareMsgSubject= "Share the information";
+$sentShareMsgSubject= "Share mail from Poraapo.com";
 $sentShareMessage='<body>
-		<table width="600" border="0" cellspacing="0" cellpadding="0">
+		<table width="400" border="0" cellspacing="0" cellpadding="0">
 		<tr>
-			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #D63C2B ">
-			<tr><td bgcolor="#D63C2B ">
+			<td><table width="400" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
+			<tr><td bgcolor="#178acc ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
 				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
 			</tr>
@@ -81,20 +81,14 @@ $sentShareMessage='<body>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
 						<tr><td><MESSAGE></td></tr>
-						<tr><td><CATEGORYNAME>&nbsp;&nbsp;<TITLE></td></tr>						
+						<tr><td><CATEGORYNAME>-<TITLE></td></tr>						
 						<tr><td><DESCRIPTION></td></tr>						
-						<tr><td>&nbsp;</td></tr>
-						<tr><td>Sincerely,</td></tr>
-						<tr><td>Poraapo.com team</td></tr>
 					</table>
 				</td>
 			</tr>  
 			</table></td>
 		</tr> 
 	</table>
-<br/><br/>
-Regards,<br/>
-Poraapo.com Customer Service
 </body>';
 /* end register subject*/
 /* register subject */
@@ -121,7 +115,7 @@ $contactMessage='<body>
 											
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>poraapo team</td></tr>
+						<tr><td>Poraapo.com Team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -130,6 +124,6 @@ $contactMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-porrapo Customer Service
+Poraapo.com
 </body>';
 
