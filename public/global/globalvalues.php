@@ -9,7 +9,7 @@ $frogotPasswordMessage = '<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #D63C2B">
 			<tr><td bgcolor="#D63C2B">
 				<a href="javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Cbay.org</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -44,7 +44,7 @@ $regMessage='<body>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #D63C2B ">
 			<tr><td bgcolor="#D63C2B ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Cbay.org</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -66,16 +66,16 @@ Poraapo.com Customer Service
 </body>';
 /* end register subject*/
 /* register subject */
-global $sentParentSubject;
-global $sentParentMessage;
-$sentParentSubject= "Status of registration confirmation";
-$sentParentMessage='<body>
+global $sentShareMsgSubject;
+global $sentShareMessage;
+$sentShareMsgSubject= "<sentShareMsgSubject>";
+$sentShareMessage='<body>
 		<table width="600" border="0" cellspacing="0" cellpadding="0">
 		<tr>
 			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #D63C2B ">
 			<tr><td bgcolor="#D63C2B ">
 				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
-				<span style="color:#fff; font:normal 30px arial">Cbay.org</span></a></td>
+				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
 			</tr>
 			<tr>
 				<td>
@@ -84,7 +84,7 @@ $sentParentMessage='<body>
 						<tr><td><CREATEDUSERNAME>&nbsp;&nbsp; is  successfully created by a &nbsp;&nbsp;<CREATEDUSERTYPE></td></tr>						
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
-						<tr><td>Cbay.org team</td></tr>
+						<tr><td>Poraapo.com team</td></tr>
 					</table>
 				</td>
 			</tr>  
@@ -93,7 +93,7 @@ $sentParentMessage='<body>
 	</table>
 <br/><br/>
 Regards,<br/>
-Cbay.org Customer Service
+Poraapo.com Customer Service
 </body>';
 /* end register subject*/
 /* register subject */
