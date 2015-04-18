@@ -504,7 +504,7 @@ function getColleges(){
 			data:{countryid:country_id,stateid:state_id,distid:district_id},
 			success: function(data){
 				if(data.output=='success'){
-					$("#user_colleges").html(data.dist_names);					
+					$("#user_colleges").html(data.ajaxinfo);					
 				}else{
 					$("#user_colleges").html('');	
 				}
