@@ -33,7 +33,7 @@ class IndexController extends AbstractActionController
 		}
 		
 		$menuIssuesArr = $this->getIssuesTable()->getAllMenuIssues( $categoryId )->toArray();
-
+		//echo "<pre>";print_r($menuIssuesArr);exit;
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,

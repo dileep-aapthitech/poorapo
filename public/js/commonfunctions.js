@@ -666,10 +666,11 @@ function loginValidations(){
 	}else{
 		$('#passwordError').html('');
 	}
-	$('#reload').html('<img src="public/images/spiffygif.gif"/>');
 	if(flag==false){
 		return false;
 	}else{
+			var image=BASE_PATH+'/images/ajax-loader.gif';
+			$('#reload').html('<img src='+image+' />'); 
 			var url=BASE_URL+'/users/login';
 			$.ajax({
 				type:'POST',
