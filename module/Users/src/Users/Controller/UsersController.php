@@ -55,7 +55,7 @@ class UsersController extends AbstractActionController
 					'states' 		    => $getStates,
 					'districts' 		=> $getDistricts,
 					'colleges' 		    => $getColleges->buffer(),
-					'entranceexams'     => $getEntranceExams,			
+					'entranceexams'     => $getEntranceExams->buffer(),			
 					'b_degrees'         => $getBacheloreDegree,			
 					'specializations'   => $getSpecializations->buffer(),			
 					'unversities'       => $getUnversities->buffer(),			
@@ -89,7 +89,7 @@ class UsersController extends AbstractActionController
 		$htmlDistricts = '';
 		if(isset($_POST['stateid']) && $_POST['stateid']!=''){
 			$districts=$this->getDistrictsTable()->getLocationBasedDistricts($_POST['countryid'],$_POST['stateid']);
-			$htmlDistricts.='<option value="">Select a Districts</option>';
+			$htmlDistricts.='<option value="">Select District</option>';
 			foreach($districts as $dists){
 				$htmlDistricts.='<option value="'.$dists->district_id.'">'.$dists->district_name.'</option>';
 			}	
@@ -169,11 +169,11 @@ class UsersController extends AbstractActionController
 							global $regSubject;				
 							global $regMessage;
 							$to=$userDetails->email_id;
-							//if(sendMail($to,$regSubject,$regMessage)){
-								//return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
-							//}else{
+							if(sendMail($to,$regSubject,$regMessage)){
 								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
-							//}							
+							}else{
+								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
+							}							
 						}						
 					}
 				}
@@ -198,7 +198,7 @@ class UsersController extends AbstractActionController
 					'states' 		    => $getStates,
 					'districts' 		=> $getDistricts,
 					'colleges' 		    => $getColleges->buffer(),
-					'entranceexams'     => $getEntranceExams,			
+					'entranceexams'     => $getEntranceExams->buffer(),			
 					'b_degrees'         => $getBacheloreDegree,			
 					'specializations'   => $getSpecializations->buffer(),			
 					'unversities'       => $getUnversities->buffer(),			
@@ -224,7 +224,7 @@ class UsersController extends AbstractActionController
 				'states' 		    => $getStates,
 				'districts' 		=> $getDistricts,
 				'colleges' 		    => $getColleges->buffer(),
-				'entranceexams'     => $getEntranceExams,			
+				'entranceexams'     => $getEntranceExams->buffer(),			
 				'b_degrees'         => $getBacheloreDegree,			
 				'specializations'   => $getSpecializations->buffer(),			
 				'unversities'       => $getUnversities->buffer(),			

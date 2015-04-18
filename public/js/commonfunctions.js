@@ -1,16 +1,26 @@
 var Requried = 'Required';
 var email_wrong_formate = 'Entered email formate worng';
 var email_already_exixts = 'Entered email is already registered.';
-function regTab1(tabid){
+function regTab1(tabid,stage){
 	var closeTadId=$('#opentabId').val();
-	$("#tab_"+closeTadId+"_hide").slideUp("slow");
-	$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
-	$("#tab_"+tabid+"_hide").slideDown("slow");
-	$("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
-	$('#opentabId').val(tabid);
+	if(closeTadId=='7'){
+		$("#tab_"+closeTadId+"_hide").slideUp("slow");		
+		$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
+		$('#opentabId').val(tabid);
+	}else{
+		$("#tab_"+closeTadId+"_hide").slideUp("slow");
+		$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
+		$("#tab_"+tabid+"_hide").slideDown("slow");
+		$("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
+		$('#opentabId').val(tabid);
+	}
 }
+var tab1flag = false;
+var tab2flag = false;
+var tab3flag = false;
+var tab4flag = false;
 function validateReg(typeTab){
-	var flag = true;
+	var flag = true;	
 	var usertype = $("#user_type").val();
 	var userEmail = $("#user_email").val();
 	if(typeTab==1){		
@@ -39,220 +49,17 @@ function validateReg(typeTab){
 			$("#user_pwd_req").html('');	
 		}	
 		if(flag == false){
+			$("#hid_tab_1").val('1');
+			tab1flag = false;
 			return false;
 		}else{	
 			$("#hidCheckValue").val('0');
+			$("#hid_tab_1").val('0');
 			var typeTabNext = typeTab+1;
-			regTab1(typeTabNext);
+			tab1flag = true;
+			regTab1(typeTabNext,'0');
 		}
 	}else if(typeTab==2){
-		if($("#user_first_name").val()==''){
-			$("#user_firstname_req").html(Requried);
-			flag = false;
-		}if($("#user_last_name").val()==''){
-			$("#user_lastname_req").html(Requried);
-			flag = false;
-		} if($("#user_gendermf").val()==''){
-			$("#user_gender_req").html(Requried);
-			flag = false;
-		} 
-		if($("#user_gendermf").val()==''){
-			$("#user_gender_req").html(Requried);
-			flag = false;
-		}
-		if( ($("#user_date").val()=='') && ($("#user_month").val()=='') && ($("#user_year").val()=='')){
-			$("#user_dob_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_country").val()==''){
-			$("#user_country_req").html(Requried);
-			flag = false;
-		}if($("#user_mobile").val()==''){
-			$("#user_mobile_req").html(Requried);
-			flag = false;
-		}
-		if(usertype==1){
-			if($("#user_parent_name").val()==''){
-				$("#user_parent_name_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_parent_lastname").val()==''){
-				$("#user_parent_lastname_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_mobile_number").val()==''){
-				$("#user_parent_mobile_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_parent_email").val()==''){
-				$("#user_parent_email_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_parent_pincode").val()==''){
-				$("#user_parent_pincode_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_perment_pincode").val()==''){
-				$("#user_parent_perment_pincode_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_afi").val()==''){
-				$("#user_annual_afi_req").html(Requried);
-				flag = false;
-			}
-			if($("#user_fnw").val()==''){
-				$("#user_fnw_req").html(Requried);
-				flag = false;
-			}
-		}
-		if(usertype==2){
-			if($("#user_emp_ctc").val()==''){
-				$("#user_emp_ctc_req").html(Requried);
-				flag = false;
-			}
-		}
-		if(flag == false){
-			return false;
-		}else{
-			// $("#frm_meth").submit();
-			var typeTabNext = typeTab+1;
-			regTab1(typeTabNext);
-		}
-	}else if(typeTab==3){
-		if($("#user_state").val()==''){
-			$("#user_state_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_district").val()==''){
-			$("#user_district_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_colleges").val()==''){
-			$("#user_colleges_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_principal_name").val()==''){
-			$("#user_principal_name_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_princi_phone").val()==''){
-			$("#user_princi_phone_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_princi_email").val()==''){
-			$("#user_princi_email_req").html(Requried);
-			flag = false;
-		}
-		if(flag == false){
-			return false;
-		}else{
-			// $("#frm_meth").submit();
-			var typeTabNext = typeTab+1;
-			regTab1(typeTabNext);
-		}
-	}else if(typeTab==4){
-		if($("#user_entrance_year").val()==''){
-			$("#user_entrance_year_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_entrance_exam").val()==''){
-			$("#user_entrance_exam_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_entrance_rank").val()==''){
-			$("#user_entrance_rank_req").html(Requried);
-			flag = false;
-		}
-		if(flag == false){
-			return false;
-		}else{
-			// $("#frm_meth").submit();
-			var typeTabNext = typeTab+1;
-			regTab1(typeTabNext);
-		}
-	}else if(typeTab==5){
-		if($("#user_bac_degree").val()==''){
-			$("#user_bac_degree_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_bac_unversity").val()==''){
-			$("#user_bac_unversity_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_bac_college").val()==''){
-			$("#user_bac_college_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_bac_speclization").val()==''){
-			$("#user_bac_speclization_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_bac_year").val()==''){
-			$("#user_bac_year_req").html(Requried);
-			flag = false;
-		}
-		if(flag == false){
-			return false;
-		}else{
-			// $("#frm_meth").submit();
-			var typeTabNext = typeTab+1;
-			regTab1(typeTabNext);
-		}
-	}else if(typeTab==6){
-		if($("#user_master_degree").val()==''){
-			$("#user_master_degree_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_mast_university").val()==''){
-			$("#user_mast_university_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_mast_college").val()==''){
-			$("#user_mast_college_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_mast_spec").val()==''){
-			$("#user_mast_spec_req").html(Requried);
-			flag = false;
-		}
-		if($("#user_mast_year").val()==''){
-			$("#user_mast_year_req").html(Requried);
-			flag = false;
-		}
-		if(flag == false){
-			return false;
-		}else{
-			// $("#frm_meth").submit();
-			var typeTabNext = typeTab+1;
-			regTab1(typeTabNext);
-		}
-	}else if(typeTab==7){
-// Ist session
-		if(usertype==""){
-			$("#user_type_req").html(Requried);
-			flag=false;
-		}else{
-			$("#user_type_req").html('');
-		}
-		if(userEmail==""){
-			$("#user_email_req").html(Requried);
-			flag=false;
-		}else if(checkEmail(userEmail)==false){
-			$("#user_email_req").html(email_wrong_formate);
-			flag=false;
-		}else if($("#hidCheckValue").val()==1){
-			$("#user_email_req").html(email_already_exixts);
-			flag=false;
-		}else{
-			$("#user_email_req").html('');
-		}
-		if($("#user_password").val()==''){
-			$("#user_pwd_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_pwd_req").html('');	
-		}
-// IInd session
 		if($("#user_first_name").val()==''){
 			$("#user_firstname_req").html(Requried);
 			flag = false;
@@ -353,7 +160,243 @@ function validateReg(typeTab){
 				$("#user_emp_ctc_req").html('');
 			}
 		}
-// 3rd session 
+		if(flag == false){
+			$("#hid_tab_2").val('1');
+			tab2flag = false;
+			return false;
+		}else{
+			$("#hid_tab_2").val('0');
+			var typeTabNext = typeTab+1;
+			tab2flag = true;
+			regTab1(typeTabNext,'0');
+		}
+	}else if(typeTab==3){
+		if(usertype==1){
+			if($("#user_state").val()==''){
+				$("#user_state_req").html(Requried);
+				flag = false;
+			}else{
+				$("#user_state_req").html('');
+			}
+			if($("#user_district").val()==''){
+				$("#user_district_req").html(Requried);
+				flag = false;
+			}else{
+				$("#user_district_req").html('');
+			}
+			if($("#user_colleges").val()==''){
+				$("#user_colleges_req").html(Requried);
+				flag = false;
+			}else{
+				$("#user_colleges_req").html('');		
+			}
+			if($("#user_principal_name").val()==''){
+				$("#user_principal_name_req").html(Requried);
+				flag = false;
+			}else{
+				$("#user_principal_name_req").html('');
+			}
+			if($("#user_princi_phone").val()==''){
+				$("#user_princi_phone_req").html(Requried);
+				flag = false;
+			}else{
+				$("#user_princi_phone_req").html('');
+			}
+			if($("#user_princi_email").val()==''){
+				$("#user_princi_email_req").html(Requried);
+				flag = false;
+			}else{
+				$("#user_princi_email_req").html('');
+			}
+			if(flag == false){
+				$("#hid_tab_3").val('1');
+				tab3flag = false;
+				return false;
+			}else{
+				$("#hid_tab_3").val('0');
+				var typeTabNext = typeTab+1;
+				tab3flag = true;
+				regTab1(typeTabNext,'0');
+			}
+		}
+	}else if(typeTab==4){
+		if(($("#user_entrance_year").val()=='') || ($("#user_entrance_exam").val()=='') || ($("#user_entrance_rank").val()=='')){
+			$("#user_entrance_rank_req").html(Requried);
+			$("#user_entrance_op_1").html('Optional');
+			$("#user_entrance_op_2").html('Optional');
+			flag = false;
+		}else{
+			$("#user_entrance_op_1").html('');
+			$("#user_entrance_op_2").html('');
+			$("#user_entrance_rank_req").html('');
+		}
+		if(flag == false){
+			$("#hid_tab_4").val('1');
+			tab4flag = false;
+			return false;
+		}else{
+			$("#hid_tab_4").val('0');
+			var typeTabNext = typeTab+1;
+			tab4flag = true;
+			regTab1(typeTabNext,'0');
+		}
+	}else if(typeTab==5){
+			var typeTabNext = typeTab+1;
+			regTab1(typeTabNext,'0');
+	}else if(typeTab==6){
+			var typeTabNext = typeTab+1;
+			regTab1(typeTabNext,'0');
+	}else if(typeTab==7){
+			var typeTabNext = typeTab+1;
+			regTab1(typeTabNext,'1');
+	}
+	return false;
+	/*
+	if(tab1flag && tab2flag && tab3flag && tab4flag){	
+		allFormValdation();
+	}else{
+		return false;
+	}
+	*/
+}
+function formFinalSubmit(){
+	if(tab1flag && tab2flag && tab3flag && tab4flag){
+		if( allFormValdation() )
+		{
+			$("#frm_meth").submit();	
+		}
+	}
+	return  false;
+}
+function allFormValdation(){
+	var flag = true;
+	var usertype = $("#user_type").val();
+	var userEmail = $("#user_email").val();
+	if(usertype==""){
+		$("#user_type_req").html(Requried);
+		flag=false;
+	}else{
+		$("#user_type_req").html('');
+	}
+	if(userEmail==""){
+		$("#user_email_req").html(Requried);
+		flag=false;
+	}else if(checkEmail(userEmail)==false){
+		$("#user_email_req").html(email_wrong_formate);
+		flag=false;
+	}else if($("#hidCheckValue").val()==1){
+		$("#user_email_req").html(email_already_exixts);
+		flag=false;
+	}else{
+		$("#user_email_req").html('');
+	}
+	if($("#user_password").val()==''){
+		$("#user_pwd_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_pwd_req").html('');	
+	}
+	if($("#user_first_name").val()==''){
+		$("#user_firstname_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_firstname_req").html('');
+	}
+	if($("#user_last_name").val()==''){
+		$("#user_lastname_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_lastname_req").html('');
+	}
+	if($("#user_gendermf").val()==''){
+		$("#user_gender_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_gender_req").html('');
+	} 
+	if($("#user_gendermf").val()==''){
+		$("#user_gender_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_gender_req").html('');
+	}
+	if( ($("#user_date").val()=='') && ($("#user_month").val()=='') && ($("#user_year").val()=='')){
+		$("#user_dob_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_dob_req").html('');
+	}
+	if($("#user_country").val()==''){
+		$("#user_country_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_country_req").html('');
+	}
+	if($("#user_mobile").val()==''){
+		$("#user_mobile_req").html(Requried);
+		flag = false;
+	}else{
+		$("#user_mobile_req").html('');
+	}
+	if(usertype==1){
+		if($("#user_parent_name").val()==''){
+			$("#user_parent_name_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_parent_name_req").html('');
+		}
+		if($("#user_parent_lastname").val()==''){
+			$("#user_parent_lastname_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_parent_lastname_req").html('');
+		}
+		if($("#user_mobile_number").val()==''){
+			$("#user_parent_mobile_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_parent_mobile_req").html('');
+		}
+		if($("#user_parent_email").val()==''){
+			$("#user_parent_email_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_parent_email_req").html('');
+		}
+		if($("#user_parent_pincode").val()==''){
+			$("#user_parent_pincode_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_parent_pincode_req").html('');
+		}
+		if($("#user_perment_pincode").val()==''){
+			$("#user_parent_perment_pincode_req").html(Requried);
+			flag = false;
+		}else{
+				$("#user_parent_perment_pincode_req").html('');
+		}
+		if($("#user_afi").val()==''){
+			$("#user_annual_afi_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_annual_afi_req").html('');
+		}
+		if($("#user_fnw").val()==''){
+			$("#user_fnw_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_fnw_req").html('');
+		}
+	}
+	if(usertype==2){
+		if($("#user_emp_ctc").val()==''){
+			$("#user_emp_ctc_req").html(Requried);
+			flag = false;
+		}else{
+			$("#user_emp_ctc_req").html('');
+		}
+	}
+	if(usertype==1){
 		if($("#user_state").val()==''){
 			$("#user_state_req").html(Requried);
 			flag = false;
@@ -390,125 +433,13 @@ function validateReg(typeTab){
 		}else{
 			$("#user_princi_email_req").html('');
 		}
-// 4th session 
-		if($("#user_entrance_year").val()==''){
-			$("#user_entrance_year_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_entrance_year_req").html('');
-		}
-		if($("#user_entrance_exam").val()==''){
-			$("#user_entrance_exam_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_entrance_exam_req").html('');
-		}
-		if($("#user_entrance_rank").val()==''){
-			$("#user_entrance_rank_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_entrance_rank_req").html('');
-		}
-// 5th Session 
-		if($("#user_bac_degree").val()==''){
-			$("#user_bac_degree_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_bac_degree_req").html('');
-		}
-		if($("#user_bac_unversity").val()==''){
-			$("#user_bac_unversity_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_bac_unversity_req").html('');
-		}
-		if($("#user_bac_college").val()==''){
-			$("#user_bac_college_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_bac_college_req").html('');
-		}
-		if($("#user_bac_speclization").val()==''){
-			$("#user_bac_speclization_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_bac_speclization_req").html('');
-		}
-		if($("#user_bac_year").val()==''){
-			$("#user_bac_year_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_bac_year_req").html('');
-		}
-// 6th Session 
-		if($("#user_master_degree").val()==''){
-			$("#user_master_degree_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_master_degree_req").html('');
-		}
-		if($("#user_mast_university").val()==''){
-			$("#user_mast_university_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_mast_university_req").html('');
-		}
-		if($("#user_mast_college").val()==''){
-			$("#user_mast_college_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_mast_college_req").html('');
-		}
-		if($("#user_mast_spec").val()==''){
-			$("#user_mast_spec_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_mast_spec_req").html('');
-		}
-		if($("#user_mast_year").val()==''){
-			$("#user_mast_year_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_mast_year_req").html('');
-		}
-// 7 th session 
-		if($("#user_doctor_phd").val()==''){
-			$("#user_doctor_phd_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_doctor_phd_req").html('');
-		}
-		if($("#user_doctor_university").val()==''){
-			$("#user_doctor_university_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_doctor_university_req").html('');
-		}	
-		if($("#user_doctor_college").val()==''){
-			$("#user_doctor_college_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_doctor_college_req").html('');
-		}
-		if($("#user_doctor_spec").val()==''){
-			$("#user_doctor_spec_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_doctor_spec_req").html('');
-		}
-		if($("#user_doctor_year").val()==''){
-			$("#user_doctor_year_req").html(Requried);
-			flag = false;
-		}else{
-			$("#user_doctor_year_req").html('');
-		}
-		if(flag == false){
-			return false;
-		}else{
-			$("#hidCheckValue").val('0');
-			$("#frm_meth").submit();			
-		}
-	}	
+	}
+	if(flag==false){
+		aler( "allFormValidation false." );
+		return false;
+	}else{
+		return true;
+	}
 }
 function addIssueFunction(type){
 	  var flag=true;

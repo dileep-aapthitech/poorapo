@@ -42,6 +42,7 @@ class UserDetailsTable
 		}else{			
 			$user_princi_email='';
 		}
+// Entrnce 1
 		if($usersinfo['user_entrance_year']!=''){
 			$user_entrance_year=$usersinfo['user_entrance_year'];			
 		}else{			
@@ -57,6 +58,39 @@ class UserDetailsTable
 		}else{			
 			$user_entrance_rank='';
 		}
+// Entrnce 2		
+		if($usersinfo['user_entrance_year_1']!=''){
+			$user_entrance_year_1=$usersinfo['user_entrance_year_1'];			
+		}else{			
+			$user_entrance_year_1='';
+		}
+		if($usersinfo['user_entrance_exam_1']!=''){
+			$user_entrance_exam_1=$usersinfo['user_entrance_exam_1'];			
+		}else{			
+			$user_entrance_exam_1='';
+		}
+		if($usersinfo['user_entrance_rank_1']!=''){
+			$user_entrance_rank_1=$usersinfo['user_entrance_rank_1'];			
+		}else{			
+			$user_entrance_rank_1='';
+		}
+// Entrnce 3		
+		if($usersinfo['user_entrance_year_2']!=''){
+			$user_entrance_year_2=$usersinfo['user_entrance_year_2'];			
+		}else{			
+			$user_entrance_year_2='';
+		}
+		if($usersinfo['user_entrance_exam_2']!=''){
+			$user_entrance_exam_2=$usersinfo['user_entrance_exam_2'];			
+		}else{			
+			$user_entrance_exam_2='';
+		}
+		if($usersinfo['user_entrance_rank_2']!=''){
+			$user_entrance_rank_2=$usersinfo['user_entrance_rank_2'];			
+		}else{			
+			$user_entrance_rank_2='';
+		}
+
 		if($usersinfo['user_bac_degree']!=''){
 			$user_bac_degree=$usersinfo['user_bac_degree'];			
 		}else{			
@@ -137,10 +171,19 @@ class UserDetailsTable
 			'college_name' 		        => $user_colleges, 	
 			'principal_name'  	        => $user_principal_name,  	
 			'principal_phone_num'       => $user_princi_phone,  	
-			'principal_email_id'        => $user_princi_email,  	
+			'principal_email_id'        => $user_princi_email,  
+// Entrance 1			
 			'entrance_exam'  	        => $user_entrance_exam,  	
 			'which_year'  	            => $user_entrance_year,  	
-			'entrance_rank'  	        => $user_entrance_rank,  	
+			'entrance_rank'  	        => $user_entrance_rank, 
+// Entrance 2	
+			'entrance_exam_1'  	        => $user_entrance_exam_1,  	
+			'which_year_1'  	        => $user_entrance_year_1,  	
+			'entrance_rank_1'  	        => $user_entrance_rank_1, 
+// Entrance 3
+			'entrance_exam_2'  	        => $user_entrance_exam_2,  	
+			'which_year_2'  	        => $user_entrance_year_2,  	
+			'entrance_rank_2'  	        => $user_entrance_rank_2, 			
 			'bachelors_degree_name'     => $user_bac_degree,  	
 			'bachelors_university_name' => $user_bac_unversity,  	
 			'bachelors_college'         => $user_bac_college,  	
