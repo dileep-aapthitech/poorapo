@@ -84,7 +84,7 @@ class IssuesTable
 	}
 	public function getAllMenuIssues( $categoryId )
     {
-		if( isset($_SESSION['user_id']) && isset($_SESSION['user']['user_id']) )
+		if( isset($_SESSION['user']) && isset($_SESSION['user']['user_id']) )
 		{
 			$userId=$_SESSION['user']['user_id'];
 		}
