@@ -28,6 +28,9 @@
             <div class="form-group">
               <button type="button" class="btn btn-primary  btn-block" onclick="contactFormFunction()">Submit</button>
             </div>
+			<?php if(isset($this->output) && $this->output=='success'){?>
+				<p style="color:red">Sent Successfully.</p>
+			<?}?>
           </form>
       </div><div class="clearfix"></div>
   </div>
