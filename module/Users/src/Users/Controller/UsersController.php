@@ -417,7 +417,7 @@ class UsersController extends AbstractActionController
 			$contactMessage = str_replace("<LASTNAME>",$_POST['lastName'], $contactMessage);
 			$contactMessage = str_replace("<PHONENUMBER>",$_POST['mobileNumber'], $contactMessage);
 			$contactMessage = str_replace("<CONTACTMESSAGE>",$_POST['contactMessage'], $contactMessage);
-			$to='info@poraapo.com';
+			$to='krishna@poraapo.org';
 			if(sendMail($to,$contactSubject,$contactMessage)){
 					$result = new ViewModel(array(					
 						'output' 	=> 'success',

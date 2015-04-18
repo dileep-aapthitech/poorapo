@@ -83,7 +83,7 @@ class AdminController extends AbstractActionController
 				$data[$i]['sno']=$i+1;
 				$data[$i]['issue_title']= $issues->issue_title;
 				$data[$i]['issue_decription']= $issues->issue_decription;
-				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editIssue('.$id.')" >EDIT</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteIssue('.$id.')">Delete</a>';
+				$data[$i]['action'] ='<a href="javascript:void(0)" onclick="editIssue('.$id.')" >Edit</a>&nbsp;/&nbsp;<a href="javascript:void(0);" onClick="deleteIssue('.$id.')">Delete</a>';
 				$i++;
 			}
 			$data['aaData'] = $data;
