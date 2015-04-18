@@ -204,12 +204,19 @@ textarea{
 .pad_0{
 	padding:0;
 }
-.col-sm-8{
+.col-sm-8,.col-sm-3{
 	position:relative;
 }
 .error_msg_disp{
 	position:absolute;
 	top:-18px;
+	right:20px;
+	color:red;
+	font-size:11px;
+}
+.error_msg_disp1{
+position:absolute;
+	top:8px;
 	right:20px;
 	color:red;
 	font-size:11px;

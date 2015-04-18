@@ -112,7 +112,7 @@
 					
 				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-3 control-label">Date of Birth</label>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
 						<select class="form-control" id="user_date" name="user_date">
 							<option value="">Date</option>
 							<? $i=1;for($i=1;$i<=31;$i++){ if( $dobex['0'] == $i){?>
@@ -356,7 +356,7 @@
 			<!-- Entrance Exam 1-------->
 						<div class="form-group">
 							<div class="col-sm-3">
-								<span class="error_msg_disp" id="user_entrance_year_req"></span>
+								<span class="error_msg_disp1" id="user_entrance_year_req"></span>
 								<label class="control-label" for="focusedInput">Year</label>
 								<select class="form-control" id="user_entrance_year" name="user_entrance_year">
 								<option value="">Select Year</option>
@@ -370,7 +370,7 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Entrance Exam Taken</label>
-								<span class="error_msg_disp" id="user_entrance_exam_req"></span>
+								<span class="error_msg_disp1" id="user_entrance_exam_req"></span>
 								<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
 								<option value="">Select Exam Name </option>
 								<? if(count($entranceexams)!='') {
@@ -383,7 +383,7 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Rank</label>
-								<span class="error_msg_disp" id="user_entrance_rank_req"></span>
+								<span class="error_msg_disp1" id="user_entrance_rank_req"></span>
 								<input class="form-control" id="user_entrance_rank" name="user_entrance_rank" type="text" value="<? if(isset($details->entrance_rank) && $details->entrance_rank!='') {echo $details->entrance_rank;}else{}?>" placeholder="Exam Rank">
 							</div>							
 						</div>
@@ -415,7 +415,7 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Rank</label>
-								<span class="error_msg_disp" id="user_entrance_op_1"></span>
+								<span class="error_msg_disp1" id="user_entrance_op_1"></span>
 								<input class="form-control" id="user_entrance_rank_1" name="user_entrance_rank_1" type="text" value="<? if(isset($details->entrance_rank_1) && $details->entrance_rank_1!='') {echo $details->entrance_rank_1;}else{}?>" placeholder="Exam Rank">
 							</div>							
 						</div>
@@ -447,7 +447,7 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Exam Rank</label>
-								<span class="error_msg_disp" id="user_entrance_op_2"></span>
+								<span class="error_msg_disp1" id="user_entrance_op_2"></span>
 								<input class="form-control" id="user_entrance_rank_2" name="user_entrance_rank_2" type="text" value="<? if(isset($details->entrance_rank_2) && $details->entrance_rank_2!='') {echo $details->entrance_rank_2;}else{}?>" placeholder="Exam Rank">
 							</div>
 							<div class="col-sm-3">

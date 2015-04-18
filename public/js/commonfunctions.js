@@ -2,6 +2,7 @@ var Requried = 'Required';
 var email_wrong_formate = 'Entered email formate worng';
 var email_already_exixts = 'Entered email is already registered.';
 function regTab1(tabid,stage){
+	$("html, body").animate({ scrollTop:100 }, 600);
 	var closeTadId=$('#opentabId').val();
 	if(closeTadId=='7'){
 		$("#tab_"+closeTadId+"_hide").slideUp("slow");		
@@ -218,6 +219,11 @@ function validateReg(typeTab){
 				tab3flag = true;
 				regTab1(typeTabNext,'0');
 			}
+		}else{
+			$("#hid_tab_3").val('0');
+			var typeTabNext = typeTab+1;
+			tab3flag = true;
+			regTab1(typeTabNext,'0');
 		}
 	}else if(typeTab==4){
 		if(($("#user_entrance_year").val()=='') || ($("#user_entrance_exam").val()=='') || ($("#user_entrance_rank").val()=='')){
@@ -434,8 +440,7 @@ function allFormValdation(){
 			$("#user_princi_email_req").html('');
 		}
 	}
-	if(flag==false){
-		aler( "allFormValidation false." );
+	if(flag==false){		
 		return false;
 	}else{
 		return true;
