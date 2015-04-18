@@ -1,3 +1,7 @@
+textarea{
+	resize:none;
+	min-height:100px;
+}
 .cke_textarea_inline{
 	padding: 10px;
 	height: 200px;
