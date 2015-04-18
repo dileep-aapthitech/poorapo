@@ -30,7 +30,15 @@ table.dataTable td.center,
 table.dataTable td.dataTables_empty {
 	text-align: center;
 }
+.odd td:first-child{width:5%;}
+.odd td:nth-child(2){width:20%;}
+.odd td:nth-child(3){width:70%;}
+.odd td:nth-child(4){width:5%;}
 
+.even td:first-child{width:5%;}
+.even td:nth-child(2){width:10%;}
+.even td:nth-child(3){width:70%;}
+.even td:nth-child(4){width:5%;}
 /*table.dataTable tr.odd { background-color: #E2E4FF; }
 table.dataTable tr.even { background-color: white;width:400px; }
 
