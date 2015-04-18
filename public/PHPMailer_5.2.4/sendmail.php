@@ -9,7 +9,7 @@
 		$mail->Host     	= "sm4.siteground.biz";
 		$mail->Port  		= 2525;
 		$mail->SMTPAuth = true; 
-		$mail->SMTPDebug  = 2;                     // enables SMTP debug information (for testing)
+		$mail->SMTPDebug  = 1;                     // enables SMTP debug information (for testing)
 
 		// Enable SMTP authentication
 		$mail->Username = 'noreply@poraapo.org';                // SMTP username

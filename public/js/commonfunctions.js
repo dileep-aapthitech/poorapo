@@ -842,7 +842,7 @@ function forgetPassword(){
 				alert(result);
 				if(result.output=='success'){	
 					$('#sucessMsg').html('Sucessfully sending the mail');
-						window.location=BASE_URL;
+						//window.location=BASE_URL;
 				}else if(result.output=='notsuccess'){
 					//$('#submit').removeAttr('disabled');
 					$('#errorMsg').html('mail is not sending');

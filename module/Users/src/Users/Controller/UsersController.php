@@ -313,19 +313,18 @@ class UsersController extends AbstractActionController
         $baseUrl = $baseUrlArr['baseUrl'];
 		$sentMail=0;
 		if(isset($_POST['email']) && $_POST['email']!=""){
-		
 			$usersTable=$this->getUserTable();
 			$forgetTable=$this->getForgotPasswordTable();
 			$emailCount = $usersTable->checkEmail($_POST['email']);
+			$username=$_POST['email'];
 			if($emailCount!=0){	
 				$user_id=$emailCount->user_id;
-				$username=$emailCount->user_name;
 				$token = getUniqueCode('10');
 				$user_type_id=$emailCount->user_type_id;
 				$mailExit=$forgetTable->getmailfromfgtpwd($_POST['email']);
 				if($mailExit!=0){
 					$alreadyexitid=$mailExit->forget_id;
-					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
+					$getuserId=$forgetTable->updateForgetPassword($alreadyexitid,$token);
 				}else{
 					$alreadyexitid='';
 					$getuserId=$forgetTable->addForgetpwd($alreadyexitid,$_POST['email'],$emailCount->user_id,$token);
@@ -333,9 +332,9 @@ class UsersController extends AbstractActionController
 				include('public/PHPMailer_5.2.4/sendmail.php');	
 				global $forgotPasswordSubject;				
 				global $frogotPasswordMessage;
-				$frogotPasswordMessage = str_replace("<FULLNAME>","$username", $frogotPasswordMessage);
+				$frogotPasswordMessage = str_replace("<FULLNAME>",$username, $frogotPasswordMessage);
 				$frogotPasswordMessage = str_replace("<PASSWORDLINK>",$baseUrl."/users/reset-password?token=".$token, $frogotPasswordMessage);	
-				$to=$emailCount->email;
+				$to=$_POST['email'];
 				if(sendMail($to,$forgotPasswordSubject,$frogotPasswordMessage)){
 						$result = new JsonModel(array(					
 							'output' => 'success',
@@ -348,11 +347,11 @@ class UsersController extends AbstractActionController
 				}
 			}else{
 				$result = new JsonModel(array(					
-					'output' 	=> 'notsuccess',
+					'output' 	=> 'Not Found The Email ',
 				));
 			}
 			return $result;
-			return $this->redirect()->toUrl($baseUrl);
+			//return $this->redirect()->toUrl($baseUrl);
 		}		
 	}
 	public function resetPasswordAction(){
