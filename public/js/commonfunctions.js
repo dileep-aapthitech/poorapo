@@ -727,7 +727,7 @@ function loginValidations(){
 					$('#reload').html('');
 					if(response.output=='success'){
 						if(response.user_type_id==1){
-							window.location=BASE_URL+"/users/change-password";
+							window.location=BASE_URL;
 						}else if(response.user_type_id==3){
 							window.location=BASE_URL+"/admin/dashboard";
 						}
