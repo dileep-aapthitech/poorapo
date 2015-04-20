@@ -108,7 +108,7 @@
 				<li><a href="<?php echo $baseUrl; ?>/admin/dashboard">Admin</a></li>
 				<li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>
 			<?}else{  ?>
-				<li class="dropdown"><a  href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle"><?php echo $_SESSION['user']['username']; ?> </a>
+				<li class="dropdown"><a  href="javascript:void(0)" data-toggle="dropdown" class="dropdown-toggle"><?php echo $_SESSION['user']['username']; ?><span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu">
 			    <li><a href="<?php echo $baseUrl; ?>/users/view-profile?user_id=<? echo $_SESSION['user']['user_id'];?>">View Profile</a></li>
 			   <li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>               
