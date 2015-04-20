@@ -28,7 +28,7 @@
 						<select class="form-control" id="user_type" name="user_type" onChange="return switchinUser();">
 							<option value=''>Select User Type</option>
 							<? if(count($usertypes)!='') {
-							foreach($usertypes as $user_type){ if($details->user_type_id!=4) { if($details->user_type_id == $user_type->user_type_id){?>
+							foreach($usertypes as $user_type){ if($user_type->user_type_id!=4) { if($details->user_type_id == $user_type->user_type_id){?>
 								<option value="<? echo $user_type->user_type_id?>" selected="selected"><? echo ucfirst($user_type->user_type_name);?></option>
 							<?} else{?>
 								<option value="<? echo $user_type->user_type_id?>"><? echo ucfirst($user_type->user_type_name);?></option>
