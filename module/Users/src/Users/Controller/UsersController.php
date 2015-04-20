@@ -35,8 +35,9 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		if(isset($_GET['user_id']) && $_GET['user_id']!=""){
-			$getUserDetails = $this->getUserTable()->getUserDetails($_GET['user_id']);
+		if(isset($_GET['uid']) && $_GET['uid']!=""){
+			$base_user_id = base64_decode($_GET['uid']);
+			$getUserDetails = $this->getUserTable()->getUserDetails($base_user_id);			
 			$getUserTypes=$this->getUserTypeTable()->getUserTypes();
 			$getCountries=$this->getCountriesTable()->getCountries();
 			$getStates=$this->getSatesTable()->getSates();
@@ -140,13 +141,14 @@ class UsersController extends AbstractActionController
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){
-			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
+			$base_user_id =  base64_encode($_POST['hid_user_id']);
+			$user_id=$this->getUserTable()->addUser($_POST,$base_user_id);
 			if($user_id>=0){
-				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$_POST['hid_user_id']);
+				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$base_user_id);
 				if($userpersonalInfo>=0){
-					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id']);					
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$base_user_id);					
 					if($userDetailsInfo>=0){
-						return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$_POST['hid_user_id']);
+						return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
 					}
 				}
 			}
@@ -165,21 +167,23 @@ class UsersController extends AbstractActionController
 							$user_session->email=$userDetails->email_id;
 							$user_session->user_id=$userDetails->user_id;
 							$user_session->user_type=$userDetails->user_type_id;
+							$base_user_id =  base64_encode($userDetails->user_id);
 							include('public/PHPMailer_5.2.4/sendmail.php');	
 							global $regSubject;				
 							global $regMessage;
 							$to=$userDetails->email_id;
 							if(sendMail($to,$regSubject,$regMessage)){
-								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
+								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
 							}else{
-								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?user_id='.$user_id);
+								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
 							}							
 						}						
 					}
 				}
 			}
-		}else if(isset($_GET['user_id']) && $_GET['user_id']!=""){
-			$getUserDetails = $this->getUserTable()->getUserDetails($_GET['user_id']);
+		}else if(isset($_GET['uid']) && $_GET['uid']!=""){
+			$base_user_id = base64_decode($_GET['uid']);
+			$getUserDetails = $this->getUserTable()->getUserDetails($base_user_id);
 			$getUserTypes=$this->getUserTypeTable()->getUserTypes();
 			$getCountries=$this->getCountriesTable()->getCountries();
 			$getStates=$this->getSatesTable()->getSates();

@@ -1,8 +1,17 @@
 	<div class="container reg_w_12 min_height">
 	<div class="panel panel panel-default mar_t">
+		<?php if(isset($this->output) && $this->output=='success'){?>
+			<div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Sent Successfully</strong>
+			</div>
+		<?}?>
+		<? if(isset($_SESSION['user'])){
+				$base_user_id = base64_encode($_SESSION['user']['user_id']);
+			}?>
 		<div class="panel-heading reg_bg">
 			<h3 class="panel-title">View Profile</h3>
-			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/users/register?user_id=<? echo $_SESSION['user']['user_id']?>">Edit Profile</a></div>
+			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/users/register?uid=<? echo $base_user_id;?>">Edit Profile</a></div>
 		</div> 
 		<? if(count($this->userDetails)!=0){ foreach($this->userDetails as $details){?>
 		<div class="panel-body">
