@@ -20,6 +20,12 @@ var tab1flag = false;
 var tab2flag = false;
 var tab3flag = false;
 var tab4flag = false;
+function setAllTrue(){
+	tab1flag = true;
+	tab2flag = true;
+	tab3flag = true;
+	tab4flag = true;
+}
 function validateReg(typeTab){
 	var flag = true;	
 	var usertype = $("#user_type").val();
