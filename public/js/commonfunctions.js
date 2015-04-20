@@ -795,11 +795,9 @@ function forgetPassword(){
 			success: function(result){
 				if(result.output=='success'){	
 					$('#sucessMsg').html('Sucessfully sending the mail');
-				}else if(result.output=='notsuccess'){
-					//$('#submit').removeAttr('disabled');
-					$('#errorMsg').html('mail is not sending');
+				}else if(result.output=='Not Found The Email'){
+					$('#errorMsg').html('Do not match email');
 				}else if(result.output=='server-error'){
-					$('#submit').removeAttr('disabled');
 					$('#errorMsg').html('mail is not sending');
 				}
 			}

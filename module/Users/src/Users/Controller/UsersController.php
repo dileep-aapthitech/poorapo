@@ -347,7 +347,7 @@ class UsersController extends AbstractActionController
 				}
 			}else{
 				$result = new JsonModel(array(					
-					'output' 	=> 'Not Found The Email ',
+					'output' 	=> 'Not Found The Email',
 				));
 			}
 			return $result;
