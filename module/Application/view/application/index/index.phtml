@@ -18,7 +18,7 @@
 									<?php if(isset($_SESSION['user'])){
 										if($currentMIssueData["like_value"]==1){
 									?>
-									<span id="likeStatus<?php echo $key; ?>"><a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(0,<?php echo $key; ?>,<?php echo $currentMIssueData["issue_id"]; ?>,<?php echo $currentMIssueData["total_likes"]; ?>);">DisLike</a></span>
+									<span id="likeStatus<?php echo $key; ?>"><a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(0,<?php echo $key; ?>,<?php echo $currentMIssueData["issue_id"]; ?>,<?php echo $currentMIssueData["total_likes"]; ?>);">Dislike</a></span>
 									<?php }else{?>
 									<span id="likeStatus<?php echo $key; ?>"><a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(1,<?php echo $key; ?>,<?php echo $currentMIssueData["issue_id"]; ?>,<?php echo $currentMIssueData["total_likes"]; ?>);">Like</a></span>
 									<?php }}else{?>

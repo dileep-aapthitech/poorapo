@@ -728,6 +728,8 @@ function changePassword(regAuth){
 	}else{
 		$('#errorMsg').html('');
 		$('#sucessMsg').html('');
+		var image=BASE_PATH+'/images/ajax-loader.gif';
+			$('#reload').html('<img src='+image+' />'); 
 		if(passwrd==cnfpwrd){
 			if(regAuth=='admin'){
 				var  url =   ADMIN_BASE_URL+'/admin/check-password';
@@ -740,6 +742,7 @@ function changePassword(regAuth){
 				data:{oldpasswrd:oldpasswrd,userId:userId},
 				success: function(data){
 					if(data.output=='success'){
+						$('#reload').html('');
 						if(regAuth=='admin'){
 								var  url2 =   ADMIN_BASE_URL+'/admin/change-password';
 						} else if(regAuth=='user'){
@@ -763,6 +766,7 @@ function changePassword(regAuth){
 							}
 						});					
 					}else{
+						$('#reload').html('');
 						$('#errorMsg').html('old password is wrong');
 					}
 				}
@@ -771,10 +775,13 @@ function changePassword(regAuth){
 			$('#errorMsg').html('Do not match the new and confirm passwords');
 			//$('#oldPwdError').html('Enter old Password');
 			$("#confirmPassword").focus();
+			$('#reload').html('');
 		}
 	}		
 }	
 function forgetPassword(){	
+	$('#errorMsg').html('');
+	$('#sucessMsg').html('');
     var flag=true;
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
@@ -789,12 +796,15 @@ function forgetPassword(){
 	if(flag==false){ 
 		return false;
 	}else{	
+		var image=BASE_PATH+'/images/ajax-loader.gif';
+		$('#reload').html('<img src='+image+' />'); 
 		var  url =  BASE_URL+'/users/send-password-reset-url';
 		$.ajax({
 			type:'POST',
 			url:   url,
 			data:{email:emailcheck},
 			success: function(result){
+				$('#reload').html(''); 
 				if(result.output=='success'){	
 					$('#sucessMsg').html('Sucessfully sending the mail');
 				}else if(result.output=='Not Found The Email'){
@@ -808,18 +818,30 @@ function forgetPassword(){
 }
 function resetPassword(regAuth){	
 	var flag=true;
+	$('#errorMsg').html('');
+	$('#sucessMsg').html('');
 	var token=$('#hidToken').val();	
 	var passwrd=$("#newPassword").val();
-	var cnfpwrd=$("#confirmPassword").val();		
-	if(passwrd==""&& cnfpwrd==""){
-		$('#newPwdError').html('Your Confirm Password do not match!');
-		flag=false;
+	var cnfpwrd=$("#confirmPassword").val();
+	if(passwrd==""){
+		$('#newPwdError').html('Enter the password');
 		$("#newPassword").focus();
+		flag=false;
+	}else{
+		$('#newPwdError').html('');
 	}		
+	if(cnfpwrd==""){
+		$('#confirmPwdError').html('Enter the confirm password');
+		$("#confirmPassword").focus();
+		flag=false;
+	}else{
+		$('#confirmPwdError').html('');
+	}
 	if(flag==false){ 
 			return false;
 	}else{	
-		$('#errorMsg').html('');
+		var image=BASE_PATH+'/images/ajax-loader.gif';
+		$('#reload').html('<img src='+image+' />');
 		if(passwrd==cnfpwrd){
 		var  url = BASE_URL+'/users/setnepassword';
 			$.ajax({
@@ -827,6 +849,7 @@ function resetPassword(regAuth){
 				url:url,
 				data:{cnfpwrd:cnfpwrd,token:token},
 				success: function(data){
+					$('#reload').html(''); 
 					if(data.output=='success'){	
 						$('#sucessMsg').html('Sucessfully reset the password');
 							window.location=BASE_URL;
@@ -836,6 +859,7 @@ function resetPassword(regAuth){
 				}
 			});
 		}else{
+			$('#reload').html(''); 
 			$('#errorMsg').html('Do not match the new and confirm passwords');
 			$("#confirmPassword").focus();
 		}
@@ -848,7 +872,7 @@ function addLikeCount(status,key,issueId,totalLikes){
 		}else{
 			if(status==1){
 				pTotalLikes=totalLikes+1;
-				$('#likeStatus'+key).html('<a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(0,'+key+','+issueId+','+pTotalLikes+');">UnLike</a>');
+				$('#likeStatus'+key).html('<a href="JavaScript:void(0);" class="btn btn-primary btn-xs" onclick="addLikeCount(0,'+key+','+issueId+','+pTotalLikes+');">Dislike</a>');
 				$('#likeCount'+key).html('<span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>'+pTotalLikes);
 			}else{
 				pTotalLikes=totalLikes-1;
