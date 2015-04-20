@@ -1,5 +1,17 @@
 <?
-   if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=''){?>
+	if($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='4'){?>
+	<script>
+		window.location = BASE_URL+'/admin/dashboard';
+	</script>
+   <? } else if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='1'){?>
+	<script>
+		window.location = BASE_URL;
+	</script>
+  <? } else if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='2'){?>
+	<script>
+		window.location = BASE_URL;
+	</script>
+ <? }else if(isset($_SESSION['user']['user_type_id']) && $_SESSION['user']['user_type_id']=='3'){?>
 	<script>
 		window.location = BASE_URL;
 	</script>
