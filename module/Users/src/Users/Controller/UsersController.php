@@ -68,7 +68,7 @@ class UsersController extends AbstractActionController
 	}
 	public function checkEmailExistsAction(){
 		if(isset($_POST['user_email']) && $_POST['user_email']!=''){
-			$existsEmail=$this->getUserTable()->checkEmail($_POST['user_email']);
+			$existsEmail=$this->getUserTable()->fpcheckEmail($_POST['user_email']);
 			if($existsEmail!=0){
 				$result = new JsonModel(array(					
 					'output' => 'exists',

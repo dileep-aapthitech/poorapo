@@ -51,6 +51,7 @@ function validateReg(typeTab){
 		}	
 		if(flag == false){
 			$("#hid_tab_1").val('1');
+			$("#hidCheckValue").val('0');
 			tab1flag = false;
 			return false;
 		}else{	
@@ -460,6 +461,7 @@ function allFormValdation(){
 	if(flag==false){		
 		return false;
 	}else{
+		$("#hidCheckValue").val('0');
 		return true;
 	}
 }

@@ -131,7 +131,7 @@ class UserTable
 		$select = $this->tableGateway->getSql()->select();			
 		$select->where('email_id="'.$email.'"');
 		$resultSet = $this->tableGateway->selectWith($select);
-		$row = $resultSet->current();
+		$row = $resultSet->count();
 		return $row;
 	}
 	
