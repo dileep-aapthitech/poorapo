@@ -122,7 +122,7 @@ class UsersController extends AbstractActionController
 		$result='';		
 		if(isset($_POST['countryid'])&& $_POST['countryid']!=""){
 				$colleges=$this->getCollegeTable()->getLocationBasedColleges($_POST['countryid'],$_POST['stateid'],$_POST['distid']);
-				$html.='<option value="">Select a Colleges</option>';
+				$html.='<option value="">Select College</option>';
 				foreach($colleges as $college){
 					$html.='<option value="'.$college->college_id.'">'.$college->college_name.'</option>';
 				}
