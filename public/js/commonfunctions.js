@@ -703,6 +703,8 @@ function loginValidations(){
 function changePassword(regAuth){	
 	$('#errorMsg').html('');
 	$('#sucessMsg').html('');
+	$("#sucessdiv").hide();
+	$("#errordiv").hide();
 	var flag=true;
 	var userId=$("#hidUserId").val();
 	var oldpasswrd=$("#oldPassword").val();		
@@ -759,28 +761,26 @@ function changePassword(regAuth){
 							url: url2, 
 							data:{cnfpwrd:cnfpwrd,userId:userId},
 							success: function(data){
-							
-								/*if(regAuth=='admin'){
-									window.location=ADMIN_BASE_URL+'/admin/user-lists';
-								}else if(regAuth=='user'){
-									window.location=BASE_URL+'/users/change-password';
-								}*/
-								//alert('change_passwordSucessMsg');return false;
 								$("#oldPassword").val('');
 								$("#newPassword").val('');
 								$("#confirmPassword").val('');
+								$("#errordiv").hide();
 								$("#sucessdiv").show();
-								$('#sucessMsg').html('change password sucessfully updated');
+								$('#sucessMsg').html('Change password sucessfully updated.');
 							
 							}
 						});					
 					}else{
+						$("#sucessdiv").hide();
+						$("#errordiv").show();
 						$('#reload').html('');
-						$('#errorMsg').html('old password is wrong');
+						$('#errorMsg').html('Old password is wrong');
 					}
 				}
 			});			
 		}else{
+			$("#sucessdiv").hide();
+			$("#errordiv").show();
 			$('#errorMsg').html('Do not match the new and confirm passwords');
 			$("#confirmPassword").focus();
 			$('#reload').html('');
@@ -788,15 +788,21 @@ function changePassword(regAuth){
 	}		
 }	
 function forgetPassword(){	
+	$("#sucessdiv").hide();
+	$("#errordiv").hide();
 	$('#errorMsg').html('');
 	$('#sucessMsg').html('');
     var flag=true;
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
-		$('#emailError').html('Enter a email');
+		//$('#emailError').html('Enter a email');
+		$("#errordiv").show();
+		$('#errorMsg').html('Enter a email');
 		flag=false;
 	}else if(checkEmail(emailcheck)==false){
-		$('#emailError').html('Enter valid email');
+		//$('#emailError').html('Enter valid email');
+		$("#errordiv").show();
+		$('#errorMsg').html('Enter valid email');
 		flag=false;
 	}else{
 		$('#emailError').html('');
@@ -817,9 +823,11 @@ function forgetPassword(){
 					$("#sucessdiv").show();
 					$('#sucessMsg').html('Sucessfully sending the mail');
 				}else if(result.output=='Not Found The Email'){
+					$("#errordiv").show();
 					$('#errorMsg').html('Do not match email');
 				}else if(result.output=='server-error'){
-					$('#errorMsg').html('mail is not sending');
+					$("#errordiv").show();
+					$('#errorMsg').html('Mail is not sending');
 				}
 			}
 		});			
@@ -829,6 +837,8 @@ function resetPassword(regAuth){
 	var flag=true;
 	$('#errorMsg').html('');
 	$('#sucessMsg').html('');
+	$("#errordiv").hide();
+	$("#errordiv").hide();
 	var token=$('#hidToken').val();	
 	var passwrd=$("#newPassword").val();
 	var cnfpwrd=$("#confirmPassword").val();
@@ -864,12 +874,14 @@ function resetPassword(regAuth){
 						$('#sucessMsg').html('Sucessfully reset the password');
 							window.location=BASE_URL;
 					}else{
-						$('#errorMsg').html('All ready reset the password');
+						$("#sucessdiv").show();
+						$('#sucessMsg').html('All ready reset the password');
 					}
 				}
 			});
 		}else{
 			$('#reload').html(''); 
+			$("#errordiv").show();
 			$('#errorMsg').html('Do not match the new and confirm passwords');
 			$("#confirmPassword").focus();
 		}
