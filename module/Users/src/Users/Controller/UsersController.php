@@ -245,7 +245,7 @@ class UsersController extends AbstractActionController
 			$userDetails = $usersTable->checkEmailExists($_POST);
 			if($userDetails!=''){
 				$user_session = new Container('user');
-				$user_session->username=$userDetails->user_name;
+				$user_session->username=$userDetails->first_name;
 				$user_session->email=$userDetails->email_id;
 				$user_session->user_id=$userDetails->user_id;
 				$user_session->user_type=$userDetails->user_type_id;
