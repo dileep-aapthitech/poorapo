@@ -119,5 +119,7 @@ CREATE TABLE `tbl_shares` (
   PRIMARY KEY (`shared_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1
 
+ALTER TABLE `poraapo_db`.`tbl_user_education_info` ADD COLUMN `entrance_exam_1` VARCHAR(150) NULL AFTER `entrance_rank`, ADD COLUMN `which_year_1` VARCHAR(150) NULL AFTER `entrance_exam_1`, ADD COLUMN `entrance_rank_1` VARCHAR(150) NULL AFTER `which_year_1`, ADD COLUMN `entrance_exam_2` VARCHAR(150) NULL AFTER `entrance_rank_1`, ADD COLUMN `which_year_2` VARCHAR(150) NULL AFTER `entrance_exam_2`, ADD COLUMN `entrance_rank_2` VARCHAR(150) NULL AFTER `which_year_2`, ADD COLUMN `entrance_exam_3` VARCHAR(150) NULL AFTER `entrance_rank_2`, ADD COLUMN `which_year_3` VARCHAR(150) NULL AFTER `entrance_exam_3`, ADD COLUMN `entrance_rank_3` VARCHAR(150) NULL AFTER `which_year_3`; 
+
 
 
