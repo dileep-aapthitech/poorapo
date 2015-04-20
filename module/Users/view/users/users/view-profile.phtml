@@ -1,11 +1,16 @@
-	<div class="container reg_w_12 min_height">
-	<div class="panel panel panel-default mar_t">
-		<?php if(isset($this->output) && $this->output=='success'){?>
+	<div class="container reg_w_12 min_height"> <br/>
+	<?php if(isset($_GET['suc']) && $_GET['suc']=='udt'){?>
 			<div class="alert alert-dismissible alert-success">
 				<button type="button" class="close" data-dismiss="alert">×</button>
-				<strong>Sent Successfully</strong>
+				<strong>Updated Successfully.</strong>
 			</div>
-		<?}?>
+		<?}else if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
+			<div class="alert alert-dismissible alert-success">
+				<button type="button" class="close" data-dismiss="alert">×</button>
+				<strong>Registration Successfully.</strong>
+			</div>
+		<? } ?>
+	<div class="panel panel panel-default mar_t">		
 		<? if(isset($_SESSION['user'])){
 				$base_user_id = base64_encode($_SESSION['user']['user_id']);
 			}?>
