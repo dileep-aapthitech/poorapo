@@ -759,6 +759,7 @@ function changePassword(regAuth){
 							url: url2, 
 							data:{cnfpwrd:cnfpwrd,userId:userId},
 							success: function(data){
+							
 								/*if(regAuth=='admin'){
 									window.location=ADMIN_BASE_URL+'/admin/user-lists';
 								}else if(regAuth=='user'){
@@ -768,7 +769,9 @@ function changePassword(regAuth){
 								$("#oldPassword").val('');
 								$("#newPassword").val('');
 								$("#confirmPassword").val('');
+								$("#sucessdiv").show();
 								$('#sucessMsg').html('change password sucessfully updated');
+							
 							}
 						});					
 					}else{
@@ -779,7 +782,6 @@ function changePassword(regAuth){
 			});			
 		}else{
 			$('#errorMsg').html('Do not match the new and confirm passwords');
-			//$('#oldPwdError').html('Enter old Password');
 			$("#confirmPassword").focus();
 			$('#reload').html('');
 		}
@@ -811,7 +813,8 @@ function forgetPassword(){
 			data:{email:emailcheck},
 			success: function(result){
 				$('#reload').html(''); 
-				if(result.output=='success'){	
+				if(result.output=='success'){
+					$("#sucessdiv").show();
 					$('#sucessMsg').html('Sucessfully sending the mail');
 				}else if(result.output=='Not Found The Email'){
 					$('#errorMsg').html('Do not match email');
@@ -857,6 +860,7 @@ function resetPassword(regAuth){
 				success: function(data){
 					$('#reload').html(''); 
 					if(data.output=='success'){	
+						$("#sucessdiv").show();
 						$('#sucessMsg').html('Sucessfully reset the password');
 							window.location=BASE_URL;
 					}else{
