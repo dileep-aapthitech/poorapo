@@ -682,10 +682,10 @@ function loginValidations(){
 				success: function(response){
 					$('#reload').html('');
 					if(response.output=='success'){
-						if(response.user_type_id==1){
+						if(response.user_type_id==4){
+							window.location=BASE_URL+"/admin/dashboard";							
+						}else {
 							window.location=BASE_URL;
-						}else if(response.user_type_id==3){
-							window.location=BASE_URL+"/admin/dashboard";
 						}
 					}else{
 						$('#errorMsg').html('Enter username and password are wrong');
