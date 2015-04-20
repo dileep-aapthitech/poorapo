@@ -2,7 +2,29 @@
 	$header=$this->action('Application\Controller\IndexController', 'headerAction',array('20','10'));
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
-	$footer = $header->headerarray['footer'];
+	$footer = $header->headerarray['footer'];	
+	$loginActive = ''; $paymentActive = ''; $contactActive=''; $homeActive='';
+	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+		if($_SERVER['REQUEST_URI']=='/users/login'){
+			$loginActive='active';		
+		}else if($_SERVER['REQUEST_URI']=='/cms/Refunds-Payments-13'){
+			$paymentActive ='active';
+		}else if($_SERVER['REQUEST_URI']=='/users/contact-us'){
+			$contactActive ='active';
+		}else{
+			$homeActive ='active';
+		}
+	}else{
+		if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/login'){
+			$loginActive='active';		
+		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/cms/Refunds-Payments-13'){
+			$paymentActive ='active';
+		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/contact-us'){
+			$contactActive ='active';
+		}else{
+			$homeActive ='active';
+		}
+	}
 	
 ?>
 <?php
@@ -50,7 +72,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
-            <li class="active"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories<span class="caret"></span></a>
+            <li class="<? echo $homeActive;?>"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Categories<span class="caret"></span></a>
 			<ul class="dropdown-menu" role="menu"><?php if( isset($categoriesArr) )
 					{
 						foreach( $categoriesArr as $key=>$currentCategoryData )
@@ -70,8 +92,8 @@
 						?><li><a href="<?php echo $catResultsUrl; ?>"><?php echo trim($currentCategoryData["category_name"]); ?></a></li><?php }
 					}?></ul>
 			</li>
-			<li><a href="/cms/Refunds-Payments-13">Payments</a></li>
-			<li><a href="<?php echo $baseUrl; ?>/users/contact-us">Contact</a></li>
+			<li class="<? echo $paymentActive;?>"><a href="<?php echo $baseUrl; ?>/cms/Refunds-Payments-13">Payments</a></li>
+			<li class="<? echo $contactActive;?>"><a href="<?php echo $baseUrl; ?>/users/contact-us">Contact</a></li>
 			<?php if(isset($_SESSION['user'])){?>
 			
 			<?php if($_SESSION['user']['user_type'] == 3){  ?>
@@ -85,7 +107,7 @@
              </ul>
 			</li>
 			<?}}else{?>
-            <li><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
+            <li class="<? echo $loginActive;?>"><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
 			<li><a href="<?php echo $baseUrl; ?>/users/register" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Register</span></a></li>
 			<?}?>
 		  </ul>
