@@ -40,6 +40,8 @@ use Users\Model\Universities;
 use Users\Model\UniversitiesTable;
 use Users\Model\Colleges;
 use Users\Model\CollegesTable;
+use Users\Model\Payment;
+use Users\Model\PaymentTable;
 
 
 class Module implements 
@@ -82,7 +84,8 @@ class Module implements
             	'Users\Model\BacheloreDegreesFactory'=>'Users\Factory\Model\BacheloreDegreesTableFactory',	
             	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',
             	'Users\Model\SpecializationFactory'=>'Users\Factory\Model\SpecializationTableFactory',
-            	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory'
+            	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory',
+            	'Users\Model\PaymentFactory'=>'Users\Factory\Model\PaymentTableFactory'
             	
 			),			
         );

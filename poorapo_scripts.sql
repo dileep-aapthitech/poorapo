@@ -121,5 +121,18 @@ CREATE TABLE `tbl_shares` (
 
 ALTER TABLE `poraapo_db`.`tbl_user_education_info` ADD COLUMN `entrance_exam_1` VARCHAR(150) NULL AFTER `entrance_rank`, ADD COLUMN `which_year_1` VARCHAR(150) NULL AFTER `entrance_exam_1`, ADD COLUMN `entrance_rank_1` VARCHAR(150) NULL AFTER `which_year_1`, ADD COLUMN `entrance_exam_2` VARCHAR(150) NULL AFTER `entrance_rank_1`, ADD COLUMN `which_year_2` VARCHAR(150) NULL AFTER `entrance_exam_2`, ADD COLUMN `entrance_rank_2` VARCHAR(150) NULL AFTER `which_year_2`, ADD COLUMN `entrance_exam_3` VARCHAR(150) NULL AFTER `entrance_rank_2`, ADD COLUMN `which_year_3` VARCHAR(150) NULL AFTER `entrance_exam_3`, ADD COLUMN `entrance_rank_3` VARCHAR(150) NULL AFTER `which_year_3`; 
 
+/* Payments */
+CREATE TABLE `tbl_payments` (
+  `payment_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` int(10) NOT NULL,
+  `name_of_payer` varchar(150) DEFAULT NULL,
+  `mobile_number` varchar(20) DEFAULT NULL,
+  `payment_amount` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`payment_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1
+
 
 
