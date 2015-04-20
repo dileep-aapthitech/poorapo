@@ -67,6 +67,8 @@ class UserTable
 	public function checkEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
+		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
 		$select->where('tbl_users.email_id="'.$userInfo['inputEmail'].'"');
 		$select->where('tbl_users.password="'.md5($userInfo['password']).'"');
 		$resultSet = $this->tableGateway->selectWith($select);
