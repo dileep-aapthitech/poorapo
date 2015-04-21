@@ -37,16 +37,21 @@ function validateReg(typeTab){
 		}else{
 			$("#user_type_req").html('');
 		}
-		if(userEmail==""){
-			$("#user_email_req").html(Requried);
-			flag=false;
-		}else if(checkEmail(userEmail)==false){
-			$("#user_email_req").html(email_wrong_formate);
-			flag=false;
-		}else if($("#hidCheckValue").val()==1){
-			$("#user_email_req").html(email_already_exixts);
-			flag=false;
+		if(("#hid_user_id").val()==""){
+			if(userEmail==""){
+				$("#user_email_req").html(Requried);
+				flag=false;
+			}else if(checkEmail(userEmail)==false){
+				$("#user_email_req").html(email_wrong_formate);
+				flag=false;
+			}else if(checkEmailVaild()==1){
+				$("#user_email_req").html(email_already_exixts);
+				flag=false;
+			}else{
+				$("#user_email_req").html('');
+			}
 		}else{
+			$("#hidCheckValue").val('0');
 			$("#user_email_req").html('');
 		}
 		if($("#user_password").val()==''){
@@ -308,16 +313,21 @@ function allFormValdation(){
 	}else{
 		$("#user_type_req").html('');
 	}
-	if(userEmail==""){
-		$("#user_email_req").html(Requried);
-		flag=false;
-	}else if(checkEmail(userEmail)==false){
-		$("#user_email_req").html(email_wrong_formate);
-		flag=false;
-	}else if($("#hidCheckValue").val()==1){
-		$("#user_email_req").html(email_already_exixts);
-		flag=false;
+	if(("#hid_user_id").val()==""){
+		if(userEmail==""){
+			$("#user_email_req").html(Requried);
+			flag=false;
+		}else if(checkEmail(userEmail)==false){
+			$("#user_email_req").html(email_wrong_formate);
+			flag=false;
+		}else if(checkEmailVaild()==1){
+			$("#user_email_req").html(email_already_exixts);
+			flag=false;
+		}else{
+			$("#user_email_req").html('');
+		}
 	}else{
+		$("#hidCheckValue").val('0');
 		$("#user_email_req").html('');
 	}
 	if($("#user_password").val()==''){
@@ -578,25 +588,32 @@ function ajaxData(){
 	}
 }
 function checkEmailVaild(){
-	var emailcheck = $("#user_email").val();
-	if(emailcheck!==''){
-	if(checkEmail(emailcheck)==false)
-	{
-		alert('Please email format not correct');return false;
-	}
-	else{	
-		$.ajax({
-			type:'POST',
-			url:  BASE_URL+'/users/check-email-exists',
-			data:{user_email:emailcheck},
-			success: function(data){
-				if(data.output=='exists'){
-					$("#hidCheckValue").val('1');
-				}
+	if( $("#hid_user_id").val() == ''){
+		var emailStatus = 0;
+		var emailcheck = $("#user_email").val();
+		if(emailcheck!==''){
+			if(checkEmail(emailcheck)==false)
+			{
+				alert('Please email format not correct'); emailStatus=1; return emailStatus;
 			}
-		});
+			else{	
+				$.ajax({
+					type:'POST',
+					url:  BASE_URL+'/users/check-email-exists',
+					data:{user_email:emailcheck},
+					success: function(data){
+						if(data.output=='exists'){
+							$("#hidCheckValue").val('1');
+							emailStatus = 1;
+						}else{
+							emailStatus = 0;
+						}
+					}
+				});
+			}
+		}
+		return emailStatus;
 	}
-  }
 }
 function switchinUser(){
 	var userCheck = $("#user_type").val();
