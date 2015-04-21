@@ -195,6 +195,7 @@ function validateReg(typeTab){
 		if(usertype==2){
 			if($("#user_emp_ctc").val()==''){
 				$("#user_emp_ctc_req").html(Requried);
+				tab2flag = false;
 				flag = false;
 			}else{
 				$("#user_emp_ctc_req").html('');
