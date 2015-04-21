@@ -37,7 +37,7 @@ function validateReg(typeTab){
 		}else{
 			$("#user_type_req").html('');
 		}
-		if(("#hid_user_id").val()==""){
+		if($("#hid_user_id").val()==""){
 			if(userEmail==""){
 				$("#user_email_req").html(Requried);
 				flag=false;
@@ -313,7 +313,7 @@ function allFormValdation(){
 	}else{
 		$("#user_type_req").html('');
 	}
-	if(("#hid_user_id").val()==""){
+	if($("#hid_user_id").val()==""){
 		if(userEmail==""){
 			$("#user_email_req").html(Requried);
 			flag=false;
@@ -613,8 +613,6 @@ function checkEmailVaild(){
 			}
 		}
 		return emailStatus;
-	}else{
-		alert();
 	}
 }
 function switchinUser(){
