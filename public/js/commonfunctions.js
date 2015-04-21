@@ -22,10 +22,8 @@ function checkEmailVaild(){
 		if(emailcheck!==''){
 			if(checkEmail(emailcheck)==false)
 			{
-				$("#user_email_req").html(email_wrong_formate); emailStatus=1; return emailStatus;
-			}
-			else{	
-				$("#user_email_req").html('');
+				$("#user_email_req").html(email_wrong_formate); emailStatus=1; return false;
+			}else{					
 				$.ajax({
 					type:'POST',
 					url:  BASE_URL+'/users/check-email-exists',
