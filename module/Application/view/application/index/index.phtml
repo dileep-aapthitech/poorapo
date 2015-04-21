@@ -65,7 +65,7 @@
 				<?php if(isset($_SESSION['user'])){ ?>
 				<input type="text" class="form-control" id="fromMail" name="fromMail" value="<?php echo $_SESSION['user']['email']; ?>" readonly>
 				<?php }else{ ?>
-				<input type="text" class="form-control" id="fromMail" name="fromMail"  placeholder="Enter sender mails">
+				<input type="text" class="form-control" id="fromMail" name="fromMail"  placeholder="Enter from mail">
 				<?php } ?>
 				</div>
 		</div>
@@ -73,7 +73,7 @@
 			<label for="inputcname" class="col-sm-3 control-label">To</label>
 				<div class="col-sm-8">
 				<span class="error_msg_disp" id="errorSendEmail"></span>
-				<input type="text" class="form-control" id="email_send" name="email_send"  placeholder="Enter sender mails">
+				<input type="text" class="form-control" id="email_send" name="email_send"  placeholder="Enter to mails">
 				</div>
 		</div>
 		<div class="form-group">
@@ -112,7 +112,7 @@ $( "a[id^='shares-']" ).each(function(index) {
 		var toMail=$('#fromMail').val();
 		var message=$('#message_send').val();
 		if(toMail==""){
-			$("#errorfromEmail").html('Enter the email ');
+			$("#errorfromEmail").html('Required');
 			flag=false;
 		}else if(checkEmail(toMail)==false){
 			$('#errorfromEmail').html('Enter valid to email');
@@ -121,13 +121,13 @@ $( "a[id^='shares-']" ).each(function(index) {
 			$("#errorfromEmail").html('');
 		}
 		if(sendMail==""){
-			$("#errorSendEmail").html('Enter the sender emails');
+			$("#errorSendEmail").html('Required');
 			flag=false;
 		}else{
 			$('#errorSendEmail').html('');
 		}
 		if(message==""){
-			$("#errorSendMsg").html('Enter the message');
+			$("#errorSendMsg").html('Required');
 			flag=false;
 		}else{
 			$("#errorSendMsg").html('');

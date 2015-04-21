@@ -677,7 +677,7 @@ function loginValidations(){
 	var userEmail=$('#email').val();
 	var userPassword=$('#password').val();
 	if(userEmail==''){
-		$('#emailError').html('Enter a email id');
+		$('#emailError').html('Required');
 		flag=false;
 	}else if(checkEmail(userEmail)==false){
 		$('#emailError').html('Enter valid email id');
@@ -686,7 +686,7 @@ function loginValidations(){
 		$('#emailError').html('');
 	}
 	if(userPassword==''){
-		$('#passwordError').html('Enter a password');
+		$('#passwordError').html('Required');
 		flag=false;
 	}else{
 		$('#passwordError').html('');
@@ -728,21 +728,21 @@ function changePassword(regAuth){
 	var passwrd=$("#newPassword").val();
 	var cnfpwrd=$("#confirmPassword").val();
 	if(oldpasswrd==""){
-		$('#oldPwdError').html('Enter old Password');
+		$('#oldPwdError').html('Required');
 		$("#oldPassword").focus();
 		flag=false;
 	}else{
 		$('#oldPwdError').html('');
 	}		
 	if(passwrd==""){
-		$('#newPwdError').html('Enter the password');
+		$('#newPwdError').html('Required');
 		$("#newPassword").focus();
 		flag=false;
 	}else{
 		$('#newPwdError').html('');
 	}		
 	if(cnfpwrd==""){
-		$('#confirmPwdError').html('Enter the confirm password');
+		$('#confirmPwdError').html('Required');
 		$("#confirmPassword").focus();
 		flag=false;
 	}else{
@@ -813,13 +813,13 @@ function forgetPassword(){
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
 		//$('#emailError').html('Enter a email');
-		$("#errordiv").show();
-		$('#errorMsg').html('Enter a email');
+		//$("#errordiv").show();
+		$('#emailError').html('Required');
 		flag=false;
 	}else if(checkEmail(emailcheck)==false){
 		//$('#emailError').html('Enter valid email');
-		$("#errordiv").show();
-		$('#errorMsg').html('Enter valid email');
+		//$("#errordiv").show();
+		$('#emailError').html('Enter valid email');
 		flag=false;
 	}else{
 		$('#emailError').html('');
@@ -860,14 +860,14 @@ function resetPassword(regAuth){
 	var passwrd=$("#newPassword").val();
 	var cnfpwrd=$("#confirmPassword").val();
 	if(passwrd==""){
-		$('#newPwdError').html('Enter the password');
+		$('#newPwdError').html('Required');
 		$("#newPassword").focus();
 		flag=false;
 	}else{
 		$('#newPwdError').html('');
 	}		
 	if(cnfpwrd==""){
-		$('#confirmPwdError').html('Enter the confirm password');
+		$('#confirmPwdError').html('Required');
 		$("#confirmPassword").focus();
 		flag=false;
 	}else{
