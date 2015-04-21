@@ -7,7 +7,7 @@ function regTab1(tabid,stage){
 	if(closeTadId=='7'){
 		$("#tab_"+closeTadId+"_hide").slideUp("slow");		
 		$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
-		$('#opentabId').val(tabid);
+		$('#opentabId').val(0);
 	}else{
 		$("#tab_"+closeTadId+"_hide").slideUp("slow");
 		$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
