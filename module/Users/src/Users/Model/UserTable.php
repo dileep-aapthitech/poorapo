@@ -54,7 +54,6 @@ class UserTable
     {
 		if($user_id!=""){
 			$data = array(
-				'email_id' 		=> $users['user_email'],  		
 				'user_type_id'  	=> $users['user_type'],  	
 			);
 			$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
