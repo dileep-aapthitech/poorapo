@@ -162,22 +162,29 @@ class UsersController extends AbstractActionController
 					if($userDetailsInfo!=0){
 						$usersTable=$this->getUserTable();
 						$userDetails = $usersTable->getUser($user_id);
-						if($userDetails!=''){
-							$user_session = new Container('user');
-							$user_session->username=$userDetails->first_name;
-							$user_session->email=$userDetails->email_id;
-							$user_session->user_id=$userDetails->user_id;
-							$user_session->user_type=$userDetails->user_type_id;
+						if($userDetails!=''){						
 							$base_user_id =  base64_encode($userDetails->user_id);
 							include('public/PHPMailer_5.2.4/sendmail.php');	
 							$suc = 'reg';
 							global $regSubject;				
 							global $regMessage;
+							$username = $userDetails->first_name;
+							$username = $userDetails->first_name;
 							$to=$userDetails->email_id;
-							if(sendMail($to,$regSubject,$regMessage)){
-								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
+							$regMessage = str_replace("<FULLNAME>","$username", $regMessage);
+							if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+								$regMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $regMessage);
 							}else{
-								return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
+								$regMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $regMessage);
+							}
+							if(sendMail($to,$regSubject,$regMessage)){
+								if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+									return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
+								}else{
+									return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
+								}
+							}else{
+								return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
 							}							
 						}						
 					}
@@ -238,6 +245,39 @@ class UsersController extends AbstractActionController
 				'baseUrl' 			=> $baseUrl,
 				'basePath' 			=> $basePath,
 			));	
+		}
+	}
+	public function regAuthenticationAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$userid=base64_decode($_GET['uid']);		
+		$userAuth=$this->getUserTable()->updateUserRegAuth($userid);		
+		$userDetails=$this->getUserTable()->checkUserStatus($userid);		
+		if($userDetails!=''){
+			$to=$userDetails->email_id;
+			$userName=ucfirst($userDetails->first_name);
+			$user_session = new Container('user');
+			$user_session->username=$userDetails->first_name;
+			$user_session->email=$userDetails->email_id;
+			$user_session->user_id=$userDetails->user_id;
+			$user_session->user_type=$userDetails->user_type_id;
+			include('public/PHPMailer_5.2.4/sendmail.php');	
+			global $completeRegisterSubject;				
+			global $completeRegisterMessage;
+			$base_user_id=base64_encode($userid);
+			$completeRegisterMessage = str_replace("<FULLNAME>",$userName, $completeRegisterMessage);
+			if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+				$completeRegisterMessage = str_replace("<ClickeHere>","http://" . $_SERVER['HTTP_HOST'], $completeRegisterMessage);	
+			}else{
+				$completeRegisterMessage = str_replace("<ClickeHere>",$baseUrl, $completeRegisterMessage);	
+			}
+			if(sendMail($to,$completeRegisterSubject,$completeRegisterMessage)){		
+				return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
+			}else{
+				return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
+			}
 		}
 	}
 	public function loginAction()

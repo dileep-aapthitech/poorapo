@@ -50,7 +50,8 @@ $regMessage='<body>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
 						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
-						<tr><td>Successfully register with Poraapo.com</td></tr>
+						<tr><td><ACTIVATIONLINK></td></tr>
+						<tr><td>Please click on this link to verfiy your account.</td></tr>
 						<tr><td>&nbsp;</td></tr>
 						<tr><td>Sincerely,</td></tr>
 						<tr><td>Poraapo.com Team</td></tr>
@@ -65,6 +66,36 @@ Regards,<br/>
 Poraapo.com
 </body>';
 /* end register subject*/
+global $completeRegisterSubject;				
+global $completeRegisterMessage;	
+$completeRegisterSubject="Welcome to Poraapo.com";
+$completeRegisterMessage='<body>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">
+			<tr><td bgcolor="#178acc ">
+				<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">
+				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+			</tr>
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
+						<tr><td><ClickeHere></td></tr>
+						<tr><td>Successfully registered with Poraapo.com, Thanks for joining us.</td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td>Sincerely,</td></tr>
+						<tr><td>Poraapo.com Team</td></tr>
+					</table>
+				</td>
+			</tr>  
+			</table></td>
+		</tr> 
+	</table>
+<br/><br/>
+Regards,<br/>
+Poraapo.com
+</body>';
 /* register subject */
 global $sentShareMsgSubject;
 global $sentShareMessage;

@@ -34,6 +34,14 @@ class UserTable
 		
 		return $row;
 	}
+	public function updateUserRegAuth($userid){
+		$data = array(
+				'user_id' 	=>$userid,
+				'status'  	=>'1',
+				);
+		$updateuserid=$this->tableGateway->update($data, array('user_id' => $data['user_id']));
+		return 	$updateuserid;			
+	}
 	public function getUserDetails($user_id){
 		$select = $this->tableGateway->getSql()->select();		
 		$select	->join('tbl_user_personal_info', 'tbl_users.user_id=tbl_user_personal_info.user_id',array('*'),'left');
@@ -58,12 +66,21 @@ class UserTable
 				'password' 		=> $password, 	
 				'user_type_id'  	=> $users['user_type'],  	
 				'created_at' 	=> date('Y-m-d H:i:s'),   
-				'status' 		=> 1,  		
+				'status' 		=> 0,  		
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
 		}					
     }	
+	public function checkUserStatus($userid){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->where('tbl_users.user_id="'.$userid.'"');
+		$select->where('tbl_users.status="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current();
+	}
 	public function checkEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
@@ -71,6 +88,7 @@ class UserTable
 		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
 		$select->where('tbl_users.email_id="'.$userInfo['inputEmail'].'"');
 		$select->where('tbl_users.password="'.md5($userInfo['password']).'"');
+		$select->where('tbl_users.status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
 		return $row;
