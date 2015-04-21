@@ -45,7 +45,7 @@
 					<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_email_req"></span>
-						<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?>" <? if(isset($details->email_id) && $details->email_id!='') {?> readonly="readonly" <?}?> onblur="return checkEmailVaild();">
+						<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="<? if(isset($details->email_id) && $details->email_id!='') {echo $details->email_id;}else{}?>" <? if(isset($details->email_id) && $details->email_id!='') {?> readonly="readonly" <?}?> onmouseout="return checkEmailVaild();">
 					</div>
 				</div>
 				<input type="hidden" id="hidCheckValue" name="hidCheckValue" value='0'>

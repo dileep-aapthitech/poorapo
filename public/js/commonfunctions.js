@@ -16,6 +16,31 @@ function regTab1(tabid,stage){
 		$('#opentabId').val(tabid);
 	}
 }
+function checkEmailVaild(){
+	if( $("#hid_user_id").val() == ''){		
+		var emailcheck = $("#user_email").val();
+		if(emailcheck!==''){
+			if(checkEmail(emailcheck)==false)
+			{
+				alert('Please email format not correct'); emailStatus=1; return emailStatus;
+			}
+			else{	
+				$.ajax({
+					type:'POST',
+					url:  BASE_URL+'/users/check-email-exists',
+					data:{user_email:emailcheck},
+					success: function(data){
+						if(data.output=='exists'){
+							$("#hidCheckValue").val('1');
+						}else{
+							$("#hidCheckValue").val('0');
+						}
+					}
+				});
+			}
+		}
+	}
+}
 var tab1flag = false;
 var tab2flag = false;
 var tab3flag = false;
@@ -44,8 +69,8 @@ function validateReg(typeTab){
 			}else if(checkEmail(userEmail)==false){
 				$("#user_email_req").html(email_wrong_formate);
 				flag=false;
-			}else if(checkEmailVaild()==1){
-				$("#user_email_req").html(email_already_exixts);
+			}else if($("#hidCheckValue").val()==1){
+				$("#user_email_req").html(email_already_exixts); return false;
 				flag=false;
 			}else{
 				$("#user_email_req").html('');
@@ -320,9 +345,11 @@ function allFormValdation(){
 		}else if(checkEmail(userEmail)==false){
 			$("#user_email_req").html(email_wrong_formate);
 			flag=false;
-		}else if(checkEmailVaild()==1){
-			$("#user_email_req").html(email_already_exixts);
+		}else if($("#hidCheckValue").val()==1){
+			tab1flag=false;
+			$("#user_email_req").html(email_already_exixts); 
 			flag=false;
+			return false;
 		}else{
 			$("#user_email_req").html('');
 		}
@@ -585,34 +612,6 @@ function ajaxData(){
 		});
 	}else{
 		alert('Select a country');return false;
-	}
-}
-function checkEmailVaild(){
-	if( $("#hid_user_id").val() == ''){
-		var emailStatus = 0;
-		var emailcheck = $("#user_email").val();
-		if(emailcheck!==''){
-			if(checkEmail(emailcheck)==false)
-			{
-				alert('Please email format not correct'); emailStatus=1; return emailStatus;
-			}
-			else{	
-				$.ajax({
-					type:'POST',
-					url:  BASE_URL+'/users/check-email-exists',
-					data:{user_email:emailcheck},
-					success: function(data){
-						if(data.output=='exists'){
-							$("#hidCheckValue").val('1');
-							emailStatus = 1;
-						}else{
-							emailStatus = 0;
-						}
-					}
-				});
-			}
-		}
-		return emailStatus;
 	}
 }
 function switchinUser(){
