@@ -22,9 +22,10 @@ function checkEmailVaild(){
 		if(emailcheck!==''){
 			if(checkEmail(emailcheck)==false)
 			{
-				alert('Please email format not correct'); emailStatus=1; return emailStatus;
+				$("#user_email_req").html(email_wrong_formate); emailStatus=1; return emailStatus;
 			}
 			else{	
+				$("#user_email_req").html('');
 				$.ajax({
 					type:'POST',
 					url:  BASE_URL+'/users/check-email-exists',
@@ -124,7 +125,7 @@ function validateReg(typeTab){
 		}else{
 			$("#user_gender_req").html('');
 		}
-		if( ($("#user_date").val()=='') && ($("#user_month").val()=='') && ($("#user_year").val()=='')){
+		if( ($("#user_date").val()=='') || ($("#user_month").val()=='') || ($("#user_year").val()=='')){
 			$("#user_dob_req").html(Requried);
 			flag = false;
 		}else{
