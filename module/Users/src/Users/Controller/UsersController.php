@@ -142,18 +142,19 @@ class UsersController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){
 			$base_user_id =  base64_encode($_POST['hid_user_id']);
-			$user_id=$this->getUserTable()->addUser($_POST,$base_user_id);
+			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
+			$_SESSION['user']['username']=$_POST['user_first_name'];
 			$suc = 'udt';
 			if($user_id>=0){
-				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$base_user_id);
+				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$_POST['hid_user_id']);
 				if($userpersonalInfo>=0){
-					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$base_user_id);					
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id']);					
 					if($userDetailsInfo>=0){
 						return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
 					}
 				}
 			}
-		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){ 
+		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){ 			
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
 			if($user_id!=0){
 				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id);
