@@ -360,7 +360,7 @@ function allFormValdation(){
 	}else{
 		$("#user_gender_req").html('');
 	}
-	if( ($("#user_date").val()=='') && ($("#user_month").val()=='') && ($("#user_year").val()=='')){
+	if( ($("#user_date").val()=='') || ($("#user_month").val()=='') || ($("#user_year").val()=='')){
 		$("#user_dob_req").html(Requried);
 		flag = false;
 	}else{
