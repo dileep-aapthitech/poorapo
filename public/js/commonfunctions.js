@@ -613,6 +613,8 @@ function checkEmailVaild(){
 			}
 		}
 		return emailStatus;
+	}else{
+		alert();
 	}
 }
 function switchinUser(){
