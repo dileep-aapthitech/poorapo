@@ -619,12 +619,14 @@ function ajaxData(){
 }
 function switchinUser(){
 	var userCheck = $("#user_type").val();
-	if(userCheck==2){
-		$("#hideemployeeDiv").hide();
-		$("#employeeDiv").show();
-	}else if(userCheck==1){
-		$("#employeeDiv").hide();
-		$("#hideemployeeDiv").show();
+	if(userCheck!=''){
+		if(userCheck==2){
+			$("#hideemployeeDiv").hide();
+			$("#employeeDiv").show();
+		}else if(userCheck==1){
+			$("#employeeDiv").hide();
+			$("#hideemployeeDiv").show();
+		}
 	}
 }
 function checkEmail(emailStr) {
