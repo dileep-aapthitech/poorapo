@@ -70,8 +70,10 @@ function validateReg(typeTab){
 				$("#user_email_req").html(email_wrong_formate);
 				flag=false;
 			}else if($("#hidCheckValue").val()==1){
-				$("#user_email_req").html(email_already_exixts); return false;
+				tab1flag = false;
+				$("#user_email_req").html(email_already_exixts); 
 				flag=false;
+				return false;
 			}else{
 				$("#user_email_req").html('');
 			}
