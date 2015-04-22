@@ -4,17 +4,17 @@ var email_already_exixts = 'Entered email is already registered.';
 function regTab1(tabid,stage){
 	$("html, body").animate({ scrollTop:100 }, 600);
 	var closeTadId=$('#opentabId').val();
-	if(closeTadId=='7'){
+	/*if(closeTadId=='7'){
 		$("#tab_"+closeTadId+"_hide").slideUp("slow");		
 		$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
 		$('#opentabId').val(0);
-	}else{
+	}else{*/
 		$("#tab_"+closeTadId+"_hide").slideUp("slow");
 		$("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
 		$("#tab_"+tabid+"_hide").slideDown("slow");
 		$("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
 		$('#opentabId').val(tabid);
-	}
+	/*}*/
 }
 function checkEmailVaild(){
 	if( $("#hid_user_id").val() == ''){		
