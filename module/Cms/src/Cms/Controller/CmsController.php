@@ -29,6 +29,10 @@ class CmsController extends AbstractActionController
 		));
 		return $viewModel;
 	}
+	public function paymentFormAction(){
+	
+	
+	}
 	public function ccavenuAction(){
 		$Merchant_Id = "your_merchantid";//
 		$Amount = "amount";

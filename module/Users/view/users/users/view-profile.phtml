@@ -11,14 +11,14 @@
 			</div>
 		<? } ?>
 	<div class="panel panel panel-default mar_t">		
-		<? if(isset($_SESSION['user'])){
+		<? $base_user_id =''; if(isset($_SESSION['user'])){
 				$base_user_id = base64_encode($_SESSION['user']['user_id']);
 			}?>
 		<div class="panel-heading reg_bg">
 			<h3 class="panel-title">View Profile</h3>
 			<div class="view_profile_r"><a href="<?php echo $baseUrl; ?>/users/register?uid=<? echo $base_user_id;?>">Edit Profile</a></div>
 		</div> 
-		<? if(count($this->userDetails)!=0){ foreach($this->userDetails as $details){?>
+		<? $details=''; if(count($this->userDetails)!=0){ foreach($this->userDetails as $detailss){ $details = $detailss;}}?>
 		<div class="panel-body">
 			<div class="panel panel-default">
 				<div class="panel-heading" id="tab_1" onclick="regTab1(1)">Login Deatils
@@ -471,7 +471,6 @@
 				</div>
 			</div>
 		</div> 	</div>
-		<? } }?>
 		<input type="hidden" id="opentabId" value="1">
 	</div>
 </div>
