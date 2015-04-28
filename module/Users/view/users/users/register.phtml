@@ -476,15 +476,38 @@
 						<label for="select" class="col-sm-3 control-label">Degree Name</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_bac_degree_req"></span>
-							<select class="form-control" id="user_bac_degree" name="user_bac_degree">
+							<!--<select class="form-control" id="user_bac_degree" name="user_bac_degree">
 								<option value="">Select Bachelor's Degree</option>
-								<? if(count($b_degrees)!='') {
-								foreach($b_degrees as $bachDegree){ if($bachDegree->degree_id == $details->bachelors_degree_name ){?>
-								<option value="<? echo $bachDegree->degree_id;?>" selected="selected"><? echo ucfirst($bachDegree->degree_name);?></option>
-								<?} else{?>
-								<option value="<? echo $bachDegree->degree_id;?>"><? echo ucfirst($bachDegree->degree_name);?></option>
-								<?}	}}?>
+								<?// if(count($b_degrees)!='') {
+								//foreach($b_degrees as $bachDegree){ if($bachDegree->degree_id == $details->bachelors_degree_name ){?>
+								<option value="<? //echo $bachDegree->degree_id;?>" selected="selected"><? //echo ucfirst($bachDegree->degree_name);?></option>
+								<?//} else{?>
+								<option value="<? //echo $bachDegree->degree_id;?>"><? //echo ucfirst($bachDegree->degree_name);?></option>
+								<?//}	}}?>
+							</select>-->
+							<input type="text" id="user_bac_degree" name="user_bac_degree" value="Bachelor's"  class="form-control" readonly="readonly">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
+						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_speclization_req"></span>
+							<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
+								<option value="">Select Specialization </option>
+								<? if(count($specializations)!='') {
+								foreach($specializations as $specialization){ if($specialization->specialined_id == $details->bachelors_specialization){?>
+								<option value="<? echo $specialization->specialined_id;?>" selected="selected"><? echo ucfirst($specialization->specialined_name);?></option>
+								<? } else{?>
+								<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
+								<? } ?>
+								<?}	}?>
 							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Country</label>
+						<div class="col-sm-8">
+							<input type="text" class="form-control" id="user_bachelors_country" name="user_bachelors_country" Placeholder="Country of bachelor's study">
 						</div>
 					</div>
 					<div class="form-group">
@@ -517,22 +540,7 @@
 							</select>
 						</div>
 					</div>
-					<div class="form-group">
-						<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
-						<div class="col-sm-8">
-							<span class="error_msg_disp" id="user_bac_speclization_req"></span>
-							<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
-								<option value="">Select Specialization </option>
-								<? if(count($specializations)!='') {
-								foreach($specializations as $specialization){ if($specialization->specialined_id == $details->bachelors_specialization){?>
-								<option value="<? echo $specialization->specialined_id;?>" selected="selected"><? echo ucfirst($specialization->specialined_name);?></option>
-								<? } else{?>
-								<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
-								<? } ?>
-								<?}	}?>
-							</select>
-						</div>
-					</div>
+					
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year of Admission</label>
 						<div class="col-sm-8">
@@ -567,16 +575,39 @@
 			<label for="select" class="col-sm-3 control-label">Degree Name</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_master_degree_req"></span>
-			<select class="form-control" id="user_master_degree" name="user_master_degree">
+			<!--<select class="form-control" id="user_master_degree" name="user_master_degree">
 			<option value="">Select Masters Degree</option>
-			<? if(count($m_degrees)!='') {
-			foreach($m_degrees as $masdegrees){ if($masdegrees->masters_degree_id == $details->masters_degree){?>
-			<option value="<? echo $masdegrees->masters_degree_id;?>" selected="selected"><? echo ucfirst($masdegrees->mas_degree_name);?></option>
-			<? } else{?>
-			<option value="<? echo $masdegrees->masters_degree_id;?>"><? echo ucfirst($masdegrees->mas_degree_name);?></option>
-			<? } ?>
+			<?// if(count($m_degrees)!='') {
+			//foreach($m_degrees as $masdegrees){ if($masdegrees->masters_degree_id == $details->masters_degree){?>
+			<option value="<? //echo $masdegrees->masters_degree_id;?>" selected="selected"><? //echo ucfirst($masdegrees->mas_degree_name);?></option>
+			<?// } else{?>
+			<option value="<? //echo $masdegrees->masters_degree_id;?>"><? //echo ucfirst($masdegrees->mas_degree_name);?></option>
+			<?// } ?>
+			<?//}	}?>
+			</select>-->
+			<input type="text" id="user_master_degree" name="user_master_degree" value="Master's"  class="form-control" readonly="readonly">
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
+			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_mast_spec_req"></span>
+			<select class="form-control" id="user_mast_spec" name="user_mast_spec">
+			<option value="">Select Specialization </option>
+			<? if(count($specializations)!='') {
+			foreach($specializations as $specialization){ if($specialization->specialined_id == $details->masters_specialization){?>
+			<option value="<? echo $specialization->specialined_id;?>" selected="selected"><? echo ucfirst($specialization->specialined_name);?></option>
+			<? }else{?>
+			<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
+			<?} ?>
 			<?}	}?>
 			</select>
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="select" class="col-sm-3 control-label">Country</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="user_masters_country" name="user_masters_country" Placeholder="Country of master's study">
 			</div>
 			</div>
 			<div class="form-group">
@@ -610,22 +641,7 @@
 			</select>
 			</div>
 			</div>
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
-			<div class="col-sm-8">
-			<span class="error_msg_disp" id="user_mast_spec_req"></span>
-			<select class="form-control" id="user_mast_spec" name="user_mast_spec">
-			<option value="">Select Specialization </option>
-			<? if(count($specializations)!='') {
-			foreach($specializations as $specialization){ if($specialization->specialined_id == $details->masters_specialization){?>
-			<option value="<? echo $specialization->specialined_id;?>" selected="selected"><? echo ucfirst($specialization->specialined_name);?></option>
-			<? }else{?>
-			<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
-			<?} ?>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
+		
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Year of Admission</label>
 			<div class="col-sm-8">
@@ -660,7 +676,29 @@
 			<label for="inputcname" class="col-sm-3 control-label">PhD</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_doctor_phd_req"></span>
-			<input type="text" class="form-control" id="user_doctor_phd" name="user_doctor_phd" value="<? if(isset($details->doctorate_name) && $details->doctorate_name!='') {echo $details->doctorate_name;}else{}?>" placeholder="PhD">
+			<input type="text" class="form-control" id="user_doctor_phd" name="user_doctor_phd" value="PhD" readonly="readonly" placeholder="PhD">
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
+			<div class="col-sm-8">
+			<span class="error_msg_disp" id="user_doctor_spec_req"></span>
+			<select class="form-control" id="user_doctor_spec" name="user_doctor_spec">
+			<option value="">Select Specialization</option>
+			<? if(count($specializations)!='') {
+			foreach($specializations as $specialization){ if($specialization->specialined_id == $details->doctorate_specialization){?>
+			<option value="<? echo $specialization->specialined_id;?>" selected="selected"><? echo ucfirst($specialization->specialined_name);?></option>
+			<?} else{?>
+			<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
+			<? }?>
+			<?}	}?>
+			</select>
+			</div>
+			</div>
+			<div class="form-group">
+			<label for="select" class="col-sm-3 control-label">Country</label>
+			<div class="col-sm-8">
+				<input type="text" class="form-control" id="user_doctoral_country" name="user_doctoral_country" Placeholder="Country of doctoral study">
 			</div>
 			</div>
 			<div class="form-group">
@@ -695,22 +733,7 @@
 			</select>
 			</div>
 			</div>
-			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
-			<div class="col-sm-8">
-			<span class="error_msg_disp" id="user_doctor_spec_req"></span>
-			<select class="form-control" id="user_doctor_spec" name="user_doctor_spec">
-			<option value="">Select Specialization</option>
-			<? if(count($specializations)!='') {
-			foreach($specializations as $specialization){ if($specialization->specialined_id == $details->doctorate_specialization){?>
-			<option value="<? echo $specialization->specialined_id;?>" selected="selected"><? echo ucfirst($specialization->specialined_name);?></option>
-			<?} else{?>
-			<option value="<? echo $specialization->specialined_id;?>"><? echo ucfirst($specialization->specialined_name);?></option>
-			<? }?>
-			<?}	}?>
-			</select>
-			</div>
-			</div>
+			
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Year of Admission</label>
 			<div class="col-sm-8">
