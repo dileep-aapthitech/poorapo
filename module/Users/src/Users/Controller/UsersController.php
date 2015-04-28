@@ -101,7 +101,7 @@ class UsersController extends AbstractActionController
 			));
 		}else if(isset($_POST['countryid']) && $_POST['countryid']!=''){
 			$entranceExams=$this->getEntranceExamsTable()->getBasedOnCountry($_POST['countryid']);
-			$htmlEntanceExames.='<option value="">Select a Entrance Exams</option>';
+			$htmlEntanceExames.='<option value="">Exam Name</option>';
 			foreach($entranceExams as $entranceExams){
 				$htmlEntanceExames.='<option value="'.$entranceExams->entrance_exam_id.'">'.$entranceExams->entrance_exam_name.'</option>';
 			}

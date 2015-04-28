@@ -1,6 +1,6 @@
-var Requried = 'Required';
-var email_wrong_formate = 'Entered email formate worng';
-var email_already_exixts = 'Entered email is already registered.';
+var Required = 'Required';
+var email_wrong_format = 'Entered email format is wrong';
+var email_already_exists = 'Entered email is already registered';
 function regTab1(tabid,stage){
 	$("html, body").animate({ scrollTop:100 }, 600);
 	var closeTadId=$('#opentabId').val();
@@ -22,7 +22,7 @@ function checkEmailVaild(){
 		if(emailcheck!==''){
 			if(checkEmail(emailcheck)==false)
 			{
-				$("#user_email_req").html(email_wrong_formate); emailStatus=1; return false;
+				$("#user_email_req").html(email_wrong_format); emailStatus=1; return false;
 			}else{					
 				$.ajax({
 					type:'POST',
@@ -56,21 +56,21 @@ function validateReg(typeTab){
 	var userEmail = $("#user_email").val();
 	if(typeTab==1){		
 		if(usertype==""){
-			$("#user_type_req").html(Requried);
+			$("#user_type_req").html(Required);
 			flag=false;
 		}else{
 			$("#user_type_req").html('');
 		}
 		if($("#hid_user_id").val()==""){
 			if(userEmail==""){
-				$("#user_email_req").html(Requried);
+				$("#user_email_req").html(Required);
 				flag=false;
 			}else if(checkEmail(userEmail)==false){
-				$("#user_email_req").html(email_wrong_formate);
+				$("#user_email_req").html(email_wrong_format);
 				flag=false;
 			}else if($("#hidCheckValue").val()==1){
 				tab1flag = false;
-				$("#user_email_req").html(email_already_exixts); 
+				$("#user_email_req").html(email_already_exists); 
 				flag=false;
 				return false;
 			}else{
@@ -81,7 +81,7 @@ function validateReg(typeTab){
 			$("#user_email_req").html('');
 		}
 		if($("#user_password").val()==''){
-			$("#user_pwd_req").html(Requried);
+			$("#user_pwd_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_pwd_req").html('');	
@@ -100,92 +100,92 @@ function validateReg(typeTab){
 		}
 	}else if(typeTab==2){
 		if($("#user_first_name").val()==''){
-			$("#user_firstname_req").html(Requried);
+			$("#user_firstname_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_firstname_req").html('');
 		}
 		if($("#user_last_name").val()==''){
-			$("#user_lastname_req").html(Requried);
+			$("#user_lastname_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_lastname_req").html('');
 		}
 		if($("#user_gendermf").val()==''){
-			$("#user_gender_req").html(Requried);
+			$("#user_gender_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_gender_req").html('');
 		} 
 		if($("#user_gendermf").val()==''){
-			$("#user_gender_req").html(Requried);
+			$("#user_gender_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_gender_req").html('');
 		}
 		if( ($("#user_date").val()=='') || ($("#user_month").val()=='') || ($("#user_year").val()=='')){
-			$("#user_dob_req").html(Requried);
+			$("#user_dob_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_dob_req").html('');
 		}
 		if($("#user_country").val()==''){
-			$("#user_country_req").html(Requried);
+			$("#user_country_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_country_req").html('');
 		}
 		if($("#user_mobile").val()==''){
-			$("#user_mobile_req").html(Requried);
+			$("#user_mobile_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_mobile_req").html('');
 		}
 		if(usertype==1){
 			if($("#user_parent_name").val()==''){
-				$("#user_parent_name_req").html(Requried);
+				$("#user_parent_name_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_parent_name_req").html('');
 			}
 			if($("#user_parent_lastname").val()==''){
-				$("#user_parent_lastname_req").html(Requried);
+				$("#user_parent_lastname_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_parent_lastname_req").html('');
 			}
 			if($("#user_mobile_number").val()==''){
-				$("#user_parent_mobile_req").html(Requried);
+				$("#user_parent_mobile_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_parent_mobile_req").html('');
 			}
 			if($("#user_parent_email").val()==''){
-				$("#user_parent_email_req").html(Requried);
+				$("#user_parent_email_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_parent_email_req").html('');
 			}
 			if($("#user_parent_pincode").val()==''){
-				$("#user_parent_pincode_req").html(Requried);
+				$("#user_parent_pincode_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_parent_pincode_req").html('');
 			}
 			if($("#user_perment_pincode").val()==''){
-				$("#user_parent_perment_pincode_req").html(Requried);
+				$("#user_parent_perment_pincode_req").html(Required);
 				flag = false;
 			}else{
 					$("#user_parent_perment_pincode_req").html('');
 			}
 			if($("#user_afi").val()==''){
-				$("#user_annual_afi_req").html(Requried);
+				$("#user_annual_afi_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_annual_afi_req").html('');
 			}
 			if($("#user_fnw").val()==''){
-				$("#user_fnw_req").html(Requried);
+				$("#user_fnw_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_fnw_req").html('');
@@ -193,7 +193,7 @@ function validateReg(typeTab){
 		}
 		if(usertype==2){
 			if($("#user_emp_ctc").val()==''){
-				$("#user_emp_ctc_req").html(Requried);
+				$("#user_emp_ctc_req").html(Required);
 				tab2flag = false;
 				flag = false;
 			}else{
@@ -213,37 +213,37 @@ function validateReg(typeTab){
 	}else if(typeTab==3){
 		if(usertype==1){
 			if($("#user_state").val()==''){
-				$("#user_state_req").html(Requried);
+				$("#user_state_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_state_req").html('');
 			}
 			if($("#user_district").val()==''){
-				$("#user_district_req").html(Requried);
+				$("#user_district_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_district_req").html('');
 			}
 			if($("#user_colleges").val()==''){
-				$("#user_colleges_req").html(Requried);
+				$("#user_colleges_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_colleges_req").html('');		
 			}
 			if($("#user_principal_name").val()==''){
-				$("#user_principal_name_req").html(Requried);
+				$("#user_principal_name_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_principal_name_req").html('');
 			}
 			if($("#user_princi_phone").val()==''){
-				$("#user_princi_phone_req").html(Requried);
+				$("#user_princi_phone_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_princi_phone_req").html('');
 			}
 			if($("#user_princi_email").val()==''){
-				$("#user_princi_email_req").html(Requried);
+				$("#user_princi_email_req").html(Required);
 				flag = false;
 			}else{
 				$("#user_princi_email_req").html('');
@@ -266,7 +266,7 @@ function validateReg(typeTab){
 		}
 	}else if(typeTab==4){
 		if(($("#user_entrance_year").val()=='') || ($("#user_entrance_exam").val()=='') || ($("#user_entrance_rank").val()=='')){
-			$("#user_entrance_rank_req").html(Requried);
+			$("#user_entrance_rank_req").html(Required);
 			$("#user_entrance_op_1").html('Optional');
 			$("#user_entrance_op_2").html('Optional');
 			flag = false;
@@ -335,21 +335,21 @@ function allFormValdation(){
 	var usertype = $("#user_type").val();
 	var userEmail = $("#user_email").val();
 	if(usertype==""){
-		$("#user_type_req").html(Requried);
+		$("#user_type_req").html(Required);
 		flag=false;
 	}else{
 		$("#user_type_req").html('');
 	}
 	if($("#hid_user_id").val()==""){
 		if(userEmail==""){
-			$("#user_email_req").html(Requried);
+			$("#user_email_req").html(Required);
 			flag=false;
 		}else if(checkEmail(userEmail)==false){
-			$("#user_email_req").html(email_wrong_formate);
+			$("#user_email_req").html(email_wrong_format);
 			flag=false;
 		}else if($("#hidCheckValue").val()==1){
 			tab1flag=false;
-			$("#user_email_req").html(email_already_exixts); 
+			$("#user_email_req").html(email_already_exists); 
 			flag=false;
 			return false;
 		}else{
@@ -360,98 +360,98 @@ function allFormValdation(){
 		$("#user_email_req").html('');
 	}
 	if($("#user_password").val()==''){
-		$("#user_pwd_req").html(Requried);
+		$("#user_pwd_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_pwd_req").html('');	
 	}
 	if($("#user_first_name").val()==''){
-		$("#user_firstname_req").html(Requried);
+		$("#user_firstname_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_firstname_req").html('');
 	}
 	if($("#user_last_name").val()==''){
-		$("#user_lastname_req").html(Requried);
+		$("#user_lastname_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_lastname_req").html('');
 	}
 	if($("#user_gendermf").val()==''){
-		$("#user_gender_req").html(Requried);
+		$("#user_gender_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_gender_req").html('');
 	} 
 	if($("#user_gendermf").val()==''){
-		$("#user_gender_req").html(Requried);
+		$("#user_gender_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_gender_req").html('');
 	}
 	if( ($("#user_date").val()=='') || ($("#user_month").val()=='') || ($("#user_year").val()=='')){
-		$("#user_dob_req").html(Requried);
+		$("#user_dob_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_dob_req").html('');
 	}
 	if($("#user_country").val()==''){
-		$("#user_country_req").html(Requried);
+		$("#user_country_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_country_req").html('');
 	}
 	if($("#user_mobile").val()==''){
-		$("#user_mobile_req").html(Requried);
+		$("#user_mobile_req").html(Required);
 		flag = false;
 	}else{
 		$("#user_mobile_req").html('');
 	}
 	if(usertype==1){
 		if($("#user_parent_name").val()==''){
-			$("#user_parent_name_req").html(Requried);
+			$("#user_parent_name_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_parent_name_req").html('');
 		}
 		if($("#user_parent_lastname").val()==''){
-			$("#user_parent_lastname_req").html(Requried);
+			$("#user_parent_lastname_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_parent_lastname_req").html('');
 		}
 		if($("#user_mobile_number").val()==''){
-			$("#user_parent_mobile_req").html(Requried);
+			$("#user_parent_mobile_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_parent_mobile_req").html('');
 		}
 		if($("#user_parent_email").val()==''){
-			$("#user_parent_email_req").html(Requried);
+			$("#user_parent_email_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_parent_email_req").html('');
 		}
 		if($("#user_parent_pincode").val()==''){
-			$("#user_parent_pincode_req").html(Requried);
+			$("#user_parent_pincode_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_parent_pincode_req").html('');
 		}
 		if($("#user_perment_pincode").val()==''){
-			$("#user_parent_perment_pincode_req").html(Requried);
+			$("#user_parent_perment_pincode_req").html(Required);
 			flag = false;
 		}else{
 				$("#user_parent_perment_pincode_req").html('');
 		}
 		if($("#user_afi").val()==''){
-			$("#user_annual_afi_req").html(Requried);
+			$("#user_annual_afi_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_annual_afi_req").html('');
 		}
 		if($("#user_fnw").val()==''){
-			$("#user_fnw_req").html(Requried);
+			$("#user_fnw_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_fnw_req").html('');
@@ -459,7 +459,7 @@ function allFormValdation(){
 	}
 	if(usertype==2){
 		if($("#user_emp_ctc").val()==''){
-			$("#user_emp_ctc_req").html(Requried);
+			$("#user_emp_ctc_req").html(Required);
 			tab2flag = false;
 			flag = false;
 		}else{
@@ -468,37 +468,37 @@ function allFormValdation(){
 	}
 	if(usertype==1){
 		if($("#user_state").val()==''){
-			$("#user_state_req").html(Requried);
+			$("#user_state_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_state_req").html('');
 		}
 		if($("#user_district").val()==''){
-			$("#user_district_req").html(Requried);
+			$("#user_district_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_district_req").html('');
 		}
 		if($("#user_colleges").val()==''){
-			$("#user_colleges_req").html(Requried);
+			$("#user_colleges_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_colleges_req").html('');		
 		}
 		if($("#user_principal_name").val()==''){
-			$("#user_principal_name_req").html(Requried);
+			$("#user_principal_name_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_principal_name_req").html('');
 		}
 		if($("#user_princi_phone").val()==''){
-			$("#user_princi_phone_req").html(Requried);
+			$("#user_princi_phone_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_princi_phone_req").html('');
 		}
 		if($("#user_princi_email").val()==''){
-			$("#user_princi_email_req").html(Requried);
+			$("#user_princi_email_req").html(Required);
 			flag = false;
 		}else{
 			$("#user_princi_email_req").html('');
@@ -684,7 +684,7 @@ function loginValidations(){
 		$('#emailError').html('Required');
 		flag=false;
 	}else if(checkEmail(userEmail)==false){
-		$('#emailError').html('Enter valid email id');
+		$('#emailError').html('Enter valid email address without spaces');
 		flag=false;
 	}else{
 		$('#emailError').html('');
@@ -715,7 +715,7 @@ function loginValidations(){
 							window.location=BASE_URL;
 						}
 					}else{
-						$('#errorMsg').html('Enter username and password are wrong');
+						$('#errorMsg').html('Entered wrong username and/or password');
 					}
 				}
 			});
@@ -787,7 +787,7 @@ function changePassword(regAuth){
 								$("#confirmPassword").val('');
 								$("#errordiv").hide();
 								$("#sucessdiv").show();
-								$('#sucessMsg').html('Change password sucessfully updated.');
+								$('#sucessMsg').html('Your password has been changed');
 							
 							}
 						});					
@@ -802,7 +802,7 @@ function changePassword(regAuth){
 		}else{
 			$("#sucessdiv").hide();
 			$("#errordiv").show();
-			$('#errorMsg').html('Do not match the new and confirm passwords');
+			$('#errorMsg').html('New and confirm passwords do not match');
 			$("#confirmPassword").focus();
 			$('#reload').html('');
 		}
@@ -816,14 +816,14 @@ function forgetPassword(){
     var flag=true;
 	var emailcheck=$('#forgetMail').val();
 	if(emailcheck==''){
-		//$('#emailError').html('Enter a email');
+		//$('#emailError').html('Enter an email address');
 		//$("#errordiv").show();
 		$('#emailError').html('Required');
 		flag=false;
 	}else if(checkEmail(emailcheck)==false){
-		//$('#emailError').html('Enter valid email');
+		//$('#emailError').html('Enter valid email address');
 		//$("#errordiv").show();
-		$('#emailError').html('Enter valid email');
+		$('#emailError').html('Enter valid email address');
 		flag=false;
 	}else{
 		$('#emailError').html('');
@@ -842,13 +842,13 @@ function forgetPassword(){
 				$('#reload').html(''); 
 				if(result.output=='success'){
 					$("#sucessdiv").show();
-					$('#sucessMsg').html('Sucessfully sending the mail');
+					$('#sucessMsg').html('Email sent to you');
 				}else if(result.output=='Not Found The Email'){
 					$("#errordiv").show();
-					$('#errorMsg').html('Do not match email');
+					$('#errorMsg').html('Email is not in our database');
 				}else if(result.output=='server-error'){
 					$("#errordiv").show();
-					$('#errorMsg').html('Mail is not sending');
+					$('#errorMsg').html('Email is not going');
 				}
 			}
 		});			
@@ -892,18 +892,18 @@ function resetPassword(regAuth){
 					$('#reload').html(''); 
 					if(data.output=='success'){	
 						$("#sucessdiv").show();
-						$('#sucessMsg').html('Sucessfully reset the password');
+						$('#sucessMsg').html('Password reset');
 							window.location=BASE_URL;
 					}else{
 						$("#sucessdiv").show();
-						$('#sucessMsg').html('All ready reset the password');
+						$('#sucessMsg').html('Password already reset');
 					}
 				}
 			});
 		}else{
 			$('#reload').html(''); 
 			$("#errordiv").show();
-			$('#errorMsg').html('Do not match the new and confirm passwords');
+			$('#errorMsg').html('New and confirm passwords do not match');
 			$("#confirmPassword").focus();
 		}
 	}		

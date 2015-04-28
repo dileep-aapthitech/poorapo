@@ -70,7 +70,7 @@
 	</div>
 	<input type="hidden" id="hid_tab_1" name="hid_tab_1" value="0">
 	<div class="panel panel-default">
-				<div class="panel-heading" onclick="regTab1(2,0)">Personal Information 
+				<div class="panel-heading" onclick="regTab1(2,0)">Personal Details 
 					<i  id="icon2"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
 				</div>
 			<div class="panel-body" id="tab_2_hide" style="display:none;">
@@ -172,11 +172,11 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-3 control-label">Country</label>
+					<label for="inputPassword3" class="col-sm-3 control-label">Country of Birth</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_country_req"></span>
 						<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
-							<option value="">Select a Country</option>
+							<option value="">Country of Birth</option>
 							<? if(count($countries)!='') {
 							foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
 							<option value="<? echo $country->id_countries;?>" selected="selected"><? echo ucfirst($country->name);?></option>
@@ -190,7 +190,7 @@
 					<label for="inputpname" class="col-sm-3 control-label">Mobile Number</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_mobile_req"></span>
-						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->mobile_number) && $details->mobile_number!='') {echo $details->mobile_number;}else{}?>" placeholder="Mobile Number">
+						<input type="text" class="form-control" id="user_mobile" name="user_mobile" value="<? if(isset($details->mobile_number) && $details->mobile_number!='') {echo $details->mobile_number;}else{}?>" placeholder="Your Mobile Number">
 					</div>
 				</div>
 				<div id="hideemployeeDiv">				
@@ -198,49 +198,49 @@
 						<label for="inputpname" class="col-sm-3 control-label">Parent's First Name</label>
 						<span class="error_msg_disp" id="user_parent_name_req"></span>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="user_parent_name" name="user_parent_name"  value="<? if(isset($details->parents_name) && $details->parents_name!='') {echo ucfirst($details->parents_name);}else{}?>" placeholder="Parent First Name">
+							<input type="text" class="form-control" id="user_parent_name" name="user_parent_name"  value="<? if(isset($details->parents_name) && $details->parents_name!='') {echo ucfirst($details->parents_name);}else{}?>" placeholder="Parent's First Name">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputplname" class="col-sm-3 control-label">Parent's Last Name</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_parent_lastname_req"></span>
-							<input type="text" class="form-control" id="user_parent_lastname" name="user_parent_lastname" value="<? if(isset($details->user_parent_lastname) && $details->user_parent_lastname!='') {echo ucfirst($details->user_parent_lastname);}else{}?>" placeholder="Parent Last Name">
+							<input type="text" class="form-control" id="user_parent_lastname" name="user_parent_lastname" value="<? if(isset($details->user_parent_lastname) && $details->user_parent_lastname!='') {echo ucfirst($details->user_parent_lastname);}else{}?>" placeholder="Parent's Last Name">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputpnm" class="col-sm-3 control-label">Parent's Mobile Number</label>
+						<label for="inputpnm" class="col-sm-3 control-label">Parent's Mobile</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_parent_mobile_req"></span>
-							<input type="text" class="form-control" id="user_mobile_number" name="user_mobile_number" value="<? if(isset($details->p_phone_number) && $details->p_phone_number!='') {echo $details->p_phone_number;}else{}?>"  placeholder="Parent Mobile Number">
+							<input type="text" class="form-control" id="user_mobile_number" name="user_mobile_number" value="<? if(isset($details->p_phone_number) && $details->p_phone_number!='') {echo $details->p_phone_number;}else{}?>"  placeholder="Parent's Mobile Number">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputpem" class="col-sm-3 control-label">Parent's Email</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_parent_email_req"></span>
-							<input type="text" class="form-control" id="user_parent_email" name="user_parent_email" value="<? if(isset($details->p_email_id) && $details->p_email_id!='') {echo $details->p_email_id;}else{}?>" placeholder="Parent Email">
+							<input type="text" class="form-control" id="user_parent_email" name="user_parent_email" value="<? if(isset($details->p_email_id) && $details->p_email_id!='') {echo $details->p_email_id;}else{}?>" placeholder="Parent's Email Address">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputppin" class="col-sm-3 control-label">Parent's Pincode</label>						
+						<label for="inputppin" class="col-sm-3 control-label">Parent's Postal Code</label>						
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_parent_pincode_req"></span>
-							<input type="text" class="form-control" id="user_parent_pincode" name="user_parent_pincode" value="<? if(isset($details->p_pincode) && $details->p_pincode!='') {echo $details->p_pincode;}else{}?>" placeholder="Parent Pincode">
+							<input type="text" class="form-control" id="user_parent_pincode" name="user_parent_pincode" value="<? if(isset($details->p_pincode) && $details->p_pincode!='') {echo $details->p_pincode;}else{}?>" placeholder="Parent's Postal Code">
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputperpin" class="col-sm-3 control-label">Permanent Pincode</label>
+						<label for="inputperpin" class="col-sm-3 control-label">Your Postal Code</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_parent_perment_pincode_req"></span>
-							<input type="text" class="form-control" id="user_perment_pincode" name="user_perment_pincode" value="<? if(isset($details->permant_pincode) && $details->permant_pincode!='') {echo $details->permant_pincode;}else{}?>" placeholder="Permanent Pincode">
+							<input type="text" class="form-control" id="user_perment_pincode" name="user_perment_pincode" value="<? if(isset($details->permant_pincode) && $details->permant_pincode!='') {echo $details->permant_pincode;}else{}?>" placeholder="Your Postal Code">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputafi" class="col-sm-3 control-label">Annual Family Income</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_annual_afi_req"></span>
-							<input type="text" class="form-control" id="user_afi" name="user_afi" placeholder="Annual Family Income" value="<? if(isset($details->annual_family_income) && $details->annual_family_income!='') {echo $details->annual_family_income;}else{}?>" >
+							<input type="text" class="form-control" id="user_afi" name="user_afi" placeholder="Annual Family Income in Local Currency" value="<? if(isset($details->annual_family_income) && $details->annual_family_income!='') {echo $details->annual_family_income;}else{}?>" >
 						</div>
 					</div>
 					<div class="form-group">
@@ -253,10 +253,10 @@
 				</div>
 				<div id="employeeDiv" style="display:none">
 					<div class="form-group">
-						<label for="inputectc" class="col-sm-3 control-label">Employee CTC</label>
+						<label for="inputectc" class="col-sm-3 control-label">Annual Income</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_emp_ctc_req"></span>
-							<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Employee CTC" value="<? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?>">
+							<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Annual Income" value="<? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?>">
 						</div>
 					</div>
 				</div>
@@ -271,17 +271,17 @@
 			<input type="hidden" id="hid_tab_2" name="hid_tab_2" value="0">
 	</div>
 			<div class="panel panel-default">
-				<div class="panel-heading" onclick="regTab1(3,0)">12th Class College Information 
+				<div class="panel-heading" onclick="regTab1(3,0)">High School/College-Grade 12 
 					<i  id="icon3"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
 				</div>
 				<div class="panel-body" id="tab_3_hide" style="display:none;">
 					<div class="form-horizontal">
 						<div class="form-group">
-							<label for="inputPassword3" class="col-sm-3 control-label">State</label>
+							<label for="inputPassword3" class="col-sm-3 control-label">State/Province</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_state_req"></span>
 								<select class="form-control" id="user_state" name="user_state" onChange="return getDistricts();">
-									<option value="">Select State</option>
+									<option value="">State where 12th completed</option>
 									<? if(count($states)!='') {
 									foreach($states as $state){ if($state->state_id == $details->state_id){?>
 									<option value="<? echo $state->state_id;?>" selected="selected"><? echo ucfirst($state->state_name);?></option>
@@ -292,11 +292,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputPassword3" class="col-sm-3 control-label">District</label>
+							<label for="inputPassword3" class="col-sm-3 control-label">Country/District</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_district_req"></span>
 								<select class="form-control" id="user_district" name="user_district" onChange="return getColleges();">
-								<option value="">Select District</option>
+								<option value="">District where 12th completed</option>
 								<? if(count($districts)!='') {
 								foreach($districts as $district){ if($details->district_id== $district->district_id){?>
 								<option value="<? echo $district->district_id;?>" selected="selected"><? echo ucfirst($district->district_name);?></option>
@@ -308,11 +308,11 @@
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputcname" class="col-sm-3 control-label">College Name</label>
+							<label for="inputcname" class="col-sm-3 control-label">High School</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_colleges_req"></span>
 								<select class="form-control" id="user_colleges" name="user_colleges">
-									<option value="">Select College</option>
+									<option value="">Grade 12 High School Name</option>
 									<? if(count($colleges)!='') {
 									foreach($colleges as $college){ if( $details->college_name==$college->college_id){?>
 									<option value="<? echo $college->college_id;?>" selected="selected"><? echo ucfirst($college->college_name);?></option>
@@ -326,21 +326,21 @@
 							<label for="inputpname" class="col-sm-3 control-label">Principal's Name</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_principal_name_req"></span>
-								<input type="text" class="form-control" id="user_principal_name" name="user_principal_name" placeholder="Principal Name" value="<? if(isset($details->principal_name) && $details->principal_name!='') {echo ucfirst($details->principal_name);}else{}?>" >
+								<input type="text" class="form-control" id="user_principal_name" name="user_principal_name" placeholder="Principal's Name" value="<? if(isset($details->principal_name) && $details->principal_name!='') {echo ucfirst($details->principal_name);}else{}?>" >
 							</div>
 						</div>
 						<div class="form-group">
-							<label for="inputpnmb" class="col-sm-3 control-label">Principal's Mobile Number</label>
+							<label for="inputpnmb" class="col-sm-3 control-label">Principal's Mobile</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_princi_phone_req"></span>
-								<input type="text" class="form-control" id="user_princi_phone" name="user_princi_phone" placeholder="Principal Mobile Number" value="<? if(isset($details->principal_phone_num) && $details->principal_phone_num!='') {echo $details->principal_phone_num;}else{}?>" >
+								<input type="text" class="form-control" id="user_princi_phone" name="user_princi_phone" placeholder="Principal's Mobile Number" value="<? if(isset($details->principal_phone_num) && $details->principal_phone_num!='') {echo $details->principal_phone_num;}else{}?>" >
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="inputpemail" class="col-sm-3 control-label">Principal's Email</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_princi_email_req"></span>
-								<input type="text" class="form-control" id="user_princi_email" name="user_princi_email" value="<? if(isset($details->principal_email_id) && $details->principal_email_id!='') {echo $details->principal_email_id;}else{}?>" placeholder="Principal Email">
+								<input type="text" class="form-control" id="user_princi_email" name="user_princi_email" value="<? if(isset($details->principal_email_id) && $details->principal_email_id!='') {echo $details->principal_email_id;}else{}?>" placeholder="Principal's Email Address">
 							</div>
 						</div>
 						<div class="form-group">
@@ -354,7 +354,7 @@
 				<input type="hidden" id="hid_tab_3" name="hid_tab_3" value="0">
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading" onclick="regTab1(4,0)">Entrance Exam Information
+				<div class="panel-heading" onclick="regTab1(4,0)">College Readiness Entrance Exam Score/Rank
 					<i  id="icon4"class="glyphicon glyphicon-triangle-bottom  pull-right"></i>
 				</div>
 				<div class="panel-body" id="tab_4_hide" style="display:none;">
@@ -363,9 +363,9 @@
 						<div class="form-group">
 							<div class="col-sm-3">
 								<span class="error_msg_disp1" id="user_entrance_year_req"></span>
-								<label class="control-label" for="focusedInput">Year</label>
+								<label class="control-label" for="focusedInput">Year of Exam</label>
 								<select class="form-control" id="user_entrance_year" name="user_entrance_year">
-								<option value="">Select Year</option>
+								<option value="">Year of Test</option>
 								<? $i=1;for($i=1960;$i<=2015;$i++){ if( $details->which_year == $i){?>
 								<option value="<? echo $i;?>" selected="selected"><? echo $i;?></option>
 								<? } else{?>
@@ -375,10 +375,10 @@
 								</select>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Entrance Exam Taken</label>
+								<label class="control-label" for="focusedInput">Test/Exam</label>
 								<span class="error_msg_disp1" id="user_entrance_exam_req"></span>
 								<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
-								<option value="">Select Exam Name </option>
+								<option value="">Exam Name</option>
 								<? if(count($entranceexams)!='') {
 								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam == $entranceExam->entrance_exam_id){?>
 									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
@@ -388,7 +388,7 @@
 								</select>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Exam Rank</label>
+								<label class="control-label" for="focusedInput">Score/Rank</label>
 								<span class="error_msg_disp1" id="user_entrance_rank_req"></span>
 								<input class="form-control" id="user_entrance_rank" name="user_entrance_rank" type="text" value="<? if(isset($details->entrance_rank) && $details->entrance_rank!='') {echo $details->entrance_rank;}else{}?>" placeholder="Exam Rank">
 							</div>							
@@ -396,9 +396,9 @@
 		<!-- Entrance Exam 2-------->
 						<div class="form-group">
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Year</label>
+								<label class="control-label" for="focusedInput">Year of Exam</label>
 								<select class="form-control" id="user_entrance_year_1" name="user_entrance_year_1">
-								<option value="">Year</option>
+								<option value="">Year of Test</option>
 								<? $i=1;for($i=1960;$i<=2015;$i++){ if( $details->which_year_1 == $i){?>
 								<option value="<? echo $i;?>" selected="selected"><? echo $i;?></option>
 								<? } else{?>
@@ -408,9 +408,9 @@
 								</select>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Entrance Exam Taken</label>
+								<label class="control-label" for="focusedInput">Test/Exam</label>
 								<select class="form-control" id="user_entrance_exam_1" name="user_entrance_exam_1">
-								<option value="">Select Exam Name</option>
+								<option value="">Exam Name</option>
 								<? if(count($entranceexams)!='') {
 								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam_1 == $entranceExam->entrance_exam_id){?>
 									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
@@ -420,7 +420,7 @@
 								</select>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Exam Rank</label>
+								<label class="control-label" for="focusedInput">Score/Rank</label>
 								<span class="error_msg_disp1" id="user_entrance_op_1"></span>
 								<input class="form-control" id="user_entrance_rank_1" name="user_entrance_rank_1" type="text" value="<? if(isset($details->entrance_rank_1) && $details->entrance_rank_1!='') {echo $details->entrance_rank_1;}else{}?>" placeholder="Exam Rank">
 							</div>							
@@ -428,9 +428,9 @@
 			<!-- Entrance Exam 3-------->
 						<div class="form-group">
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Year</label>
+								<label class="control-label" for="focusedInput">Year of Exam</label>
 								<select class="form-control" id="user_entrance_year_2" name="user_entrance_year_2">
-								<option value="">Year</option>
+								<option value="">Year of Test</option>
 								<? $i=1;for($i=1960;$i<=2015;$i++){ if( $details->which_year_2 == $i){?>
 								<option value="<? echo $i;?>" selected="selected"><? echo $i;?></option>
 								<? } else{?>
@@ -440,9 +440,9 @@
 								</select>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Entrance Exam Taken</label>
+								<label class="control-label" for="focusedInput">Test/Exam</label>
 								<select class="form-control" id="user_entrance_exam_2" name="user_entrance_exam_2">
-								<option value="">Select Exam Name</option>
+								<option value="">Exam Name</option>
 								<? if(count($entranceexams)!='') {
 								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam_2 == $entranceExam->entrance_exam_id){?>
 									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
@@ -452,7 +452,7 @@
 								</select>
 							</div>
 							<div class="col-sm-3">
-								<label class="control-label" for="focusedInput">Exam Rank</label>
+								<label class="control-label" for="focusedInput">Score/Rank</label>
 								<span class="error_msg_disp1" id="user_entrance_op_2"></span>
 								<input class="form-control" id="user_entrance_rank_2" name="user_entrance_rank_2" type="text" value="<? if(isset($details->entrance_rank_2) && $details->entrance_rank_2!='') {echo $details->entrance_rank_2;}else{}?>" placeholder="Exam Rank">
 							</div>
@@ -467,7 +467,7 @@
 				<input type="hidden" id="hid_tab_4" name="hid_tab_4" value="0">
 			</div>
 			<div class="panel panel-default">
-				<div class="panel-heading" onclick="regTab1(5,0)">Under Graduate Information
+				<div class="panel-heading" onclick="regTab1(5,0)">Bachelor's Degree Details
 				<i  id="icon5"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
 				<div class="panel-body" id="tab_5_hide" style="display:none;">
 				<div class="form-horizontal">
@@ -502,7 +502,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="select" class="col-sm-3 control-label">College</label>
+						<label for="select" class="col-sm-3 control-label">Univ College</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_bac_college_req"></span>
 							<select class="form-control" id="user_bac_college" name="user_bac_college">
@@ -517,7 +517,7 @@
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="select" class="col-sm-3 control-label">Specialization</label>
+						<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_bac_speclization_req"></span>
 							<select class="form-control" id="user_bac_speclization" name="user_bac_speclization">
@@ -558,12 +558,12 @@
 				</div>
 			</div>
 	<div class="panel panel-default">
-			<div class="panel-heading" onclick="regTab1(6,0)">Post Graduate Information
+			<div class="panel-heading" onclick="regTab1(6,0)">Master's Degree Details
 			<i  id="icon5"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
 			<div class="panel-body" id="tab_6_hide" style="display:none;">
 			<div class="form-horizontal">
 			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Masters Degree Name</label>
+			<label for="select" class="col-sm-3 control-label">Degree Name</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_master_degree_req"></span>
 			<select class="form-control" id="user_master_degree" name="user_master_degree">
@@ -610,7 +610,7 @@
 			</div>
 			</div>
 			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Specialization</label>
+			<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_mast_spec_req"></span>
 			<select class="form-control" id="user_mast_spec" name="user_mast_spec">
@@ -651,7 +651,7 @@
 			</div>
 		</div>
 		<div class="panel panel-default">
-			<div class="panel-heading" onclick="regTab1(7,0)">Doctorate Information
+			<div class="panel-heading" onclick="regTab1(7,0)">Doctoral Degree Details
 			<i  id="icon5"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
 			<div class="panel-body" id="tab_7_hide" style="display:none;">
 			<div class="form-horizontal">
@@ -695,7 +695,7 @@
 			</div>
 			</div>
 			<div class="form-group">
-			<label for="select" class="col-sm-3 control-label">Specialization</label>
+			<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_doctor_spec_req"></span>
 			<select class="form-control" id="user_doctor_spec" name="user_doctor_spec">
