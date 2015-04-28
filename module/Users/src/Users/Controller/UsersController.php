@@ -476,6 +476,59 @@ class UsersController extends AbstractActionController
 			return $result;
 		}
 	}
+	public function searchCountryNamesAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['value']) && $_POST['value']!=""){
+			$getCountries=$this->getCountriesTable()->searchCountry($_POST['value']);
+			foreach($getCountries as $key=>$search){
+				$list_countries[$key]=$search->name;
+				$hashNameIds[$key]=$key;
+				$count=$key;				
+			}
+			$combined = array();
+			if($list_countries!=''){				
+				foreach($list_countries as $index => $refNumber) {			
+					$combined[] = array(
+						'ref'  => $refNumber,
+						'part' => $hashNameIds[$index]
+					);
+				}
+			}
+		}else{
+			$getCountries=$this->getCountriesTable()->getCountries();
+			if(count($this->countries)!='') {
+				foreach($this->countries as $key=>$search){
+					$list_countries[$key]=$search->name;
+					$hashNameIds[$key]=$key;
+					$count=$key;
+				}
+			}
+			$combined = array();
+			if($list_countries!=''){	
+				foreach($list_countries as $index => $refNumber) {			
+					$combined[] = array(
+						'ref'  => $refNumber,
+						'part' => $hashNameIds[$index]
+					);
+				}	
+			}			
+		}	
+		if(count($getCountries)!=0){
+			$result = new JsonModel(array(					
+				'searchHashNames' => $combined,
+				'success'=>true,
+			));			
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => $combined,
+				'success'=>false,
+			));	
+		}		
+		return $result;
+	}
 	//public function headerAction view  header page returns view part
 	public function getUserTable()
     {

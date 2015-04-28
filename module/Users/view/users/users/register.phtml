@@ -175,15 +175,16 @@
 					<label for="inputPassword3" class="col-sm-3 control-label">Country of Birth</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_country_req"></span>
-						<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
+						<!--<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
 							<option value="">Country of Birth</option>
-							<? if(count($countries)!='') {
-							foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
-							<option value="<? echo $country->id_countries;?>" selected="selected"><? echo ucfirst($country->name);?></option>
-							<? } else{?>
-							<option value="<? echo $country->id_countries;?>"><? echo ucfirst($country->name);?></option>
-							<?}}}?>
-						</select>
+							// <? //if(count($countries)!='') {
+							// foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
+							<option value="<? //echo $country->id_countries;?>" selected="selected"><? //echo ucfirst($country->name);?></option>
+							<? //} else{?>
+							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
+							<?//}}}?>
+						</select>-->
+						<input type="text" class="form-control" id="user_country" name="user_country">
 					</div>
 				</div>	
 				<div class="form-group">
@@ -746,16 +747,58 @@
 		</div>	
 	</div>
 </div>
-
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <? $list_countries=''; if(count($this->countries)!='') {
+		foreach($this->countries as $key=>$search){
+			$list_countries[$key]=$search->name;
+		}		
+	}
+?>
 <script> 
-// function regTab1(tabid){
-// var closeTadId=$('#opentabId').val();
-// $("#tab_"+closeTadId+"_hide").slideUp("slow");
-// $("#icon"+closeTadId).removeClass("glyphicon-triangle-top").addClass("glyphicon-triangle-bottom");
-// $("#tab_"+tabid+"_hide").slideDown("slow");
-// $("#icon"+tabid).removeClass("glyphicon-triangle-bottom").addClass("glyphicon-triangle-top");
-// $('#opentabId').val(tabid);
-// }
+$(function() {	
+	$("#user_country").autocomplete({	
+		source: function( request, response ) {
+			var keywordsss = $('#user_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_country").data( "autocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		 return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		 .data("item.autocomplete", item)            
+		 .appendTo(ul);				
+	};
+});
 $( document ).ready(function() {
     switchinUser();
 });

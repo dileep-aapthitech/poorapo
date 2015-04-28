@@ -29,5 +29,12 @@ class CountriesTable
 		$row = $resultSet;
 		return $row;
 	}
-
+	public function searchCountry($searchName){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->like( 'name', $searchName . '%' );
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }
