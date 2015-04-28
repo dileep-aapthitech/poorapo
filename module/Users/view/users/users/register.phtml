@@ -43,6 +43,13 @@
 				</div>
 				
 				<div class="form-group">
+					<label for="inputfname" class="col-sm-3 control-label">First Name</label>
+					<div class="col-sm-8">
+					<span class="error_msg_disp" id="user_firstname_req"></span>
+						<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->first_name) && $details->first_name!='') {echo ucfirst($details->first_name);}else{}?>">
+					</div>
+				</div>
+				<div class="form-group">
 					<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_email_req"></span>
@@ -76,13 +83,6 @@
 			<div class="panel-body" id="tab_2_hide" style="display:none;">
 			<div class="form-horizontal">
 					<div class="form-group">
-						<label for="inputfname" class="col-sm-3 control-label">First Name</label>
-						<div class="col-sm-8">
-						<span class="error_msg_disp" id="user_firstname_req"></span>
-							<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->first_name) && $details->first_name!='') {echo ucfirst($details->first_name);}else{}?>">
-						</div>
-					</div>
-					<div class="form-group">
 						<label for="inputlname" class="col-sm-3 control-label">Last Name</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_lastname_req"></span>
@@ -102,9 +102,7 @@
 								<? } ?>
 									Male
 								</label>
-							</div>
-							<div class="radio">
-								<label>
+								&nbsp;<label>
 								<? if(isset($details->gender) && $details->gender=='Female') {?>
 									<input type="radio" name="user_gendermf" checked="checked" id="user_gendermf" value="Female">
 								<? } else{?>
@@ -184,7 +182,7 @@
 							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
 							<?//}}}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_country" name="user_country">
+						<input type="text" class="form-control" id="user_country" name="user_country" placeholder="Country of Birth">
 					</div>
 				</div>	
 				<div class="form-group">
@@ -254,10 +252,33 @@
 				</div>
 				<div id="employeeDiv" style="display:none">
 					<div class="form-group">
+						<label for="inputPassword3" class="col-sm-3 control-label">Country of Job</label>
+						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_country_job_req"></span>
+							<!--<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
+								<option value="">Country of Birth</option>
+								// <? //if(count($countries)!='') {
+								// foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
+								<option value="<? //echo $country->id_countries;?>" selected="selected"><? //echo ucfirst($country->name);?></option>
+								<? //} else{?>
+								<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
+								<?//}}}?>
+							</select>-->
+							<input type="text" class="form-control" id="user_country_job" name="user_country_job">
+						</div>
+					</div>
+					<div class="form-group">
 						<label for="inputectc" class="col-sm-3 control-label">Annual Income</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_emp_ctc_req"></span>
 							<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Annual Income" value="<? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?>">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="inputectc" class="col-sm-3 control-label">Company Website Url</label>
+						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_emp_websiteurl_req"></span>
+							<input type="text" class="form-control" id="user_emp_websiteurl" name="user_emp_websiteurl" placeholder="Company Website Url" value="<? if(isset($details->employee_websiteurl) && $details->employee_websiteurl!='') {echo $details->employee_websiteurl;}else{}?>">
 						</div>
 					</div>
 				</div>
