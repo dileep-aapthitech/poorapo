@@ -40,7 +40,7 @@ class CountriesTable
 	public function getCountryIdByName( $countryName )
 	{
 		$select = $this->tableGateway->getSql()->select();
-		$select->where->expression('LOWER(tbl_countries.name) LIKE ?', strtolower($countryName));
+		$select->where->expression('trim(LOWER(tbl_countries.name)) LIKE ?', strtolower($countryName));
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet;
