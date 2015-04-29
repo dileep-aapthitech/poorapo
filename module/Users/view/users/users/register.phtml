@@ -184,7 +184,7 @@
 							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
 							<?//}}}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_country" name="user_country" placeholder="Country of Birth" onKeypress="getAutoCountry();">
+						<input type="text" class="form-control" id="user_country" name="user_country" placeholder="Country of Birth" onKeypress="userCountryBirth();">
 					</div>
 				</div>	
 				<div class="form-group">
@@ -275,7 +275,7 @@
 						<div class="form-group">
 							<label for="select" class="col-sm-3 control-label">Country</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="user_junior_country" name="user_junior_country" Placeholder="Country of junior study" onKeypress="getAutoCountry();">
+								<input type="text" class="form-control" id="user_junior_country" name="user_junior_country" Placeholder="Country of junior study" onKeypress="JuniorCountry();">
 							</div>
 						</div>
 						<div class="form-group">
@@ -508,7 +508,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Country</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="user_bachelors_country" name="user_bachelors_country" Placeholder="Country of bachelor's study" onKeypress="getAutoCountry();">
+							<input type="text" class="form-control" id="user_bachelors_country" name="user_bachelors_country" Placeholder="Country of bachelor's study" onKeypress="bachelorsCountry();">
 						</div>
 					</div>
 					<div class="form-group">
@@ -608,7 +608,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Country</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="user_masters_country" name="user_masters_country" Placeholder="Country of master's study" onKeypress="getAutoCountry();">
+				<input type="text" class="form-control" id="user_masters_country" name="user_masters_country" Placeholder="Country of master's study" onKeypress="mastersCountry();">
 			</div>
 			</div>
 			<div class="form-group">
@@ -699,7 +699,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Country</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="user_doctoral_country" name="user_doctoral_country" Placeholder="Country of doctoral study" onKeypress="getAutoCountry();">
+				<input type="text" class="form-control" id="user_doctoral_country" name="user_doctoral_country" Placeholder="Country of doctoral study" onKeypress="doctoralCountry();">
 			</div>
 			</div>
 			<div class="form-group">
@@ -776,7 +776,7 @@
 							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
 							<?//}}}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_country_job" name="user_country_job" placeholder="Country of Job" onKeypress="getAutoCountry();">
+						<input type="text" class="form-control" id="user_country_job" name="user_country_job" placeholder="Country of Job" onKeypress="countryOfJobs();">
 					</div>
 				</div>
 				<div class="form-group">
@@ -814,17 +814,17 @@
 		</div>	
 	</div>
 </div>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <link rel="stylesheet" href="<?php echo $basePath; ?>/css/jquery-ui-1-11-4.css">
+  <script src="<?php echo $basePath; ?>/js/jquery-ui-1-11-4.js"></script>
   <? $list_countries=''; if(count($this->countries)!='') {
 		foreach($this->countries as $key=>$search){
 			$list_countries[$key]=$search->name;
 		}		
 	}
 ?>
-<script> 
-$(function() {	
+<script type="text/javascript">
+
+function userCountryBirth(){
 	$("#user_country").autocomplete({	
 		source: function( request, response ) {
 			var keywordsss = $('#user_country').val();
@@ -859,13 +859,224 @@ $(function() {
 			return false;
 		}			
 	});
-	$("#user_country").data( "autocomplete" )._renderItem = function( ul, item ) {
+	$("#user_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
 		 return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
-		 .data("item.autocomplete", item)            
+		 .data("item.uiAutocomplete", item)            
 		 .appendTo(ul);				
 	};
-});
+}
+/******************** Country of Job **********************/
+function countryOfJobs(){
+	$("#user_country_job").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_country_job').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_country_job").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_country_job").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
+function JuniorCountry(){
+	$("#user_junior_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_junior_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_junior_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_junior_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
+function bachelorsCountry(){
+	$("#user_bachelors_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_bachelors_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_bachelors_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_bachelors_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
+function mastersCountry(){
+	$("#user_masters_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_masters_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_masters_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_masters_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
+function doctoralCountry(){
+	$("#user_doctoral_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_doctoral_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_doctoral_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_doctoral_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
 $( document ).ready(function() {
     switchinUser();
 });
