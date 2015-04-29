@@ -38,4 +38,22 @@ class StatesTable
 		$row = $resultSet;
 		return $row;
 	}
+	public function getStates($countryid,$keyWord){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->like( 'state_name', $keyWord . '%' );
+		$select->where('id_countries="'.$countryid.'"');
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
+	public function getStateIdByName( $stateName )
+	{
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->expression('trim(LOWER(tbl_states.state_name)) LIKE ?', trim(strtolower($stateName)));
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->current();
+		return $row;
+	}
 }

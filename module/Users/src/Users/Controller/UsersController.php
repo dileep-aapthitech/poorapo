@@ -582,6 +582,69 @@ class UsersController extends AbstractActionController
 		}		
 		return $result;
 	}
+	public function getStatesAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['country_name']) && $_POST['country_name']!=''){
+			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+			if(count($countryDetails)!=''){
+				$country_id = $countryDetails->current()->id_countries;
+				$states=$this->getSatesTable()->getStates($country_id,$_POST['value']);
+				foreach($states as $key=>$search){
+					$list_countries[$key]=$search->state_name;
+					$hashNameIds[$key]=$key;
+					$count=$key;				
+				}
+				$combined = array();
+				if($list_countries!=''){				
+					foreach($list_countries as $index => $refNumber) {			
+						$combined[] = array(
+							'ref'  => $refNumber,
+							'part' => $hashNameIds[$index]
+						);
+					}
+				}
+			}
+			$result = new JsonModel(array(					
+				'searchHashNames' => $combined,
+				'success'=>true,
+			));			
+			return $result;
+		}
+	}
+	public function getDistrictsAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['state_name']) && $_POST['state_name']!=''){
+			$states=$this->getSatesTable()->getStateIdByName($_POST['state_name']);
+			if($states->state_id!=''){
+				$getDistricts=$this->getDistrictsTable()->getDistricts($states->state_id,$_POST['value']);
+				foreach($getDistricts as $key=>$search){
+					$list_countries[$key]=$search->state_name;
+					$hashNameIds[$key]=$key;
+					$count=$key;				
+				}
+				$combined = array();
+				if($list_countries!=''){				
+					foreach($list_countries as $index => $refNumber) {			
+						$combined[] = array(
+							'ref'  => $refNumber,
+							'part' => $hashNameIds[$index]
+						);
+					}
+				}
+				$result = new JsonModel(array(					
+					'searchHashNames' => $combined,
+					'success'=>true,
+				));			
+				return $result;
+			}
+		}
+	}
 	//public function headerAction view  header page returns view part
 	public function getUserTable()
     {
