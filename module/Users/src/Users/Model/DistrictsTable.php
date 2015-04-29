@@ -46,4 +46,13 @@ class DistrictsTable
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current()->district_id;
 	}
+	public function getDistrictsStates($stateid,$keyWord){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->like( 'district_name', $keyWord . '%' );
+		$select->where('state_id="'.$stateid.'"');
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }
