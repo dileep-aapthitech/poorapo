@@ -38,4 +38,12 @@ class EntranceExamTable
 		$row = $resultSet;
 		return $row;
 	}
+	public function getEntranceExamsB($searchName){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->like( 'entrance_exam_name', $searchName . '%' );
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }

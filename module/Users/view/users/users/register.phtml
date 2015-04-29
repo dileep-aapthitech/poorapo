@@ -382,15 +382,16 @@
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Test/Exam</label>
 								<span class="error_msg_disp1" id="user_entrance_exam_req"></span>
-								<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
+								<!--<select class="form-control" id="user_entrance_exam" name="user_entrance_exam">
 								<option value="">Exam Name</option>
-								<? if(count($entranceexams)!='') {
-								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam == $entranceExam->entrance_exam_id){?>
-									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-								<? } else{?>
-									<option value="<? echo $entranceExam->entrance_exam_id;?>"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-								<?}	}}?>
-								</select>
+								<? //if(count($entranceexams)!='') {
+							//	foreach($entranceexams as $entranceExam){ if( $details->entrance_exam == $entranceExam->entrance_exam_id){?>
+									<option value="<? //echo $entranceExam->entrance_exam_id;?>" selected="selected"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<? //} else{?>
+									<option value="<? //echo $entranceExam->entrance_exam_id;?>"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<?//}	}}?>
+								</select>-->
+								<input type="text" class="form-control" id="user_entrance_exam_1" name="user_entrance_exam_1" Placeholder="Test/Exam" onKeypress="getEntranceExams('1');">
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Score/Rank</label>
@@ -414,15 +415,16 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Test/Exam</label>
-								<select class="form-control" id="user_entrance_exam_1" name="user_entrance_exam_1">
+								<!--<select class="form-control" id="user_entrance_exam_1" name="user_entrance_exam_1">
 								<option value="">Exam Name</option>
-								<? if(count($entranceexams)!='') {
-								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam_1 == $entranceExam->entrance_exam_id){?>
-									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-								<? } else{?>
-									<option value="<? echo $entranceExam->entrance_exam_id;?>"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-								<?}	}}?>
-								</select>
+								<? //if(count($entranceexams)!='') {
+								//foreach($entranceexams as $entranceExam){ if( $details->entrance_exam_1 == $entranceExam->entrance_exam_id){?>
+									<option value="<? //echo $entranceExam->entrance_exam_id;?>" selected="selected"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<? //} else{?>
+									<option value="<? //echo $entranceExam->entrance_exam_id;?>"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<?//}	}}?>
+								</select>-->
+								<input type="text" class="form-control" id="user_entrance_exam_2" name="user_entrance_exam_2" Placeholder="Test/Exam" onKeypress="getEntranceExams('2');">
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Score/Rank</label>
@@ -446,15 +448,16 @@
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Test/Exam</label>
-								<select class="form-control" id="user_entrance_exam_2" name="user_entrance_exam_2">
+								<!--<select class="form-control" id="user_entrance_exam_2" name="user_entrance_exam_2">
 								<option value="">Exam Name</option>
-								<? if(count($entranceexams)!='') {
-								foreach($entranceexams as $entranceExam){ if( $details->entrance_exam_2 == $entranceExam->entrance_exam_id){?>
-									<option value="<? echo $entranceExam->entrance_exam_id;?>" selected="selected"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-								<? } else{?>
-									<option value="<? echo $entranceExam->entrance_exam_id;?>"><? echo ucfirst($entranceExam->entrance_exam_name);?></option>
-								<?}	}}?>
-								</select>
+								<? //if(count($entranceexams)!='') {
+								//foreach($entranceexams as $entranceExam){ if( $details->entrance_exam_2 == $entranceExam->entrance_exam_id){?>
+									<option value="<? //echo $entranceExam->entrance_exam_id;?>" selected="selected"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<? //} else{?>
+									<option value="<? //echo $entranceExam->entrance_exam_id;?>"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
+								<?//}	}}?>
+								</select>-->
+								<input type="text" class="form-control" id="user_entrance_exam_3" name="user_entrance_exam_3" Placeholder="Test/Exam" onKeypress="getEntranceExams('3');">
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Score/Rank</label>
@@ -518,30 +521,32 @@
 						<label for="select" class="col-sm-3 control-label">University</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_bac_unversity_req"></span>
-							<select class="form-control" id="user_bac_unversity" name="user_bac_unversity">
+							<!--<select class="form-control" id="user_bac_unversity" name="user_bac_unversity">
 							<option value="">Select University</option>
-							<? if(count($unversities)!='') {
-							foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->bachelors_university_name){?>
-							<option value="<? echo $unversity->unversity_id;?>" selected="seletced"><? echo ucfirst($unversity->unversity_name);?></option>
-							<?} else{?>
-							<option value="<? echo $unversity->unversity_id;?>"><? echo ucfirst($unversity->unversity_name);?></option>
-							<?}	}}?>
-							</select>
+							<? //if(count($unversities)!='') {
+							//foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->bachelors_university_name){?>
+							<option value="<? //echo $unversity->unversity_id;?>" selected="seletced"><? //echo ucfirst($unversity->unversity_name);?></option>
+							<?//} else{?>
+							<option value="<? //echo $unversity->unversity_id;?>"><? //echo ucfirst($unversity->unversity_name);?></option>
+							<?//}	}}?>
+							</select>-->
+							<input type="text" class="form-control" id="user_bac_unversity" name="user_bac_unversity" Placeholder="University of bachelor's study" onKeypress="bachelorsUniversity();">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Univ College</label>
 						<div class="col-sm-8">
 							<span class="error_msg_disp" id="user_bac_college_req"></span>
-							<select class="form-control" id="user_bac_college" name="user_bac_college">
+							<!--<select class="form-control" id="user_bac_college" name="user_bac_college">
 							<option value="">Select College </option>
-							<? if(count($colleges)!='') {
-							foreach($colleges as $college){ if($college->college_id == $details->bachelors_college){?>
-							<option value="<? echo $college->college_id;?>" selected="selected"><? echo ucfirst($college->college_name);?></option>
-							<? } else{?>
-							<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
-							<?}}}?>
-							</select>
+							<? //if(count($colleges)!='') {
+							//foreach($colleges as $college){ if($college->college_id == $details->bachelors_college){?>
+							<option value="<? //echo $college->college_id;?>" selected="selected"><? //echo ucfirst($college->college_name);?></option>
+							<? //} else{?>
+							<option value="<? //echo $college->college_id;?>"><? //echo ucfirst($college->college_name);?></option>
+							<?//}}}?>
+							</select>-->
+							<input type="text" class="form-control" id="user_bac_college" name="user_bac_college" Placeholder="College of bachelor's study" onKeypress="bachelorsColleges();">
 						</div>
 					</div>
 					
@@ -618,31 +623,33 @@
 			<label for="select" class="col-sm-3 control-label">University</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_mast_university_req"></span>
-			<select class="form-control" id="user_mast_university" name="user_mast_university">
+			<!--<select class="form-control" id="user_mast_university" name="user_mast_university">
 			<option value="">Select University</option>
-			<? if(count($unversities)!='') {
-			foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->masters_university){ ?>
-				<option value="<? echo $unversity->unversity_id;?>" selected="selected"><? echo ucfirst($unversity->unversity_name);?></option>
-			<? } else{?>
-				<option value="<? echo $unversity->unversity_id;?>"><? echo ucfirst($unversity->unversity_name);?></option>
-			<?}	}}?>
-			</select>
+			<? //if(count($unversities)!='') {
+			//foreach($unversities as $unversity){ if( $unversity->unversity_id == $details->masters_university){ ?>
+				<option value="<?// echo $unversity->unversity_id;?>" selected="selected"><? //echo ucfirst($unversity->unversity_name);?></option>
+			<? //} else{?>
+				<option value="<? //echo $unversity->unversity_id;?>"><? //echo ucfirst($unversity->unversity_name);?></option>
+			<?//}	}}?>
+			</select>-->
+			<input type="text" class="form-control" id="user_mast_university" name="user_mast_university" Placeholder="University of master's study" onKeypress="mastersUniversity();">
 			</div>
 			</div>
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">College</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_mast_college_req"></span>
-			<select class="form-control" id="user_mast_college" name="user_mast_college">
+			<!--<select class="form-control" id="user_mast_college" name="user_mast_college">
 			<option value="">Select College </option>
-			<? if(count($colleges)!='') {
-			foreach($colleges as $college){ if($college->college_id == $details->masters_college){?>
-			<option value="<? echo $college->college_id;?>" selected="selected"><? echo ucfirst($college->college_name);?></option>
-			<? }else{?>
-			<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
-			<?} ?>
-			<?}	}?>
-			</select>
+			<? //if(count($colleges)!='') {
+			//foreach($colleges as $college){ if($college->college_id == $details->masters_college){?>
+			<option value="<?// echo $college->college_id;?>" selected="selected"><? //echo ucfirst($college->college_name);?></option>
+			<? //}else{?>
+			<option value="<? //echo $college->college_id;?>"><? //echo ucfirst($college->college_name);?></option>
+			<?//} ?>
+			<?//}	}?>
+			</select>-->
+				<input type="text" class="form-control" id="user_mast_college" name="user_mast_college" Placeholder="College of master's study" onKeypress="mastersColleges();">
 			</div>
 			</div>
 		
@@ -709,32 +716,34 @@
 			<label for="select" class="col-sm-3 control-label">University</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_doctor_university_req"></span>
-			<select class="form-control" id="user_doctor_university" name="user_doctor_university">
+			<!--<select class="form-control" id="user_doctor_university" name="user_doctor_university">
 			<option value="">Select University</option>
-			<? if(count($unversities)!='') {
-			foreach($unversities as $unversity){  if( $unversity->unversity_id == $details->doctorate_university){?>
-			<option value="<? echo $unversity->unversity_id;?>" selected="seletced"><? echo ucfirst($unversity->unversity_name);?></option>
-			<? } else{?>
-			<option value="<? echo $unversity->unversity_id;?>"><? echo ucfirst($unversity->unversity_name);?></option>
-			<?} ?>
-			<?}	}?>
-			</select>
+			<? //if(count($unversities)!='') {
+			//foreach($unversities as $unversity){  if( $unversity->unversity_id == $details->doctorate_university){?>
+			<option value="<? //echo $unversity->unversity_id;?>" selected="seletced"><? //echo ucfirst($unversity->unversity_name);?></option>
+			<? //} else{?>
+			<option value="<? //echo $unversity->unversity_id;?>"><?// echo ucfirst($unversity->unversity_name);?></option>
+			<?//} ?>
+			<?//}	}?>
+			</select>-->
+			<input type="text" class="form-control" id="user_doctor_university" name="user_doctor_university" Placeholder="University of doctoral study" onKeypress="doctoralUniversity();">
 			</div>
 			</div>
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">College</label>
 			<div class="col-sm-8">
 			<span class="error_msg_disp" id="user_doctor_college_req"></span>
-			<select class="form-control" id="user_doctor_college" name="user_doctor_college">
+			<!--<select class="form-control" id="user_doctor_college" name="user_doctor_college">
 			<option value="">Select College </option>
-			<? if(count($colleges)!='') {
-			foreach($colleges as $college){ if($college->college_id == $details->doctorate_college){?>
-			<option value="<? echo $college->college_id;?>" selected="selected"><? echo ucfirst($college->college_name);?></option>
-			<? } else{?>
-			<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
-			<?  }?>
-			<?}	}?>
-			</select>
+			<? //if(count($colleges)!='') {
+			//foreach($colleges as $college){ if($college->college_id == $details->doctorate_college){?>
+			<option value="<? //echo $college->college_id;?>" selected="selected"><? //echo ucfirst($college->college_name);?></option>
+			<?// } else{?>
+			<option value="<?// echo $college->college_id;?>"><? //echo ucfirst($college->college_name);?></option>
+			<? // }?>
+			<?//}	}?>
+			</select>-->
+			<input type="text" class="form-control" id="user_doctor_college" name="user_doctor_college" Placeholder="College of doctoral study" onKeypress="doctoralColleges();">
 			</div>
 			</div>
 			<div class="form-group">
@@ -1217,6 +1226,341 @@ function getSchools(){
 			.appendTo(ul);				
 		};	
 	}
+}
+function bachelorsUniversity(){
+	if($("#user_bachelors_country").val()!=''){
+		$("#user_bac_unversity").autocomplete({
+			source: function( request, response ) {
+				var spec_id = $("#user_bac_speclization").val();				
+				var country_name = $("#user_bachelors_country").val();				
+				var keywordsss = $('#user_bac_unversity').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-bachelors-university',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,spec_id:spec_id},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_bac_unversity").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_bac_unversity").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+function bachelorsColleges(){
+	if($("#user_bac_unversity").val()!=''){
+		$("#user_bac_college").autocomplete({
+			source: function( request, response ) {
+				var spec_id = $("#user_bac_speclization").val();				
+				var country_name = $("#user_bachelors_country").val();				
+				var univ_name = $("#user_bac_unversity").val();				
+				var keywordsss = $('#user_bac_college').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-bachelors-colleges',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,spec_id:spec_id,univ_name:univ_name},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_bac_college").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_bac_college").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+function mastersUniversity(){
+	if($("#user_masters_country").val()!=''){
+		$("#user_mast_university").autocomplete({
+			source: function( request, response ) {
+				var spec_id = $("#user_mast_spec").val();				
+				var country_name = $("#user_masters_country").val();				
+				var keywordsss = $('#user_mast_university').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-bachelors-university',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,spec_id:spec_id},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_mast_university").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_mast_university").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+function mastersColleges(){
+	if($("#user_mast_university").val()!=''){
+		$("#user_mast_college").autocomplete({
+			source: function( request, response ) {
+				var spec_id = $("#user_mast_spec").val();				
+				var country_name = $("#user_masters_country").val();				
+				var univ_name = $("#user_mast_university").val();				
+				var keywordsss = $('#user_mast_college').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-bachelors-colleges',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,spec_id:spec_id,univ_name:univ_name},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_mast_college").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_mast_college").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+function doctoralUniversity(){
+	if($("#user_doctoral_country").val()!=''){
+		$("#user_doctor_university").autocomplete({
+			source: function( request, response ) {
+				var spec_id = $("#user_doctor_spec").val();				
+				var country_name = $("#user_doctoral_country").val();				
+				var keywordsss = $('#user_doctor_university').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-bachelors-university',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,spec_id:spec_id},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_doctor_university").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_doctor_university").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+
+function doctoralColleges(){
+	if($("#user_doctor_university").val()!=''){
+		$("#user_doctor_college").autocomplete({
+			source: function( request, response ) {
+				var spec_id = $("#user_doctor_spec").val();				
+				var country_name = $("#user_doctoral_country").val();				
+				var univ_name = $("#user_doctor_university").val();				
+				var keywordsss = $('#user_doctor_college').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-bachelors-colleges',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,spec_id:spec_id,univ_name:univ_name},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_doctor_college").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_doctor_college").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+function getEntranceExams(type){
+	var idType =  type;
+	switch (idType) {		
+		case 1:
+			idType = 1;
+			break;
+		case 2:
+			idType = 2;
+			break;
+		case 3:
+			idType = 3;
+			break;
+	} 
+	$("#user_entrance_exam_"+idType).autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_entrance_exam_'+idType).val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/get-entrance-exams',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_entrance_exam_"+idType).val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_entrance_exam_"+idType).data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+
 }
 $( document ).ready(function() {
     switchinUser();

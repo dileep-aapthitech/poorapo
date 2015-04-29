@@ -29,4 +29,22 @@ class UniversitiesTable
 		$row = $resultSet;
 		return $row;
 	}
+	public function getUniversityIdByName( $univName )
+	{
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->expression('trim(LOWER(tbl_universities.unversity_name)) LIKE ?', trim(strtolower($univName)));
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current()->unversity_id;
+	}
+	public function getUniversities($specId,$countryid,$keyword){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->like( 'unversity_name', $keyword . '%' );
+		$select->where('id_countries="'.$countryid.'"');
+		$select->where('specialined_id="'.$specId.'"');
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }

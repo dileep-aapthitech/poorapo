@@ -27,6 +27,7 @@ class UsersController extends AbstractActionController
 	protected  $unversitiesTable;
 	protected  $mastersdegreesTable;
 	protected  $forgotPasswordTable;
+	protected  $univcollegesTable;
 	public function indexAction()
 	{
 	}
@@ -759,7 +760,110 @@ class UsersController extends AbstractActionController
 			}
 		}
 	}
+	public function getBachelorsUniversityAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['spec_id']) && $_POST['spec_id']!=''){
+			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+			if(count($countryDetails)!=''){ 
+				$country_id = $countryDetails->current()->id_countries;
+				$getUnversities=$this->getUnversitiesTable()->getUniversities($_POST['spec_id'],$country_id,$_POST['value']);				
+				foreach($getUnversities as $key=>$search){
+					$list_countries[$key]=$search->unversity_name;
+					$hashNameIds[$key]=$key;
+					$count=$key;				
+				}
+				$combined = array();
+				if($list_countries!=''){				
+					foreach($list_countries as $index => $refNumber) {			
+						$combined[] = array(
+							'ref'  => $refNumber,
+							'part' => $hashNameIds[$index]
+						);
+					}
+				}
+				$result = new JsonModel(array(					
+					'searchHashNames' => $combined,
+					'success'=>true,
+				));			
+				return $result;
+			}
+		}
+	}
+	public function getBachelorsCollegesAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['univ_name']) && $_POST['univ_name']!=''){
+			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+			if(count($countryDetails)!=''){ 
+				$country_id = $countryDetails->current()->id_countries;
+				$univId=$this->getUnversitiesTable()->getUniversityIdByName($_POST['univ_name']);	
+				if($univId!=''){				
+					$getColleges = $this->getUnivCollegesTable()->getColleges($_POST['spec_id'],$country_id,$univId,$_POST['value']);
+					foreach($getColleges as $key=>$search){
+						$list_countries[$key]=$search->univ_college_name;
+						$hashNameIds[$key]=$key;
+						$count=$key;				
+					}
+					$combined = array();
+					if($list_countries!=''){				
+						foreach($list_countries as $index => $refNumber) {			
+							$combined[] = array(
+								'ref'  => $refNumber,
+								'part' => $hashNameIds[$index]
+							);
+						}
+					}
+					$result = new JsonModel(array(					
+						'searchHashNames' => $combined,
+						'success'=>true,
+					));			
+					return $result;
+				}
+			}
+		}
+	}
+	public function getEntranceExamsAction(){
+		$list_exams='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['value']) && $_POST['value']!=''){					
+			$getEntranceExams = $this->getEntranceExamsTable()->getEntranceExamsB($_POST['value']);
+			foreach($getEntranceExams as $key=>$search){
+				$list_exams[$key]=$search->entrance_exam_name;
+				$hashNameIds[$key]=$key;
+				$count=$key;				
+			}
+			$combined = array();
+			if($list_exams!=''){				
+				foreach($list_exams as $index => $refNumber) {			
+					$combined[] = array(
+						'ref'  => $refNumber,
+						'part' => $hashNameIds[$index]
+					);
+				}
+			}
+			$result = new JsonModel(array(					
+				'searchHashNames' => $combined,
+				'success'=>true,
+			));			
+			return $result;
+		}
+	}
 	//public function headerAction view  header page returns view part
+	public function getUnivCollegesTable()
+    {
+        if (!$this->univcollegesTable) {				
+            $sm = $this->getServiceLocator();
+            $this->univcollegesTable = $sm->get('Users\Model\UnivCollegesFactory');			
+        }
+        return $this->univcollegesTable;
+    }
 	public function getUserTable()
     {
         if (!$this->userTable) {				

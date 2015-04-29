@@ -42,6 +42,8 @@ use Users\Model\Colleges;
 use Users\Model\CollegesTable;
 use Users\Model\Payment;
 use Users\Model\PaymentTable;
+use Users\Model\UnivColleges;
+use Users\Model\UnivCollegesTable;
 
 
 class Module implements 
@@ -85,8 +87,8 @@ class Module implements
             	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',
             	'Users\Model\SpecializationFactory'=>'Users\Factory\Model\SpecializationTableFactory',
             	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory',
-            	'Users\Model\PaymentFactory'=>'Users\Factory\Model\PaymentTableFactory'
-            	
+            	'Users\Model\PaymentFactory'=>'Users\Factory\Model\PaymentTableFactory',
+            	'Users\Model\UnivCollegesFactory'=>'Users\Factory\Model\UnivCollegesTableFactory'            	
 			),			
         );
     }
