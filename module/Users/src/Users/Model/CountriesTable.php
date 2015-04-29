@@ -37,4 +37,13 @@ class CountriesTable
 		$row = $resultSet;
 		return $row;
 	}
+	public function getCountryIdByName( $countryName )
+	{
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->expression('LOWER(tbl_countries.name) LIKE ?', strtolower($countryName));
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 }
