@@ -141,30 +141,129 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){
+		$id_countries_birth = 0;
+		$id_countries_job = 0;
+		$id_countries_school = 0;
+		$id_countries_bachelors = 0;
+		$id_countries_masters = 0;
+		$id_countries_phd = 0;
+		$stateId = 0;
+		$districtId = 0;
+		$jCollId = 0;
+		$entranceExam1 = 0;
+		$entranceExam2 = 0;
+		$entranceExam3 = 0;
+		$b_u = 0;
+		$b_c = 0;
+		$m_u = 0;
+		$m_c = 0;
+		$d_u = 0;
+		$d_c = 0;
+		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){			
+			if( isset($_POST['user_country']) && trim($_POST['user_country'])!='' )
+			{
+				$countryRs=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_country']));
+				if( count($countryRs) != 0 )
+				{
+					$id_countries_birth = $countryRs->current()->id_countries;
+				}
+			}
+			if( isset($_POST['user_country_job']) && trim($_POST['user_country_job'])!='' )
+			{
+				$countryRs1=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_country_job']));
+				if( count($countryRs1) != 0 )
+				{
+					$id_countries_job = $countryRs1->current()->id_countries;
+				}
+			}
+			
+			if( isset($_POST['user_junior_country']) && trim($_POST['user_junior_country'])!='' )
+			{
+				$countryRs2=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_junior_country']));
+				if( count($countryRs2) != 0 )
+				{
+					$id_countries_school = $countryRs2->current()->id_countries;
+				}
+			}
+			if( isset($_POST['user_bachelors_country']) && trim($_POST['user_bachelors_country'])!='' )
+			{
+				$countryRs3=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_bachelors_country']));
+				if( count($countryRs3) != 0 )
+				{
+					$id_countries_bachelors = $countryRs3->current()->id_countries;
+				}
+			}
+			if( isset($_POST['user_masters_country']) && trim($_POST['user_masters_country'])!='' )
+			{
+				$countryRs4=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_masters_country']));
+				if( count($countryRs4) != 0 )
+				{
+					$id_countries_masters = $countryRs4->current()->id_countries;
+				}
+			}
+			if( isset($_POST['user_doctoral_country']) && trim($_POST['user_doctoral_country'])!='' )
+			{
+				$countryRs5=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_doctoral_country']));
+				if( count($countryRs5) != 0 )
+				{
+					$id_countries_phd = $countryRs5->current()->id_countries;
+				}
+			}
+			if( isset($_POST['user_state']) && trim($_POST['user_state'])!='' )
+			{
+				$states=$this->getSatesTable()->getStateIdByName(trim($_POST['user_state']));
+				$stateId =$states->state_id;
+			}
+			if( isset($_POST['user_district']) && trim($_POST['user_district'])!='' )
+			{
+				$districtId=$this->getDistrictsTable()->getDistrictIdByName(trim($_POST['user_district']));
+			}
+			
+			if( isset($_POST['user_colleges']) && trim($_POST['user_colleges'])!='' )
+			{
+				$jCollId=$this->getCollegeTable()->getJCollIdByName(trim($_POST['user_colleges']));
+			}
+			if(isset($_POST['user_entrance_exam_1']) && $_POST['user_entrance_exam_1']!=''){
+				$entranceExam1 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_1']));				
+			}
+			if(isset($_POST['user_entrance_exam_2']) && $_POST['user_entrance_exam_2']!=''){
+				$entranceExam2 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_2']));				
+			}
+			if(isset($_POST['user_entrance_exam_3']) && $_POST['user_entrance_exam_3']!=''){
+				$entranceExam3 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_3']));				
+			}
+			if(isset($_POST['user_bac_unversity']) && $_POST['user_bac_unversity']!=''){
+				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));				
+			}
+			if(isset($_POST['user_bac_college']) && $_POST['user_bac_college']!=''){
+				$b_c = $this->getUnivCollegesTable()->getColleges(trim($_POST['user_bac_college']));
+			}
+			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
+				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+			}
+			if(isset($_POST['user_mast_college']) && $_POST['user_mast_college']!=''){
+				$m_c = $this->getUnivCollegesTable()->getColleges(trim($_POST['user_mast_college']));
+			}
+			if(isset($_POST['user_doctor_university']) && $_POST['user_doctor_university']!=''){
+				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+			}
+			if(isset($_POST['user_doctor_college']) && $_POST['user_doctor_college']!=''){
+				$d_c = $this->getUnivCollegesTable()->getColleges(trim($_POST['user_doctor_college']));
+			}
 			$base_user_id =  base64_encode($_POST['hid_user_id']);
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
 			$_SESSION['user']['username']=$_POST['user_first_name'];
 			$suc = 'udt';
 			if($user_id>=0){
-				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$_POST['hid_user_id']);
+				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$_POST['hid_user_id'],$id_countries_birth,$id_countries_job,$stateId,$districtId);
 				if($userpersonalInfo>=0){
-					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id']);					
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id'],$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c);					
 					if($userDetailsInfo>=0){
 						return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
 					}
 				}
 			}
-		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){
-			$id_countries_birth = 0;
-			$id_countries_job = 0;
-			$id_countries_school = 0;
-			$id_countries_bachelors = 0;
-			$id_countries_masters = 0;
-			$id_countries_phd = 0;
-			$stateId = 0;
-			$districtId = 0;
-			$jCollId = 0;
+		}else if(isset($_POST['user_type']) && $_POST['user_type']!='' && isset($_POST['hid_user_id']) && $_POST['hid_user_id']==''){			
 			if( isset($_POST['user_country']) && trim($_POST['user_country'])!='' )
 			{
 				$countryRs=$this->getCountriesTable()->getCountryIdByName(trim($_POST['user_country']));
@@ -217,7 +316,8 @@ class UsersController extends AbstractActionController
 			
 			if( isset($_POST['user_state']) && trim($_POST['user_state'])!='' )
 			{
-				$stateId=$this->getSatesTable()->getStateIdByName(trim($_POST['user_state']));
+				$states=$this->getSatesTable()->getStateIdByName(trim($_POST['user_state']));
+				$stateId =$states->state_id;
 			}
 			if( isset($_POST['user_district']) && trim($_POST['user_district'])!='' )
 			{
@@ -228,12 +328,38 @@ class UsersController extends AbstractActionController
 			{
 				$jCollId=$this->getCollegeTable()->getJCollIdByName(trim($_POST['user_colleges']));
 			}
-
+			if(isset($_POST['user_entrance_exam_1']) && $_POST['user_entrance_exam_1']!=''){
+				$entranceExam1 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_1']));				
+			}
+			if(isset($_POST['user_entrance_exam_2']) && $_POST['user_entrance_exam_2']!=''){
+				$entranceExam2 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_2']));				
+			}
+			if(isset($_POST['user_entrance_exam_3']) && $_POST['user_entrance_exam_3']!=''){
+				$entranceExam3 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_3']));				
+			}
+			if(isset($_POST['user_bac_unversity']) && $_POST['user_bac_unversity']!=''){
+				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));				
+			}
+			if(isset($_POST['user_bac_college']) && $_POST['user_bac_college']!=''){
+				$b_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_bac_college']));
+			}
+			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
+				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+			}
+			if(isset($_POST['user_mast_college']) && $_POST['user_mast_college']!=''){
+				$m_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_mast_college']));
+			}
+			if(isset($_POST['user_doctor_university']) && $_POST['user_doctor_university']!=''){
+				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+			}
+			if(isset($_POST['user_doctor_college']) && $_POST['user_doctor_college']!=''){
+				$d_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_doctor_college']));
+			}
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
 			if($user_id!=0){
 				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id,$id_countries_birth,$id_countries_job,$stateId,$districtId);
 				if($userpersonalInfo!=0){
-					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd);					
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c);					
 					if($userDetailsInfo!=0){
 						$usersTable=$this->getUserTable();
 						$userDetails = $usersTable->getUser($user_id);

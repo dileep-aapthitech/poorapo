@@ -21,8 +21,13 @@ class UnivCollegesTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function getCollegesssss(){
-		echo "Testing";exit;
+	public function getUnivCollegeIdByName( $univCollegeName )
+	{
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->expression('trim(LOWER(tbl_colleges_univ.univ_college_name)) LIKE ?', trim(strtolower($univCollegeName)));
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet->current()->univ_college_id;
 	}
 	public function getColleges($specId,$countryid,$univId,$keyword){
 		$select = $this->tableGateway->getSql()->select();

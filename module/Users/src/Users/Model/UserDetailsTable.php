@@ -21,7 +21,7 @@ class UserDetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd){
+	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_c,$d_u){
 		if($usersinfo['user_principal_name']!=''){
 			$user_principal_name=$usersinfo['user_principal_name'];			
 		}else{			
@@ -43,8 +43,8 @@ class UserDetailsTable
 		}else{			
 			$user_entrance_year='';
 		}
-		if($usersinfo['user_entrance_exam']!=''){
-			$user_entrance_exam=$usersinfo['user_entrance_exam'];			
+		if($usersinfo['user_entrance_exam_1']!=''){
+			$user_entrance_exam=$usersinfo['user_entrance_exam_1'];			
 		}else{			
 			$user_entrance_exam='';
 		}
@@ -59,8 +59,8 @@ class UserDetailsTable
 		}else{			
 			$user_entrance_year_1='';
 		}
-		if($usersinfo['user_entrance_exam_1']!=''){
-			$user_entrance_exam_1=$usersinfo['user_entrance_exam_1'];			
+		if($usersinfo['user_entrance_exam_2']!=''){
+			$user_entrance_exam_1=$usersinfo['user_entrance_exam_2'];			
 		}else{			
 			$user_entrance_exam_1='';
 		}
@@ -75,8 +75,8 @@ class UserDetailsTable
 		}else{			
 			$user_entrance_year_2='';
 		}
-		if($usersinfo['user_entrance_exam_2']!=''){
-			$user_entrance_exam_2=$usersinfo['user_entrance_exam_2'];			
+		if($usersinfo['user_entrance_exam_3']!=''){
+			$user_entrance_exam_2=$usersinfo['user_entrance_exam_3'];			
 		}else{			
 			$user_entrance_exam_2='';
 		}
@@ -164,38 +164,38 @@ class UserDetailsTable
 		$data = array(
 			'user_id' 		            => $user_id,  		
 			'id_countries_school'       => $id_countries_school, 	
-			'college_name' 		        => $user_colleges, 	
+			'college_name' 		        => $jCollId, 	
 			'principal_name'  	        => $user_principal_name,  	
 			'principal_phone_num'       => $user_princi_phone,  	
 			'principal_email_id'        => $user_princi_email,  
 // Entrance 1			
-			'entrance_exam'  	        => $user_entrance_exam,  	
+			'entrance_exam'  	        => $entranceExam1,  	
 			'which_year'  	            => $user_entrance_year,  	
 			'entrance_rank'  	        => $user_entrance_rank, 
 // Entrance 2	
-			'entrance_exam_1'  	        => $user_entrance_exam_1,  	
+			'entrance_exam_1'  	        => $entranceExam2,  	
 			'which_year_1'  	        => $user_entrance_year_1,  	
 			'entrance_rank_1'  	        => $user_entrance_rank_1, 
 // Entrance 3
-			'entrance_exam_2'  	        => $user_entrance_exam_2,  	
+			'entrance_exam_2'  	        => $entranceExam3,  	
 			'which_year_2'  	        => $user_entrance_year_2,  	
 			'entrance_rank_2'  	        => $user_entrance_rank_2, 			
 			'id_countries_bachelors'    => $id_countries_bachelors,  	
 			'bachelors_degree_name'     => $user_bac_degree,  	
-			'bachelors_university_name' => $user_bac_unversity,  	
-			'bachelors_college'         => $user_bac_college,  	
+			'bachelors_university_name' => $b_u,  	
+			'bachelors_college'         => $b_c,  	
 			'bachelors_specialization'  => $user_bac_speclization,  	
 			'bachelors_year_admission'  => $user_bac_year,  	
 			'id_countries_masters'      => $id_countries_masters,  	
 			'masters_degree'  	        => $user_master_degree,  	
-			'masters_university'  	    => $user_mast_university,  	
-			'masters_college'           => $user_mast_college,  	
+			'masters_university'  	    => $m_u,  	
+			'masters_college'           => $m_c,  	
 			'masters_specialization'  	=> $user_mast_spec,  	
 			'masters_year_admission'  	=> $user_mast_year,
 			'id_countries_phd'		  	=> $id_countries_phd,
 			'doctorate_name'  	        => $user_doctor_phd,
-			'doctorate_college'  	    => $user_doctor_university,
-			'doctorate_university'  	=> $user_doctor_college,
+			'doctorate_college'  	    => $d_c,
+			'doctorate_university'  	=> $d_u,
 			'doctorate_specialization' 	=> $user_doctor_spec,
 			'doctorate_year' 	        => $user_doctor_year,
 			'modified_at' 	            => date('Y-m-d H:i:s'),   

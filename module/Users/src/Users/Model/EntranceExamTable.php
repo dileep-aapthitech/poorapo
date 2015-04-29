@@ -46,4 +46,13 @@ class EntranceExamTable
 		$row = $resultSet;
 		return $row;
 	}
+	public function getEntranceExamIdByName( $entranceExamName )
+	{
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->expression('trim(LOWER(tbl_entrance_exam.entrance_exam_name)) LIKE ?', strtolower($entranceExamName));
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet->current();
+		return $row->entrance_exam_id;
+	}
 }
