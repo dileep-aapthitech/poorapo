@@ -54,12 +54,18 @@ function validateReg(typeTab){
 	var flag = true;	
 	var usertype = $("#user_type").val();
 	var userEmail = $("#user_email").val();
-	if(typeTab==1){		
+	if(typeTab==1){	
 		if(usertype==""){
 			$("#user_type_req").html(Required);
 			flag=false;
 		}else{
 			$("#user_type_req").html('');
+		}
+		if($("#user_first_name").val()==''){
+			$("#user_firstname_req").html(Required);
+			flag = false;
+		}else{
+			$("#user_firstname_req").html('');
 		}
 		if($("#hid_user_id").val()==""){
 			if(userEmail==""){
@@ -99,12 +105,7 @@ function validateReg(typeTab){
 			regTab1(typeTabNext,'0');
 		}
 	}else if(typeTab==2){
-		if($("#user_first_name").val()==''){
-			$("#user_firstname_req").html(Required);
-			flag = false;
-		}else{
-			$("#user_firstname_req").html('');
-		}
+		/*
 		if($("#user_last_name").val()==''){
 			$("#user_lastname_req").html(Required);
 			flag = false;
@@ -200,6 +201,7 @@ function validateReg(typeTab){
 				$("#user_emp_ctc_req").html('');
 			}
 		}
+		*/
 		if(flag == false){
 			$("#hid_tab_2").val('1');
 			tab2flag = false;
@@ -212,6 +214,7 @@ function validateReg(typeTab){
 		}
 	}else if(typeTab==3){
 		if(usertype==1){
+			/*
 			if($("#user_state").val()==''){
 				$("#user_state_req").html(Required);
 				flag = false;
@@ -248,6 +251,7 @@ function validateReg(typeTab){
 			}else{
 				$("#user_princi_email_req").html('');
 			}
+			*/
 			if(flag == false){
 				$("#hid_tab_3").val('1');
 				tab3flag = false;
@@ -265,6 +269,7 @@ function validateReg(typeTab){
 			regTab1(typeTabNext,'0');
 		}
 	}else if(typeTab==4){
+		/*
 		if(($("#user_entrance_year").val()=='') || ($("#user_entrance_exam").val()=='') || ($("#user_entrance_rank").val()=='')){
 			$("#user_entrance_rank_req").html(Required);
 			$("#user_entrance_op_1").html('Optional');
@@ -275,6 +280,7 @@ function validateReg(typeTab){
 			$("#user_entrance_op_2").html('');
 			$("#user_entrance_rank_req").html('');
 		}
+		*/
 		if(flag == false){
 			$("#hid_tab_4").val('1');
 			tab4flag = false;

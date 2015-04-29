@@ -105,6 +105,11 @@ class UserPersonalInfoTable
 		}else{			
 			$user_emp_ctc='';
 		}
+		if($usersinfo['user_emp_websiteurl']!=''){
+			$user_emp_websiteurl=$usersinfo['user_emp_websiteurl'];			
+		}else{			
+			$user_emp_websiteurl='';
+		}
 		$data = array(
 			'user_id' 		        => $user_id,  		
 			'first_name' 		    => $fisrt_name, 	
@@ -112,7 +117,7 @@ class UserPersonalInfoTable
 			'gender'  	            => $gender,  	
 			'date_of_birth'  	    => $dob,  	
 			'mobile_number'  	    => $mobilenumber,  	
-			'id_countries'  	    => $country,  	
+			'id_countries_birth'    => $country,  	
 			'state_id'  	        => $state,  	
 			'district_id'    	    => $districtid,  	
 			'parents_name'  	    => $parent_name,  	
@@ -124,6 +129,7 @@ class UserPersonalInfoTable
 			'annual_family_income'  => $user_afi,  	
 			'family_net_worth'  	=> $user_fnw,  	
 			'employee_ctc'  	    => $user_emp_ctc,
+			'company_website'  	    => $user_emp_websiteurl,
 			'modified_at' 	        => date('Y-m-d H:i:s')
 		);
 		if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){
