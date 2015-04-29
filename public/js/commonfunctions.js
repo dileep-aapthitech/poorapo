@@ -299,9 +299,11 @@ function validateReg(typeTab){
 			regTab1(typeTabNext,'0');
 	}else if(typeTab==7){
 			var typeTabNext = typeTab+1;
+			regTab1(typeTabNext,'0');
+	}else if(typeTab==8){
+			var typeTabNext = typeTab+1;
 			regTab1(typeTabNext,'1');
-	}
-	return false;
+	}	return false;
 	/*
 	if(tab1flag && tab2flag && tab3flag && tab4flag){	
 		allFormValdation();
@@ -338,6 +340,7 @@ function formFinalSubmit(){
 }
 function allFormValdation(){
 	var flag = true;
+	/*
 	var usertype = $("#user_type").val();
 	var userEmail = $("#user_email").val();
 	if(usertype==""){
@@ -510,6 +513,7 @@ function allFormValdation(){
 			$("#user_princi_email_req").html('');
 		}
 	}
+	*/
 	if(flag==false){		
 		return false;
 	}else{

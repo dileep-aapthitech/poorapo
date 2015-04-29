@@ -30,7 +30,7 @@
 					<label for="inputtype" class="col-sm-3 control-label">User Type</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_type_req"></span>
-						<select class="form-control" id="user_type" name="user_type" onChange="return switchinUser();">
+						<select class="form-control" id="user_type" name="user_type">
 							<option value=''>Select User Type</option>
 							<? if(count($usertypes)!='') {
 							foreach($usertypes as $user_type){ if($user_type->user_type_id!=4) { if($details->user_type_id == $user_type->user_type_id){?>
@@ -252,38 +252,10 @@
 						</div>
 					</div>
 				</div>
+				<!--
 				<div id="employeeDiv" style="display:none">
-					<div class="form-group">
-						<label for="inputPassword3" class="col-sm-3 control-label">Country of Job</label>
-						<div class="col-sm-8">
-							<span class="error_msg_disp" id="user_country_job_req"></span>
-							<!--<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
-								<option value="">Country of Birth</option>
-								// <? //if(count($countries)!='') {
-								// foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
-								<option value="<? //echo $country->id_countries;?>" selected="selected"><? //echo ucfirst($country->name);?></option>
-								<? //} else{?>
-								<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
-								<?//}}}?>
-							</select>-->
-							<input type="text" class="form-control" id="user_country_job" name="user_country_job" placeholder="Country of Job">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputectc" class="col-sm-3 control-label">Annual Income</label>
-						<div class="col-sm-8">
-							<span class="error_msg_disp" id="user_emp_ctc_req"></span>
-							<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Annual Income" value="<? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?>">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="inputectc" class="col-sm-3 control-label">Company Website Url</label>
-						<div class="col-sm-8">
-							<span class="error_msg_disp" id="user_emp_websiteurl_req"></span>
-							<input type="text" class="form-control" id="user_emp_websiteurl" name="user_emp_websiteurl" placeholder="Company Website Url" value="<? if(isset($details->employee_websiteurl) && $details->employee_websiteurl!='') {echo $details->employee_websiteurl;}else{}?>">
-						</div>
-					</div>
 				</div>
+				-->
 				<div class="form-group">
 					<div class="col-sm-8 col-lg-offset-3">
 						<!--<button type="reset" class="btn btn-default">Cancel</button>-->
@@ -756,7 +728,6 @@
 			</select>
 			</div>
 			</div>
-			
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Year of Admission</label>
 			<div class="col-sm-8">
@@ -778,6 +749,50 @@
 			<button type="button" class="btn btn-primary" onClick="validateReg(7);">Continue</button>
 			</div>
 			</div>
+			</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading" onclick="regTab1(8,0)">Job Details&nbsp;<i>(optional)</i>
+			<i  id="icon5"class="glyphicon glyphicon-triangle-bottom  pull-right"></i></div>
+			<div class="panel-body" id="tab_8_hide" style="display:none;">
+			<div class="form-horizontal">
+				<div class="form-group">
+					<label for="inputPassword3" class="col-sm-3 control-label">Country of Job</label>
+					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_country_job_req"></span>
+						<!--<select class="form-control" id="user_country" name="user_country" onChange="return ajaxData();">
+							<option value="">Country of Birth</option>
+							// <? //if(count($countries)!='') {
+							// foreach($countries as $country){ if($country->id_countries == $details->id_countries){?>
+							<option value="<? //echo $country->id_countries;?>" selected="selected"><? //echo ucfirst($country->name);?></option>
+							<? //} else{?>
+							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
+							<?//}}}?>
+						</select>-->
+						<input type="text" class="form-control" id="user_country_job" name="user_country_job" placeholder="Country of Job">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputectc" class="col-sm-3 control-label">Annual Income</label>
+					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_emp_ctc_req"></span>
+						<input type="text" class="form-control" id="user_emp_ctc" name="user_emp_ctc" placeholder="Annual Income" value="<? if(isset($details->employee_ctc) && $details->employee_ctc!='') {echo $details->employee_ctc;}else{}?>">
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="inputectc" class="col-sm-3 control-label">Company Website Url</label>
+					<div class="col-sm-8">
+						<span class="error_msg_disp" id="user_emp_websiteurl_req"></span>
+						<input type="text" class="form-control" id="user_emp_websiteurl" name="user_emp_websiteurl" placeholder="Company Website Url" value="<? if(isset($details->employee_websiteurl) && $details->employee_websiteurl!='') {echo $details->employee_websiteurl;}else{}?>">
+					</div>
+				</div>
+				<div class="form-group">
+				<div class="col-sm-8 col-lg-offset-3">
+				<!--<button type="reset" class="btn btn-default">Cancel</button>-->
+				<button type="button" class="btn btn-primary" onClick="validateReg(8);">Continue</button>
+				</div>
+				</div>
 			</div>
 			</div>
 		</div>
