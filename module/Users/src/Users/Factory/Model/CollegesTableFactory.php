@@ -19,7 +19,7 @@ class  CollegesTableFactory implements FactoryInterface
         $resultSetPrototype = new HydratingResultSet();
         $resultSetPrototype->setHydrator(new ObjectProperty());
         $resultSetPrototype->setObjectPrototype(new Colleges());
-        $tableGateway       = new TableGateway('tbl_colleges', $db,array(),$resultSetPrototype);
+        $tableGateway       = new TableGateway('tbl_colleges_junior', $db,array(),$resultSetPrototype);
         $table              = new CollegesTable($tableGateway);
         return $table;
     }
