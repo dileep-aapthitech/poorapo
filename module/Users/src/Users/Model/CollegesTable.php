@@ -21,6 +21,17 @@ class CollegesTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
+	public function getSchools($countryid,$stateid,$districtid,$keyWord){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where->like( 'college_name', $keyWord . '%' );
+		$select->where('country_id="'.$countryid.'"');
+		$select->where('state_id="'.$stateid.'"');
+		$select->where('district_id="'.$districtid.'"');
+		$select->where('status=1');
+		$resultSet = $this->tableGateway->selectWith($select);
+		$row = $resultSet;
+		return $row;
+	}
 	/************* List All Colleges **********/
 	public function getColleges(){
 		$select = $this->tableGateway->getSql()->select();

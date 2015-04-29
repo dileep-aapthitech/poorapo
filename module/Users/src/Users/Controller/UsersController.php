@@ -695,9 +695,9 @@ class UsersController extends AbstractActionController
 		if(isset($_POST['state_name']) && $_POST['state_name']!=''){
 			$states=$this->getSatesTable()->getStateIdByName($_POST['state_name']);
 			if($states->state_id!=''){
-				$getDistricts=$this->getDistrictsTable()->getDistricts($states->state_id,$_POST['value']);
+				$getDistricts=$this->getDistrictsTable()->getDistrictsStates($states->state_id,$_POST['value']);
 				foreach($getDistricts as $key=>$search){
-					$list_countries[$key]=$search->state_name;
+					$list_countries[$key]=$search->district_name;
 					$hashNameIds[$key]=$key;
 					$count=$key;				
 				}
@@ -715,6 +715,47 @@ class UsersController extends AbstractActionController
 					'success'=>true,
 				));			
 				return $result;
+			}
+		}
+	}
+	public function getSchoolsAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		$combined = array();
+		if(isset($_POST['dist_name']) && $_POST['dist_name']!=""){ 
+			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+			if(count($countryDetails)!=''){ 
+				$country_id = $countryDetails->current()->id_countries;
+				$states=$this->getSatesTable()->getStateIdByName($_POST['state_name']);
+				$stateId = $states->state_id;
+				if($stateId!=''){
+					$districtId=$this->getDistrictsTable()->getDistrictIdByName($_POST['dist_name']);
+					if($districtId!=''){
+						$getColleges=$this->getCollegeTable()->getSchools($country_id,$stateId,$districtId,$_POST['value']);
+						if(count($getColleges)!=""){
+							foreach($getColleges as $key=>$search){
+								$list_countries[$key]=$search->college_name;
+								$hashNameIds[$key]=$key;
+								$count=$key;				
+							}
+							if($list_countries!=''){				
+								foreach($list_countries as $index => $refNumber) {			
+									$combined[] = array(
+										'ref'  => $refNumber,
+										'part' => $hashNameIds[$index]
+									);
+								}
+							}
+						}
+						$result = new JsonModel(array(					
+							'searchHashNames' => $combined,
+							'success'=>true,
+						));			
+						return $result;
+					}
+				}
 			}
 		}
 	}

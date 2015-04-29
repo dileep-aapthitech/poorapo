@@ -315,15 +315,16 @@
 							<label for="inputcname" class="col-sm-3 control-label">High School</label>
 							<div class="col-sm-8">
 								<span class="error_msg_disp" id="user_colleges_req"></span>
-								<select class="form-control" id="user_colleges" name="user_colleges">
+								<!--<select class="form-control" id="user_colleges" name="user_colleges">
 									<option value="">Grade 12 High School Name</option>
-									<? if(count($colleges)!='') {
-									foreach($colleges as $college){ if( $details->college_name==$college->college_id){?>
-									<option value="<? echo $college->college_id;?>" selected="selected"><? echo ucfirst($college->college_name);?></option>
-									<? } else{?>
-									<option value="<? echo $college->college_id;?>"><? echo ucfirst($college->college_name);?></option>
-									<?}}}?>
-								</select>
+									<?// if(count($colleges)!='') {
+									//foreach($colleges as $college){ if( $details->college_name==$college->college_id){?>
+									<option value="<? //echo $college->college_id;?>" selected="selected"><? //echo ucfirst($college->college_name);?></option>
+									<? //} else{?>
+									<option value="<? //echo $college->college_id;?>"><? //echo ucfirst($college->college_name);?></option>
+									<?//}}}?>
+								</select>-->
+								<input type="text" class="form-control" id="user_colleges" name="user_colleges" onkeypress="getSchools();" placeholder="Colleges/Schools">
 							</div>
 						</div>
 						<div class="form-group">
@@ -863,7 +864,7 @@ function userCountryBirth(){
 	});
 	$("#user_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
-		 return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		 return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		 .data("item.uiAutocomplete", item)            
 		 .appendTo(ul);				
 	};
@@ -906,7 +907,7 @@ function countryOfJobs(){
 	});
 	$("#user_country_job").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		.data("item.uiAutocomplete", item)            
 		.appendTo(ul);				
 	};	
@@ -948,7 +949,7 @@ function JuniorCountry(){
 	});
 	$("#user_junior_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		.data("item.uiAutocomplete", item)            
 		.appendTo(ul);				
 	};	
@@ -990,7 +991,7 @@ function bachelorsCountry(){
 	});
 	$("#user_bachelors_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		.data("item.uiAutocomplete", item)            
 		.appendTo(ul);				
 	};	
@@ -1032,7 +1033,7 @@ function mastersCountry(){
 	});
 	$("#user_masters_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		.data("item.uiAutocomplete", item)            
 		.appendTo(ul);				
 	};	
@@ -1074,7 +1075,7 @@ function doctoralCountry(){
 	});
 	$("#user_doctoral_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		.data("item.uiAutocomplete", item)            
 		.appendTo(ul);				
 	};	
@@ -1118,7 +1119,7 @@ function getstates(){
 		});
 		$("#user_state").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 			var hashname=item.label;		
-			return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 			.data("item.uiAutocomplete", item)            
 			.appendTo(ul);				
 		};	
@@ -1164,7 +1165,54 @@ function getDistricts(){
 		});
 		$("#user_district").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 			var hashname=item.label;		
-			return $("<li><a data-value='"+item.label+"' onClick ='set_item(this.text);'>" + item.label + "</a></li>")
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
+function getSchools(){
+	if($("#user_district").val()!=''){
+		$("#user_colleges").autocomplete({
+			source: function( request, response ) {
+				var country_name = $("#user_junior_country").val();
+				var state_name = $('#user_state').val();
+				var dist_name = $('#user_district').val();
+				var keywordsss = $('#user_colleges').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-schools',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss,country_name:country_name,state_name:state_name,dist_name:dist_name},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_colleges").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_colleges").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 			.data("item.uiAutocomplete", item)            
 			.appendTo(ul);				
 		};	
