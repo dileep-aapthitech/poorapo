@@ -59,8 +59,14 @@ class UserTable
 			$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
 			return $updateresult;
 		}else{
+			if($users['user_first_name']!=''){
+				$fisrt_name = $users['user_first_name'];
+			}else{
+				$fisrt_name = '';			
+			}
 			$password=md5($users['user_password']);
 			$data = array(
+				'user_name' 	=> $fisrt_name, 	
 				'email_id' 		=> $users['user_email'],  		
 				'password' 		=> $password, 	
 				'user_type_id'  	=> $users['user_type'],  	

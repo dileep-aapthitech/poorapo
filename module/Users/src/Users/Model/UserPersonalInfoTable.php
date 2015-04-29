@@ -20,12 +20,7 @@ class UserPersonalInfoTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addPersonalInfo($usersinfo,$user_id){
-		if($usersinfo['user_first_name']!=''){
-			$fisrt_name = $usersinfo['user_first_name'];
-		}else{
-			$fisrt_name = '';			
-		}
+	public function addPersonalInfo($usersinfo,$user_id,$id_countries_birth,$id_countries_job,$stateId,$districtId){
 		if($usersinfo['user_last_name']!=''){
 			$last_name=$usersinfo['user_last_name'];			
 		}else{			
@@ -45,20 +40,6 @@ class UserPersonalInfoTable
 			$mobilenumber=$usersinfo['user_mobile'];			
 		}else{			
 			$mobilenumber='';
-		}if($usersinfo['user_country']!=''){
-			$country=$usersinfo['user_country'];			
-		}else{			
-			$country='';
-		}
-		if($usersinfo['user_state']!=''){
-			$state=$usersinfo['user_state'];			
-		}else{			
-			$state='';
-		}
-		if($usersinfo['user_district']!=''){
-			$districtid=$usersinfo['user_district'];			
-		}else{			
-			$districtid='';
 		}
 		if($usersinfo['user_parent_name']!=''){
 			$parent_name=$usersinfo['user_parent_name'];			
@@ -112,14 +93,13 @@ class UserPersonalInfoTable
 		}
 		$data = array(
 			'user_id' 		        => $user_id,  		
-			'first_name' 		    => $fisrt_name, 	
 			'last_name'  	        => $last_name,  	
 			'gender'  	            => $gender,  	
 			'date_of_birth'  	    => $dob,  	
 			'mobile_number'  	    => $mobilenumber,  	
-			'id_countries_birth'    => $country,  	
-			'state_id'  	        => $state,  	
-			'district_id'    	    => $districtid,  	
+			'id_countries_birth'    => $id_countries_birth,  	
+			'state_id'  	        => $stateId,  	
+			'district_id'    	    => $districtId,  	
 			'parents_name'  	    => $parent_name,  	
 			'user_parent_lastname'  => $user_parent_lastname,  	
 			'p_phone_number'  	    => $user_mobile_number,  	
@@ -128,6 +108,7 @@ class UserPersonalInfoTable
 			'permant_pincode'  	    => $user_perment_pincode,  	
 			'annual_family_income'  => $user_afi,  	
 			'family_net_worth'  	=> $user_fnw,  	
+			'id_countries_job'	    => $id_countries_job,  	
 			'employee_ctc'  	    => $user_emp_ctc,
 			'company_website'  	    => $user_emp_websiteurl,
 			'modified_at' 	        => date('Y-m-d H:i:s')

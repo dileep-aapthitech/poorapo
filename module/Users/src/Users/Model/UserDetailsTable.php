@@ -21,12 +21,7 @@ class UserDetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addDetails($usersinfo,$user_id){
-		if($usersinfo['user_colleges']!=''){
-			$user_colleges = $usersinfo['user_colleges'];
-		}else{
-			$user_colleges = '';			
-		}
+	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd){
 		if($usersinfo['user_principal_name']!=''){
 			$user_principal_name=$usersinfo['user_principal_name'];			
 		}else{			
@@ -168,6 +163,7 @@ class UserDetailsTable
 		}
 		$data = array(
 			'user_id' 		            => $user_id,  		
+			'id_countries_school'       => $id_countries_school, 	
 			'college_name' 		        => $user_colleges, 	
 			'principal_name'  	        => $user_principal_name,  	
 			'principal_phone_num'       => $user_princi_phone,  	
@@ -184,16 +180,19 @@ class UserDetailsTable
 			'entrance_exam_2'  	        => $user_entrance_exam_2,  	
 			'which_year_2'  	        => $user_entrance_year_2,  	
 			'entrance_rank_2'  	        => $user_entrance_rank_2, 			
+			'id_countries_bachelors'    => $id_countries_bachelors,  	
 			'bachelors_degree_name'     => $user_bac_degree,  	
 			'bachelors_university_name' => $user_bac_unversity,  	
 			'bachelors_college'         => $user_bac_college,  	
 			'bachelors_specialization'  => $user_bac_speclization,  	
 			'bachelors_year_admission'  => $user_bac_year,  	
+			'id_countries_masters'      => $id_countries_masters,  	
 			'masters_degree'  	        => $user_master_degree,  	
 			'masters_university'  	    => $user_mast_university,  	
 			'masters_college'           => $user_mast_college,  	
 			'masters_specialization'  	=> $user_mast_spec,  	
 			'masters_year_admission'  	=> $user_mast_year,
+			'id_countries_phd'		  	=> $id_countries_phd,
 			'doctorate_name'  	        => $user_doctor_phd,
 			'doctorate_college'  	    => $user_doctor_university,
 			'doctorate_university'  	=> $user_doctor_college,
