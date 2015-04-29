@@ -41,7 +41,7 @@ class DistrictsTable
 	public function getDistrictIdByName( $districtName )
 	{
 		$select = $this->tableGateway->getSql()->select();
-		$select->where->expression('trim(LOWER(tbl_districts.district_name)) LIKE ?', strtolower($districtName));
+		$select->where->expression('trim(LOWER(tbl_districts.district_name)) LIKE ?', trim(strtolower($districtName)));
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet->current()->district_id;
