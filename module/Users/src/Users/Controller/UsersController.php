@@ -798,37 +798,16 @@ class UsersController extends AbstractActionController
 						'part' => $hashNameIds[$index]
 					);
 				}
-			}
-		}else{
-			$getCountries=$this->getCountriesTable()->getCountries();
-			if(count($this->countries)!='') {
-				foreach($this->countries as $key=>$search){
-					$list_countries[$key]=$search->name;
-					$hashNameIds[$key]=$key;
-					$count=$key;
-				}
-			}
-			$combined = array();
-			if($list_countries!=''){	
-				foreach($list_countries as $index => $refNumber) {			
-					$combined[] = array(
-						'ref'  => $refNumber,
-						'part' => $hashNameIds[$index]
-					);
-				}	
-			}			
-		}	
-		if(count($getCountries)!=0){
-			$result = new JsonModel(array(					
+			}$result = new JsonModel(array(					
 				'searchHashNames' => $combined,
 				'success'=>true,
 			));			
 		}else{
 			$result = new JsonModel(array(					
-				'searchHashNames' => $combined,
-				'success'=>false,
-			));	
-		}		
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+		}
 		return $result;
 	}
 	public function searchCountryNamesJobsAction(){
@@ -852,36 +831,16 @@ class UsersController extends AbstractActionController
 					);
 				}
 			}
-		}else{
-			$getCountries=$this->getCountriesTable()->getCountries();
-			if(count($this->countries)!='') {
-				foreach($this->countries as $key=>$search){
-					$list_countries[$key]=$search->name;
-					$hashNameIds[$key]=$key;
-					$count=$key;
-				}
-			}
-			$combined = array();
-			if($list_countries!=''){	
-				foreach($list_countries as $index => $refNumber) {			
-					$combined[] = array(
-						'ref'  => $refNumber,
-						'part' => $hashNameIds[$index]
-					);
-				}	
-			}			
-		}	
-		if(count($getCountries)!=0){
 			$result = new JsonModel(array(					
 				'searchHashNames' => $combined,
 				'success'=>true,
 			));			
 		}else{
 			$result = new JsonModel(array(					
-				'searchHashNames' => $combined,
-				'success'=>false,
-			));	
-		}		
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+		}
 		return $result;
 	}
 	public function getStatesAction(){
@@ -889,7 +848,7 @@ class UsersController extends AbstractActionController
 		$hashNames="";
 		$hashNameIds="";
 		$count="";
-		if(isset($_POST['country_name']) && $_POST['country_name']!=''){
+		if(isset($_POST['value']) && $_POST['value']!=''){
 			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
 			if(count($countryDetails)!=''){
 				$country_id = $countryDetails->current()->id_countries;
@@ -914,6 +873,12 @@ class UsersController extends AbstractActionController
 				'success'=>true,
 			));			
 			return $result;
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+			return $result;
 		}
 	}
 	public function getDistrictsAction(){
@@ -922,118 +887,12 @@ class UsersController extends AbstractActionController
 		$hashNameIds="";
 		$count="";
 		if(isset($_POST['state_name']) && $_POST['state_name']!=''){
-			$states=$this->getSatesTable()->getStateIdByName($_POST['state_name']);
-			if($states->state_id!=''){
-				$getDistricts=$this->getDistrictsTable()->getDistrictsStates($states->state_id,$_POST['value']);
-				foreach($getDistricts as $key=>$search){
-					$list_countries[$key]=$search->district_name;
-					$hashNameIds[$key]=$key;
-					$count=$key;				
-				}
-				$combined = array();
-				if($list_countries!=''){				
-					foreach($list_countries as $index => $refNumber) {			
-						$combined[] = array(
-							'ref'  => $refNumber,
-							'part' => $hashNameIds[$index]
-						);
-					}
-				}
-				$result = new JsonModel(array(					
-					'searchHashNames' => $combined,
-					'success'=>true,
-				));			
-				return $result;
-			}
-		}
-	}
-	public function getSchoolsAction(){
-		$list_countries='';
-		$hashNames="";
-		$hashNameIds="";
-		$count="";
-		$combined = array();
-		if(isset($_POST['dist_name']) && $_POST['dist_name']!=""){ 
-			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
-			if(count($countryDetails)!=''){ 
-				$country_id = $countryDetails->current()->id_countries;
+			if(isset($_POST['value']) && $_POST['value']!=''){
 				$states=$this->getSatesTable()->getStateIdByName($_POST['state_name']);
-				$stateId = $states->state_id;
-				if($stateId!=''){
-					$districtId=$this->getDistrictsTable()->getDistrictIdByName($_POST['dist_name']);
-					if($districtId!=''){
-						$getColleges=$this->getCollegeTable()->getSchools($country_id,$stateId,$districtId,$_POST['value']);
-						if(count($getColleges)!=""){
-							foreach($getColleges as $key=>$search){
-								$list_countries[$key]=$search->college_name;
-								$hashNameIds[$key]=$key;
-								$count=$key;				
-							}
-							if($list_countries!=''){				
-								foreach($list_countries as $index => $refNumber) {			
-									$combined[] = array(
-										'ref'  => $refNumber,
-										'part' => $hashNameIds[$index]
-									);
-								}
-							}
-						}
-						$result = new JsonModel(array(					
-							'searchHashNames' => $combined,
-							'success'=>true,
-						));			
-						return $result;
-					}
-				}
-			}
-		}
-	}
-	public function getBachelorsUniversityAction(){
-		$list_countries='';
-		$hashNames="";
-		$hashNameIds="";
-		$count="";
-		if(isset($_POST['spec_id']) && $_POST['spec_id']!=''){
-			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
-			if(count($countryDetails)!=''){ 
-				$country_id = $countryDetails->current()->id_countries;
-				$getUnversities=$this->getUnversitiesTable()->getUniversities($_POST['spec_id'],$country_id,$_POST['value']);				
-				foreach($getUnversities as $key=>$search){
-					$list_countries[$key]=$search->unversity_name;
-					$hashNameIds[$key]=$key;
-					$count=$key;				
-				}
-				$combined = array();
-				if($list_countries!=''){				
-					foreach($list_countries as $index => $refNumber) {			
-						$combined[] = array(
-							'ref'  => $refNumber,
-							'part' => $hashNameIds[$index]
-						);
-					}
-				}
-				$result = new JsonModel(array(					
-					'searchHashNames' => $combined,
-					'success'=>true,
-				));			
-				return $result;
-			}
-		}
-	}
-	public function getBachelorsCollegesAction(){
-		$list_countries='';
-		$hashNames="";
-		$hashNameIds="";
-		$count="";
-		if(isset($_POST['univ_name']) && $_POST['univ_name']!=''){
-			$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
-			if(count($countryDetails)!=''){ 
-				$country_id = $countryDetails->current()->id_countries;
-				$univId=$this->getUnversitiesTable()->getUniversityIdByName($_POST['univ_name']);	
-				if($univId!=''){				
-					$getColleges = $this->getUnivCollegesTable()->getColleges($_POST['spec_id'],$country_id,$univId,$_POST['value']);
-					foreach($getColleges as $key=>$search){
-						$list_countries[$key]=$search->univ_college_name;
+				if($states->state_id!=''){
+					$getDistricts=$this->getDistrictsTable()->getDistrictsStates($states->state_id,$_POST['value']);
+					foreach($getDistricts as $key=>$search){
+						$list_countries[$key]=$search->district_name;
 						$hashNameIds[$key]=$key;
 						$count=$key;				
 					}
@@ -1052,7 +911,169 @@ class UsersController extends AbstractActionController
 					));			
 					return $result;
 				}
+			}else{
+				$result = new JsonModel(array(					
+					'searchHashNames' => [],
+					'success'=>true,
+				));			
+				return $result;
 			}
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+			return $result;
+		}
+	}
+	public function getSchoolsAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		$combined = array();
+		if(isset($_POST['dist_name']) && $_POST['dist_name']!=""){ 
+			if(isset($_POST['value']) && $_POST['value']!=""){ 
+				$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+				if(count($countryDetails)!=''){ 
+					$country_id = $countryDetails->current()->id_countries;
+					$states=$this->getSatesTable()->getStateIdByName($_POST['state_name']);
+					$stateId = $states->state_id;
+					if($stateId!=''){
+						$districtId=$this->getDistrictsTable()->getDistrictIdByName($_POST['dist_name']);
+						if($districtId!=''){
+							$getColleges=$this->getCollegeTable()->getSchools($country_id,$stateId,$districtId,$_POST['value']);
+							if(count($getColleges)!=""){
+								foreach($getColleges as $key=>$search){
+									$list_countries[$key]=$search->college_name;
+									$hashNameIds[$key]=$key;
+									$count=$key;				
+								}
+								if($list_countries!=''){				
+									foreach($list_countries as $index => $refNumber) {			
+										$combined[] = array(
+											'ref'  => $refNumber,
+											'part' => $hashNameIds[$index]
+										);
+									}
+								}
+							}
+							$result = new JsonModel(array(					
+								'searchHashNames' => $combined,
+								'success'=>true,
+							));			
+							return $result;
+						}
+					}
+				}
+			}else{
+				$result = new JsonModel(array(					
+					'searchHashNames' => [],
+					'success'=>true,
+				));			
+				return $result;
+			}
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+			return $result;
+		}
+	}
+	public function getBachelorsUniversityAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['spec_id']) && $_POST['spec_id']!=''){
+			if(isset($_POST['value']) && $_POST['value']!=''){
+				$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+				if(count($countryDetails)!=''){ 
+					$country_id = $countryDetails->current()->id_countries;
+					$getUnversities=$this->getUnversitiesTable()->getUniversities($_POST['spec_id'],$country_id,$_POST['value']);				
+					foreach($getUnversities as $key=>$search){
+						$list_countries[$key]=$search->unversity_name;
+						$hashNameIds[$key]=$key;
+						$count=$key;				
+					}
+					$combined = array();
+					if($list_countries!=''){				
+						foreach($list_countries as $index => $refNumber) {			
+							$combined[] = array(
+								'ref'  => $refNumber,
+								'part' => $hashNameIds[$index]
+							);
+						}
+					}
+					$result = new JsonModel(array(					
+						'searchHashNames' => $combined,
+						'success'=>true,
+					));			
+					return $result;
+				}
+			}else{
+				$result = new JsonModel(array(					
+					'searchHashNames' => [],
+					'success'=>true,
+				));			
+				return $result;
+			}	
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+			return $result;
+		}
+	}
+	public function getBachelorsCollegesAction(){
+		$list_countries='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['univ_name']) && $_POST['univ_name']!=''){
+			if(isset($_POST['value']) && $_POST['value']!=''){
+				$countryDetails=$this->getCountriesTable()->getCountryIdByName($_POST['country_name']);
+				if(count($countryDetails)!=''){ 
+					$country_id = $countryDetails->current()->id_countries;
+					$univId=$this->getUnversitiesTable()->getUniversityIdByName($_POST['univ_name']);	
+					if($univId!=''){				
+						$getColleges = $this->getUnivCollegesTable()->getColleges($_POST['spec_id'],$country_id,$univId,$_POST['value']);
+						foreach($getColleges as $key=>$search){
+							$list_countries[$key]=$search->univ_college_name;
+							$hashNameIds[$key]=$key;
+							$count=$key;				
+						}
+						$combined = array();
+						if($list_countries!=''){				
+							foreach($list_countries as $index => $refNumber) {			
+								$combined[] = array(
+									'ref'  => $refNumber,
+									'part' => $hashNameIds[$index]
+								);
+							}
+						}
+						$result = new JsonModel(array(					
+							'searchHashNames' => $combined,
+							'success'=>true,
+						));			
+						return $result;
+					}
+				}
+			}else{
+				$result = new JsonModel(array(					
+					'searchHashNames' => [],
+					'success'=>true,
+				));			
+				return $result;
+			}
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+			return $result;
 		}
 	}
 	public function getEntranceExamsAction(){
@@ -1078,6 +1099,12 @@ class UsersController extends AbstractActionController
 			}
 			$result = new JsonModel(array(					
 				'searchHashNames' => $combined,
+				'success'=>true,
+			));			
+			return $result;
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
 				'success'=>true,
 			));			
 			return $result;
