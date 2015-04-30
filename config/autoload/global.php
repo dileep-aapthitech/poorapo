@@ -1,8 +1,6 @@
 <?php
 include( 'public/global/globalvalues.php');
 include( 'public/global/globalfunctions.php');
-include( 'public/global/labelnames.php');
-include( 'public/global/validationmessages.php');
 return array(
     'db' 					=>	array(
         'driver'         	=> 	'Pdo',
