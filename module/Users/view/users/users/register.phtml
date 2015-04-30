@@ -46,7 +46,7 @@
 					<label for="inputfname" class="col-sm-3 control-label">First Name</label>
 					<div class="col-sm-8">
 					<span class="error_msg_disp" id="user_firstname_req"></span>
-						<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->first_name) && $details->first_name!='') {echo ucfirst($details->first_name);}else{}?>">
+						<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="<? if(isset($details->user_name) && $details->user_name!='') {echo ucfirst($details->user_name);}else{}?>">
 					</div>
 				</div>
 				<div class="form-group">
@@ -126,7 +126,7 @@
 								<? //} ?>
 							<?//}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_date" name="user_date" placeholder="Date">
+						<input type="text" class="form-control" id="user_date" name="user_date" placeholder="Date" value="<? if(isset($dobex['0']) && $dobex['0']!='') {echo $dobex['0'];}else{}?>">
 					</div>
 					<div class="col-sm-3">
 						<select class="form-control" id="user_month" name="user_month">
@@ -168,7 +168,7 @@
 							<? //} ?>
 							<?//}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_year" name="user_year" placeholder="Year">
+						<input type="text" class="form-control" id="user_year" name="user_year" placeholder="Year" value="<? if(isset($dobex['2']) && $dobex['2']!='') {echo $dobex['2'];}else{}?>">
 					</div>
 				</div>
 				<div class="form-group">
@@ -184,7 +184,7 @@
 							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
 							<?//}}}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_country" name="user_country" placeholder="Country of Birth" onKeypress="userCountryBirth();">
+						<input type="text" class="form-control" id="user_country" name="user_country" placeholder="Country of Birth" onKeypress="userCountryBirth();" value="<? if(isset($details->user_birth_country) && $details->user_birth_country!='') {echo ucfirst($details->user_birth_country);}else{}?>">
 					</div>
 				</div>	
 				<div class="form-group">
@@ -275,7 +275,7 @@
 						<div class="form-group">
 							<label for="select" class="col-sm-3 control-label">Country</label>
 							<div class="col-sm-8">
-								<input type="text" class="form-control" id="user_junior_country" name="user_junior_country" Placeholder="Country of junior study" onKeypress="JuniorCountry();">
+								<input type="text" class="form-control" id="user_junior_country" name="user_junior_country" Placeholder="Country of junior study" onKeypress="JuniorCountry();"  value="<? if(isset($details->user_school_country) && $details->user_school_country!='') {echo ucfirst($details->user_school_country);}else{}?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -291,7 +291,7 @@
 									<option value="<? //echo $state->state_id;?>"><? //echo ucfirst($state->state_name);?></option>
 									<?//}}}?>
 								</select>-->
-								<input type="text" class="form-control" id="user_state" name="user_state" onkeypress="getstates();" placeholder="College States">
+								<input type="text" class="form-control" id="user_state" name="user_state" onkeypress="getstates();" placeholder="College States" value="<? if(isset($details->user_state_name) && $details->user_state_name!='') {echo ucfirst($details->user_state_name);}else{}?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -308,7 +308,7 @@
 								<?// } ?>
 								<?//}	}?>
 								</select>-->
-								<input type="text" class="form-control" id="user_district" name="user_district" onkeypress="getDistricts();" placeholder="College Districts">
+								<input type="text" class="form-control" id="user_district" name="user_district" onkeypress="getDistricts();" placeholder="College Districts" value="<? if(isset($details->user_district_name) && $details->user_district_name!='') {echo ucfirst($details->user_district_name);}else{}?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -324,7 +324,7 @@
 									<option value="<? //echo $college->college_id;?>"><? //echo ucfirst($college->college_name);?></option>
 									<?//}}}?>
 								</select>-->
-								<input type="text" class="form-control" id="user_colleges" name="user_colleges" onkeypress="getSchools();" placeholder="Colleges/Schools">
+								<input type="text" class="form-control" id="user_colleges" name="user_colleges" onkeypress="getSchools();" placeholder="Colleges/Schools" value="<? if(isset($details->user_school) && $details->user_school!='') {echo ucfirst($details->user_school);}else{}?>">
 							</div>
 						</div>
 						<div class="form-group">
@@ -391,7 +391,7 @@
 									<option value="<? //echo $entranceExam->entrance_exam_id;?>"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
 								<?//}	}}?>
 								</select>-->
-								<input type="text" class="form-control" id="user_entrance_exam_1" name="user_entrance_exam_1" Placeholder="Test/Exam" onKeypress="getEntranceExams('1');">
+								<input type="text" class="form-control" id="user_entrance_exam_1" name="user_entrance_exam_1" Placeholder="Test/Exam" onKeypress="getEntranceExams('1');" value="<? if(isset($details->user_entrance_1) && $details->user_entrance_1!='') {echo ucfirst($details->user_entrance_1);}else{}?>">
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Score/Rank</label>
@@ -424,7 +424,7 @@
 									<option value="<? //echo $entranceExam->entrance_exam_id;?>"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
 								<?//}	}}?>
 								</select>-->
-								<input type="text" class="form-control" id="user_entrance_exam_2" name="user_entrance_exam_2" Placeholder="Test/Exam" onKeypress="getEntranceExams('2');">
+								<input type="text" class="form-control" id="user_entrance_exam_2" name="user_entrance_exam_2" Placeholder="Test/Exam" onKeypress="getEntranceExams('2');" value="<? if(isset($details->user_entrance_2) && $details->user_entrance_2!='') {echo ucfirst($details->user_entrance_2);}else{}?>">
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Score/Rank</label>
@@ -457,7 +457,7 @@
 									<option value="<? //echo $entranceExam->entrance_exam_id;?>"><? //echo ucfirst($entranceExam->entrance_exam_name);?></option>
 								<?//}	}}?>
 								</select>-->
-								<input type="text" class="form-control" id="user_entrance_exam_3" name="user_entrance_exam_3" Placeholder="Test/Exam" onKeypress="getEntranceExams('3');">
+								<input type="text" class="form-control" id="user_entrance_exam_3" name="user_entrance_exam_3" Placeholder="Test/Exam" onKeypress="getEntranceExams('3');" value="<? if(isset($details->user_entrance_3) && $details->user_entrance_3!='') {echo ucfirst($details->user_entrance_3);}else{}?>">
 							</div>
 							<div class="col-sm-3">
 								<label class="control-label" for="focusedInput">Score/Rank</label>
@@ -514,7 +514,7 @@
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Country</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" id="user_bachelors_country" name="user_bachelors_country" Placeholder="Country of bachelor's study" onKeypress="bachelorsCountry();">
+							<input type="text" class="form-control" id="user_bachelors_country" name="user_bachelors_country" Placeholder="Country of bachelor's study" value="<? if(isset($details->user_bac_country) && $details->user_bac_country!='') {echo ucfirst($details->user_bac_country);}else{}?>" onKeypress="bachelorsCountry();">
 						</div>
 					</div>
 					<div class="form-group">
@@ -530,7 +530,7 @@
 							<option value="<? //echo $unversity->unversity_id;?>"><? //echo ucfirst($unversity->unversity_name);?></option>
 							<?//}	}}?>
 							</select>-->
-							<input type="text" class="form-control" id="user_bac_unversity" name="user_bac_unversity" Placeholder="University of bachelor's study" onKeypress="bachelorsUniversity();">
+							<input type="text" class="form-control" id="user_bac_unversity" name="user_bac_unversity" Placeholder="University of bachelor's study" onKeypress="bachelorsUniversity();" value="<? if(isset($details->user_bac_univ) && $details->user_bac_univ!='') {echo ucfirst($details->user_bac_univ);}else{}?>">
 						</div>
 					</div>
 					<div class="form-group">
@@ -546,7 +546,7 @@
 							<option value="<? //echo $college->college_id;?>"><? //echo ucfirst($college->college_name);?></option>
 							<?//}}}?>
 							</select>-->
-							<input type="text" class="form-control" id="user_bac_college" name="user_bac_college" Placeholder="College of bachelor's study" onKeypress="bachelorsColleges();">
+							<input type="text" class="form-control" id="user_bac_college" name="user_bac_college" Placeholder="College of bachelor's study" onKeypress="bachelorsColleges();" value="<? if(isset($details->user_bac_college) && $details->user_bac_college!='') {echo ucfirst($details->user_bac_college);}else{}?>">
 						</div>
 					</div>
 					
@@ -616,7 +616,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Country</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="user_masters_country" name="user_masters_country" Placeholder="Country of master's study" onKeypress="mastersCountry();">
+				<input type="text" class="form-control" id="user_masters_country" name="user_masters_country" Placeholder="Country of master's study" onKeypress="mastersCountry();" value="<? if(isset($details->user_mast_country) && $details->user_mast_country!='') {echo ucfirst($details->user_mast_country);}else{}?>">
 			</div>
 			</div>
 			<div class="form-group">
@@ -632,7 +632,7 @@
 				<option value="<? //echo $unversity->unversity_id;?>"><? //echo ucfirst($unversity->unversity_name);?></option>
 			<?//}	}}?>
 			</select>-->
-			<input type="text" class="form-control" id="user_mast_university" name="user_mast_university" Placeholder="University of master's study" onKeypress="mastersUniversity();">
+			<input type="text" class="form-control" id="user_mast_university" name="user_mast_university" Placeholder="University of master's study" onKeypress="mastersUniversity();" value="<? if(isset($details->user_mast_univ) && $details->user_mast_univ!='') {echo ucfirst($details->user_mast_univ);}else{}?>">
 			</div>
 			</div>
 			<div class="form-group">
@@ -649,7 +649,7 @@
 			<?//} ?>
 			<?//}	}?>
 			</select>-->
-				<input type="text" class="form-control" id="user_mast_college" name="user_mast_college" Placeholder="College of master's study" onKeypress="mastersColleges();">
+				<input type="text" class="form-control" id="user_mast_college" name="user_mast_college" Placeholder="College of master's study" onKeypress="mastersColleges();" value="<? if(isset($details->user_mast_college) && $details->user_mast_college!='') {echo ucfirst($details->user_mast_college);}else{}?>">
 			</div>
 			</div>
 		
@@ -709,7 +709,7 @@
 			<div class="form-group">
 			<label for="select" class="col-sm-3 control-label">Country</label>
 			<div class="col-sm-8">
-				<input type="text" class="form-control" id="user_doctoral_country" name="user_doctoral_country" Placeholder="Country of doctoral study" onKeypress="doctoralCountry();">
+				<input type="text" class="form-control" id="user_doctoral_country" name="user_doctoral_country" Placeholder="Country of doctoral study" onKeypress="doctoralCountry();" value="<? if(isset($details->user_phd_country) && $details->user_phd_country!='') {echo ucfirst($details->user_phd_country);}else{}?>">
 			</div>
 			</div>
 			<div class="form-group">
@@ -726,7 +726,7 @@
 			<?//} ?>
 			<?//}	}?>
 			</select>-->
-			<input type="text" class="form-control" id="user_doctor_university" name="user_doctor_university" Placeholder="University of doctoral study" onKeypress="doctoralUniversity();">
+			<input type="text" class="form-control" id="user_doctor_university" name="user_doctor_university" Placeholder="University of doctoral study" onKeypress="doctoralUniversity();" value="<? if(isset($details->user_phd_univ) && $details->user_phd_univ!='') {echo ucfirst($details->user_phd_univ);}else{}?>">
 			</div>
 			</div>
 			<div class="form-group">
@@ -743,7 +743,7 @@
 			<? // }?>
 			<?//}	}?>
 			</select>-->
-			<input type="text" class="form-control" id="user_doctor_college" name="user_doctor_college" Placeholder="College of doctoral study" onKeypress="doctoralColleges();">
+			<input type="text" class="form-control" id="user_doctor_college" name="user_doctor_college" Placeholder="College of doctoral study" onKeypress="doctoralColleges();"  value="<? if(isset($details->user_phd_college) && $details->user_phd_college!='') {echo ucfirst($details->user_phd_college);}else{}?>">
 			</div>
 			</div>
 			<div class="form-group">
@@ -788,7 +788,7 @@
 							<option value="<? //echo $country->id_countries;?>"><? //echo ucfirst($country->name);?></option>
 							<?//}}}?>
 						</select>-->
-						<input type="text" class="form-control" id="user_country_job" name="user_country_job" placeholder="Country of Job" onKeypress="countryOfJobs();">
+						<input type="text" class="form-control" id="user_country_job" name="user_country_job" placeholder="Country of Job" onKeypress="countryOfJobs();" value="<? if(isset($details->user_country_job) && $details->user_country_job!='') {echo $details->user_country_job;}else{}?>">
 					</div>
 				</div>
 				<div class="form-group">
@@ -802,12 +802,11 @@
 					<label for="inputectc" class="col-sm-3 control-label">Company Website Url</label>
 					<div class="col-sm-8">
 						<span class="error_msg_disp" id="user_emp_websiteurl_req"></span>
-						<input type="text" class="form-control" id="user_emp_websiteurl" name="user_emp_websiteurl" placeholder="Company Website Url" value="<? if(isset($details->employee_websiteurl) && $details->employee_websiteurl!='') {echo $details->employee_websiteurl;}else{}?>">
+						<input type="text" class="form-control" id="user_emp_websiteurl" name="user_emp_websiteurl" placeholder="Company Website Url" value="<? if(isset($details->company_website) && $details->company_website!='') {echo $details->company_website;}else{}?>">
 					</div>
 				</div>
 				<div class="form-group">
 				<div class="col-sm-8 col-lg-offset-3">
-				<!--<button type="reset" class="btn btn-default">Cancel</button>-->
 				<button type="button" class="btn btn-primary" onClick="validateReg(8);">Continue</button>
 				</div>
 				</div>

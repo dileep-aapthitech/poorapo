@@ -236,19 +236,19 @@ class UsersController extends AbstractActionController
 				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));				
 			}
 			if(isset($_POST['user_bac_college']) && $_POST['user_bac_college']!=''){
-				$b_c = $this->getUnivCollegesTable()->getColleges(trim($_POST['user_bac_college']));
+				$b_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_bac_college']));
 			}
 			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
 				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
 			}
 			if(isset($_POST['user_mast_college']) && $_POST['user_mast_college']!=''){
-				$m_c = $this->getUnivCollegesTable()->getColleges(trim($_POST['user_mast_college']));
+				$m_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_mast_college']));
 			}
 			if(isset($_POST['user_doctor_university']) && $_POST['user_doctor_university']!=''){
 				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
 			}
 			if(isset($_POST['user_doctor_college']) && $_POST['user_doctor_college']!=''){
-				$d_c = $this->getUnivCollegesTable()->getColleges(trim($_POST['user_doctor_college']));
+				$d_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_doctor_college']));
 			}
 			$base_user_id =  base64_encode($_POST['hid_user_id']);
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
