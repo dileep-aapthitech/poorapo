@@ -369,8 +369,7 @@ class UsersController extends AbstractActionController
 							$suc = 'reg';
 							global $regSubject;				
 							global $regMessage;
-							$username = $userDetails->first_name;
-							$username = $userDetails->first_name;
+							$username = $userDetails->user_name;
 							$to=$userDetails->email_id;
 							$regMessage = str_replace("<FULLNAME>","$username", $regMessage);
 							if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
@@ -458,9 +457,9 @@ class UsersController extends AbstractActionController
 		$userDetails=$this->getUserTable()->checkUserStatus($userid);		
 		if($userDetails!=''){
 			$to=$userDetails->email_id;
-			$userName=ucfirst($userDetails->first_name);
+			$userName=ucfirst($userDetails->user_name);
 			$user_session = new Container('user');
-			$user_session->username=$userDetails->first_name;
+			$user_session->username=$userDetails->user_name;
 			$user_session->email=$userDetails->email_id;
 			$user_session->user_id=$userDetails->user_id;
 			$user_session->user_type=$userDetails->user_type_id;
@@ -492,7 +491,7 @@ class UsersController extends AbstractActionController
 			$userDetails = $usersTable->checkEmailExists($_POST);
 			if($userDetails!=''){
 				$user_session = new Container('user');
-				$user_session->username=$userDetails->first_name;
+				$user_session->username=$userDetails->user_name;
 				$user_session->email=$userDetails->email_id;
 				$user_session->user_id=$userDetails->user_id;
 				$user_session->user_type=$userDetails->user_type_id;
