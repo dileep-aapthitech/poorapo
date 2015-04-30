@@ -21,7 +21,7 @@ class UserDetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_c,$d_u){
+	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c){
 		if($usersinfo['user_principal_name']!=''){
 			$user_principal_name=$usersinfo['user_principal_name'];			
 		}else{			

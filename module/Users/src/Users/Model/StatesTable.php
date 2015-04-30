@@ -54,6 +54,10 @@ class StatesTable
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
-		return $row;
+		if($row!=null){
+			return $row;
+		}else{
+			return $row='';	
+		}
 	}
 }

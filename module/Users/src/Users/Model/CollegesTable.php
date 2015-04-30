@@ -57,6 +57,11 @@ class CollegesTable
 		$select->where->expression('trim(LOWER(tbl_colleges_junior.college_name)) LIKE ?', trim(strtolower($jCollName)));
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet->current()->college_id;
+		$row = $resultSet->current();
+		if($row!=null){
+			return $collid = $row->college_id;
+		}else{
+			return $collid = '';
+		}
 	}
 }

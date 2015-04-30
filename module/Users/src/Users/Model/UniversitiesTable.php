@@ -35,7 +35,12 @@ class UniversitiesTable
 		$select->where->expression('trim(LOWER(tbl_universities.unversity_name)) LIKE ?', trim(strtolower($univName)));
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet->current()->unversity_id;
+		$row = $resultSet->current();
+		if($row!=null){
+			return $unversity= $row->unversity_id;
+		}else{
+			return $unversity='';
+		}
 	}
 	public function getUniversities($specId,$countryid,$keyword){
 		$select = $this->tableGateway->getSql()->select();

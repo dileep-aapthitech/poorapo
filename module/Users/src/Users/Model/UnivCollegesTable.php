@@ -27,7 +27,12 @@ class UnivCollegesTable
 		$select->where->expression('trim(LOWER(tbl_colleges_univ.univ_college_name)) LIKE ?', trim(strtolower($univCollegeName)));
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet->current()->univ_college_id;
+		$row = $resultSet->current();
+		if($row!=null){
+			return $ucd = $row->univ_college_id;
+		}else{
+			return $ucd='';	
+		}
 	}
 	public function getColleges($specId,$countryid,$univId,$keyword){
 		$select = $this->tableGateway->getSql()->select();

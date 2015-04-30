@@ -53,6 +53,10 @@ class EntranceExamTable
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
 		$row = $resultSet->current();
-		return $row->entrance_exam_id;
+		if($row!=null){
+			return $eeid= $row->entrance_exam_id;
+		}else{
+			return $eeid='';
+		}
 	}
 }

@@ -44,7 +44,12 @@ class DistrictsTable
 		$select->where->expression('trim(LOWER(tbl_districts.district_name)) LIKE ?', trim(strtolower($districtName)));
 		$select->where('status=1');
 		$resultSet = $this->tableGateway->selectWith($select);
-		return $resultSet->current()->district_id;
+		$row = $resultSet->current();
+		if($row!=null){
+			return $disid = $row->district_id;
+		}else{
+			return $disid = '';
+		}
 	}
 	public function getDistrictsStates($stateid,$keyWord){
 		$select = $this->tableGateway->getSql()->select();

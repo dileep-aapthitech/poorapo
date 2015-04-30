@@ -135,24 +135,24 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		$id_countries_birth = 0;
-		$id_countries_job = 0;
-		$id_countries_school = 0;
-		$id_countries_bachelors = 0;
-		$id_countries_masters = 0;
-		$id_countries_phd = 0;
-		$stateId = 0;
-		$districtId = 0;
-		$jCollId = 0;
-		$entranceExam1 = 0;
-		$entranceExam2 = 0;
-		$entranceExam3 = 0;
-		$b_u = 0;
-		$b_c = 0;
-		$m_u = 0;
-		$m_c = 0;
-		$d_u = 0;
-		$d_c = 0;
+		$id_countries_birth = '';
+		$id_countries_job = '';
+		$id_countries_school = '';
+		$id_countries_bachelors = '';
+		$id_countries_masters = '';
+		$id_countries_phd = '';
+		$stateId = '';
+		$districtId = '';
+		$jCollId = '';
+		$entranceExam1 = '';
+		$entranceExam2 = '';
+		$entranceExam3 = '';
+		$b_u = '';
+		$b_c = '';
+		$m_u = '';
+		$m_c = '';
+		$d_u = '';
+		$d_c = '';
 		if(isset($_POST['hid_user_id']) && $_POST['hid_user_id']!=''){			
 			if( isset($_POST['user_country']) && trim($_POST['user_country'])!='' )
 			{
@@ -206,43 +206,102 @@ class UsersController extends AbstractActionController
 			if( isset($_POST['user_state']) && trim($_POST['user_state'])!='' )
 			{
 				$states=$this->getSatesTable()->getStateIdByName(trim($_POST['user_state']));
-				$stateId =$states->state_id;
+				if($states->state_id!=''){
+					$stateId =$states->state_id;
+				}else{
+					$stateId ='';
+				}
 			}
 			if( isset($_POST['user_district']) && trim($_POST['user_district'])!='' )
 			{
-				$districtId=$this->getDistrictsTable()->getDistrictIdByName(trim($_POST['user_district']));
+				$districtId=$this->getDistrictsTable()->getDistrictIdByName(trim($_POST['user_district']));				
+				if($districtId!=''){
+					$districtId = $districtId;
+				}else{
+					$districtId ='';
+				}
 			}
 			
 			if( isset($_POST['user_colleges']) && trim($_POST['user_colleges'])!='' )
 			{
 				$jCollId=$this->getCollegeTable()->getJCollIdByName(trim($_POST['user_colleges']));
+				if($jCollId!=''){
+					$jCollId = $jCollId;
+				}else{
+					$jCollId ='';
+				}
 			}
 			if(isset($_POST['user_entrance_exam_1']) && $_POST['user_entrance_exam_1']!=''){
-				$entranceExam1 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_1']));				
+				$entranceExam1 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_1']));	
+					if($entranceExam1!=''){
+						$entranceExam1 =$entranceExam1;
+					}else{
+						$entranceExam1 ='';
+					}			
 			}
 			if(isset($_POST['user_entrance_exam_2']) && $_POST['user_entrance_exam_2']!=''){
-				$entranceExam2 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_2']));				
+				$entranceExam2 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_2']));	
+				if($entranceExam2!=''){
+					$entranceExam2 = $entranceExam2;
+				}else{
+					$entranceExam2 ='';
+				}			
 			}
 			if(isset($_POST['user_entrance_exam_3']) && $_POST['user_entrance_exam_3']!=''){
-				$entranceExam3 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_3']));				
+				$entranceExam3 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_3']));
+				if($entranceExam3!=''){
+					$entranceExam3 = $entranceExam3;
+				}else{
+					$entranceExam3 ='';
+				}
 			}
 			if(isset($_POST['user_bac_unversity']) && $_POST['user_bac_unversity']!=''){
-				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));				
+				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));	
+				if($b_u!=''){
+					$b_u = $b_u;
+				}else{
+					$b_u ='';
+				}
 			}
 			if(isset($_POST['user_bac_college']) && $_POST['user_bac_college']!=''){
 				$b_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_bac_college']));
+				if($b_c!=''){
+					$b_c = $b_c;
+				}else{
+					$b_c ='';
+				}
 			}
 			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
-				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));	
+				if($m_u!=''){
+					$m_u = $m_u;
+				}else{
+					$m_u ='';
+				}
 			}
 			if(isset($_POST['user_mast_college']) && $_POST['user_mast_college']!=''){
 				$m_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_mast_college']));
+				if($m_c!=''){
+					$m_c = $m_c;
+				}else{
+					$m_c ='';
+				}
 			}
 			if(isset($_POST['user_doctor_university']) && $_POST['user_doctor_university']!=''){
-				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));	
+				if($d_u!=''){
+					$d_u = $d_u;
+				}else{
+					$d_u ='';
+				}
 			}
 			if(isset($_POST['user_doctor_college']) && $_POST['user_doctor_college']!=''){
 				$d_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_doctor_college']));
+				if($d_c!=''){
+					$d_c = $d_c;
+				}else{
+					$d_c ='';
+				}
 			}
 			$base_user_id =  base64_encode($_POST['hid_user_id']);
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']);
@@ -307,47 +366,105 @@ class UsersController extends AbstractActionController
 					$id_countries_phd = $countryRs5->current()->id_countries;
 				}
 			}
-			
 			if( isset($_POST['user_state']) && trim($_POST['user_state'])!='' )
 			{
 				$states=$this->getSatesTable()->getStateIdByName(trim($_POST['user_state']));
-				$stateId =$states->state_id;
+				if($states->state_id!=''){
+					$stateId =$states->state_id;
+				}else{
+					$stateId ='';
+				}
 			}
 			if( isset($_POST['user_district']) && trim($_POST['user_district'])!='' )
 			{
-				$districtId=$this->getDistrictsTable()->getDistrictIdByName(trim($_POST['user_district']));
+				$districtId=$this->getDistrictsTable()->getDistrictIdByName(trim($_POST['user_district']));				
+				if($districtId!=''){
+					$districtId = $districtId;
+				}else{
+					$districtId ='';
+				}
 			}
 			
 			if( isset($_POST['user_colleges']) && trim($_POST['user_colleges'])!='' )
 			{
 				$jCollId=$this->getCollegeTable()->getJCollIdByName(trim($_POST['user_colleges']));
+				if($jCollId!=''){
+					$jCollId = $jCollId;
+				}else{
+					$jCollId ='';
+				}
 			}
 			if(isset($_POST['user_entrance_exam_1']) && $_POST['user_entrance_exam_1']!=''){
-				$entranceExam1 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_1']));				
+				$entranceExam1 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_1']));	
+					if($entranceExam1!=''){
+						$entranceExam1 =$entranceExam1;
+					}else{
+						$entranceExam1 ='';
+					}			
 			}
 			if(isset($_POST['user_entrance_exam_2']) && $_POST['user_entrance_exam_2']!=''){
-				$entranceExam2 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_2']));				
+				$entranceExam2 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_2']));	
+				if($entranceExam2!=''){
+					$entranceExam2 = $entranceExam2;
+				}else{
+					$entranceExam2 ='';
+				}			
 			}
 			if(isset($_POST['user_entrance_exam_3']) && $_POST['user_entrance_exam_3']!=''){
-				$entranceExam3 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_3']));				
+				$entranceExam3 = $this->getEntranceExamsTable()->getEntranceExamIdByName(trim($_POST['user_entrance_exam_3']));
+				if($entranceExam3!=''){
+					$entranceExam3 = $entranceExam3;
+				}else{
+					$entranceExam3 ='';
+				}
 			}
 			if(isset($_POST['user_bac_unversity']) && $_POST['user_bac_unversity']!=''){
-				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));				
+				$b_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_bac_unversity']));	
+				if($b_u!=''){
+					$b_u = $b_u;
+				}else{
+					$b_u ='';
+				}
 			}
 			if(isset($_POST['user_bac_college']) && $_POST['user_bac_college']!=''){
 				$b_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_bac_college']));
+				if($b_c!=''){
+					$b_c = $b_c;
+				}else{
+					$b_c ='';
+				}
 			}
 			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
-				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));	
+				if($m_u!=''){
+					$m_u = $m_u;
+				}else{
+					$m_u ='';
+				}
 			}
 			if(isset($_POST['user_mast_college']) && $_POST['user_mast_college']!=''){
 				$m_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_mast_college']));
+				if($m_c!=''){
+					$m_c = $m_c;
+				}else{
+					$m_c ='';
+				}
 			}
 			if(isset($_POST['user_doctor_university']) && $_POST['user_doctor_university']!=''){
-				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));				
+				$d_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));	
+				if($d_u!=''){
+					$d_u = $d_u;
+				}else{
+					$d_u ='';
+				}
 			}
 			if(isset($_POST['user_doctor_college']) && $_POST['user_doctor_college']!=''){
 				$d_c = $this->getUnivCollegesTable()->getUnivCollegeIdByName(trim($_POST['user_doctor_college']));
+				if($d_c!=''){
+					$d_c = $d_c;
+				}else{
+					$d_c ='';
+				}
 			}
 			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
 			if($user_id!=0){
