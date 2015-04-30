@@ -26,7 +26,7 @@ class UserPersonalInfoTable
 		}else{			
 			$last_name='';
 		}
-		if($usersinfo['user_gendermf']!=''){
+		if(isset($usersinfo['user_gendermf']) && $usersinfo['user_gendermf']!=''){
 			$gender=$usersinfo['user_gendermf'];			
 		}else{			
 			$gender='';
