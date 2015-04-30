@@ -14,7 +14,7 @@ $frogotPasswordMessage = '<body>
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
-						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6; font:bold 12px arial; text-decoration:none;">Hello&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
 						<tr><td>This email was generated based on your request for new password.</td></tr>
 						<tr><td>Please click the below link to reset your password.</td></tr>
 						<tr><td><a href="<PASSWORDLINK>"><PASSWORDLINK></a></td></tr>
@@ -49,7 +49,7 @@ $regMessage='<body>
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
-						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
 						<tr><td><a href="<ACTIVATIONLINK>"><ACTIVATIONLINK></a></td></tr>
 						<tr><td>Please click on this link to verfiy your account.</td></tr>
 						<tr><td>&nbsp;</td></tr>
@@ -80,7 +80,7 @@ $completeRegisterMessage='<body>
 			<tr>
 				<td>
 					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
-						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;&nbsp;&nbsp;<FULLNAME></a></td></tr>
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
 						<tr><td><a href="<ClickeHere>"><ClickeHere></a></td></tr>
 						<tr><td>Successfully registered with Poraapo.com, Thanks for joining us.</td></tr>
 						<tr><td>&nbsp;</td></tr>
