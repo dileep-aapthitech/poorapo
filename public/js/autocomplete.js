@@ -109,6 +109,9 @@ function JuniorCountry(){
 		minLength: 0,	
 		open: function(event, ui) {				
 			// $(".ui-autocomplete").css("width","876px !important");
+			$("#user_state").val('');
+			$("#user_district").val('');
+			$("#user_colleges").val('');
 		},
 		select: function(event, ui) {
 			$("#user_junior_country").val(ui.item.label); 
@@ -119,132 +122,6 @@ function JuniorCountry(){
 		}			
 	});
 	$("#user_junior_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
-		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
-		.data("item.uiAutocomplete", item)            
-		.appendTo(ul);				
-	};	
-}
-function bachelorsCountry(){
-	$("#user_bachelors_country").autocomplete({
-		source: function( request, response ) {
-			var keywordsss = $('#user_bachelors_country').val();
-			var hashName='s';
-			$.ajax({
-				url: BASE_URL+'/users/search-country-names-jobs',
-				dataType: "json",
-				type	: "POST",
-				data	:{value:keywordsss},
-				success: function( data ) {
-					if(data.output!=0) {		
-						response( $.map( data.searchHashNames, function( item ) {
-							return {
-								label: item.ref,
-							}
-						}));
-					}else{
-						$(".ui-autocomplete").css("display","none");
-					}
-				}				
-			});
-		},
-		minLength: 0,	
-		open: function(event, ui) {				
-			// $(".ui-autocomplete").css("width","876px !important");
-		},
-		select: function(event, ui) {
-			$("#user_bachelors_country").val(ui.item.label); 
-			return false;
-		},
-		focus: function(event, ui) {
-			return false;
-		}			
-	});
-	$("#user_bachelors_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
-		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
-		.data("item.uiAutocomplete", item)            
-		.appendTo(ul);				
-	};	
-}
-function mastersCountry(){
-	$("#user_masters_country").autocomplete({
-		source: function( request, response ) {
-			var keywordsss = $('#user_masters_country').val();
-			var hashName='s';
-			$.ajax({
-				url: BASE_URL+'/users/search-country-names-jobs',
-				dataType: "json",
-				type	: "POST",
-				data	:{value:keywordsss},
-				success: function( data ) {
-					if(data.output!=0) {		
-						response( $.map( data.searchHashNames, function( item ) {
-							return {
-								label: item.ref,
-							}
-						}));
-					}else{
-						$(".ui-autocomplete").css("display","none");
-					}
-				}				
-			});
-		},
-		minLength: 0,	
-		open: function(event, ui) {				
-			// $(".ui-autocomplete").css("width","876px !important");
-		},
-		select: function(event, ui) {
-			$("#user_masters_country").val(ui.item.label); 
-			return false;
-		},
-		focus: function(event, ui) {
-			return false;
-		}			
-	});
-	$("#user_masters_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
-		var hashname=item.label;		
-		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
-		.data("item.uiAutocomplete", item)            
-		.appendTo(ul);				
-	};	
-}
-function doctoralCountry(){
-	$("#user_doctoral_country").autocomplete({
-		source: function( request, response ) {
-			var keywordsss = $('#user_doctoral_country').val();
-			var hashName='s';
-			$.ajax({
-				url: BASE_URL+'/users/search-country-names-jobs',
-				dataType: "json",
-				type	: "POST",
-				data	:{value:keywordsss},
-				success: function( data ) {
-					if(data.output!=0) {		
-						response( $.map( data.searchHashNames, function( item ) {
-							return {
-								label: item.ref,
-							}
-						}));
-					}else{
-						$(".ui-autocomplete").css("display","none");
-					}
-				}				
-			});
-		},
-		minLength: 0,	
-		open: function(event, ui) {				
-			// $(".ui-autocomplete").css("width","876px !important");
-		},
-		select: function(event, ui) {
-			$("#user_doctoral_country").val(ui.item.label); 
-			return false;
-		},
-		focus: function(event, ui) {
-			return false;
-		}			
-	});
-	$("#user_doctoral_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
 		var hashname=item.label;		
 		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
 		.data("item.uiAutocomplete", item)            
@@ -279,6 +156,8 @@ function getstates(){
 			minLength: 0,	
 			open: function(event, ui) {				
 				// $(".ui-autocomplete").css("width","876px !important");
+				$("#user_district").val('');
+				$("#user_colleges").val('');
 			},
 			select: function(event, ui) {
 				$("#user_state").val(ui.item.label); 
@@ -323,7 +202,8 @@ function getDistricts(){
 				});
 			},
 			minLength: 0,	
-			open: function(event, ui) {				
+			open: function(event, ui) {		
+				$("#user_colleges").val('');
 				// $(".ui-autocomplete").css("width","876px !important");
 			},
 			select: function(event, ui) {
@@ -389,6 +269,50 @@ function getSchools(){
 		};	
 	}
 }
+function bachelorsCountry(){
+	$("#user_bachelors_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_bachelors_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {		
+			$("#user_bac_unversity").val('');
+			$("#user_bac_college").val('');
+			// $(".ui-autocomplete").css("width","876px !important");
+		},
+		select: function(event, ui) {
+			$("#user_bachelors_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_bachelors_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
 function bachelorsUniversity(){
 	if($("#user_bachelors_country").val()!=''){
 		$("#user_bac_unversity").autocomplete({
@@ -416,7 +340,8 @@ function bachelorsUniversity(){
 				});
 			},
 			minLength: 0,	
-			open: function(event, ui) {				
+			open: function(event, ui) {	
+				$("#user_bac_college").val('');
 				// $(".ui-autocomplete").css("width","876px !important");
 			},
 			select: function(event, ui) {
@@ -482,6 +407,50 @@ function bachelorsColleges(){
 		};	
 	}
 }
+function mastersCountry(){
+	$("#user_masters_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_masters_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+			$("#user_mast_university").val('');
+			$("#user_mast_college").val('');
+		},
+		select: function(event, ui) {
+			$("#user_masters_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_masters_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
+}
 function mastersUniversity(){
 	if($("#user_masters_country").val()!=''){
 		$("#user_mast_university").autocomplete({
@@ -511,6 +480,7 @@ function mastersUniversity(){
 			minLength: 0,	
 			open: function(event, ui) {				
 				// $(".ui-autocomplete").css("width","876px !important");
+				$("#user_mast_college").val('');
 			},
 			select: function(event, ui) {
 				$("#user_mast_university").val(ui.item.label); 
@@ -558,6 +528,7 @@ function mastersColleges(){
 			minLength: 0,	
 			open: function(event, ui) {				
 				// $(".ui-autocomplete").css("width","876px !important");
+				
 			},
 			select: function(event, ui) {
 				$("#user_mast_college").val(ui.item.label); 
@@ -574,6 +545,50 @@ function mastersColleges(){
 			.appendTo(ul);				
 		};	
 	}
+}
+function doctoralCountry(){
+	$("#user_doctoral_country").autocomplete({
+		source: function( request, response ) {
+			var keywordsss = $('#user_doctoral_country').val();
+			var hashName='s';
+			$.ajax({
+				url: BASE_URL+'/users/search-country-names-jobs',
+				dataType: "json",
+				type	: "POST",
+				data	:{value:keywordsss},
+				success: function( data ) {
+					if(data.output!=0) {		
+						response( $.map( data.searchHashNames, function( item ) {
+							return {
+								label: item.ref,
+							}
+						}));
+					}else{
+						$(".ui-autocomplete").css("display","none");
+					}
+				}				
+			});
+		},
+		minLength: 0,	
+		open: function(event, ui) {				
+			// $(".ui-autocomplete").css("width","876px !important");
+			$("#user_doctor_university").val('');
+			$("#user_doctor_college").val('');
+		},
+		select: function(event, ui) {
+			$("#user_doctoral_country").val(ui.item.label); 
+			return false;
+		},
+		focus: function(event, ui) {
+			return false;
+		}			
+	});
+	$("#user_doctoral_country").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+		var hashname=item.label;		
+		return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+		.data("item.uiAutocomplete", item)            
+		.appendTo(ul);				
+	};	
 }
 function doctoralUniversity(){
 	if($("#user_doctoral_country").val()!=''){
@@ -604,6 +619,7 @@ function doctoralUniversity(){
 			minLength: 0,	
 			open: function(event, ui) {				
 				// $(".ui-autocomplete").css("width","876px !important");
+				$("#user_doctor_college").val('');
 			},
 			select: function(event, ui) {
 				$("#user_doctor_university").val(ui.item.label); 
