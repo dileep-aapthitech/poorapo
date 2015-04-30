@@ -30,10 +30,6 @@ use Users\Model\Districts;
 use Users\Model\DistrictsTable;
 use Users\Model\EntranceExam;
 use Users\Model\EntranceExamTable;
-use Users\Model\BacheloreDegrees;
-use Users\Model\BacheloreDegreesTable;
-use Users\Model\MastersDegree;
-use Users\Model\MastersDegreeTable;
 use Users\Model\Specialization;
 use Users\Model\SpecializationTable;
 use Users\Model\Universities;
@@ -83,8 +79,6 @@ class Module implements
             	'Users\Model\DistrictsFactory'=>'Users\Factory\Model\DistrictsTableFactory',	
             	'Users\Model\CollegesFactory'=>'Users\Factory\Model\CollegesTableFactory',	
             	'Users\Model\EntranceExamFactory'=>'Users\Factory\Model\EntranceExamTableFactory',	
-            	'Users\Model\BacheloreDegreesFactory'=>'Users\Factory\Model\BacheloreDegreesTableFactory',	
-            	'Users\Model\MastersDegreeFactory'=>'Users\Factory\Model\MastersDegreeTableFactory',
             	'Users\Model\SpecializationFactory'=>'Users\Factory\Model\SpecializationTableFactory',
             	'Users\Model\UniversitiesFactory'=>'Users\Factory\Model\UniversitiesTableFactory',
             	'Users\Model\PaymentFactory'=>'Users\Factory\Model\PaymentTableFactory',

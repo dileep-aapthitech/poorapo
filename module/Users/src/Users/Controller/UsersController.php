@@ -22,10 +22,8 @@ class UsersController extends AbstractActionController
 	protected  $districtsTable;
 	protected  $collegeTable;
 	protected  $entranceexamsTable;
-	protected  $bacheloredegreeTable;
 	protected  $specializationsTable;
 	protected  $unversitiesTable;
-	protected  $mastersdegreesTable;
 	protected  $forgotPasswordTable;
 	protected  $univcollegesTable;
 	public function indexAction()
@@ -45,9 +43,7 @@ class UsersController extends AbstractActionController
 			$getDistricts=$this->getDistrictsTable()->getDistricts();
 			$getColleges=$this->getCollegeTable()->getColleges();
 			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
-			$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
 			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
-			$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
 			$getUnversities=$this->getUnversitiesTable()->getUnversities();
 			if($getUserDetails!=''){
 				return new ViewModel(array(				
@@ -58,10 +54,8 @@ class UsersController extends AbstractActionController
 					'districts' 		=> $getDistricts,
 					'colleges' 		    => $getColleges->buffer(),
 					'entranceexams'     => $getEntranceExams->buffer(),			
-					'b_degrees'         => $getBacheloreDegree,			
 					'specializations'   => $getSpecializations->buffer(),			
 					'unversities'       => $getUnversities->buffer(),			
-					'm_degrees'         => $getMasterDegrees,			
 					'baseUrl' 			=> $baseUrl,
 					'basePath' 			=> $basePath,
 				));		
@@ -399,9 +393,7 @@ class UsersController extends AbstractActionController
 			$getDistricts=$this->getDistrictsTable()->getDistricts();
 			$getColleges=$this->getCollegeTable()->getColleges();
 			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
-			$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
 			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
-			$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
 			$getUnversities=$this->getUnversitiesTable()->getUnversities();
 			if($getUserDetails!=''){
 				return new ViewModel(array(				
@@ -412,10 +404,8 @@ class UsersController extends AbstractActionController
 					'districts' 		=> $getDistricts,
 					'colleges' 		    => $getColleges->buffer(),
 					'entranceexams'     => $getEntranceExams->buffer(),			
-					'b_degrees'         => $getBacheloreDegree,			
 					'specializations'   => $getSpecializations->buffer(),			
 					'unversities'       => $getUnversities->buffer(),			
-					'm_degrees'         => $getMasterDegrees,			
 					'baseUrl' 			=> $baseUrl,
 					'basePath' 			=> $basePath,
 				));		
@@ -427,9 +417,7 @@ class UsersController extends AbstractActionController
 			$getDistricts=$this->getDistrictsTable()->getDistricts();
 			$getColleges=$this->getCollegeTable()->getColleges();
 			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
-			$getBacheloreDegree=$this->getBacheloreDegreeTable()->getBacheloreDegree();
 			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
-			$getMasterDegrees=$this->getMastersDegreeTable()->getMasterDegrees();
 			$getUnversities=$this->getUnversitiesTable()->getUnversities();
 			return new ViewModel(array(				
 				'usertypes' 		=> $getUserTypes,
@@ -438,10 +426,8 @@ class UsersController extends AbstractActionController
 				'districts' 		=> $getDistricts,
 				'colleges' 		    => $getColleges->buffer(),
 				'entranceexams'     => $getEntranceExams->buffer(),			
-				'b_degrees'         => $getBacheloreDegree,			
 				'specializations'   => $getSpecializations->buffer(),			
 				'unversities'       => $getUnversities->buffer(),			
-				'm_degrees'         => $getMasterDegrees,			
 				'baseUrl' 			=> $baseUrl,
 				'basePath' 			=> $basePath,
 			));	
@@ -1069,14 +1055,6 @@ class UsersController extends AbstractActionController
         }
         return $this->entranceexamsTable;
     }
-	public function getBacheloreDegreeTable()
-    {
-        if (!$this->bacheloredegreeTable) {		
-            $sm = $this->getServiceLocator();
-            $this->bacheloredegreeTable = $sm->get('Users\Model\BacheloreDegreesFactory');			
-        }
-        return $this->bacheloredegreeTable;
-    }
 	public function getSpecializationsTable()
     {
         if (!$this->specializationsTable) {		
@@ -1084,15 +1062,7 @@ class UsersController extends AbstractActionController
             $this->specializationsTable = $sm->get('Users\Model\SpecializationFactory');			
         }
         return $this->specializationsTable;
-    }
-	public function getMastersDegreeTable()
-    {
-        if (!$this->mastersdegreesTable) {		
-            $sm = $this->getServiceLocator();
-            $this->mastersdegreesTable = $sm->get('Users\Model\MastersDegreeFactory');			
-        }
-        return $this->mastersdegreesTable;
-    }
+    }	
 	public function getUnversitiesTable()
     {
         if (!$this->unversitiesTable) {		
