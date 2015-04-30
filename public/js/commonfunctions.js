@@ -312,8 +312,68 @@ function validateReg(typeTab){
 	}
 	*/
 }
+
+function checkTabAStatus()
+{
+	var flag = true;	
+	var usertype = $("#user_type").val();
+	var userEmail = $("#user_email").val();
+	if(usertype==""){
+		$("#user_type_req").html(Required);
+		flag=false;
+	}else{
+		$("#user_type_req").html('');
+	}
+	if($("#user_first_name").val()==''){
+		$("#user_firstname_req").html(Required);
+		flag = false;
+	}else{
+		$("#user_firstname_req").html('');
+	}
+	if($("#hid_user_id").val()==""){
+		if(userEmail==""){
+			$("#user_email_req").html(Required);
+			flag=false;
+		}else if(checkEmail(userEmail)==false){
+			$("#user_email_req").html(email_wrong_format);
+			flag=false;
+		}else if($("#hidCheckValue").val()==1){
+			tab1flag = false;
+			$("#user_email_req").html(email_already_exists); 
+			flag=false;
+			return false;
+		}else{
+			$("#user_email_req").html('');
+		}
+	}else{
+		$("#hidCheckValue").val('0');
+		$("#user_email_req").html('');
+	}
+	if($("#user_password").val()==''){
+		$("#user_pwd_req").html(Required);
+		flag = false;
+	}else{
+		$("#user_pwd_req").html('');	
+	}	
+	if(flag == false){
+		$("#hid_tab_1").val('1');
+		$("#hidCheckValue").val('0');
+		tab1flag = false;
+		return false;
+	}else{	
+		$("#hidCheckValue").val('0');
+		$("#hid_tab_1").val('0');
+		tab1flag = true;
+	}
+	
+	return flag;
+}
+
 function formFinalSubmit(){
-	if(tab1flag && tab2flag && tab3flag && tab4flag){
+
+	checkTabAStatus();
+
+	if(tab1flag){
 		if( allFormValdation() )
 		{
 			$("#frm_meth").submit();	
