@@ -116,6 +116,7 @@ class UserTable
 				'status' 		=> 0,  		
 				'direct_user' 	=> 1,  		
 				'sent_mail' 	=> 1,  		
+				'provider_id' 	=> 0,  		
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
