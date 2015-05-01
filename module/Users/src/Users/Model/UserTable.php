@@ -34,6 +34,29 @@ class UserTable
 		
 		return $row;
 	}
+	public function toInsertPassword($user_id,$pwd){
+		$password=md5($pwd);
+		$data = array(
+			'password' 		=> $password, 	
+		);
+		$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));		
+		return $updateresult;
+	}
+	public function sentMailToProvUsers($user_id){
+		$data = array(
+			'sent_mail' 		=> 1, 	
+		);
+		$resultSet=$this->tableGateway->update($data, array('user_id' => $user_id));		
+		return $resultSet;
+	}
+	public function getProviderUsers(){
+		$select = $this->tableGateway->getSql()->select();
+		$select->where('tbl_users.direct_user="0"');
+		$select->where('tbl_users.sent_mail="0"');
+		$select->where('tbl_users.status="0"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;
+	}
 	public function updateUserRegAuth($userid){
 		$data = array(
 				'user_id' 	=>$userid,

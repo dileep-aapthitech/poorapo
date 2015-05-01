@@ -135,6 +135,20 @@ return array(
 					),
 				),
 			),
+			'cron-sent-mails' => array(
+				'type'    => 'Segment',
+				'options' => array(
+					'route'       => '/cron-sent-mails[/:id]',
+					'constraints' => array(
+						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+						'id'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+					),
+					'defaults'    => array(
+						'controller'    => 'Users\Controller\Users',
+						'action'        => 'crontosendmails',
+					),
+				),
+			),
 		),
 	),     
     'view_manager' => array(
