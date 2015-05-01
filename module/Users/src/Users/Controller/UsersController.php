@@ -1150,6 +1150,8 @@ class UsersController extends AbstractActionController
 					
 				}
 			}echo "SuccessFull Sent....";exit;
+		}else{
+			echo "Thanks"; exit;
 		}
 	}
 	//public function headerAction view  header page returns view part
