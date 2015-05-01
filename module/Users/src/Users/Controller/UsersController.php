@@ -1189,12 +1189,12 @@ class UsersController extends AbstractActionController
 					}else{
 						$last_name ='';
 					}
-					$data[$i]['sno']= $key+1;
+					$data[$i]['sno']= $i+1;
 					$data[$i]['user_name']= $users->user_name;
 					$data[$i]['last_name']= $last_name;
 					$data[$i]['user_email']= $users->email_id;
 					$data[$i]['action'] ='#';
-					$key++;
+					$i++;
 				}
 				$data['aaData'] = $data;
 				echo json_encode($data['aaData']); exit;
