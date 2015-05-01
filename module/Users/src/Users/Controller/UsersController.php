@@ -1182,13 +1182,19 @@ class UsersController extends AbstractActionController
 			$i=0;
 			if(isset($providerUsers) && $providerUsers->count()!=0){
 			 $catTypeName="";
-				foreach($providerUsers as $users){
+				foreach($providerUsers as $key=>$users){
 					$id=$users->user_id;
-					$data[$i]['user_id']=$i+1;
+					if($users->last_name!=""){
+						$last_name = $users->last_name;
+					}else{
+						$last_name ='';
+					}
+					$data[$i]['sno']= $key+1;
 					$data[$i]['user_name']= $users->user_name;
+					$data[$i]['last_name']= $last_name;
 					$data[$i]['user_email']= $users->email_id;
 					$data[$i]['action'] ='#';
-					$i++;
+					$key++;
 				}
 				$data['aaData'] = $data;
 				echo json_encode($data['aaData']); exit;

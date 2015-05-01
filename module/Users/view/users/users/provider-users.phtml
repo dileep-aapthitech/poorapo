@@ -6,11 +6,11 @@
   <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
 </head>
   <table id="example" class="table table-bordered table-hover">
-
     <thead>
-      <tr><th>#</th>
-     <th>User Name</th>
-	 <th>User Email Id</th>
+	 <tr><th>S.No</th>
+     <th>First Name</th>
+     <th>Last Name</th>
+	 <th width="50%">Email Id</th>
      <th>Action</th>
      </tr>
     </thead>
@@ -26,7 +26,7 @@
         type:    'GET',
         dataType:'json',
         url: BASE_PATH+'/users/get-provider-users?uid=<?=$_SESSION['user']['user_id'];?>',
-        success: function(data){
+        success: function(data){		
 		$('#reload').html('');
             eval(data);
             var oTable = $('#example').dataTable( {
@@ -40,12 +40,14 @@
                 "bProcessing": true,
                 "aaData": data,
                 "aoColumns": [
-                    { "mData": "user_id" },
-                    { "mData": "user_name" },
+					{ "mData": "sno" },
+					{ "mData": "user_name" },
+					{ "mData": "last_name" },
                     { "mData": "user_email"},
                     { "mData": "action" }                        
                 ] 
-            });    
+            });  
+			$('.odd').removeClass('odd');	
         }
     });
 });
