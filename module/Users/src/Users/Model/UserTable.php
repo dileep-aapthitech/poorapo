@@ -127,7 +127,7 @@ class UserTable
 		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
 		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
 		$select->where('tbl_users.provider_id="'.$userId.'"');
-		$select->where('tbl_users.status="1"');
+		// $select->where('tbl_users.status="1"');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;	
 	}
