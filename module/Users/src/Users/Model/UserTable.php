@@ -122,6 +122,15 @@ class UserTable
 			return $this->tableGateway->lastInsertValue;
 		}					
     }	
+	public function providerUsers($userId){
+		$select = $this->tableGateway->getSql()->select();
+		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
+		$select->where('tbl_users.provider_id="'.$userId.'"');
+		$select->where('tbl_users.status="1"');
+		$resultSet = $this->tableGateway->selectWith($select);
+		return $resultSet;	
+	}
 	public function checkUserStatus($userid){
 		$select = $this->tableGateway->getSql()->select();
 		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
@@ -134,8 +143,8 @@ class UserTable
 	public function checkEmailExists( $userInfo )
     {
 		$select = $this->tableGateway->getSql()->select();
-		$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
-		$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
+		//$select->join('tbl_user_education_info', 'tbl_user_education_info.user_id=tbl_users.user_id',array('*'),'left');	
+		//$select->join('tbl_user_personal_info', 'tbl_user_personal_info.user_id=tbl_users.user_id',array('*'),'left');	
 		$select->where('tbl_users.email_id="'.$userInfo['inputEmail'].'"');
 		$select->where('tbl_users.password="'.md5($userInfo['password']).'"');
 		$select->where('tbl_users.status=1');

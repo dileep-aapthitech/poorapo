@@ -591,16 +591,18 @@ class UsersController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['inputEmail']) && $_POST['inputEmail']!=""){
 			$usersTable=$this->getUserTable();
-			$userDetails = $usersTable->checkEmailExists($_POST);
+			$userDetailss = $usersTable->checkEmailExists($_POST);
+			$user_id=$userDetailss->user_id;
+			$userDetails = $usersTable->checkUserStatus($user_id);
 			if($userDetails!=''){
 				$user_session = new Container('user');
 				$user_session->username=$userDetails->user_name;
 				$user_session->email=$userDetails->email_id;
-				$user_session->user_id=$userDetails->user_id;
+				$user_session->user_id=$user_id;
 				$user_session->user_type=$userDetails->user_type_id;
 				$result = new JsonModel(array(					
 					'output' => 'success',
-					'user_id' => json_decode($userDetails->user_id),
+					'user_id' => json_decode($user_id),
 					'user_type_id' => json_decode($userDetails->user_type_id),
 				));
 			}else{
@@ -1153,6 +1155,44 @@ class UsersController extends AbstractActionController
 		}else{
 			echo "Thanks"; exit;
 		}
+	}
+	public function providerUsersAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$view= new ViewModel(array(
+			'basePath'=>$basePath,
+		));
+		return $view;
+	}
+	public function getProviderUsersAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		if(isset($_GET['uid']) && $_GET['uid']!=''){
+			$providerUsers = $this->getUserTable()->providerUsers($_GET['uid']);
+			$data = array();
+			$i=0;
+			if(isset($providerUsers) && $providerUsers->count()!=0){
+			 $catTypeName="";
+				foreach($providerUsers as $users){
+					$id=$users->user_id;
+					$data[$i]['user_id']=$i+1;
+					$data[$i]['user_name']= $users->user_name;
+					$data[$i]['user_email']= $users->email_id;
+					$data[$i]['action'] ='#';
+					$i++;
+				}
+				$data['aaData'] = $data;
+				echo json_encode($data['aaData']); exit;
+			}else{
+				echo '1'; exit;
+			}	
+		}else{
+			echo '1'; exit;
+		}		
 	}
 	//public function headerAction view  header page returns view part
 	public function getUnivCollegesTable()

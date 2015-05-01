@@ -1,0 +1,55 @@
+<?php if(isset($_SESSION['user']['email'])){?>
+<div class="container mar_t mar_b min_height" style="position:relative">
+<head>
+  <link rel="stylesheet" type="text/css" href="">
+  <link href="<?php echo $basePath; ?>/css/jquery.datatable.css" rel="stylesheet">
+  <script src="<?php echo $basePath;?>/js/jquery.datatable.min.js"></script>
+</head>
+  <table id="example" class="table table-bordered table-hover">
+
+    <thead>
+      <tr><th>#</th>
+     <th>User Name</th>
+	 <th>User Email Id</th>
+     <th>Action</th>
+     </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+  </div>
+  <center><span id="reload"></span></center>
+  <script>
+  $(function(){
+  $('#reload').html('<img src=<?php echo $basePath; ?>/images/ajax-loader.gif />');
+  $.ajax({
+        type:    'GET',
+        dataType:'json',
+        url: BASE_PATH+'/users/get-provider-users?uid=<?=$_SESSION['user']['user_id'];?>',
+        success: function(data){
+		$('#reload').html('');
+            eval(data);
+            var oTable = $('#example').dataTable( {
+                aoColumnDefs: [{bSortable: false,
+                                aTargets: [ 0 ]
+                                }],
+                "bStateSave": true,
+                "bAutoWidth": true,
+                "sRowSelect": "multi",
+                "sPaginationType": "full_numbers",
+                "bProcessing": true,
+                "aaData": data,
+                "aoColumns": [
+                    { "mData": "user_id" },
+                    { "mData": "user_name" },
+                    { "mData": "user_email"},
+                    { "mData": "action" }                        
+                ] 
+            });    
+        }
+    });
+});
+  </script>
+<?php }else{?>
+  <script>window.location=BASE_URL+"/users/login";</script>
+<?}?>

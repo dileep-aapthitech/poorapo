@@ -114,7 +114,7 @@
 				$base_user_id = base64_encode($_SESSION['user']['user_id']);
 			}?>
 			<? if(isset($_SESSION['user']['user_type']) && $_SESSION['user']['user_type']=='5'){?>
-				 <li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $base_user_id;?>">Dashboard</a></li>
+				 <li><a href="<?php echo $baseUrl; ?>/users/provider-users">Dashboard</a></li>
 			<? } ?>
 				<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $base_user_id;?>">View Profile</a></li>
 			    <li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>               
