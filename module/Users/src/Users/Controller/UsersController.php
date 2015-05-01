@@ -1119,39 +1119,44 @@ class UsersController extends AbstractActionController
 		$basePath = $baseUrlArr['basePath'];
 		$providerUsers = $this->getUserTable()->getProviderUsers();	
 		$listOfUsers = '';	
+		$id = array();
 		include('public/PHPMailer_5.2.4/sendmail.php');	
 		global $activeUserSubject;				
 		global $activeUsersMessage;
 		if(count($providerUsers)!=""){
 			foreach($providerUsers as $users){
 				$listOfUsers = $users;
-				$user_id = $listOfUsers->user_id;
-				$pwd = getUniqueCode('7');
-				$updateresult = $this->getUserTable()->toInsertPassword($user_id,$pwd);	
-				$base_user_id = base64_encode($user_id);
-				if($listOfUsers->user_name!=""){
-					$username = $listOfUsers->user_name;
-				}else{
-					$username = 'New User';
-				}
-				$to = $listOfUsers->email_id;
-				$password = $pwd;
-				$activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
-				if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-					$activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-					$activeUsersMessage = str_replace("<EMAILID>","$to", $activeUsersMessage);
-					$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-				}else{
-					$activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-					$activeUsersMessage = str_replace("<EMAILID>","$to", $activeUsersMessage);
-					$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-				}
-				$successSent = sendMail($to,$activeUserSubject,$activeUsersMessage);				
-				if($successSent!=""){
-					$update_status = $this->getUserTable()->sentMailToProvUsers($user_id);	
-					
-				}
-			}echo "SuccessFull Sent....";exit;
+			}
+			$user_id = $listOfUsers->user_id;
+			$pwd = getUniqueCode('7');
+			$updateresult = $this->getUserTable()->toInsertPassword($user_id,$pwd);	
+			$base_user_id = base64_encode($user_id);
+			if($listOfUsers->user_name!=""){
+				$username = $listOfUsers->user_name;
+			}else{
+				$username = 'New User';
+			}
+			$emailId = $listOfUsers->email_id;
+			$to = $listOfUsers->email_id;
+			$password = $pwd;
+			$activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
+			if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+				$activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
+				$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
+				$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
+			}else{
+				$activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
+				$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
+				$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
+			}	
+			if(sendMail($to,$activeUserSubject,$activeUsersMessage))
+			{
+				$id[] = $user_id;
+			}	
+			if(count($id)){
+				$update_status = $this->getUserTable()->sentMailToProvUsers($id);	
+			}
+			echo "SuccessFull Sent....";exit;
 		}else{
 			echo "Thanks"; exit;
 		}
