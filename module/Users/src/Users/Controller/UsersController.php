@@ -1146,10 +1146,10 @@ class UsersController extends AbstractActionController
 				}
 				$successSent = sendMail($to,$activeUserSubject,$activeUsersMessage);				
 				if($successSent!=""){
-					$update_status = $this->getUserTable()->sentMailToProvUsers($user_id);		
-					echo "SuccessFull Sent....";exit;
+					$update_status = $this->getUserTable()->sentMailToProvUsers($user_id);	
+					
 				}
-			}
+			}echo "SuccessFull Sent....";exit;
 		}
 	}
 	//public function headerAction view  header page returns view part
