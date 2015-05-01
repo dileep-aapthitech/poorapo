@@ -114,6 +114,8 @@ class UserTable
 				'user_type_id'  	=> $users['user_type'],  	
 				'created_at' 	=> date('Y-m-d H:i:s'),   
 				'status' 		=> 0,  		
+				'direct_user' 	=> 1,  		
+				'sent_mail' 	=> 1,  		
 			);
 			$insertresult=$this->tableGateway->insert($data);
 			return $this->tableGateway->lastInsertValue;
