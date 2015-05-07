@@ -33,8 +33,8 @@ class IssuesTable
 			'category_id' 	         => $issue_data['category_id'],
 			'issue_title' 	         => $issue_data['title'],
 			'issue_decription' 	     => $issue_data['article-body'],
-			'created_at' 	         => date('y-m-d'),
-			'modified_at' 	         => date('y-m-d'),
+			'created_at' 	         => date('Y-m-d H:i:s'),
+			'modified_at' 	         => date('Y-m-d H:i:s'),
 			'status' 	      		 => 1	,
 		);	
 		$this->tableGateway->insert($data);		
@@ -100,7 +100,7 @@ class IssuesTable
 		{
 			$select->where('tbl_issues.category_id="'.$categoryId.'"');
 		}
-		$select->order('tbl_issues.created_at DESC');
+		$select->order('tbl_issues.modified_at DESC');
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}
@@ -118,7 +118,7 @@ class IssuesTable
 			'category_id' 	         => $isue_data['category_id'],
 			'issue_title' 	         => $isue_data['title'],
 			'issue_decription' 	     => $isue_data['article-body'],
-			'modified_at' 	         => date('y-m-d'),
+			'modified_at' 	         => date('Y-m-d H:i:s'),
 			'status' 	      		 => 1,
 		);	
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
@@ -128,7 +128,7 @@ class IssuesTable
     {	
 		$data = array(
 			'total_likes' 	         => $isue_data['total_likes'],
-			'modified_at' 	         => date('y-m-d'),
+			'modified_at' 	         => date('Y-m-d H:i:s'),
 		);	
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;
@@ -137,7 +137,7 @@ class IssuesTable
     {	
 		$data = array(
 			'total_shares' 	         => $isue_data['total_shares'],
-			'modified_at' 	         => date('y-m-d'),
+			'modified_at' 	         => date('Y-m-d H:i:s'),
 		);		
 		$update=$this->tableGateway->update($data, array('issue_id' =>$isue_data['issue_id']));
 		return $update;
