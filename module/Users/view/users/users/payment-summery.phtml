@@ -1,0 +1,44 @@
+<?php 	
+	$firstname=$_POST["firstname"];
+	$amount=$_POST["amount"];
+	$txnid=$_POST["txnid"];
+	$email=$_POST["email"];
+	$phone=$_POST["phone"];
+	$productinfo="Product Information";
+	$key="JBZaLc";
+	$salt="GQs7yium";
+
+	$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
+	$hash=hash("sha512",$hashSeq);
+?>	
+<div class="container min_height">	
+  <div id="loginModal" class="show"  role="dialog" aria-hidden="true">
+		<div class="modal-dialog">	
+			<div class="modal-content">
+			  <div class="modal-header">
+				  <h1 class="text-center">Payment Form</h1>
+			  </div>
+				  <div class="modal-body">
+						Hello, <?php echo $firstname; ?> </br>
+						You are paying Rs.<?php echo $amount; ?> </br>
+						Your order ID is <?php echo $txnid; ?> </br>
+						Click the button below to make the payment. </br></br>
+						<form id="subFrm" name="subFrm" method="post" action="https://test.payu.in/_payment">
+							<input type="hidden" name="surl" value="http://localhost/websitepayumoney/success.php">
+							<input type="hidden" name="furl" value="http://localhost/websitepayumoney/failure.php">
+							<input type="hidden" name="hash" value="<?php echo $hash; ?>">
+							<input type="hidden" name="email" value="<?php echo $email; ?>">
+							<input type="hidden" name="phone" value="<?php echo $phone; ?>">
+							<input type="hidden" name="firstname" value="<?php echo $firstname; ?>">
+							<input type="hidden" name="productinfo" value="Product Information">
+							<input type="hidden" name="amount" value="<?php echo $amount; ?>">
+							<input type="hidden" name="txnid" value="<?php echo $txnid; ?>">
+							<input type="hidden" name="key" value="<?php echo $key; ?>"> 
+							<input type="hidden" name="service_provider" value="payu_paisa">
+							<input type="submit" value="Pay via PayUMoney"/>
+						</form>
+				 </div><div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+</div>
