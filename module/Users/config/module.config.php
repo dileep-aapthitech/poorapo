@@ -135,6 +135,19 @@ return array(
 					),
 				),
 			),
+			'online-payments' => array(
+				'type' => 'segment',
+				'options' => array(
+					'route' => '/online-payments[/:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Cms\Controller\Cms',
+						'action'     => 'onlinePayments',
+					),
+				),
+			),
 			'cron-sent-mails' => array(
 				'type'    => 'Segment',
 				'options' => array(
