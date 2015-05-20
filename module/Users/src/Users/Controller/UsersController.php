@@ -59,6 +59,7 @@ class UsersController extends AbstractActionController
 		}		
 	}
 	public function addUserPaymentAction(){
+		echo "<pre>";print_r($_POST);exit;
 		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
 			$status='Pending';
 			$firstname=$_POST["firstname"];

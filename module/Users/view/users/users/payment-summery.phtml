@@ -17,7 +17,7 @@
 							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">
 							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
 							<input type="hidden" name="phone" id="phone" value="<?php echo $phone; ?>">
-							<input type="hidden" name="firstname" id="phone" value="<?php echo $this->firstname; ?>">
+							<input type="hidden" name="firstname" id="firstname" value="<?php echo $this->firstname; ?>">
 							<input type="hidden" name="productinfo" value="Product Information">
 							<input type="hidden" name="amount" id="amount" value="<?php echo $this->amount; ?>">
 							<input type="hidden" name="txnid" id="txnid" value="<?php echo $this->txnid; ?>">
@@ -42,7 +42,7 @@
 		$.ajax({
 			type:'POST',
 			url:  BASE_URL+'/users/add-user-payment',
-			data:{firstname:firstname,phone:phone,email:email,amount:amounttxnid:txnid},
+			data:{firstname:firstname,phone:phone,email:email,amount:amount,txnid:txnid},
 			success: function(data){
 				if(data.output=='success'){
 					$("#subFrm").submit();
