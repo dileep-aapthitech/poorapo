@@ -20,26 +20,25 @@ class PaymentTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }	
-	public function addUser($users,$user_id)
+	public function addPayment($firstname,$email,$phone,$txnid,$amount,$status)
     {
-		if($user_id!=""){
-			$data = array(
-				'email_id' 		=> $users['user_email'],  		
-				'user_type_id'  	=> $users['user_type'],  	
-			);
-			$updateresult=$this->tableGateway->update($data, array('user_id' => $user_id));
-			return $updateresult;
-		}else{
-			$password=md5($users['user_password']);
-			$data = array(
-				'email_id' 		=> $users['user_email'],  		
-				'password' 		=> $password, 	
-				'user_type_id'  	=> $users['user_type'],  	
-				'created_at' 	=> date('Y-m-d H:i:s'),   
-				'status' 		=> 1,  		
-			);
-			$insertresult=$this->tableGateway->insert($data);
-			return $this->tableGateway->lastInsertValue;
-		}					
-    }		
+		$data = array(
+			'firstname' 	=> $firstname,  		
+			'amount' 		=> $amount, 	
+			'txnid'         => $txnid,	
+			'emailid'       => $email,	
+			'phone_number'  => $phone,	
+			'created_at' 	=> date('Y-m-d H:i:s'),   
+			'status' 		=> $status,  		
+		);
+		$insertresult=$this->tableGateway->insert($data);
+		return $this->tableGateway->lastInsertValue;					
+    }
+	public function statusUpdate($status,$txnid){
+		$data = array(
+			'status' 		=> $status,  		
+		);
+		$updateresult=$this->tableGateway->update($data, array('txnid' => $txnid));
+		return $updateresult;		
+	}
 }

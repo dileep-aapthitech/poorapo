@@ -9,7 +9,7 @@
           <h1 class="text-center">Payment Form</h1>
       </div>
       <div class="modal-body">
-          <form id="con_form_id" class="form col-md-12 center-block" method="POST" action=''>
+          <form id="con_form_id" class="form col-md-12 center-block" method="POST">
 			<div class="form-group">
               <input type="text" class="form-control" id="firstname" name="firstname" placeholder="User Name" value="<? if(isset($_SESSION['user']['user_id']) && $_SESSION['user']['user_id']!=""){ echo $_SESSION['user']['username'];}?>">
 			  <span id="fnameError" style="color:red"></span>

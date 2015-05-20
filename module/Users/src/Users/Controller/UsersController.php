@@ -26,70 +26,131 @@ class UsersController extends AbstractActionController
 	protected  $unversitiesTable;
 	protected  $forgotPasswordTable;
 	protected  $univcollegesTable;
+	protected  $paymentsTable;
 	public function indexAction()
 	{
 	}
-	public function onlinePaymentsAction(){}
-	public function paymentSummeryAction(){}
-	public function paymentSummeryAction(){
-		$status=$_POST["status"];
-		$firstname=$_POST["firstname"];
-		$amount=$_POST["amount"];
-		$txnid=$_POST["txnid"];
-
-		$posted_hash=$_POST["hash"];
-		$key=$_POST["key"];
-		$productinfo=$_POST["productinfo"];
-		$email=$_POST["email"];
-		$salt="GQs7yium";
-
-		If (isset($_POST["additionalCharges"])) {
-		   $additionalCharges=$_POST["additionalCharges"];
-			$retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
-			
-					  }
-		else {	  
-
-			$retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
-
-			 }
-			 $hash = hash("sha512", $retHashSeq);
-	  
-		   if ($hash != $posted_hash) {
-			   echo "Invalid Transaction. Please try again";
-			   }
-		   else {
-
-			 echo "<h3>We are Sorry, " . $firstname .".Your order status is ". $status .".</h3>";
-			 echo "<h4>Your transaction id for this transaction is ".$txnid.". You may try making the payment by clicking the link below.</h4>";
-			  
-			 } 
-			 <p><a href=http://localhost/websitepayumoney/websiteform.php> Try Again</a></p>
+	public function onlinePaymentsAction(){
+		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
+			$firstname=$_POST["firstname"];
+			$amount=$_POST["amount"];
+			$txnid=$_POST["txnid"];
+			$email=$_POST["email"];
+			$phone=$_POST["phone"];
+			$productinfo="Product Information";
+			$key="JBZaLc";
+			$salt="GQs7yium";
+			$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
+			$hash=hash("sha512",$hashSeq);			
+			$view=new ViewModel(array(
+				'firstname' 		=> 	$firstname,
+				'amount' 		    => 	$amount,
+				'txnid' 		    => 	$txnid,
+				'email' 		    => 	$email,
+				'phone' 		    => 	$phone,
+				'productinfo' 		=> 	$productinfo,
+				'key' 		        => 	$key,
+				'salt' 		        => 	$salt,
+				'hash' 		        => 	$hash,
+			));
+			$view->setTerminal(false)
+				 ->setTemplate('users/users/payment-summery.phtml');
+			return $view;
+		}		
 	}
-	public function payment-successAction(){
-		$status=$_POST["status"];
-		$firstname=$_POST["firstname"];
-		$amount=$_POST["amount"];
-		$txnid=$_POST["txnid"];
-		$posted_hash=$_POST["hash"];
-		$key=$_POST["key"];
-		$productinfo=$_POST["productinfo"];
-		$email=$_POST["email"];
-		$salt="GQs7yium";
-		if(isset($_POST["additionalCharges"])){
-			$additionalCharges=$_POST["additionalCharges"];
-			$retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;		
-		}else{	  
-			$retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
-		}
-		$hash = hash("sha512", $retHashSeq);
-		if ($hash != $posted_hash) {
-		   echo "Invalid Transaction. Please try again";
-	    }else {			   
-		  echo "<h3>Thank You, " . $firstname .".Your order status is ". $status .".</h3>";
-		  echo "<h4>Your Transaction ID for this transaction is ".$txnid.".</h4>";
-		  echo "<h4>We have received a payment of Rs. " . $amount . ". Your order will soon be shipped.</h4>";		   
-		}   
+	public function addUserPaymentAction(){
+		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
+			$status='Pending';
+			$firstname=$_POST["firstname"];
+			$amount=$_POST["amount"];
+			$txnid=$_POST["txnid"];
+			$email=$_POST["email"];
+			$phone=$_POST["phone"];
+			$addPayment=$this->getPaymentsTable()->addPayment($firstname,$email,$phone,$txnid,$amount,$status);
+			if($addPayment>=0){
+				return $view=new JsonModel(array(
+					'output' 		        => 	'success',
+				));
+			}
+		}		
+	}
+	public function paymentSuccessAction(){ 
+		if(isset($_POST['status']) && $_POST['status']!=''){
+			$status=$_POST["status"];
+			$firstname=$_POST["firstname"];
+			$amount=$_POST["amount"];
+			$txnid=$_POST["txnid"];
+			$posted_hash=$_POST["hash"];
+			$key=$_POST["key"];
+			$productinfo=$_POST["productinfo"];
+			$email=$_POST["email"];
+			$salt="GQs7yium";
+			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$taxnid);
+			if(isset($_POST["additionalCharges"])){
+				$additionalCharges=$_POST["additionalCharges"];
+				$retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;		
+			}else{	  
+				$retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
+			}
+			$hash = hash("sha512", $retHashSeq);
+				
+			if ($hash != $posted_hash) {
+			   $errorInvalid = "Invalid Transaction. Please try again";
+			   return $result = new ViewModel(array(					
+					'output' 		=> 'not-success',
+					'errorInvalid'	=>	$errorInvalid,
+					'success'		=>	false,
+				));	
+			}else {	
+				return $result = new ViewModel(array(					
+					'output' 		=> 'success',
+					'firstname'		=>	$firstname,
+					'status'	    =>	$status,
+					'txnid'	        =>	$txnid,
+					'amount'	        =>	$amount,
+					'success'		=>	true,
+				));	
+			}			
+		}		
+	}
+	public function paymentFailureAction(){ 
+		if(isset($_POST['status']) && $_POST['status']!=''){
+			$status=$_POST["status"];
+			$firstname=$_POST["firstname"];
+			$amount=$_POST["amount"];
+			$txnid=$_POST["txnid"];
+			$posted_hash=$_POST["hash"];
+			$key=$_POST["key"];
+			$productinfo=$_POST["productinfo"];
+			$email=$_POST["email"];
+			$salt="GQs7yium";
+			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$taxnid);
+			if(isset($_POST["additionalCharges"])){
+				$additionalCharges=$_POST["additionalCharges"];
+				$retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;		
+			}else{	  
+				$retHashSeq = $salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;
+			}
+			$hash = hash("sha512", $retHashSeq);
+				
+			if ($hash != $posted_hash) {
+			   $errorInvalid = "Invalid Transaction. Please try again";
+			   return $result = new ViewModel(array(					
+					'output' 		=> 'not-success',
+					'errorInvalid'	=>	$errorInvalid,
+					'success'		=>	false,
+				));	
+			}else {	
+				return $result = new ViewModel(array(					
+					'output' 		=> 'success',
+					'firstname'		=>	$firstname,
+					'status'	    =>	$status,
+					'txnid'	        =>	$txnid,
+					'amount'	    =>	$amount,
+					'success'		=>	true,
+				));	
+			}			
+		}		
 	}
 	public function viewProfileAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -1371,5 +1432,13 @@ class UsersController extends AbstractActionController
             $this->unversitiesTable = $sm->get('Users\Model\UniversitiesFactory');			
         }
         return $this->unversitiesTable;
+    }
+	public function getPaymentsTable()
+    {
+        if (!$this->paymentsTable) {		
+            $sm = $this->getServiceLocator();
+            $this->paymentsTable = $sm->get('Users\Model\PaymentsFactory');			
+        }
+        return $this->paymentsTable;
     }
 }

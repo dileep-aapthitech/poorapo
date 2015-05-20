@@ -143,7 +143,7 @@ return array(
 					   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
 					),
 					'defaults' => array(
-						'controller' => 'Cms\Controller\Cms',
+						'controller' => 'Users\Controller\Users',
 						'action'     => 'onlinePayments',
 					),
 				),
