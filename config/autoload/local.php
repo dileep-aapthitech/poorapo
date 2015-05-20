@@ -3,22 +3,22 @@ return array(
     'db' 				=> 	array(
 		'dsn' 			=>	'mysql:dbname=poraapo_db;host=localhost',
         'username' 		=> 	'root',
-        'password' 		=> 	'admin',
+        'password' 		=> 	'',
     ),
 	'slave1' => array(
 		'dsn'      		=> 	'mysql:dbname=poraapo_db;host=localhost',
         'username' 		=> 	'root',
-        'password' 		=> 	'admin',
+        'password' 		=> 	'',
     ),
 	'slave2' 			=> 	array(
 		'dsn'      		=> 	'mysql:dbname=poraapo_db;host=localhost',
         'username' 		=> 	'root',
-        'password' 		=> 	'admin',
+        'password' 		=> 	'',
     ),
 	'slave3' 			=> 	array(
 		'dsn'      		=> 	'mysql:dbname=poraapo_db;host=localhost',
         'username' 		=> 	'root',
-        'password' 		=> 	'admin',
+        'password' 		=> 	'',
     ),
 	'urls' 				=> 	array(
 		'baseUrl' 		=> 	'http://localhost/poorapo/trunk',
