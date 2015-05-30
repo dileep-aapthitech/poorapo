@@ -12,8 +12,8 @@
 						Your order ID is <?php echo $this->txnid; ?> </br>
 						Click the button below to make the payment. </br></br>
 						<form id="subFrm" name="subFrm" method="post" action="https://test.payu.in/_payment">
-							<input type="hidden" name="surl" value="../users/payment-success">
-							<input type="hidden" name="furl" value="../users/payment-failure">
+							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/users/payment-success">
+							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/users/payment-failure">
 							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">
 							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
 							<input type="hidden" name="phone" id="phone" value="<?php echo $phone; ?>">
@@ -45,8 +45,6 @@
 			data:{firstname:firstname,phone:phone,email:email,amount:amount,txnid:txnid},
 			success: function(data){
 				if(data.output=='success'){
-					$("#subFrm").submit();
-				}else{
 					$("#subFrm").submit();
 				}
 			}

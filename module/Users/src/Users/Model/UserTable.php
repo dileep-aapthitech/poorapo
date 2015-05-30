@@ -87,6 +87,7 @@ class UserTable
 		$select	->join('tbl_colleges_univ', 'tbl_colleges_univ.univ_college_id=tbl_user_education_info.bachelors_college',array('user_bac_college' =>new Expression('tbl_colleges_univ.univ_college_name')),'left');
 		$select	->join(array('bac_coll' => 'tbl_colleges_univ'),'bac_coll.univ_college_id=tbl_user_education_info.masters_college',array('user_mast_college' =>new Expression('bac_coll.univ_college_name')),'left');
 		$select	->join(array('bac_colle' => 'tbl_colleges_univ'),'bac_colle.univ_college_id=tbl_user_education_info.doctorate_college',array('user_phd_college' =>new Expression('bac_colle.univ_college_name')),'left');
+		$select	->join(array('bac_branch' => 'tbl_branches'),'bac_branch.branch_id=tbl_user_education_info.user_bac_branch',array('user_bac_branch' =>new Expression('bac_branch.branch_name')),'left');
 		$select->where('tbl_users.user_id="'.$user_id.'"');	
 		$resultSet = $this->tableGateway->selectWith($select);	
 		return $resultSet;		

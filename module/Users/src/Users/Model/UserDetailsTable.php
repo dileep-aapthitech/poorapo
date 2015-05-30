@@ -21,7 +21,7 @@ class UserDetailsTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }
-	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c){
+	public function addDetails($usersinfo,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c,$b_b){
 		if($usersinfo['user_principal_name']!=''){
 			$user_principal_name=$usersinfo['user_principal_name'];			
 		}else{			
@@ -95,6 +95,11 @@ class UserDetailsTable
 			$user_bac_unversity=$usersinfo['user_bac_unversity'];			
 		}else{			
 			$user_bac_unversity='';
+		}
+		if($usersinfo['user_bac_branch']!=''){
+			$user_bac_branch=$usersinfo['user_bac_branch'];			
+		}else{			
+			$user_bac_branch='';
 		}
 		if($usersinfo['user_bac_college']!=''){
 			$user_bac_college=$usersinfo['user_bac_college'];			
@@ -184,6 +189,7 @@ class UserDetailsTable
 			'bachelors_degree_name'     => $user_bac_degree,  	
 			'bachelors_university_name' => $b_u,  	
 			'bachelors_college'         => $b_c,  	
+			'user_bac_branch'           => $b_b,  	
 			'bachelors_specialization'  => $user_bac_speclization,  	
 			'bachelors_year_admission'  => $user_bac_year,  	
 			'id_countries_masters'      => $id_countries_masters,  	

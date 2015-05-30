@@ -494,7 +494,7 @@
 							</select>-->
 							<input type="text" id="user_bac_degree" name="user_bac_degree" value="Bachelor's"  class="form-control" readonly="readonly">
 						</div>
-					</div>
+					</div>					
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Major/Specialization</label>
 						<div class="col-sm-8">
@@ -549,7 +549,13 @@
 							<input type="text" class="form-control" id="user_bac_college" name="user_bac_college" Placeholder="College of bachelor's study" onKeypress="bachelorsColleges();" value="<? if(isset($details->user_bac_college) && $details->user_bac_college!='') {echo ucfirst($details->user_bac_college);}else{}?>">
 						</div>
 					</div>
-					
+					<div class="form-group">
+						<label for="select" class="col-sm-3 control-label">Branch Name</label>
+						<div class="col-sm-8">
+							<span class="error_msg_disp" id="user_bac_user_bac_branch_req"></span>							
+							<input type="text" id="user_bac_branch" name="user_bac_branch" value="<? if(isset($details->user_bac_branch) && $details->user_bac_branch!='') {echo ucfirst($details->user_bac_branch);}else{}?>"  class="form-control" onKeypress="bachelorsBranches();" Placeholder="Branch of bachelor's study">
+						</div>
+					</div>
 					<div class="form-group">
 						<label for="select" class="col-sm-3 control-label">Year of Admission</label>
 						<div class="col-sm-8">
