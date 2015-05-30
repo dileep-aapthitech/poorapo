@@ -740,3 +740,47 @@ function getEntranceExams(type){
 	};	
 
 }
+function bachelorsBranches(){
+	if($("#user_bac_branch").val()!=''){
+		$("#user_bac_branch").autocomplete({
+			source: function( request, response ) {					
+				var keywordsss = $('#user_bac_branch').val();
+				var hashName='s';
+				$.ajax({
+					url: BASE_URL+'/users/get-branches',
+					dataType: "json",
+					type	: "POST",
+					data	:{value:keywordsss},
+					success: function( data ) {
+						if(data.output!=0) {		
+							response( $.map( data.searchHashNames, function( item ) {
+								return {
+									label: item.ref,
+								}
+							}));
+						}else{
+							$(".ui-autocomplete").css("display","none");
+						}
+					}				
+				});
+			},
+			minLength: 0,	
+			open: function(event, ui) {				
+				// $(".ui-autocomplete").css("width","876px !important");
+			},
+			select: function(event, ui) {
+				$("#user_bac_branch").val(ui.item.label); 
+				return false;
+			},
+			focus: function(event, ui) {
+				return false;
+			}			
+		});
+		$("#user_bac_branch").data( "uiAutocomplete" )._renderItem = function( ul, item ) {
+			var hashname=item.label;		
+			return $("<li><a data-value='"+item.label+"'>" + item.label + "</a></li>")
+			.data("item.uiAutocomplete", item)            
+			.appendTo(ul);				
+		};	
+	}
+}
