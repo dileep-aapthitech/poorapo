@@ -26,11 +26,16 @@ class UsersController extends AbstractActionController
 	protected  $unversitiesTable;
 	protected  $forgotPasswordTable;
 	protected  $univcollegesTable;
+	protected  $branchesTable;
 	protected  $paymentsTable;
 	public function indexAction()
 	{
 	}
 	public function onlinePaymentsAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
 			$firstname=$_POST["firstname"];
 			$amount=$_POST["amount"];
@@ -52,6 +57,8 @@ class UsersController extends AbstractActionController
 				'key' 		        => 	$key,
 				'salt' 		        => 	$salt,
 				'hash' 		        => 	$hash,
+				'baseUrl' 			=> $baseUrl,
+				'basePath' 			=> $basePath,
 			));
 			$view->setTerminal(false)
 				 ->setTemplate('users/users/payment-summery.phtml');
@@ -59,7 +66,6 @@ class UsersController extends AbstractActionController
 		}		
 	}
 	public function addUserPaymentAction(){
-		echo "<pre>";print_r($_POST);exit;
 		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
 			$status='Pending';
 			$firstname=$_POST["firstname"];
@@ -273,6 +279,7 @@ class UsersController extends AbstractActionController
 		$entranceExam3 = '';
 		$b_u = '';
 		$b_c = '';
+		$b_b = '';
 		$m_u = '';
 		$m_c = '';
 		$d_u = '';
@@ -395,6 +402,14 @@ class UsersController extends AbstractActionController
 					$b_c ='';
 				}
 			}
+			if(isset($_POST['user_bac_branch']) && $_POST['user_bac_branch']!=''){
+				$b_b = $this->getBranchesTable()->getBranchIdByName(trim($_POST['user_bac_branch']));
+				if($b_b!=''){
+					$b_b = $b_b;
+				}else{
+					$b_b ='';
+				}
+			}
 			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
 				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));	
 				if($m_u!=''){
@@ -434,7 +449,7 @@ class UsersController extends AbstractActionController
 			if($user_id>=0){
 				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$_POST['hid_user_id'],$id_countries_birth,$id_countries_job,$stateId,$districtId);
 				if($userpersonalInfo>=0){
-					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id'],$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c);					
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$_POST['hid_user_id'],$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c,$b_b);					
 					if($userDetailsInfo>=0){
 						return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id.'&suc='.$suc);
 					}
@@ -558,6 +573,14 @@ class UsersController extends AbstractActionController
 					$b_c ='';
 				}
 			}
+			if(isset($_POST['user_bac_branch']) && $_POST['user_bac_branch']!=''){
+				$b_b = $this->getBranchesTable()->getBranchIdByName(trim($_POST['user_bac_branch']));
+				if($b_b!=''){
+					$b_b = $b_b;
+				}else{
+					$b_b ='';
+				}
+			}
 			if(isset($_POST['user_mast_university']) && $_POST['user_mast_university']!=''){
 				$m_u = $this->getUnversitiesTable()->getUniversityIdByName(trim($_POST['user_mast_university']));	
 				if($m_u!=''){
@@ -594,7 +617,7 @@ class UsersController extends AbstractActionController
 			if($user_id!=0){
 				$userpersonalInfo = $this->getUserPersonalInfoTable()->addPersonalInfo($_POST,$user_id,$id_countries_birth,$id_countries_job,$stateId,$districtId);
 				if($userpersonalInfo!=0){
-					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c);					
+					$userDetailsInfo  = $this->getUserDetailsTable()->addDetails($_POST,$user_id,$id_countries_school,$jCollId,$id_countries_bachelors,$id_countries_masters,$id_countries_phd,$entranceExam1,$entranceExam2,$entranceExam3,$b_u,$b_c,$m_u,$m_c,$d_u,$d_c,$b_b);					
 					if($userDetailsInfo!=0){
 						$usersTable=$this->getUserTable();
 						$userDetails = $usersTable->getUser($user_id);
@@ -1236,6 +1259,41 @@ class UsersController extends AbstractActionController
 			return $result;
 		}
 	}
+	public function getBranchesAction(){
+		$list_branch='';
+		$hashNames="";
+		$hashNameIds="";
+		$count="";
+		if(isset($_POST['value']) && $_POST['value']!=''){					
+			$getBranches = $this->getBranchesTable()->getBranches($_POST['value']);
+			foreach($getBranches as $key=>$search){
+				$list_branch[$key]=$search->branch_name;
+				$hashNameIds[$key]=$key;
+				$count=$key;				
+			}
+			$combined = array();
+			if($list_branch!=''){				
+				foreach($list_branch as $index => $refNumber) {			
+					$combined[] = array(
+						'ref'  => $refNumber,
+						'part' => $hashNameIds[$index]
+					);
+				}
+			}
+			$result = new JsonModel(array(					
+				'searchHashNames' => $combined,
+				'success'=>true,
+			));			
+			return $result;
+		}else{
+			$result = new JsonModel(array(					
+				'searchHashNames' => [],
+				'success'=>true,
+			));			
+			return $result;
+		}
+	
+	}
 	public function crontosendmailsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -1434,11 +1492,19 @@ class UsersController extends AbstractActionController
         }
         return $this->unversitiesTable;
     }
+	public function getBranchesTable()
+    {
+        if (!$this->branchesTable) {		
+            $sm = $this->getServiceLocator();
+            $this->branchesTable = $sm->get('Users\Model\BranchesFactory');			
+        }
+        return $this->branchesTable;
+    }
 	public function getPaymentsTable()
     {
         if (!$this->paymentsTable) {		
             $sm = $this->getServiceLocator();
-            $this->paymentsTable = $sm->get('Users\Model\PaymentsFactory');			
+            $this->paymentsTable = $sm->get('Users\Model\PaymentFactory');			
         }
         return $this->paymentsTable;
     }
