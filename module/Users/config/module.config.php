@@ -148,6 +148,32 @@ return array(
 					),
 				),
 			),
+			'success-payment' => array(
+				'type' => 'segment',
+				'options' => array(
+					'route' => '/success-payment[/:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'successPayment',
+					),
+				),
+			),
+			'failure-payment' => array(
+				'type' => 'segment',
+				'options' => array(
+					'route' => '/failure-payment[/:id]',
+					'constraints' => array(
+					   'id' => '[%&;a-zA-Z0-9][%&;a-zA-Z0-9_~-]*',
+					),
+					'defaults' => array(
+						'controller' => 'Users\Controller\Users',
+						'action'     => 'failurePayment',
+					),
+				),
+			),
 			'cron-sent-mails' => array(
 				'type'    => 'Segment',
 				'options' => array(

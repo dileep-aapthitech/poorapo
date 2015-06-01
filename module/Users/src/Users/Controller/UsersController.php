@@ -31,6 +31,9 @@ class UsersController extends AbstractActionController
 	public function indexAction()
 	{
 	}
+	public function aboutThePageAction(){
+	
+	}
 	public function onlinePaymentsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -66,6 +69,10 @@ class UsersController extends AbstractActionController
 		}		
 	}
 	public function addUserPaymentAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
 			$status='Pending';
 			$firstname=$_POST["firstname"];
@@ -77,12 +84,17 @@ class UsersController extends AbstractActionController
 			if($addPayment>=0){
 				return $view=new JsonModel(array(
 					'output' 		        => 	'success',
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath
 				));
 			}
 		}		
 	}
-	public function paymentSuccessAction(){ 
-		echo "<pre>";print_r($_POST);exit;
+	public function successPaymentAction(){ 
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['status']) && $_POST['status']!=''){
 			$status=$_POST["status"];
 			$firstname=$_POST["firstname"];
@@ -93,7 +105,7 @@ class UsersController extends AbstractActionController
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
 			$salt="GQs7yium";
-			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$taxnid);
+			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$txnid);
 			if(isset($_POST["additionalCharges"])){
 				$additionalCharges=$_POST["additionalCharges"];
 				$retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;		
@@ -108,6 +120,8 @@ class UsersController extends AbstractActionController
 					'output' 		=> 'not-success',
 					'errorInvalid'	=>	$errorInvalid,
 					'success'		=>	false,
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath
 				));	
 			}else {	
 				return $result = new ViewModel(array(					
@@ -117,11 +131,17 @@ class UsersController extends AbstractActionController
 					'txnid'	        =>	$txnid,
 					'amount'	        =>	$amount,
 					'success'		=>	true,
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath
 				));	
 			}			
 		}		
 	}
-	public function paymentFailureAction(){ 
+	public function failurePaymentAction(){ 
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
 		if(isset($_POST['status']) && $_POST['status']!=''){
 			$status=$_POST["status"];
 			$firstname=$_POST["firstname"];
@@ -132,7 +152,7 @@ class UsersController extends AbstractActionController
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
 			$salt="GQs7yium";
-			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$taxnid);
+			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$txnid);
 			if(isset($_POST["additionalCharges"])){
 				$additionalCharges=$_POST["additionalCharges"];
 				$retHashSeq = $additionalCharges.'|'.$salt.'|'.$status.'|||||||||||'.$email.'|'.$firstname.'|'.$productinfo.'|'.$amount.'|'.$txnid.'|'.$key;		
@@ -147,6 +167,8 @@ class UsersController extends AbstractActionController
 					'output' 		=> 'not-success',
 					'errorInvalid'	=>	$errorInvalid,
 					'success'		=>	false,
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath
 				));	
 			}else {	
 				return $result = new ViewModel(array(					
@@ -156,6 +178,8 @@ class UsersController extends AbstractActionController
 					'txnid'	        =>	$txnid,
 					'amount'	    =>	$amount,
 					'success'		=>	true,
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath
 				));	
 			}			
 		}		

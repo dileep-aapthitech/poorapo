@@ -234,6 +234,7 @@ position:absolute;
  .dataTables_info,.dataTables_paginate{
 	margin-top:20px
  }
+ .tab_w{width:500px; margin:0 auto;overflow:auto;}
 @media (max-width: 1024px) {
  .reg_w_12{
 	width:85%;
@@ -260,8 +261,10 @@ position:absolute;
 	.navbar-brand img{
 		width:170px;
 	}
+
 }
-@media (max-width: 480px) { 
+@media (max-width: 480px) {
+	.tab_w{width:auto !important;}
 	.social_count{
 		float:right;
 		text-align:right;
@@ -287,4 +290,5 @@ position:absolute;
     padding-bottom: 3px !important;
     padding-top: 3px !important;
 }
+	
  }

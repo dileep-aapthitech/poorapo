@@ -11,9 +11,9 @@
 						You are paying Rs.<?php echo $this->amount; ?> </br>
 						Your order ID is <?php echo $this->txnid; ?> </br>
 						Click the button below to make the payment. </br></br>
-						<form id="subFrm" name="subFrm" method="post" action="https://test.payu.in/_payment">
-							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/users/payment-success">
-							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/users/payment-failure">
+						<form id="subFrm" name="subFrm" method="post" action="https://secure.payu.in/_payment">
+							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/success-payment">
+							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/failure-payment">
 							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">
 							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
 							<input type="hidden" name="phone" id="phone" value="<?php echo $phone; ?>">
