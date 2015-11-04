@@ -1046,7 +1046,7 @@ function loginValidations(){
 						if(response.user_type_id==4){
 							window.location=BASE_URL+"/admin/dashboard";							
 						}else {
-							window.location=BASE_URL;
+							window.location=BASE_URL+"/users/start-class";
 						}
 					}else{
 						$('#errorMsg').html('Entered wrong username and/or password');

@@ -37,6 +37,18 @@ class UsersController extends AbstractActionController
 	public function aboutThePageAction(){
 	
 	}
+	public function startClassAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				 	=> $baseUrl,
+				'basePath' 					=> $basePath
+		));
+		return $viewModel;
+	}
 	public function admissionAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
