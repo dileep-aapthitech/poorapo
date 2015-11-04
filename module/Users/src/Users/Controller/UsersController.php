@@ -1525,7 +1525,7 @@ class UsersController extends AbstractActionController
 		}
 	
 	}
-	public function crontosendmailsAction(){
+	public function crontransferemailsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
@@ -1544,7 +1544,7 @@ class UsersController extends AbstractActionController
 			echo "Thanks"; exit;
 		}
 	}
-	public function crontransferemailsAction(){
+	public function crontosendmailsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
