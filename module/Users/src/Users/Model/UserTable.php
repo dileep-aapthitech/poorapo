@@ -54,6 +54,7 @@ class UserTable
 		$select->where('tbl_users.direct_user="0"');
 		$select->where('tbl_users.sent_mail="0"');
 		$select->where('tbl_users.status="0"');
+		$select->limit(9600);
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}

@@ -54,6 +54,8 @@ use Users\Model\Builders;
 use Users\Model\BuildersTable;
 use Users\Model\Locations;
 use Users\Model\LocationsTable;
+use Users\Model\UsersCron;
+use Users\Model\UsersCronTable;
 
 
 class Module implements 
@@ -82,6 +84,7 @@ class Module implements
     {
         return array(
             'factories' => array( 
+            	'Users\Model\UsersCronFactory'=>'Users\Factory\Model\UsersCronTableFactory',			
             	'Users\Model\LocationsFactory'=>'Users\Factory\Model\LocationsTableFactory',			
             	'Users\Model\BuildersFactory'=>'Users\Factory\Model\BuildersTableFactory',			
             	'Users\Model\CampusesFactory'=>'Users\Factory\Model\CampusesTableFactory',			
