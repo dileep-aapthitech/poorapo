@@ -237,6 +237,7 @@ class UsersController extends AbstractActionController
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
 			$salt="GQs7yium";
+			$user_id=$_POST["user_id"];
 			$userDetails = $usersTable->getUser($user_id);
 			if($userDetails!=''){						
 				$base_user_id =  base64_encode($userDetails->user_id);
