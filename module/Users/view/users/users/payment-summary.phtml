@@ -10,10 +10,10 @@
 						Hello, <?php echo $this->firstname; ?> </br>
 						You are paying Rs.<?php echo $this->amount; ?> </br>
 						Your order ID is <?php echo $this->txnid; ?> </br>
-						Click the button below to make the payment. </br></br>
+						Click the button below to make the payment. </br></br> 
 						<form id="subFrm" name="subFrm" method="post" action="https://secure.payu.in/_payment">
-							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/success-payment">
-							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/failure-payment">
+							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/users/success-payment">
+							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/users/failure-payment">
 							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">								
 							<input type="hidden" name="user_id" id="user_id" value="">								
 							<input type="hidden" name="user_type" id="user_type" value="<?php echo $this->user_type; ?>">
@@ -22,7 +22,7 @@
 							<input type="hidden" name="password" id="password" value="<?php echo $this->password; ?>">
 							<input type="hidden" name="phone" id="phone" value="<?php echo $this->phone; ?>">
 							<input type="hidden" name="amount" id="amount" value="<?php echo $this->amount; ?>">
-							<input type="hidden" name="amount" id="product_id" value="<?php echo $this->product_id; ?>">
+							<input type="hidden" name="product_id" id="product_id" value="<?php echo $this->product_id; ?>">
 							<input type="hidden" name="txnid" id="txnid" value="<?php echo $this->txnid; ?>">
 							<input type="hidden" name="productinfo" value="Product Information">
 							<input type="hidden" name="key" value="<?php echo $this->key; ?>"> 

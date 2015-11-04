@@ -107,9 +107,9 @@ class UsersController extends AbstractActionController
 				}
 				$txnid=$_POST["txnid"];
 				$prod_id=$_POST["prod_id"];
-				$productinfo="Product Information";
-				$key="JBZaLc";
-				$salt="GQs7yium";
+				$productinfo="Product Information";				
+				$key="czgPlP";
+				$salt="m96VjkdV";
 				$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
 				$hash=hash("sha512",$hashSeq);			
 				$view=new ViewModel(array(
@@ -202,8 +202,8 @@ class UsersController extends AbstractActionController
 			$email=$_POST["email"];
 			$phone=$_POST["phone"];
 			$productinfo="Product Information";
-			$key="JBZaLc";
-			$salt="GQs7yium";
+			$key="czgPlP";
+			$salt="m96VjkdV";
 			$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
 			$hash=hash("sha512",$hashSeq);			
 			$view=new ViewModel(array(
@@ -220,7 +220,7 @@ class UsersController extends AbstractActionController
 				'basePath' 			=> $basePath,
 			));
 			$view->setTerminal(false)
-				 ->setTemplate('users/users/payment-summery.phtml');
+				 ->setTemplate('users/users/payment-summary.phtml');
 			return $view;
 		}		
 	}
@@ -267,7 +267,8 @@ class UsersController extends AbstractActionController
 			$key=$_POST["key"];
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
-			$salt="GQs7yium";
+			// $salt="GQs7yium";
+			$salt="m96VjkdV";
 			$user_id=$_POST["user_id"];
 			$userDetails = $usersTable->getUser($user_id);
 			if($userDetails!=''){						
@@ -332,7 +333,8 @@ class UsersController extends AbstractActionController
 			$key=$_POST["key"];
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
-			$salt="GQs7yium";
+			// $salt="GQs7yium";
+			$salt="m96VjkdV";
 			$user_id=$_POST["user_id"];
 			$usersTable=$this->getUserTable();
 			$userDetails = $usersTable->getUser($user_id);
@@ -1558,6 +1560,7 @@ class UsersController extends AbstractActionController
 		if(count($cronUsers)!=""){
 			foreach($cronUsers as $users){
 				$listOfUsers = $users;
+			}	
 				$cron_id = $listOfUsers->cron_id;
 				$user_id = $listOfUsers->user_id;
 				$pwd = getUniqueCode('7');
@@ -1583,9 +1586,11 @@ class UsersController extends AbstractActionController
 				}	
 				if(sendMail($to,$activeUserSubject,$activeUsersMessage))
 				{
+					$id[] = $cron_id;					
+				}
+				if(count($id)){
 					$update_status = $this->getUsersCronTable()->successToEmails($cron_id);	
 				}
-			}
 			echo "SuccessFull Sent....";exit;
 		}else{
 			echo "Thanks"; exit;
