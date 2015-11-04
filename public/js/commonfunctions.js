@@ -1,3 +1,23 @@
+function enE(val){
+	if( val=='1' ) {
+		$("#ee_fee").hide();
+		$("#take_ee").hide();
+		$("#user_another_ee").hide();
+		$("#no_ee").show();	
+	}
+	else if( val=='0' ){
+		$("#ee_fee").show();	
+		$("#take_ee").show();
+		$("#user_another_ee").hide();	
+		$("#no_ee").hide();	
+	}
+	else if( val=='2' ){
+		$("#ee_fee").hide();
+		$("#take_ee").hide();
+		$("#user_another_ee").show();
+		$("#no_ee").hide();
+	}
+}
 function onlinePayment(type){	
 	if( type == '1' ){
 		$("#online_div").show();

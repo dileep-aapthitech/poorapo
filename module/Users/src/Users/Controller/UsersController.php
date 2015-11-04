@@ -37,6 +37,18 @@ class UsersController extends AbstractActionController
 	public function aboutThePageAction(){
 	
 	}
+	public function entranceExamAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$viewModel = new ViewModel(
+			array(
+				'baseUrl'				 	=> $baseUrl,
+				'basePath' 					=> $basePath
+		));
+		return $viewModel;
+	}
 	public function startClassAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
 		$baseUrlArr = $baseUrls['urls'];
@@ -85,7 +97,13 @@ class UsersController extends AbstractActionController
 				$email=$_POST["user_email"];
 				$password=$_POST["user_password"];
 				$phone=$_POST["user_phone"];
-				$amount=$_POST["amount"];
+				$totalFee=$_POST["amount"];
+				if(isset($_POST['ee_fee_txt']) && $_POST['ee_fee_txt']!=""){
+					$eeFee=$_POST['ee_fee_txt'];
+					$amount = $totalFee+$eeFee;
+				}else{
+					$amount = $totalFee;
+				}
 				$txnid=$_POST["txnid"];
 				$prod_id=$_POST["prod_id"];
 				$productinfo="Product Information";
