@@ -31,14 +31,15 @@ class IndexController extends AbstractActionController
 				$categoryId=$paramss[$catIdPortion];
 			}
 		}
-		
 		$menuIssuesArr = $this->getIssuesTable()->getAllMenuIssues( $categoryId )->toArray();
-		//echo "<pre>";print_r($menuIssuesArr);exit;
+		$categoriesArr = $this->getCategoryTable()->getAllMenuCategories()->toArray();
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
 				'basePath' 					=> $basePath,
-				'menuIssuesArr' 			=> $menuIssuesArr
+				'menuIssuesArr' 			=> $menuIssuesArr,
+				'categoriesArr' 			=> $categoriesArr,
+				'landPage' 			        => $categoryId
 		));
 		return $viewModel;
     }	

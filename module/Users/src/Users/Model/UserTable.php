@@ -107,12 +107,18 @@ class UserTable
 			}else{
 				$fisrt_name = '';			
 			}
+			if(isset($users['phone']) && $users['phone']!=''){
+				$phone= $users['phone'];
+			}else{
+				$phone= '';
+			}
 			$password=md5($users['user_password']);
 			$data = array(
 				'user_name' 	=> $fisrt_name, 	
 				'email_id' 		=> $users['user_email'],  		
 				'password' 		=> $password, 	
-				'user_type_id'  	=> $users['user_type'],  	
+				'user_type_id'   => $users['user_type'],  	
+				'online_contact' => $phone,  	
 				'created_at' 	=> date('Y-m-d H:i:s'),   
 				'status' 		=> 0,  		
 				'direct_user' 	=> 1,  		

@@ -1,0 +1,204 @@
+<?php 	
+	$txnid = substr(hash('sha256', mt_rand() . microtime()), 0, 20);
+?>
+<div class="container reg_w_12 min_height">
+	<div class="panel panel panel-default mar_t">
+		<div class="panel-heading reg_bg">
+			<h3 class="panel-title">Admission</h3>
+			<form  id="frm_meth" name="frm_meth" method="post" action="">	
+				<div class="panel-body">
+					<div class="panel panel-default">
+						<div class="panel-heading"> Deatils </div>
+						<div class="panel-body" id="tab_1_hide">
+							<div class="form-horizontal">
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label">Which program you choice</label>
+									<div class="col-sm-8">
+										<span class="error_msg_disp" id="prog_class_req"></span>
+										<select class="form-control" id="prog_class" name="prog_class" onchange="fee_planned('p_c');">
+											<option value="">Choice a product</option>
+											<?php if(count($this->products)>0) { foreach($this->products as $product) {?>
+												<option value="<?php echo $product->prod_id;?>"><?php echo $product->prod_name; ?></option>
+											<?php } } ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label">Select Campuse</label>
+									<div class="col-sm-8">
+										<span class="error_msg_disp" id="where_join_req"></span>
+										<input type="radio" id="ra1" name="ra1" value="1" onclick="planExixt('1');" checked>&nbsp;&nbsp;Existing Campus &nbsp;&nbsp;&nbsp; <input type="radio" id="ra2" name="ra1" value="0" onclick="planExixt('0');">&nbsp;&nbsp;Planned Campus
+										&nbsp;&nbsp;&nbsp; <input type="radio" id="ra3" name="ra1" value="2" onclick="planExixt('2');">&nbsp;&nbsp;Home Campus
+									</div>
+								</div>
+								<div class="form-group" id="exists_planned">
+									<label for="inputPassword3" class="col-sm-3 control-label">Existing Campuses</label>
+									<div class="col-sm-8">
+										<span class="error_msg_disp" id="prog_campuses_req"></span>
+										<select class="form-control" id="prog_campuses" name="prog_campuses" onchange="fee_planned('e_c');">
+											<option value="">Choice a campus</option>
+											<?php if(count($this->campuses)>0) { foreach($this->campuses as $campuse) {?>
+												<option value="<?php echo $campuse->camp_id;?>"><?php echo $campuse->camp_name; ?></option>
+											<?php } } ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group" style="display:none" id="planned_exists">
+									<label for="inputPassword3" class="col-sm-3 control-label">Planned Campuses</label>
+									<div class="col-sm-8">
+										<span class="error_msg_disp" id="prog_planned_req"></span>
+										<select class="form-control" id="prog_planned" name="prog_class" onChange="fee_planned('p_c');">
+											<option value="">Choice a Planned Campus</option>
+											<?php if(count($this->plannedCampuses)>0) { foreach($this->plannedCampuses as $pcampuse) {?>
+												<option value="<?php echo $pcampuse->loc_id;?>"><?php echo $pcampuse->loc_city_zone; ?></option>
+											<?php } } ?>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label"><span id="fee_la"></span></label>
+									<div class="col-sm-8">
+										<span id="prog-fee"></span>						
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="inputPassword3" class="col-sm-3 control-label">Select Payment</label>
+									<div class="col-sm-8">
+										<span class="error_msg_disp" id="where_join_req"></span>
+										<input type="radio" id="ra4" name="ra2" value="1" onclick="onlinePayment('1');" checked>&nbsp;&nbsp;Online Payment &nbsp;&nbsp;&nbsp; <input type="radio" id="ra5" name="ra2" value="0" onclick="onlinePayment('0');">&nbsp;&nbsp;Direct Bank Deposit
+										&nbsp;&nbsp;&nbsp; <input type="radio" id="ra6" name="ra2" value="2" onclick="onlinePayment('2');">&nbsp;&nbsp;By cash meeting requested
+									</div>
+								</div>
+								<span id="online_div">
+									<div class="form-group">
+										<label for="inputtype" class="col-sm-3 control-label">User Type</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_type_req"></span>
+											<select class="form-control" id="user_type" name="user_type">
+												<option value=''>Select User Type</option>
+												<?php if(count($usertypes)!='') {	foreach($usertypes as $user_type){ ?>
+													<option value="<? echo $user_type->user_type_id?>"><? echo ucfirst($user_type->user_type_name);?></option>
+												<?php } } ?>
+											</select>
+										</div>
+									</div>								
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">First Name</label>
+										<div class="col-sm-8">
+										<span class="error_msg_disp" id="user_firstname_req"></span>
+											<input type="text" class="form-control" id="user_first_name" placeholder="First Name" name="user_first_name" value="">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputEmail3" class="col-sm-3 control-label">Email</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_email_req"></span>
+											<input type="email" class="form-control" id="user_email" placeholder="Email" name="user_email" value="" onmouseout="return checkEmailVaild();">
+										</div>
+									</div>
+									<input type="hidden" id="hidCheckValue" name="hidCheckValue" value='0'>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Password</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_pwd_req"></span>
+											<input type="password" class="form-control" id="user_password" name="user_password" value="" placeholder="Password">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Phone</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_phn_req"></span>
+											<input type="text" class="form-control" id="user_phone" name="user_phone" value="" placeholder="Phone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="amount" name="amount" placeholder="Amount" value="" readonly>
+										</div>
+									</div>		
+								</span>
+								<span id="bank_div" style="display:none;">
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">Account Name</label>
+										<div class="col-sm-8">
+											XXXXXXXXX SSSSSSS
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">Account Number</label>
+										<div class="col-sm-8">
+											999999 99999 9999 9999
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">Branch Name & Address</label>
+										<div class="col-sm-8">
+											XXXXXXXXXXXX
+											xxxx
+											xml
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">IFSC Code</label>
+										<div class="col-sm-8">
+											SBI1002524
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Phone</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_phn_2_req"></span>
+											<input type="text" class="form-control" id="user_phone_2" name="user_phone_2" value="" placeholder="Phone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">Transaction Id</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_trans_req"></span>
+											<input type="text" class="form-control" id="user_trans" name="user_trans" value="" placeholder="Provide direct bank deposit Transaction Id">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="amount_1" name="amount_1" placeholder="Amount" value="" readonly>
+										</div>
+									</div>									
+								</span>
+								<span id="requested_div" style="display:none;">
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">Contact me on my mobile</label>
+										<div class="col-sm-8">
+											<span class="error_msg_disp" id="user_phn_3_req"></span>
+											<input type="text" class="form-control" id="user_phone_3" name="user_phone_3" value="" placeholder="Phone">
+										</div>
+									</div>
+									<div class="form-group">
+										<label for="inputPassword3" class="col-sm-3 control-label">Amount</label>
+										<div class="col-sm-8">
+											<input type="text" class="form-control" id="amount_2" name="amount_2" placeholder="Amount" value="" readonly>
+										</div>
+									</div>	
+									<div class="form-group">
+										<label for="inputfname" class="col-sm-3 control-label">Call Us at Our Mobile</label>
+										<div class="col-sm-8">
+											999999 99999 9999 9999
+										</div>
+									</div>																		
+								</span>
+								<input type="hidden" name="txnid" value="<?php echo $txnid; ?>"> 								
+								<input type="hidden" id="prod_id" name="prod_id" value=""> 								
+								<div class="form-group">
+									<div class="col-sm-8 col-lg-offset-3">
+										<button type="button" class="btn btn-primary " onClick="admissionV();">Submit</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</form>			
+		</div>
+	</div>	
+</div>

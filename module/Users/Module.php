@@ -42,6 +42,18 @@ use Users\Model\UnivColleges;
 use Users\Model\UnivCollegesTable;
 use Users\Model\Branches;
 use Users\Model\BranchesTable;
+use Users\Model\Products;
+use Users\Model\ProductsTable;
+use Users\Model\Designations;
+use Users\Model\DesignationsTable;
+use Users\Model\Campuses;
+use Users\Model\CampusesTable;
+use Users\Model\StudyCenters;
+use Users\Model\StudyCentersTable;
+use Users\Model\Builders;
+use Users\Model\BuildersTable;
+use Users\Model\Locations;
+use Users\Model\LocationsTable;
 
 
 class Module implements 
@@ -70,6 +82,12 @@ class Module implements
     {
         return array(
             'factories' => array( 
+            	'Users\Model\LocationsFactory'=>'Users\Factory\Model\LocationsTableFactory',			
+            	'Users\Model\BuildersFactory'=>'Users\Factory\Model\BuildersTableFactory',			
+            	'Users\Model\CampusesFactory'=>'Users\Factory\Model\CampusesTableFactory',			
+            	'Users\Model\StudyCentersFactory'=>'Users\Factory\Model\StudyCentersTableFactory',			
+            	'Users\Model\DesignationsFactory'=>'Users\Factory\Model\DesignationsTableFactory',			
+            	'Users\Model\ProductsFactory'=>'Users\Factory\Model\ProductsTableFactory',			
             	'Users\Model\UserTypeFactory'=>'Users\Factory\Model\UserTypeTableFactory',			
             	'Users\Model\UserTableFactory'=>'Users\Factory\Model\UserTableFactory',			
             	'Users\Model\UserDetailsFactory'=>'Users\Factory\Model\UserDetailsTableFactory',		

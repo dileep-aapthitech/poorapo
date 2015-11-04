@@ -14,13 +14,16 @@
 						<form id="subFrm" name="subFrm" method="post" action="https://secure.payu.in/_payment">
 							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/success-payment">
 							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/failure-payment">
-							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">
-							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
-							<input type="hidden" name="phone" id="phone" value="<?php echo $phone; ?>">
+							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">	
+							<input type="hidden" name="user_type" id="user_type" value="<?php echo $this->user_type; ?>">
 							<input type="hidden" name="firstname" id="firstname" value="<?php echo $this->firstname; ?>">
-							<input type="hidden" name="productinfo" value="Product Information">
+							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
+							<input type="hidden" name="password" id="password" value="<?php echo $this->password; ?>">
+							<input type="hidden" name="phone" id="phone" value="<?php echo $this->phone; ?>">
 							<input type="hidden" name="amount" id="amount" value="<?php echo $this->amount; ?>">
+							<input type="hidden" name="amount" id="product_id" value="<?php echo $this->product_id; ?>">
 							<input type="hidden" name="txnid" id="txnid" value="<?php echo $this->txnid; ?>">
+							<input type="hidden" name="productinfo" value="Product Information">
 							<input type="hidden" name="key" value="<?php echo $this->key; ?>"> 
 							<input type="hidden" name="service_provider" value="payu_paisa">
 							<input type="button" value="Pay via PayUMoney" onClick="return addPayment();"/>
@@ -34,15 +37,18 @@
 </div>
 <script>
 	function addPayment(){
-		var firstname = $("#firstname").val();
-		var phone = $("#phone").val();
+		var user_type = $("#user_type").val();
+		var firstname = $("#firstname").val();		
 		var email = $("#email").val();
+		var password = $("#password").val();
+		var phone = $("#phone").val();
 		var amount = $("#amount").val();
+		var product_id = $("#product_id").val();
 		var txnid = $("#txnid").val();
 		$.ajax({
 			type:'POST',
 			url:  BASE_URL+'/users/add-user-payment',
-			data:{firstname:firstname,phone:phone,email:email,amount:amount,txnid:txnid},
+			data:{user_type:user_type,user_first_name:firstname,phone:phone,email:email,password:password,amount:amount,product_id:product_id,txnid:txnid},
 			success: function(data){
 				if(data.output=='success'){
 					$("#subFrm").submit();

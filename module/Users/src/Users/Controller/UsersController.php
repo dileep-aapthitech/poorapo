@@ -28,11 +28,136 @@ class UsersController extends AbstractActionController
 	protected  $univcollegesTable;
 	protected  $branchesTable;
 	protected  $paymentsTable;
+	protected  $productsTable;
+	protected  $campusesTable;
+	protected  $plannedcampusesTable;
 	public function indexAction()
 	{
 	}
 	public function aboutThePageAction(){
 	
+	}
+	public function admissionAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$getUserTypes=$this->getUserTypeTable()->getUserTypes();
+		$allProducts=$this->getProductsTable()->getAllProducts();
+		$allPlannedCampuses=$this->getPlannedCampusesTable()->getAllPlannedCampuses();
+		$allCampuses=$this->getCampusesTable()->getAllCampuses();
+		if(isset($_POST['ra2']) && $_POST['ra2']=="2"){
+			//Email information
+			$subject = 'Meeting requsted';
+			$admin_email = "poraapo@poraapo.com";  
+			$email       = "poraapo@poraapo.com"; 
+			$phone       = $_POST['user_phone_3'];	
+  			//send email
+			mail($admin_email, "$subject", $phone, "From:" . $email);
+			$suc = "success";
+			return $this->redirect()->toUrl($baseUrl.'/users/admission?suc='.$suc);
+		}else if(isset($_POST['ra2']) && $_POST['ra2']=="0" ){
+			$subject = 'Direct Bank Deposit';
+			$admin_email = "poraapo@poraapo.com";  
+			$email       = "poraapo@poraapo.com"; 
+			$message     = $_POST['user_phone_2'].'<br/><br/>';	
+			$message     .= $_POST['user_trans'];	
+  			//send email
+			mail($admin_email, "$subject", $message, "From:" . $email);
+			$suc = "success";
+			return $this->redirect()->toUrl($baseUrl.'/users/admission?suc='.$suc);
+		}else if(isset($_POST['ra2']) && $_POST['ra2']=="1" ){
+			if(isset($_POST['user_first_name']) && $_POST['user_first_name']!=''){
+				$user_type=$_POST["user_type"];
+				$firstname=$_POST["user_first_name"];
+				$email=$_POST["user_email"];
+				$password=$_POST["user_password"];
+				$phone=$_POST["phone"];
+				$amount=$_POST["amount"];
+				$txnid=$_POST["txnid"];
+				$prod_id=$_POST["prod_id"];
+				$productinfo="Product Information";
+				$key="JBZaLc";
+				$salt="GQs7yium";
+				$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
+				$hash=hash("sha512",$hashSeq);			
+				$view=new ViewModel(array(
+					'user_type' 		=> 	$user_type,
+					'firstname' 		=> 	$firstname,
+					'email' 		    => 	$email,
+					'password' 		    => 	$password,
+					'phone' 		    => 	$phone,
+					'amount' 		    => 	$amount,
+					'txnid' 		    => 	$txnid,
+					'product_id' 		=> 	$prod_id,
+					'productinfo' 		=> 	$productinfo,
+					'key' 		        => 	$key,
+					'salt' 		        => 	$salt,
+					'hash' 		        => 	$hash,
+					'baseUrl' 			=> $baseUrl,
+					'basePath' 			=> $basePath,
+				));
+				$view->setTerminal(false)
+					 ->setTemplate('users/users/payment-summery.phtml');
+				return $view;
+			}
+		}
+		return new ViewModel(array(				
+			'usertypes' 		=> $getUserTypes,
+			'products'          => $allProducts->buffer(),			
+			'campuses'          => $allCampuses->buffer(),			
+			'plannedCampuses'   => $allPlannedCampuses->buffer(),			
+			'baseUrl' 			=> $baseUrl,
+			'basePath' 			=> $basePath,
+		));
+	}
+	public function plannedFeeAction(){
+		$baseUrls = $this->getServiceLocator()->get('config');
+		$baseUrlArr = $baseUrls['urls'];
+		$baseUrl = $baseUrlArr['baseUrl'];
+		$basePath = $baseUrlArr['basePath'];
+		$html = '';
+		if(isset($_POST['campuses']) && $_POST['campuses']!=""){
+			$prod_id       = $_POST['prog_class'];
+			$select_plan = $_POST['radioVal'];
+			$campuses    = $_POST['campuses'];
+			$class = $_POST['campuses'];
+			$getProductInfo = $this->getProductsTable()->getProductD($prod_id);
+			if($select_plan == '1'){
+				$campusInfo = $this->getCampusesTable()->getCampusInfo($campuses);
+				$campus_name = $campusInfo->camp_name;
+				$capicity = $campusInfo->camp_capicity;
+			}else if($select_plan == '0'){
+				$getPlannedCampus=$this->getPlannedCampusesTable()->getPlannedCampusinfo($campuses);
+				$campus_name = $getPlannedCampus->loc_city_zone;
+				$capicity    = $getPlannedCampus->loc_capicity;
+			}else if($select_plan == '2'){
+				$campus_name = 'your home';
+				$capicity = 1;
+			}
+			$prodName = explode('-',$getProductInfo->prod_name);
+			$className = $prodName['0'];
+			$dur_year = $getProductInfo->prod_dur;
+			$max_fee = $getProductInfo->prod_max_fee;
+			$mini_fee = $getProductInfo->prod_min_fee;
+			$timeT0join = $getProductInfo->prod_time_join;
+			$currentYear = date("Y");
+			$fromTojoin  = ($getProductInfo->prod_time_join)+($currentYear)+1;
+			$totalMonthToJoin = ($timeT0join*12)+7;	
+			$firstInstallment = round($max_fee/$totalMonthToJoin);	
+			$minFee = round(($getProductInfo->prod_cost)/($capicity));			
+			$noofInstallment = round($fromTojoin-$currentYear);
+			$html = "You are studying in Class $className and you want to join our $dur_year years program in $campus_name.&nbsp;";
+			$html .= "Starting from july 01,$fromTojoin.&nbsp;";
+			$html .= "Your fee will be as follows:";
+			$html .= "<br/><br/><table class='table table-bordered'><thead><th>Max Fees</th><th>Mini Fees</th><th>No.of installment</th><th>Ist installment</th></thead>
+					   <tbody><tr><td>Rs. $max_fee.</td><td>Rs. $minFee.</td><td>$totalMonthToJoin</td><td>Rs. $firstInstallment.</td></tr></tbody></table>";
+			return $view=new JsonModel(array(
+				'pfee' 			       => $html,
+				'firstInstallmentfee'  => $firstInstallment,
+				'product_id'  => $prod_id,
+			));
+		}
 	}
 	public function onlinePaymentsAction(){
 		$baseUrls = $this->getServiceLocator()->get('config');
@@ -73,20 +198,26 @@ class UsersController extends AbstractActionController
 		$baseUrlArr = $baseUrls['urls'];
 		$baseUrl = $baseUrlArr['baseUrl'];
 		$basePath = $baseUrlArr['basePath'];
-		if(isset($_POST['firstname']) && $_POST['firstname']!=''){
+		if(isset($_POST['user_first_name']) && $_POST['user_first_name']!=''){
 			$status='Pending';
-			$firstname=$_POST["firstname"];
-			$amount=$_POST["amount"];
-			$txnid=$_POST["txnid"];
+			$user_type=$_POST["user_type"];
+			$firstname=$_POST["user_first_name"];
 			$email=$_POST["email"];
+			$password=$_POST["password"];
 			$phone=$_POST["phone"];
-			$addPayment=$this->getPaymentsTable()->addPayment($firstname,$email,$phone,$txnid,$amount,$status);
-			if($addPayment>=0){
-				return $view=new JsonModel(array(
-					'output' 		        => 	'success',
-					'baseUrl' 			=> $baseUrl,
-					'basePath' 			=> $basePath
-				));
+			$amount=$_POST["amount"];
+			$product_id=$_POST["product_id"];
+			$txnid=$_POST["txnid"];
+			$user_id=$this->getUserTable()->addUser($_POST,$_POST['hid_user_id']='');
+			if($user_id!=0){			
+				$addPayment=$this->getPaymentsTable()->addPayment($user_id,$product_id,$txnid,$amount,$status);
+				if($addPayment>=0){
+					return $view=new JsonModel(array(
+						'output' 		        => 	'success',
+						'baseUrl' 			=> $baseUrl,
+						'basePath' 			=> $basePath
+					));
+				}
 			}
 		}		
 	}
@@ -129,10 +260,10 @@ class UsersController extends AbstractActionController
 					'firstname'		=>	$firstname,
 					'status'	    =>	$status,
 					'txnid'	        =>	$txnid,
-					'amount'	        =>	$amount,
+					'amount'	    =>	$amount,
 					'success'		=>	true,
-					'baseUrl' 			=> $baseUrl,
-					'basePath' 			=> $basePath
+					'baseUrl' 	    =>  $baseUrl,
+					'basePath' 		=>  $basePath
 				));	
 			}			
 		}		
@@ -708,6 +839,9 @@ class UsersController extends AbstractActionController
 			$getEntranceExams=$this->getEntranceExamsTable()->getEntranceExams();
 			$getSpecializations=$this->getSpecializationsTable()->getSpecializations();
 			$getUnversities=$this->getUnversitiesTable()->getUnversities();
+			$allProducts=$this->getProductsTable()->getAllProducts();
+			$allPlannedCampuses=$this->getPlannedCampusesTable()->getAllPlannedCampuses();
+			$allCampuses=$this->getCampusesTable()->getAllCampuses();
 			return new ViewModel(array(				
 				'usertypes' 		=> $getUserTypes,
 				'countries' 		=> $getCountries,
@@ -717,6 +851,9 @@ class UsersController extends AbstractActionController
 				'entranceexams'     => $getEntranceExams->buffer(),			
 				'specializations'   => $getSpecializations->buffer(),			
 				'unversities'       => $getUnversities->buffer(),			
+				'products'          => $allProducts->buffer(),			
+				'campuses'          => $allCampuses->buffer(),			
+				'plannedCampuses'   => $allPlannedCampuses->buffer(),			
 				'baseUrl' 			=> $baseUrl,
 				'basePath' 			=> $basePath,
 			));	
@@ -1532,5 +1669,29 @@ class UsersController extends AbstractActionController
             $this->paymentsTable = $sm->get('Users\Model\PaymentFactory');			
         }
         return $this->paymentsTable;
+    }
+	public function getProductsTable()
+    {
+        if (!$this->productsTable) {		
+            $sm = $this->getServiceLocator();
+            $this->productsTable = $sm->get('Users\Model\ProductsFactory');			
+        }
+        return $this->productsTable;
+    }
+	public function getCampusesTable()
+    {
+        if (!$this->campusesTable) {		
+            $sm = $this->getServiceLocator();
+            $this->campusesTable = $sm->get('Users\Model\CampusesFactory');			
+        }
+        return $this->campusesTable;
+    }
+	public function getPlannedCampusesTable()
+    {
+        if (!$this->plannedcampusesTable) {		
+            $sm = $this->getServiceLocator();
+            $this->plannedcampusesTable = $sm->get('Users\Model\LocationsFactory');			
+        }
+        return $this->plannedcampusesTable;
     }
 }
