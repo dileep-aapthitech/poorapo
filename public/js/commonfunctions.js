@@ -1,3 +1,243 @@
+function onlinePayment(type){	
+	if( type == '1' ){
+		$("#online_div").show();
+		$("#bank_div").hide();
+		$("#requested_div").hide();
+		var radioVal = $('input:radio[name=ra1]:checked').val();
+		if(radioVal=='1'){
+			if($("#prog_campuses").val()!=''){
+				fee_planned('o_e');	
+			}else{
+				$("#amount").val('');
+				$("#amount_1").val('');
+				$("#amount_2").val('');
+			}
+		}else if(radioVal=='0'){
+			if($("#prog_planned").val()!=''){
+				fee_planned('o_e');		
+			}else{
+				$("#amount").val('');
+				$("#amount_1").val('');
+				$("#amount_2").val('');
+			}
+		}else if(radioVal=='2'){
+			fee_planned('o_e');	
+		}		
+	}else if( type == '0' ){
+		$("#online_div").hide();
+		$("#bank_div").show();
+		$("#requested_div").hide();
+		var radioVal = $('input:radio[name=ra1]:checked').val();
+		if(radioVal=='1'){
+			if($("#prog_campuses").val()!=''){
+				fee_planned('p_e');		
+			}else{
+				$("#amount").val('');
+				$("#amount_1").val('');
+				$("#amount_2").val('');
+			}
+		}else if(radioVal=='0'){
+			if($("#prog_planned").val()!=''){
+				fee_planned('p_e');	
+			}else{
+				$("#amount").val('');
+				$("#amount_1").val('');
+				$("#amount_2").val('');
+			}
+		}else if(radioVal=='2'){
+			fee_planned('p_e');
+		}
+	}else if( type == '2' ){
+		$("#online_div").hide();
+		$("#bank_div").hide();
+		$("#requested_div").show();
+		var radioVal = $('input:radio[name=ra1]:checked').val();
+		if(radioVal=='1'){
+			if($("#prog_campuses").val()!=''){
+				fee_planned('m_e');	
+			}else{
+				$("#amount").val('');
+				$("#amount_1").val('');
+				$("#amount_2").val('');
+			}
+		}else if(radioVal=='0'){
+			if($("#prog_planned").val()!=''){
+				fee_planned('m_e');
+			}else{
+				$("#amount").val('');
+				$("#amount_1").val('');
+				$("#amount_2").val('');
+			}
+		}else if(radioVal=='2'){			
+			fee_planned('m_e');
+		}
+	}
+}
+function admissionV(){
+	var flag = true;	
+	var usertype = $("#user_type").val();
+	var userEmail = $("#user_email").val();
+	if(usertype==""){
+		$("#user_type_req").html(Required);
+		flag=false;
+	}else{
+		$("#user_type_req").html('');
+	}
+	if($("#user_first_name").val()==''){
+		$("#user_firstname_req").html(Required);
+		flag = false;
+	}else{
+		$("#user_firstname_req").html('');
+	}
+	if(userEmail==""){
+		$("#user_email_req").html(Required);
+		flag=false;
+	}else if(checkEmail(userEmail)==false){
+		$("#user_email_req").html(email_wrong_format);
+		flag=false;
+	}else if($("#hidCheckValue").val()==1){
+		tab1flag = false;
+		$("#user_email_req").html(email_already_exists); 
+		flag=false;
+		return false;
+	}else{
+		$("#user_email_req").html('');
+	}
+	if($("#user_password").val()==''){
+		$("#user_pwd_req").html(Required);
+		flag = false;
+	}else{
+		$("#user_pwd_req").html('');	
+	}
+	var paymentVal = $('input:radio[name=ra2]:checked').val();
+	if( paymentVal == '1' ){
+		if($("#user_phone").val()==''){
+			$("#user_phn_req").html(Required);
+			flag = false;
+		}else{
+			$("#user_phn_req").html('');	
+		}
+	}else if( paymentVal == '0' ){
+		if($("#user_phone_2").val()==''){
+			$("#user_phn_2_req").html(Required);
+			flag = false;
+		}else{
+			$("#user_phn_2_req").html('');	
+		}
+		if($("#user_trans").val()==''){
+			$("#user_trans_req").html(Required);
+			flag = false;
+		}else{
+			$("#user_trans_req").html('');	
+		}
+	}else if( paymentVal == '2' ){
+		if($("#user_phone_3").val()==''){
+			$("#user_phn_3_req").html(Required);
+			flag = false;
+		}else{
+			$("#user_phn_3_req").html('');	
+		}
+	}
+	if($("#prog_class").val()==''){
+		$("#prog_class_req").html(Required);
+		flag = false;
+	}else{
+		$("#prog_class_req").html('');	
+	}
+	var radioVal = $('input:radio[name=ra1]:checked').val();
+	if(radioVal=='1'){
+		if($("#prog_campuses").val()==''){
+			$("#prog_campuses_req").html(Required);
+			$("#prog_planned_req").html('');
+			flag = false;
+		}else{
+			$("#prog_campuses_req").html('');	
+		}
+	}else if(radioVal=='0'){
+		if($("#prog_planned").val()==''){
+			$("#prog_campuses_req").html('');
+			$("#prog_planned_req").html(Required);
+			flag = false;
+		}else{
+			$("#prog_planned_req").html('');	
+		}
+	}else if(radioVal=='2'){
+		$("#prog_campuses_req").html('');
+		$("#prog_planned_req").html('');
+	}		
+	if(flag == false){
+		$("#hid_tab_1").val('1');
+		$("#hidCheckValue").val('0');
+		tab1flag = false;
+		return false;
+	}else{	
+		$("#frm_meth").submit();
+	}
+}
+function planExixt(val){
+	if(val=='1'){
+		$("#exists_planned").show();
+		$("#planned_exists").hide();
+		$("#fee_la").hide();
+		$("#prog-fee").hide();
+		$("#amount").val('');
+		$("#amount_1").val('');
+		$("#amount_2").val('');
+	}else if(val=='0'){
+		$("#exists_planned").hide();
+		$("#planned_exists").show();
+		$("#fee_la").hide();
+		$("#prog-fee").hide();
+		$("#amount").val('');
+		$("#amount_1").val('');
+		$("#amount_2").val('');
+	}else if(val=='2'){
+		$("#amount").val('');
+		$("#amount_1").val('');
+		$("#amount_2").val('');
+		$("#exists_planned").hide();
+		$("#planned_exists").hide();
+		fee_planned('h_e');		
+	}
+}
+function fee_planned(se){
+	var prog_class    = $('#prog_class').val();
+	var radioVal      = $('input:radio[name=ra1]:checked').val();
+	var paymentVal      = $('input:radio[name=ra2]:checked').val();
+	if(radioVal == '1'){
+		var campuses = $('#prog_campuses').val();
+	}else if(radioVal == '0'){
+		var campuses  = $('#prog_planned').val();
+	}else if(radioVal == '2'){
+		var campuses  = 'home';
+	}
+	if(prog_class!='' && campuses!=''){
+		$("#fee_la").show();
+		$("#prog-fee").show();
+		$.ajax({
+			type:'POST',
+			url:  BASE_URL+'/users/planned-fee',
+			data:{prog_class:prog_class,radioVal:radioVal,campuses:campuses},
+			success: function(data){
+				$("#prod_id").val(data.product_id);
+				if( paymentVal =='1'){
+					$("#amount").val(data.firstInstallmentfee);
+				}else if( paymentVal =='0'){
+					$("#amount_1").val(data.firstInstallmentfee);
+				}else if( paymentVal =='2'){
+					$("#amount_2").val(data.firstInstallmentfee);
+				}
+				$("#fee_la").html('Fee');
+				$("#prog-fee").html(data.pfee);				
+				if(campuses == 'home'){
+					$('#prog_campuses').val('');
+					$('#prog_planned').val('');
+				}
+				return false;
+			}
+		});
+	}
+}
 var Required = 'Required';
 var email_wrong_format = 'Entered email format is wrong';
 var email_already_exists = 'Entered email is already registered';
@@ -91,7 +331,34 @@ function validateReg(typeTab){
 			flag = false;
 		}else{
 			$("#user_pwd_req").html('');	
-		}	
+		}
+		if($("#prog_class").val()==''){
+			$("#prog_class_req").html(Required);
+			flag = false;
+		}else{
+			$("#prog_class_req").html('');	
+		}
+		var radioVal = $('input:radio[name=ra1]:checked').val();
+		if(radioVal=='1'){
+			if($("#prog_campuses").val()==''){
+				$("#prog_campuses_req").html(Required);
+				$("#prog_planned_req").html('');
+				flag = false;
+			}else{
+				$("#prog_campuses_req").html('');	
+			}
+		}else if(radioVal=='0'){
+			if($("#prog_planned").val()==''){
+				$("#prog_campuses_req").html('');
+				$("#prog_planned_req").html(Required);
+				flag = false;
+			}else{
+				$("#prog_planned_req").html('');	
+			}
+		}else if(radioVal=='2'){
+			$("#prog_campuses_req").html('');
+			$("#prog_planned_req").html('');
+		}		
 		if(flag == false){
 			$("#hid_tab_1").val('1');
 			$("#hidCheckValue").val('0');

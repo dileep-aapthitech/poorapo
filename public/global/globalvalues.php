@@ -1,4 +1,40 @@
 <?php
+/*Admission By meeting requested*/
+global $forgotPasswordSubject;
+global $frogotPasswordMessage;
+$forgotPasswordSubject = "Request For New Password for Poraapo";
+$frogotPasswordMessage = '<body>
+		<table width="600" border="0" cellspacing="0" cellpadding="0">
+		<tr>
+			<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc">
+			<tr><td bgcolor="#178acc">
+				<a href="javascript:void(0);" target="_blank" style="text-decoration: none;">
+				<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>
+			</tr>
+			<tr>
+				<td>
+					<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">
+						<tr><td><a href="javascript:void(0);" style="color:#4ca4b6; font:bold 12px arial; text-decoration:none;">Hello&nbsp;<FULLNAME></a></td></tr>
+						<tr><td>This email was generated based on your request for new password.</td></tr>
+						<tr><td>Please click the below link to reset your password.</td></tr>
+						<tr><td><a href="<PASSWORDLINK>"><PASSWORDLINK></a></td></tr>
+						<tr><td>Note: If you did not request for new password, please ignore this email.</td></tr>
+						<tr><td>&nbsp;</td></tr>
+						<tr><td>Sincerely,</td></tr>
+						<tr><td>Poraapo.com Team</td></tr>
+					</table>
+				</td>
+			</tr>  
+			</table></td>
+		</tr> 
+	</table>
+<br/><br/>
+Regards,<br/>
+Poraapo.com 
+</body>';
+/*End Forget Password*/
+
+
 /*Forget Password*/
 global $forgotPasswordSubject;
 global $frogotPasswordMessage;

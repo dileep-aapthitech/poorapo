@@ -2,6 +2,19 @@ textarea{
 	resize:none;
 	min-height:100px;
 }
+.home_mar_b10 .panel{
+	margin-bottom:10px;
+}
+.home_mar_b10 .panel-heading{
+	padding:6px 15px;
+}
+.home_mar_b10 a{
+	color:#565656;
+	font-size:17px;
+}
+.home_mar_head a{
+	font-size:17px;
+}
 .cke_textarea_inline{
 	padding: 10px;
 	height: 200px;
@@ -252,6 +265,9 @@ position:absolute;
 	}
 	.reg_w_12{
 		width:100%;
+	}
+	.home_mar_b10 a{
+		font-size:16px;
 	}
 }
 @media (min-width: 768px) and (max-width: 979px) {
