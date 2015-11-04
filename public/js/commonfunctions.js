@@ -166,9 +166,6 @@ function admissionV(){
 		$("#prog_planned_req").html('');
 	}		
 	if(flag == false){
-		$("#hid_tab_1").val('1');
-		$("#hidCheckValue").val('0');
-		tab1flag = false;
 		return false;
 	}else{	
 		$("#frm_meth").submit();

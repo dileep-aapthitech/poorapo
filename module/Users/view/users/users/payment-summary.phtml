@@ -14,7 +14,8 @@
 						<form id="subFrm" name="subFrm" method="post" action="https://secure.payu.in/_payment">
 							<input type="hidden" name="surl" value="<?php echo $this->baseUrl; ?>/success-payment">
 							<input type="hidden" name="furl" value="<?php echo $this->baseUrl; ?>/failure-payment">
-							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">	
+							<input type="hidden" name="hash" id="hash" value="<?php echo $this->hash; ?>">								
+							<input type="hidden" name="user_id" id="user_id" value="">								
 							<input type="hidden" name="user_type" id="user_type" value="<?php echo $this->user_type; ?>">
 							<input type="hidden" name="firstname" id="firstname" value="<?php echo $this->firstname; ?>">
 							<input type="hidden" name="email" id="email" value="<?php echo $this->email; ?>">
@@ -48,9 +49,10 @@
 		$.ajax({
 			type:'POST',
 			url:  BASE_URL+'/users/add-user-payment',
-			data:{user_type:user_type,user_first_name:firstname,phone:phone,email:email,password:password,amount:amount,product_id:product_id,txnid:txnid},
+			data:{user_type:user_type,user_first_name:firstname,phone:phone,user_email:email,user_password:password,amount:amount,product_id:product_id,txnid:txnid},
 			success: function(data){
 				if(data.output=='success'){
+					$("#user_id").val(data.user_id);
 					$("#subFrm").submit();
 				}
 			}

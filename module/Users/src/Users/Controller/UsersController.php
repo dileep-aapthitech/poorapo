@@ -72,7 +72,7 @@ class UsersController extends AbstractActionController
 				$firstname=$_POST["user_first_name"];
 				$email=$_POST["user_email"];
 				$password=$_POST["user_password"];
-				$phone=$_POST["phone"];
+				$phone=$_POST["user_phone"];
 				$amount=$_POST["amount"];
 				$txnid=$_POST["txnid"];
 				$prod_id=$_POST["prod_id"];
@@ -98,7 +98,7 @@ class UsersController extends AbstractActionController
 					'basePath' 			=> $basePath,
 				));
 				$view->setTerminal(false)
-					 ->setTemplate('users/users/payment-summery.phtml');
+					 ->setTemplate('users/users/payment-summary.phtml');
 				return $view;
 			}
 		}
@@ -202,8 +202,8 @@ class UsersController extends AbstractActionController
 			$status='Pending';
 			$user_type=$_POST["user_type"];
 			$firstname=$_POST["user_first_name"];
-			$email=$_POST["email"];
-			$password=$_POST["password"];
+			$email=$_POST["user_email"];
+			$password=$_POST["user_password"];
 			$phone=$_POST["phone"];
 			$amount=$_POST["amount"];
 			$product_id=$_POST["product_id"];
@@ -215,7 +215,8 @@ class UsersController extends AbstractActionController
 					return $view=new JsonModel(array(
 						'output' 		        => 	'success',
 						'baseUrl' 			=> $baseUrl,
-						'basePath' 			=> $basePath
+						'basePath' 			=> $basePath,
+						'user_id' 			=> $user_id
 					));
 				}
 			}
@@ -236,6 +237,23 @@ class UsersController extends AbstractActionController
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
 			$salt="GQs7yium";
+			$userDetails = $usersTable->getUser($user_id);
+			if($userDetails!=''){						
+				$base_user_id =  base64_encode($userDetails->user_id);
+				include('public/PHPMailer_5.2.4/sendmail.php');	
+				$suc = 'reg';
+				global $regSubject;				
+				global $regMessage;
+				$username = $userDetails->user_name;
+				$to=$userDetails->email_id;
+				$regMessage = str_replace("<FULLNAME>","$username", $regMessage);
+				if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+					$regMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $regMessage);
+				}else{
+					$regMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $regMessage);
+				}
+				sendMail($to,$regSubject,$regMessage);					
+			}
 			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$txnid);
 			if(isset($_POST["additionalCharges"])){
 				$additionalCharges=$_POST["additionalCharges"];
@@ -283,6 +301,25 @@ class UsersController extends AbstractActionController
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
 			$salt="GQs7yium";
+			$user_id=$_POST["user_id"];
+			$usersTable=$this->getUserTable();
+			$userDetails = $usersTable->getUser($user_id);
+			if($userDetails!=''){						
+				$base_user_id =  base64_encode($userDetails->user_id);
+				include('public/PHPMailer_5.2.4/sendmail.php');	
+				$suc = 'reg';
+				global $regSubject;				
+				global $regMessage;
+				$username = $userDetails->user_name;
+				$to=$userDetails->email_id;
+				$regMessage = str_replace("<FULLNAME>","$username", $regMessage);
+				if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+					$regMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $regMessage);
+				}else{
+					$regMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $regMessage);
+				}
+				sendMail($to,$regSubject,$regMessage);					
+			}
 			$updateStatusPayment=$this->getPaymentsTable()->statusUpdate($status,$txnid);
 			if(isset($_POST["additionalCharges"])){
 				$additionalCharges=$_POST["additionalCharges"];

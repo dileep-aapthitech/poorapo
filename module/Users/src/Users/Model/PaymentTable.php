@@ -20,14 +20,13 @@ class PaymentTable
         $this->tableGateway = $tableGateway;
 		$this->select = new Select();
     }	
-	public function addPayment($user_id,$prod_id,$phone,$txnid,$amount,$status)
+	public function addPayment($user_id,$prod_id,$txnid,$amount,$status)
     {
 		$data = array(
 			'user_id' 	 => $user_id,  		
 			'amount' 	 => $amount, 	
 			'txnid'      => $txnid,	
 			'prod_id'    => $prod_id,	
-			'phone_number'  => $phone,	
 			'created_at' 	=> date('Y-m-d H:i:s'),   
 			'status' 		=> $status,  		
 		);
