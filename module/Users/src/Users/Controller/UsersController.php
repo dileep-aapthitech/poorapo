@@ -107,9 +107,7 @@ class UsersController extends AbstractActionController
 				}
 				$txnid=$_POST["txnid"];
 				$prod_id=$_POST["prod_id"];
-				$productinfo="Product Information";				
-				$key="czgPlP";
-				$salt="m96VjkdV";
+				$productinfo="Product Information";	
 				$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
 				$hash=hash("sha512",$hashSeq);			
 				$view=new ViewModel(array(
@@ -201,9 +199,7 @@ class UsersController extends AbstractActionController
 			$txnid=$_POST["txnid"];
 			$email=$_POST["email"];
 			$phone=$_POST["phone"];
-			$productinfo="Product Information";
-			$key="czgPlP";
-			$salt="m96VjkdV";
+			$productinfo="Product Information";			
 			$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
 			$hash=hash("sha512",$hashSeq);			
 			$view=new ViewModel(array(
@@ -267,8 +263,6 @@ class UsersController extends AbstractActionController
 			$key=$_POST["key"];
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
-			// $salt="GQs7yium";
-			$salt="m96VjkdV";
 			$user_id=$_POST["user_id"];
 			$userDetails = $usersTable->getUser($user_id);
 			if($userDetails!=''){						
@@ -333,8 +327,6 @@ class UsersController extends AbstractActionController
 			$key=$_POST["key"];
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
-			// $salt="GQs7yium";
-			$salt="m96VjkdV";
 			$user_id=$_POST["user_id"];
 			$usersTable=$this->getUserTable();
 			$userDetails = $usersTable->getUser($user_id);

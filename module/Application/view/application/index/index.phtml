@@ -36,15 +36,42 @@
 			 <!-- Begin About Us -->
 			<div class="col-md-12 columan_divs">
 				<div class="panel panel-default">
-					<div class="panel-heading"><h3>About Us</h3></div>
-					<div class="panel-body">
-						<div>
-							<div class="testimonial">
-								<p class="testimonial_f">Updated The education system encourages a lot of rote learning. The education system encourages a lot of rote learning.
-								The education system encourages a lot of rote learning.The education system encourages a lot of rote learning.
-								The education system encourages a lot of rote learning.The education system encourages a lot of rote learning.</p>
-							</div>
-						</div>
+					<div class="table-responsive">          
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th>Product Name</th>
+									<th>Max Fees</th>
+									<th>Mini Fees</th>
+									<th>No.of installment</th>
+									<th>Ist installment</th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php if(count($this->allProducts)>0){ foreach($this->allProducts as $products) {
+									$dur_year = $products->prod_dur;
+									$max_fee = $products->prod_max_fee;
+									$mini_fee = $products->prod_min_fee;
+									$timeT0join = $products->prod_time_join;
+									$currentYear = date("Y");
+									// Change Capacity //
+									$capicity = '1';
+									$fromTojoin  = ($products->prod_time_join)+($currentYear)+1;
+									$totalMonthToJoin = ($timeT0join*12)+7;	
+									$firstInstallment = round($max_fee/$totalMonthToJoin);	
+									$minFee = round(($products->prod_cost)/($capicity));			
+									$noofInstallment = round($fromTojoin-$currentYear);
+								?>
+									<tr>
+										<td><? echo $products->prod_name;?></td>
+										<td><? echo $max_fee;?></td>
+										<td><? echo $minFee;?></td>
+										<td><? echo $noofInstallment;?></td>
+										<td>Rs.<? echo $firstInstallment;?></td>
+									</tr>
+								<?php } }?>
+							</tbody>
+						</table>
 					</div>
 				</div>
 			</div>

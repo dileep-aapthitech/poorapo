@@ -3,20 +3,32 @@
 	$baseUrl = $header->headerarray['baseUrl'];
 	$basePath = $header->headerarray['basePath'];
 	$footer = $header->headerarray['footer'];	
-	$loginActive = ''; $paymentActive = ''; $contactActive=''; $homeActive='';
+	$loginActive = ''; $paymentActive = ''; $contactActive=''; $homeActive=''; $entranceExam=''; $admissionA='';$registerA='';
 	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
 		if($_SERVER['REQUEST_URI']=='/users/login'){
 			$loginActive='active';		
+		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/register'){
+			$registerA ='active';
 		}else if($_SERVER['REQUEST_URI']=='/cms/Refunds-Payments-13'){
 			$paymentActive ='active';
 		}else if($_SERVER['REQUEST_URI']=='/users/contact-us'){
 			$contactActive ='active';
+		}else if($_SERVER['REQUEST_URI']=='/users/entrance-exam'){
+			$entranceExam ='active';
+		}else if($_SERVER['REQUEST_URI']=='/users/admission'){
+			$admissionA ='active';
 		}else{
 			$homeActive ='active';
 		}
 	}else{
 		if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/login'){
 			$loginActive='active';		
+		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/register'){
+			$registerA ='active';
+		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/entrance-exam'){
+			$entranceExam ='active';
+		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/admission'){
+			$admissionA ='active';
 		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/cms/Refunds-Payments-13'){
 			$paymentActive ='active';
 		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/contact-us'){
@@ -121,10 +133,10 @@
              </ul>
 			</li>
 			<?}}else{?>
-			<li class="<? echo $paymentActive;?>"><a href="<?php echo $baseUrl; ?>/users/entrance-exam" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Entrance Exam</span></a></li>
-			<li><a href="<?php echo $baseUrl; ?>/users/admission" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Admission</span></a></li>
+			<li class="<? echo $entranceExam;?>"><a href="<?php echo $baseUrl; ?>/users/entrance-exam">Entrance Exam</a></li>
+			<li class="<? echo $admissionA;?>"><a href="<?php echo $baseUrl; ?>/users/admission">Admission</a></li>
 			<li class="<? echo $loginActive;?>"><a href="<?php echo $baseUrl; ?>/users/login">Get In</a></li>
-			<li><a href="<?php echo $baseUrl; ?>/users/register" style="padding:0;margin-top:15px;margin-left:20px;"><span class="btn btn-default">Join</span></a></li>
+			<li class="<? echo $registerA;?>"><a href="<?php echo $baseUrl; ?>/users/register" >Join</a></li>
 			<li class="<? echo $contactActive;?>"><a href="<?php echo $baseUrl; ?>/users/contact-us">Contact</a></li>			
 			<?}?>
 		  </ul>

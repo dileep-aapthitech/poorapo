@@ -11,6 +11,7 @@ class IndexController extends AbstractActionController
 	protected  $issuesTable;
 	protected  $likeTable;
 	protected  $shareTable;
+	protected  $productsTable;
 	
     public function indexAction()
     {
@@ -33,16 +34,26 @@ class IndexController extends AbstractActionController
 		}
 		$menuIssuesArr = $this->getIssuesTable()->getAllMenuIssues( $categoryId )->toArray();
 		$categoriesArr = $this->getCategoryTable()->getAllMenuCategories()->toArray();
+		$allProducts=$this->getProductsTable()->getAllProducts();
 		$viewModel = new ViewModel(
 			array(
 				'baseUrl'				 	=> $baseUrl,
 				'basePath' 					=> $basePath,
 				'menuIssuesArr' 			=> $menuIssuesArr,
 				'categoriesArr' 			=> $categoriesArr,
-				'landPage' 			        => $categoryId
+				'landPage' 			        => $categoryId,
+				'allProducts' 			        => $allProducts
 		));
 		return $viewModel;
     }	
+	public function getProductsTable()
+    {
+        if (!$this->productsTable) {		
+            $sm = $this->getServiceLocator();
+            $this->productsTable = $sm->get('Users\Model\ProductsFactory');			
+        }
+        return $this->productsTable;
+    }
 	public function headerAction($params)
     {
 		$baseUrls = $this->getServiceLocator()->get('config');
