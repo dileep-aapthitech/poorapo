@@ -107,7 +107,9 @@ class UsersController extends AbstractActionController
 				}
 				$txnid=$_POST["txnid"];
 				$prod_id=$_POST["prod_id"];
-				$productinfo="Product Information";	
+				$productinfo="Product Information";				
+				$key="czgPlP";
+				$salt="m96VjkdV";
 				$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
 				$hash=hash("sha512",$hashSeq);			
 				$view=new ViewModel(array(
@@ -162,7 +164,7 @@ class UsersController extends AbstractActionController
 				$capicity    = $getPlannedCampus->loc_capicity;
 			}else if($select_plan == '2'){
 				$campus_name = 'your home';
-				$capicity = 1;
+				$capicity =2500;
 			}
 			$prodName = explode('-',$getProductInfo->prod_name);
 			$className = $prodName['0'];
@@ -176,11 +178,11 @@ class UsersController extends AbstractActionController
 			$firstInstallment = round($max_fee/$totalMonthToJoin);	
 			$minFee = round(($getProductInfo->prod_cost)/($capicity));			
 			$noofInstallment = round($fromTojoin-$currentYear);
-			$html = "You are studying in Class $className and you want to join our $dur_year years program in $campus_name.&nbsp;";
-			$html .= "Starting from july 01,$fromTojoin.&nbsp;";
+			$html = "You are studying in Class $className and you want to join our $dur_year years program in $campus_name ";
+			$html .= "starting from July 01,$fromTojoin.&nbsp;";
 			$html .= "Your fee will be as follows:";
-			$html .= "<br/><br/><div class='table-responsive'><table class='table table-bordered'><thead><th>Max Fees</th><th>Mini Fees</th><th>No.of installment</th><th>Ist installment</th></thead>
-					   <tbody><tr><td>Rs. $max_fee.</td><td>Rs. $minFee.</td><td>$totalMonthToJoin</td><td>Rs. $firstInstallment.</td></tr></tbody></table></div>";
+			$html .= "<br/><br/><div class='table-responsive'><table class='table table-bordered'><thead><th>Max Fees</th><th>Min Fees</th><th>Payments</th><th>Ist-Payment</th></thead>
+					   <tbody><tr><td>Rs.$max_fee</td><td>Rs.$minFee</td><td>$totalMonthToJoin</td><td>Rs.$firstInstallment</td></tr></tbody></table></div>";
 			return $view=new JsonModel(array(
 				'pfee' 			       => $html,
 				'firstInstallmentfee'  => $firstInstallment,
@@ -199,7 +201,9 @@ class UsersController extends AbstractActionController
 			$txnid=$_POST["txnid"];
 			$email=$_POST["email"];
 			$phone=$_POST["phone"];
-			$productinfo="Product Information";			
+			$productinfo="Product Information";
+			$key="czgPlP";
+			$salt="m96VjkdV";
 			$hashSeq=$key.'|'.$txnid.'|'.$amount.'|'.$productinfo.'|'.$firstname.'|'.$email.'|||||||||||'.$salt;
 			$hash=hash("sha512",$hashSeq);			
 			$view=new ViewModel(array(
@@ -263,6 +267,8 @@ class UsersController extends AbstractActionController
 			$key=$_POST["key"];
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
+			// $salt="GQs7yium";
+			$salt="m96VjkdV";
 			$user_id=$_POST["user_id"];
 			$userDetails = $usersTable->getUser($user_id);
 			if($userDetails!=''){						
@@ -327,6 +333,8 @@ class UsersController extends AbstractActionController
 			$key=$_POST["key"];
 			$productinfo=$_POST["productinfo"];
 			$email=$_POST["email"];
+			// $salt="GQs7yium";
+			$salt="m96VjkdV";
 			$user_id=$_POST["user_id"];
 			$usersTable=$this->getUserTable();
 			$userDetails = $usersTable->getUser($user_id);
@@ -1139,7 +1147,7 @@ class UsersController extends AbstractActionController
 			$contactMessage = str_replace("<LASTNAME>",$_POST['lastName'], $contactMessage);
 			$contactMessage = str_replace("<PHONENUMBER>",$_POST['mobileNumber'], $contactMessage);
 			$contactMessage = str_replace("<CONTACTMESSAGE>",$_POST['contactMessage'], $contactMessage);
-			$to='krishna@poraapo.org';
+			$to='poraapo@poraapo.com';
 			if(sendMail($to,$contactSubject,$contactMessage)){
 					$result = new ViewModel(array(					
 						'output' 	=> 'success',
@@ -1546,13 +1554,14 @@ class UsersController extends AbstractActionController
 		$cronUsers = $this->getUsersCronTable()->sentEmailsToCron();
 		$listOfUsers = '';	
 		$id = array();
-		include('public/PHPMailer_5.2.4/sendmail.php');	
+		include('public/PHPMailer_5.2.4/sendmail.php');
 		global $activeUserSubject;				
 		global $activeUsersMessage;
+		$sendCronList =array();
 		if(count($cronUsers)!=""){
+			$i=0;
 			foreach($cronUsers as $users){
 				$listOfUsers = $users;
-			}	
 				$cron_id = $listOfUsers->cron_id;
 				$user_id = $listOfUsers->user_id;
 				$pwd = getUniqueCode('7');
@@ -1563,27 +1572,40 @@ class UsersController extends AbstractActionController
 				}else{
 					$username = 'New User';
 				}
-				$emailId = $listOfUsers->email_id;
-				$to = $listOfUsers->email_id;
-				$password = $pwd;
-				$activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
-				if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-					$activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-					$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
-					$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-				}else{
-					$activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-					$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
-					$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-				}	
-				if(sendMail($to,$activeUserSubject,$activeUsersMessage))
-				{
-					$id[] = $cron_id;					
-				}
-				if(count($id)){
+				$sendCronList[$i]['base_user_id']=$base_user_id;
+				$sendCronList[$i]['cron_id']=$cron_id;
+				$sendCronList[$i]['username']=$username;
+				$sendCronList[$i]['emailId']=$listOfUsers->email_id;
+				$sendCronList[$i]['to']=$listOfUsers->email_id;
+				$sendCronList[$i]['password']=$pwd;
+				$i++;
+			}
+			if(count($sendCronList)>0){
+				foreach($sendCronList as $cronUser){
+					$cron_id = $cronUser['cron_id'];
+					$base_user_id = $cronUser['base_user_id'];
+					$username = $cronUser['username'];
+					$emailId = $cronUser['emailId'];
+					$to = $cronUser['to'];
+					$password = $cronUser['password'];
+					$activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
+					if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+						$activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
+						$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
+						$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
+					}else{
+						$activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
+						$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
+						$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
+					}	
+					sendMail($to,$activeUserSubject,$activeUsersMessage);
 					$update_status = $this->getUsersCronTable()->successToEmails($cron_id);	
+					return $this->redirect()->toUrl($baseUrl.'/users/crontosendmails');
+					echo "SuccessFull Sent....";
 				}
-			echo "SuccessFull Sent....";exit;
+			}else{
+				echo "No data found.";exit;
+			}
 		}else{
 			echo "Thanks"; exit;
 		}
