@@ -1,7 +1,7 @@
 <?php if( $this->landPage==0 ){ ?>
-<div class="container min_height"><br/>
+<div class="container min_height">
 	<? if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
-		<div class="alert alert-dismissible alert-success">
+		<br/><div class="alert alert-dismissible alert-success">
 			<button type="button" class="close" data-dismiss="alert">×</button>
 			<strong> Account verfication link, sent to your email id. Please click on that link and verify your account. </strong>
 		</div>
@@ -86,13 +86,7 @@
 	</div>
 </div> 
 <?php } else { ?>
-	<div class="container min_height"><br/>
-		<? if(isset($_GET['suc']) && $_GET['suc']=='reg'){?>
-				<div class="alert alert-dismissible alert-success">
-					<button type="button" class="close" data-dismiss="alert">×</button>
-					<strong> Account verfication link, sent to your email id. Please click on that link and verify your account. </strong>
-				</div>
-			<? } ?>
+	<div class="container min_height">	
 			<div class="mar_t">
 				<div class="row"><?php if( isset($this->menuIssuesArr) && count($this->menuIssuesArr) > 0 )
 					{
