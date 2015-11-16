@@ -138,9 +138,9 @@
 											<span class="error_msg_disp" id="user_type_req"></span>
 											<select class="form-control" id="user_type" name="user_type">
 												<option value=''>Select User Type</option>
-												<?php if(count($usertypes)!='') {	foreach($usertypes as $user_type){ ?>
+												<?php if(count($usertypes)!='') {	foreach($usertypes as $user_type){ if($user_type->user_type_name!=="admin" && $user_type->user_type_name!=="provider"){?>
 													<option value="<? echo $user_type->user_type_id?>"><? echo ucfirst($user_type->user_type_name);?></option>
-												<?php } } ?>
+												<?php } } }?>
 											</select>
 										</div>
 									</div>								

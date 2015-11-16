@@ -7,7 +7,7 @@
 	if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
 		if($_SERVER['REQUEST_URI']=='/users/login'){
 			$loginActive='active';		
-		}else if($_SERVER['REQUEST_URI']=='/poorapo/trunk/users/register'){
+		}else if($_SERVER['REQUEST_URI']=='/users/register'){
 			$registerA ='active';
 		}else if($_SERVER['REQUEST_URI']=='/cms/Refunds-Payments-13'){
 			$paymentActive ='active';
@@ -128,6 +128,7 @@
 				 <li><a href="<?php echo $baseUrl; ?>/users/provider-users">Dashboard</a></li>
 			<? } ?>
 				<li><a href="<?php echo $baseUrl; ?>/users/view-profile?uid=<? echo $base_user_id;?>">View Profile</a></li>
+				<li><a href="<?php echo $baseUrl; ?>/users/start-class">Start Class</a></li>
 			    <li><a href="<?php echo $baseUrl; ?>/users/change-password">Change Password</a></li>               
                 <li><a href="<?php echo $baseUrl; ?>/users/logout">Get Out</a></li>
              </ul>

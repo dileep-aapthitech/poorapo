@@ -179,8 +179,8 @@ class UsersController extends AbstractActionController
 			$html = "You are studying in Class $className and you want to join our $dur_year years program in $campus_name.&nbsp;";
 			$html .= "Starting from july 01,$fromTojoin.&nbsp;";
 			$html .= "Your fee will be as follows:";
-			$html .= "<br/><br/><table class='table table-bordered'><thead><th>Max Fees</th><th>Mini Fees</th><th>No.of installment</th><th>Ist installment</th></thead>
-					   <tbody><tr><td>Rs. $max_fee.</td><td>Rs. $minFee.</td><td>$totalMonthToJoin</td><td>Rs. $firstInstallment.</td></tr></tbody></table>";
+			$html .= "<br/><br/><div class='table-responsive'><table class='table table-bordered'><thead><th>Max Fees</th><th>Mini Fees</th><th>No.of installment</th><th>Ist installment</th></thead>
+					   <tbody><tr><td>Rs. $max_fee.</td><td>Rs. $minFee.</td><td>$totalMonthToJoin</td><td>Rs. $firstInstallment.</td></tr></tbody></table></div>";
 			return $view=new JsonModel(array(
 				'pfee' 			       => $html,
 				'firstInstallmentfee'  => $firstInstallment,
@@ -856,12 +856,12 @@ class UsersController extends AbstractActionController
 							}
 							if(sendMail($to,$regSubject,$regMessage)){
 								if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-									return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
+									return $this->redirect()->toUrl($baseUrl.'/home?suc='.$suc);
 								}else{
-									return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
+									return $this->redirect()->toUrl($baseUrl.'/home?suc='.$suc);
 								}
 							}else{
-								return $this->redirect()->toUrl($baseUrl.'?suc='.$suc);
+								return $this->redirect()->toUrl($baseUrl.'/home?suc='.$suc);
 							}							
 						}						
 					}
@@ -949,9 +949,9 @@ class UsersController extends AbstractActionController
 				$completeRegisterMessage = str_replace("<ClickeHere>",$baseUrl, $completeRegisterMessage);	
 			}
 			if(sendMail($to,$completeRegisterSubject,$completeRegisterMessage)){		
-				return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
+				return $this->redirect()->toUrl($baseUrl.'/users/start-class');
 			}else{
-				return $this->redirect()->toUrl($baseUrl.'/users/view-profile?uid='.$base_user_id);
+				return $this->redirect()->toUrl($baseUrl.'/users/start-class');
 			}
 		}
 	}
