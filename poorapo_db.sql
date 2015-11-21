@@ -31,7 +31,66 @@ CREATE TABLE `session` (
 
 /*Data for the table `session` */
 
-insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('4lcst2pdo2irk25coetdsnkvi5','PHPSESSID',1432043446,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1432043446.5184381;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('23be7rfd9803hg6sok5eiakkc7','PHPSESSID',1430981255,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430981255.7196059;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":234:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:5:\"Admin\";s:5:\"email\";s:28:\"bjp.murali.krishna@gmail.com\";s:7:\"user_id\";s:2:\"13\";s:9:\"user_type\";s:1:\"4\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('frpbo25nmmch0e688grqvndb91','PHPSESSID',1430484033,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430484032.9630649;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":244:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:14:\"Murali Krishna\";s:5:\"email\";s:28:\"bjp.murali.krishna@gmail.com\";s:7:\"user_id\";s:2:\"43\";s:9:\"user_type\";s:1:\"5\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('m6e40mp9ce9u8tb07toh0le1e3','PHPSESSID',1430981256,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430981256.5356519;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('j1ofmhq3vmkp85ruo4pv2ambn4','PHPSESSID',1430403611,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430403611.427933;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('gmcjfs96ujobiqu8ct5nilm3l1','PHPSESSID',1430300197,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430300193.0917571;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('18her6i60j4oo1te9v9hukenm7','PHPSESSID',1430312345,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430312345.6448431;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('n2hln9tp3skr9ic76sdfg3iev7','PHPSESSID',1430476620,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430476615.549814;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('lim1967f7prfbu6nseqlims967','PHPSESSID',1430381907,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430381901.3811901;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}');
+insert  into `session`(`id`,`name`,`modified`,`lifetime`,`data`) values ('1n2khd0c2v1ebu410vicbba6e4','PHPSESSID',1447658244,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1447658244.24984;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('vjh8v2luecotralq0pguchs293','PHPSESSID',1448111274,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1448111274.0585971;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('ki9jis808k102k3ldu6msteek6','PHPSESSID',1446789991,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1446789989.1116829;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('hmnnrigbsfp27b7h7210cso9j6','PHPSESSID',1446704428,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1446704428.269907;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('eojvpblbm4pjsfha4rlr02i4f3','PHPSESSID',1446635350,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1446635350.594523;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('9iu0l3ah3hlqjn6koedkafs8e6','PHPSESSID',1446557142,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1446557141.9836719;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('e3lin25rmvqm0tt3p1peugsgj6','PHPSESSID',1446468952,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1446468951.923218;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('9ha8oda9bnu6egr2fehk2uanv2','PHPSESSID',1442839076,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1442839076.612257;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":221:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:5:\"Admin\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:2:\"13\";s:9:\"user_type\";s:1:\"4\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('b0hqa6qerkqink2h4209p22d85','PHPSESSID',1434712187,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1434712187.444551;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('58sasetnn1hdrj3fo5d3tqg3u1','PHPSESSID',1436187762,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1436187761.9885001;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":221:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:5:\"Admin\";s:5:\"email\";s:15:\"admin@gmail.com\";s:7:\"user_id\";s:2:\"13\";s:9:\"user_type\";s:1:\"4\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('jmhpqa4h6t0e459qdeiq5tm472','PHPSESSID',1433919139,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1433919138.189996;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('r7ava6n6rt0bdjq97r3l7a3eb3','PHPSESSID',1432972716,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1432972714.960077;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('e77svhngsauo7qlu3k1iesgp46','PHPSESSID',1433150238,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1433150233.380841;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('ft8e8vd6m9emu8om9kr96hl0t2','PHPSESSID',1432128166,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1432128166.507225;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":235:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:12:\"Dileep Kumar\";s:5:\"email\";s:21:\"dkonda@aapthitech.com\";s:7:\"user_id\";s:2:\"42\";s:9:\"user_type\";s:1:\"1\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('4lcst2pdo2irk25coetdsnkvi5','PHPSESSID',1432043446,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1432043446.5184381;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('23be7rfd9803hg6sok5eiakkc7','PHPSESSID',1430981255,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430981255.7196059;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":234:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:5:\"Admin\";s:5:\"email\";s:28:\"bjp.murali.krishna@gmail.com\";s:7:\"user_id\";s:2:\"13\";s:9:\"user_type\";s:1:\"4\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('frpbo25nmmch0e688grqvndb91','PHPSESSID',1430484033,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430484032.9630649;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}user|C:23:\"Zend\\Stdlib\\ArrayObject\":244:{a:4:{s:7:\"storage\";a:4:{s:8:\"username\";s:14:\"Murali Krishna\";s:5:\"email\";s:28:\"bjp.murali.krishna@gmail.com\";s:7:\"user_id\";s:2:\"43\";s:9:\"user_type\";s:1:\"5\";}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('m6e40mp9ce9u8tb07toh0le1e3','PHPSESSID',1430981256,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430981256.5356519;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('j1ofmhq3vmkp85ruo4pv2ambn4','PHPSESSID',1430403611,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430403611.427933;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('gmcjfs96ujobiqu8ct5nilm3l1','PHPSESSID',1430300197,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430300193.0917571;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('18her6i60j4oo1te9v9hukenm7','PHPSESSID',1430312345,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430312345.6448431;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":127:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";N;}}'),('n2hln9tp3skr9ic76sdfg3iev7','PHPSESSID',1430476620,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430476615.549814;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}'),('lim1967f7prfbu6nseqlims967','PHPSESSID',1430381907,1800,'__ZF|a:1:{s:20:\"_REQUEST_ACCESS_TIME\";d:1430381901.3811901;}initialized|C:23:\"Zend\\Stdlib\\ArrayObject\":220:{a:4:{s:7:\"storage\";a:1:{s:4:\"init\";i:1;}s:4:\"flag\";i:2;s:13:\"iteratorClass\";s:13:\"ArrayIterator\";s:19:\"protectedProperties\";a:4:{i:0;s:7:\"storage\";i:1;s:4:\"flag\";i:2;s:13:\"iteratorClass\";i:3;s:19:\"protectedProperties\";}}}');
+
+/*Table structure for table `tbl_branches` */
+
+DROP TABLE IF EXISTS `tbl_branches`;
+
+CREATE TABLE `tbl_branches` (
+  `branch_id` int(10) NOT NULL AUTO_INCREMENT,
+  `branch_name` varchar(150) DEFAULT NULL,
+  `status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`branch_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_branches` */
+
+insert  into `tbl_branches`(`branch_id`,`branch_name`,`status`,`created_at`,`updated_at`) values (1,'CSS',1,'2015-05-30 09:50:45','2015-05-30 09:50:47'),(2,'Mech',1,'2015-05-30 09:50:45','2015-05-30 09:50:45'),(3,'EC',1,'2015-05-30 09:50:45','2015-05-30 09:50:45'),(4,'Cvil',1,'2015-05-30 09:50:45','2015-05-30 09:50:45'),(5,'BSC',1,'2015-05-30 09:50:45','2015-05-30 09:50:45'),(6,'MSC',1,'2015-05-30 09:50:45','2015-05-30 09:50:45'),(7,'IT',1,'2015-05-30 09:50:45','2015-05-30 09:50:45');
+
+/*Table structure for table `tbl_builders` */
+
+DROP TABLE IF EXISTS `tbl_builders`;
+
+CREATE TABLE `tbl_builders` (
+  `build_id` int(10) NOT NULL AUTO_INCREMENT,
+  `build_name` varchar(50) DEFAULT NULL,
+  `build_mobile` varchar(20) DEFAULT NULL,
+  `build_area` varchar(50) DEFAULT NULL,
+  `build_cost` varchar(50) DEFAULT NULL,
+  `build_created_at` datetime DEFAULT NULL,
+  `build_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`build_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_builders` */
+
+/*Table structure for table `tbl_campuses` */
+
+DROP TABLE IF EXISTS `tbl_campuses`;
+
+CREATE TABLE `tbl_campuses` (
+  `camp_id` int(10) NOT NULL AUTO_INCREMENT,
+  `camp_name` varchar(150) DEFAULT NULL,
+  `camp_capicity` int(5) DEFAULT NULL,
+  `camp_addr` text,
+  `loc_id` int(50) DEFAULT NULL COMMENT 'primary of planned campus',
+  `camp_city` varchar(100) DEFAULT NULL,
+  `camp_pin` varchar(50) DEFAULT NULL,
+  `camp_state` int(10) DEFAULT NULL,
+  `camp_country` int(15) DEFAULT NULL,
+  `camp_contact_name` varchar(50) DEFAULT NULL,
+  `camp_mobile` varchar(50) DEFAULT NULL,
+  `camp_created_at` datetime DEFAULT NULL,
+  `camp_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`camp_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_campuses` */
+
+insert  into `tbl_campuses`(`camp_id`,`camp_name`,`camp_capicity`,`camp_addr`,`loc_id`,`camp_city`,`camp_pin`,`camp_state`,`camp_country`,`camp_contact_name`,`camp_mobile`,`camp_created_at`,`camp_status`) values (1,'abcd campuse',100,'Hyderabad',1,'Hyderabad',NULL,NULL,NULL,NULL,NULL,NULL,1),(2,'xyz campuse',200,'Guntur',4,'Guntur',NULL,NULL,NULL,NULL,NULL,NULL,1),(3,'jkl campuse',550,'Hyderabad',2,'Hyderabad',NULL,NULL,NULL,NULL,NULL,NULL,1),(4,'klm',350,'vijayawada',5,'Vijayawada',NULL,NULL,NULL,NULL,NULL,NULL,1);
 
 /*Table structure for table `tbl_categories` */
 
@@ -45,11 +104,11 @@ CREATE TABLE `tbl_categories` (
   `modified_at` datetime DEFAULT NULL,
   `category_type_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_categories` */
 
-insert  into `tbl_categories`(`category_id`,`category_name`,`status`,`created_at`,`modified_at`,`category_type_id`) values (1,'Education',1,'2015-04-16 11:15:09','2015-04-18 01:37:36',2),(2,'Sports',1,'2015-04-16 11:15:44','2015-04-16 11:15:47',2),(3,'Movies',1,'2015-04-16 11:16:02','2015-04-18 02:56:05',2),(4,'News',1,'2015-04-16 12:45:06','2015-04-16 12:45:09',2),(5,'Pages',1,'2015-04-16 15:46:52','2015-04-16 15:46:55',1),(9,'Health',1,'2015-04-19 09:50:41','2015-04-19 09:50:41',2);
+insert  into `tbl_categories`(`category_id`,`category_name`,`status`,`created_at`,`modified_at`,`category_type_id`) values (1,'Parents of Class K-8 Students',1,'2015-04-16 11:15:09','2015-04-18 01:37:36',2),(2,'Parents of Class 9-10 Students',1,'2015-04-16 11:15:44','2015-04-16 11:15:47',2),(3,'Parents of Class 11-12 Students',1,'2015-04-16 11:16:02','2015-04-18 02:56:05',2),(4,'Parents of University Students',1,'2015-04-16 12:45:06','2015-04-16 12:45:09',2),(5,'Class 9-10 Students',1,'2015-04-16 15:46:52','2015-04-16 15:46:55',2),(9,'Class 11-12 Students',1,'2015-04-19 09:50:41','2015-04-19 09:50:41',2),(10,'College-University Students',1,'2015-11-02 15:53:52','2015-11-02 15:53:54',2),(11,'Frequently Asked Questions',1,'2015-11-02 15:54:27','2015-11-02 15:54:31',2),(12,'Fees Payments and Refunds',1,'2015-11-02 15:54:58','2015-11-02 15:55:00',2),(13,'Foolish Parents-Students-Employees',1,'2015-11-02 15:55:20','2015-11-02 15:55:22',2);
 
 /*Table structure for table `tbl_category_types` */
 
@@ -121,6 +180,20 @@ CREATE TABLE `tbl_countries` (
 /*Data for the table `tbl_countries` */
 
 insert  into `tbl_countries`(`id_countries`,`name`,`status`) values (1,'Afghanistan',1),(2,'Albania',1),(3,'Algeria',1),(4,'Andorra',1),(5,'Angola',1),(6,'Antigua and Barbuda',1),(7,'Argentina',1),(8,'Armenia',1),(9,'Australia',1),(10,'Austria',1),(11,'Azerbaijan',1),(12,'Bahamas',1),(13,'Bahrain',1),(14,'Bangladesh',1),(15,'Barbados',1),(16,'Belarus',1),(17,'Belgium',1),(18,'Belize',1),(19,'Benin',1),(20,'Bhutan ',1),(21,'Bolivia',1),(22,'Bosnia and Herzegovina',1),(23,'Botswana',1),(24,'Brazil',1),(25,'Brunei',1),(26,'Bulgaria',1),(27,'Burkina Faso',1),(28,'Burma',1),(29,'Burundi',1),(30,'Cabo Verde',1),(31,'Cambodia',1),(32,'Cameroon',1),(33,'Canada',1),(34,'Central African Republic',1),(35,'Chad',1),(36,'Chile',1),(37,'China',1),(38,'Colombia',1),(39,'Comoros',1),(40,'Congo (Brazzaville)',1),(41,'Congo (Kinshasa)',1),(42,'Costa Rica',1),(43,'Cote d\'Ivoire',1),(44,'Croatia',1),(45,'Cuba ',1),(46,'Cyprus',1),(47,'Czech Republic',1),(48,'Denmark',1),(49,'Djibouti',1),(50,'Dominica',1),(51,'Dominican Republic',1),(52,'Ecuador',1),(53,'Egypt',1),(54,'El Salvador',1),(55,'Equatorial Guinea',1),(56,'Eritrea',1),(57,'Estonia',1),(58,'Ethiopia',1),(59,'Fiji',1),(60,'Finland',1),(61,'France',1),(62,'Gabon',1),(63,'Gambia, The',1),(64,'Georgia',1),(65,'Germany',1),(66,'Ghana',1),(67,'Greece',1),(68,'Grenada',1),(69,'Guatemala',1),(70,'Guinea',1),(71,'Guinea-Bissau',1),(72,'Guyana',1),(73,'Haiti',1),(74,'Holy See ',1),(75,'Honduras',1),(76,'Hungary',1),(77,'Iceland',1),(78,'India',1),(79,'Indonesia',1),(80,'Iran ',1),(81,'Iraq',1),(82,'Ireland',1),(83,'Israel',1),(84,'Italy',1),(85,'Jamaica',1),(86,'Japan',1),(87,'Jordan',1),(88,'Kazakhstan',1),(89,'Kenya',1),(90,'Kiribati',1),(91,'Korea, North ',1),(92,'Korea, South',1),(93,'Kosovo ',1),(94,'Kuwait',1),(95,'Kyrgyzstan',1),(96,'Laos',1),(97,'Latvia',1),(98,'Lebanon',1),(99,'Lesotho',1),(100,'Liberia',1),(101,'Libya',1),(102,'Liechtenstein',1),(103,'Lithuania',1),(104,'Luxembourg',1),(105,'Macedonia',1),(106,'Madagascar',1),(107,'Malawi',1),(108,'Malaysia',1),(109,'Maldives',1),(110,'Mali',1),(111,'Malta',1),(112,'Marshall Islands',1),(113,'Mauritania',1),(114,'Mauritius',1),(115,'Mexico',1),(116,'Micronesia,',1),(117,'Moldova',1),(118,'Monaco',1),(119,'Mongolia',1),(120,'Montenegro',1),(121,'Morocco',1),(122,'Mozambique',1),(123,'Namibia',1),(124,'Nauru',1),(125,'Nepal',1),(126,'Netherlands',1),(127,'New Zealand',1),(128,'Nicaragua',1),(129,'Niger',1),(130,'Nigeria',1),(131,'Norway',1),(132,'Oman',1),(133,'Pakistan',1),(134,'Palau',1),(135,'Panama',1),(136,'Papua New Guinea',1),(137,'Paraguay',1),(138,'Peru',1),(139,'Philippines',1),(140,'Poland',1),(141,'Portugal',1),(142,'Qatar',1),(143,'Romania',1),(144,'Russia',1),(145,'Rwanda',1),(146,'Saint Kitts and Nevis',1),(147,'Saint Lucia',1),(148,'Saint Vincent and the Grenadines',1),(149,'Samoa',1),(150,'San Marino',1),(151,'Sao Tome and Principe',1),(152,'Saudi Arabia',1),(153,'Senegal',1),(154,'Serbia',1),(155,'Seychelles',1),(156,'Sierra Leone',1),(157,'Singapore',1),(158,'Slovakia',1),(159,'Slovenia',1),(160,'Solomon Islands',1),(161,'Somalia',1),(162,'South Africa',1),(163,'South Sudan',1),(164,'Spain',1),(165,'Sri Lanka',1),(166,'Sudan',1),(167,'Suriname',1),(168,'Swaziland',1),(169,'Sweden',1),(170,'Switzerland',1),(171,'Syria',1),(172,'Taiwan',1),(173,'Tajikistan',1),(174,'Tanzania',1),(175,'Thailand',1),(176,'Timor-Leste',1),(177,'Togo',1),(178,'Tonga',1),(179,'Trinidad and Tobago',1),(180,'Tunisia',1),(181,'Turkey',1),(182,'Turkmenistan',1),(183,'Tuvalu',1),(184,'Uganda',1),(185,'Ukraine',1),(186,'United Arab Emirates',1),(187,'United Kingdom',1),(188,'United States ',1),(189,'Uruguay',1),(190,'Uzbekistan',1),(191,'Vanuatu',1),(192,'Venezuela',1),(193,'Vietnam',1),(194,'Yemen',1),(195,'Zambia',1),(196,'Zimbabwe',1);
+
+/*Table structure for table `tbl_designations` */
+
+DROP TABLE IF EXISTS `tbl_designations`;
+
+CREATE TABLE `tbl_designations` (
+  `desig_id` int(10) NOT NULL AUTO_INCREMENT,
+  `desig_name` varchar(150) DEFAULT NULL,
+  `desig_created_at` datetime DEFAULT NULL,
+  `desig_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`desig_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_designations` */
 
 /*Table structure for table `tbl_districts` */
 
@@ -222,17 +295,56 @@ DROP TABLE IF EXISTS `tbl_payments`;
 
 CREATE TABLE `tbl_payments` (
   `payment_id` int(10) NOT NULL AUTO_INCREMENT,
-  `firstname` varchar(150) NOT NULL,
+  `user_id` int(10) DEFAULT NULL,
+  `prod_id` int(10) DEFAULT NULL,
   `amount` varchar(150) DEFAULT NULL,
   `txnid` varchar(150) DEFAULT NULL,
-  `emailid` varchar(150) DEFAULT NULL,
-  `phone_number` varchar(50) DEFAULT NULL,
-  `status` smallint(5) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`payment_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_payments` */
+
+insert  into `tbl_payments`(`payment_id`,`user_id`,`prod_id`,`amount`,`txnid`,`status`,`created_at`) values (6,45,2,'1181','35a549f37691e49ef4b6','Pending','2015-11-04 05:40:22');
+
+/*Table structure for table `tbl_planned_campuses` */
+
+DROP TABLE IF EXISTS `tbl_planned_campuses`;
+
+CREATE TABLE `tbl_planned_campuses` (
+  `loc_id` int(10) NOT NULL AUTO_INCREMENT,
+  `loc_city_zone` varchar(50) DEFAULT NULL,
+  `loc_capicity` int(5) DEFAULT NULL,
+  `loc_created_at` datetime DEFAULT NULL,
+  `loc_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`loc_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_planned_campuses` */
+
+insert  into `tbl_planned_campuses`(`loc_id`,`loc_city_zone`,`loc_capicity`,`loc_created_at`,`loc_status`) values (1,'Hyd-North',100,'2015-11-03 11:21:09',1),(2,'Hyd-South',200,'2015-11-03 11:21:27',1),(3,'Hyd-Center',300,'2015-11-03 11:21:40',1),(4,'Gnt-Center',400,'2015-11-03 11:21:58',1),(5,'Vij-Center',500,'2015-11-03 11:22:18',1);
+
+/*Table structure for table `tbl_products` */
+
+DROP TABLE IF EXISTS `tbl_products`;
+
+CREATE TABLE `tbl_products` (
+  `prod_id` int(10) NOT NULL AUTO_INCREMENT,
+  `prod_name` varchar(150) DEFAULT NULL,
+  `prod_time_join` varchar(20) DEFAULT NULL,
+  `prod_dur` varchar(50) DEFAULT NULL,
+  `prod_cost` varchar(200) DEFAULT NULL,
+  `prod_max_fee` varchar(50) DEFAULT NULL,
+  `prod_min_fee` varchar(50) DEFAULT NULL,
+  `prod_status` smallint(5) DEFAULT NULL,
+  `prod_created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`prod_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_products` */
+
+insert  into `tbl_products`(`prod_id`,`prod_name`,`prod_time_join`,`prod_dur`,`prod_cost`,`prod_max_fee`,`prod_min_fee`,`prod_status`,`prod_created_at`) values (1,'K-4years','12','4','1000','100000',NULL,1,NULL),(2,'K-6years','10','6','2000','150000',NULL,1,NULL),(3,'1-4years','11','4','3000','200000',NULL,1,NULL),(4,'1-6years','9','6','4000','100000',NULL,1,NULL),(5,'2-4years','10','4','5000','250000',NULL,1,NULL),(6,'2-6years','8','6','6000','350000',NULL,1,NULL),(7,'3-4years','9','4','7000','300000',NULL,1,NULL),(8,'3-6years','7','6','8000','450000',NULL,1,NULL),(9,'9-4years','3','4','9000','400000',NULL,1,NULL),(10,'9-6years','1','6','10000','100000',NULL,1,NULL),(11,'10-4years','2','4','11000','150000',NULL,1,NULL),(12,'10-6years','0','6','12000','600000',NULL,1,NULL),(13,'11-4years','1','4','13000','500000',NULL,1,NULL),(14,'12-4years','0','4','14000','500000',NULL,1,NULL);
 
 /*Table structure for table `tbl_shares` */
 
@@ -288,6 +400,28 @@ CREATE TABLE `tbl_states` (
 
 insert  into `tbl_states`(`state_id`,`state_name`,`id_countries`,`status`) values (1,'Andaman and Nicobar Islands',78,1),(2,'Andhra Pradesh',78,1),(3,'Arunachal Pradesh',78,1),(4,'Assam',78,1),(5,'Bihar',78,1),(6,'Chandigarh',78,1),(7,'Chhattisgarh',78,1),(8,'Dadra and Nagar Haveli',78,1),(9,'Daman and Diu',78,1),(10,'Delhi',78,1),(11,'Goa',78,1),(12,'Gujarat',78,1),(13,'Haryana',78,1),(14,'Himachal Pradesh',78,1),(15,'Jammu and Kashmir',78,1),(16,'Jharkhand',78,1),(17,'Karnataka',78,1),(18,'Kerala',78,1),(19,'Lakshadweep',78,1),(20,'Madhya Pradesh',78,1),(21,'Maharashtra',78,1),(22,'Manipur?',78,1),(23,'Meghalaya',78,1),(24,'Mizoram',78,1),(25,'Nagaland',78,1),(26,'Odisha',78,1),(27,'Puducherry',78,1),(28,'Punjab',78,1),(29,'Rajasthan',78,1),(30,'Sikkim',78,1),(31,'Tamil Nadu',78,1),(32,'Telangana',78,1),(33,'Tripura',78,1),(34,'Uttar Pradesh',78,1),(35,'Uttarakhand',78,1),(36,'West Bengal',78,1),(37,'Alabama',224,1),(38,'Alaska',224,1),(39,'Arizona',224,1),(40,'Arkansas',224,1),(41,'California',224,1),(42,'Colorado',224,1),(43,'Connecticut',224,1),(44,'Delaware',224,1),(45,'District of Columbia',224,1),(46,'Florida',224,1),(47,'Georgia',224,1),(48,'Hawaii',224,1),(49,'Idaho',224,1),(50,'Illinois',224,1),(51,'Indiana',224,1),(52,'Iowa',224,1),(53,'Kansas',224,1),(54,'Kentucky',224,1),(55,'Louisiana',224,1),(56,'Maine',224,1),(57,'Maryland',224,1),(58,'Massachusetts',224,1),(59,'Michigan',224,1),(60,'Minnesota',224,1),(61,'Mississippi',224,1),(62,'Missouri',224,1),(63,'Montana',224,1),(64,'Nebraska',224,1),(65,'Nevada',224,1),(66,'New Hampshire',224,1),(67,'New Jersey',224,1),(68,'New Mexico',224,1),(69,'New York',224,1),(70,'North Carolina',224,1),(71,'North Dakota',224,1),(72,'Ohio',224,1),(73,'Oklahoma',224,1),(74,'Oregon',224,1),(75,'Pennsylvania',224,1),(76,'Rhode Island',224,1),(77,'South Carolina',224,1),(78,'South Dakota',224,1),(79,'Tennessee',224,1),(80,'Texas',224,1),(81,'Utah',224,1),(82,'Vermont',224,1),(83,'Virginia',224,1),(84,'Washington',224,1),(85,'West Virginia',224,1),(86,'Wisconsin',224,1),(87,'Wyoming',224,1),(88,'My State',1,1),(89,'My State',2,1),(90,'My State',3,1),(91,'My State',4,1),(92,'My State',5,1),(93,'My State',6,1),(94,'My State',7,1),(95,'My State',8,1),(96,'My State',9,1),(97,'My State',10,1),(98,'My State',11,1),(99,'My State',12,1),(100,'My State',13,1),(101,'My State',14,1),(102,'My State',15,1),(103,'My State',16,1),(104,'My State',17,1),(105,'My State',18,1),(106,'My State',19,1),(107,'My State',20,1),(108,'My State',21,1),(109,'My State',22,1),(110,'My State',23,1),(111,'My State',24,1),(112,'My State',25,1),(113,'My State',26,1),(114,'My State',27,1),(115,'My State',28,1),(116,'My State',29,1),(117,'My State',30,1),(118,'My State',31,1),(119,'My State',32,1),(120,'My State',33,1),(121,'My State',34,1),(122,'My State',35,1),(123,'My State',36,1),(124,'My State',37,1),(125,'My State',38,1),(126,'My State',39,1),(127,'My State',40,1),(128,'My State',41,1),(129,'My State',42,1),(130,'My State',43,1),(131,'My State',44,1),(132,'My State',45,1),(133,'My State',46,1),(134,'My State',47,1),(135,'My State',48,1),(136,'My State',49,1),(137,'My State',50,1),(138,'My State',51,1),(139,'My State',52,1),(140,'My State',53,1),(141,'My State',54,1),(142,'My State',55,1),(143,'My State',56,1),(144,'My State',57,1),(145,'My State',58,1),(146,'My State',59,1),(147,'My State',60,1),(148,'My State',61,1),(149,'My State',62,1),(150,'My State',63,1),(151,'My State',64,1),(152,'My State',65,1),(153,'My State',66,1),(154,'My State',67,1),(155,'My State',68,1),(156,'My State',69,1),(157,'My State',70,1),(158,'My State',71,1),(159,'My State',72,1),(160,'My State',73,1),(161,'My State',74,1),(162,'My State',75,1),(163,'My State',76,1),(164,'My State',77,1),(165,'My State',78,1),(166,'My State',79,1),(167,'My State',80,1),(168,'My State',81,1),(169,'My State',82,1),(170,'My State',83,1),(171,'My State',84,1),(172,'My State',85,1),(173,'My State',86,1),(174,'My State',87,1),(175,'My State',88,1),(176,'My State',89,1),(177,'My State',90,1),(178,'My State',91,1),(179,'My State',92,1),(180,'My State',93,1),(181,'My State',94,1),(182,'My State',95,1),(183,'My State',96,1),(184,'My State',98,1),(185,'My State',99,1),(186,'My State',100,1),(187,'My State',101,1),(188,'My State',102,1),(189,'My State',103,1),(190,'My State',104,1),(191,'My State',105,1),(192,'My State',106,1),(193,'My State',107,1),(194,'My State',108,1),(195,'My State',109,1),(196,'My State',110,1),(197,'My State',111,1),(198,'My State',112,1),(199,'My State',113,1),(200,'My State',114,1),(201,'My State',115,1),(202,'My State',116,1),(203,'My State',117,1),(204,'My State',118,1),(205,'My State',119,1),(206,'My State',120,1),(207,'My State',121,1),(208,'My State',122,1),(209,'My State',123,1),(210,'My State',124,1),(211,'My State',125,1),(212,'My State',126,1),(213,'My State',127,1),(214,'My State',128,1),(215,'My State',129,1),(216,'My State',130,1),(217,'My State',131,1),(218,'My State',132,1),(219,'My State',133,1),(220,'My State',134,1),(221,'My State',135,1),(222,'My State',136,1),(223,'My State',137,1),(224,'My State',138,1),(225,'My State',139,1),(226,'My State',140,1),(227,'My State',141,1),(228,'My State',142,1),(229,'My State',143,1),(230,'My State',144,1),(231,'My State',145,1),(232,'My State',146,1),(233,'My State',147,1),(234,'My State',148,1),(235,'My State',149,1),(236,'My State',150,1),(237,'My State',151,1),(238,'My State',152,1),(239,'My State',153,1),(240,'My State',154,1),(241,'My State',155,1),(242,'My State',156,1),(243,'My State',157,1),(244,'My State',158,1),(245,'My State',159,1),(246,'My State',160,1),(247,'My State',161,1),(248,'My State',162,1),(249,'My State',163,1),(250,'My State',164,1),(251,'My State',165,1),(252,'My State',166,1),(253,'My State',167,1),(254,'My State',168,1),(255,'My State',169,1),(256,'My State',170,1),(257,'My State',171,1),(258,'My State',172,1),(259,'My State',173,1),(260,'My State',174,1),(261,'My State',175,1),(262,'My State',176,1),(263,'My State',177,1),(264,'My State',178,1),(265,'My State',179,1),(266,'My State',180,1),(267,'My State',181,1),(268,'My State',182,1),(269,'My State',183,1),(270,'My State',184,1),(271,'My State',185,1),(272,'My State',186,1),(273,'My State',187,1),(274,'My State',188,1),(275,'My State',189,1),(276,'My State',190,1),(277,'My State',191,1),(278,'My State',192,1),(279,'My State',193,1),(280,'My State',194,1),(281,'My State',195,1),(282,'My State',196,1),(283,'My State',197,1),(284,'My State',198,1),(285,'My State',199,1),(286,'My State',200,1),(287,'My State',201,1),(288,'My State',202,1),(289,'My State',203,1),(290,'My State',204,1),(291,'My State',205,1),(292,'My State',206,1),(293,'My State',207,1),(294,'My State',208,1),(295,'My State',209,1),(296,'My State',210,1),(297,'My State',211,1),(298,'My State',212,1),(299,'My State',213,1),(300,'My State',214,1),(301,'My State',215,1),(302,'My State',216,1),(303,'My State',217,1),(304,'My State',218,1),(305,'My State',219,1),(306,'My State',220,1),(307,'My State',221,1),(308,'My State',222,1),(309,'My State',223,1),(310,'My State',225,1),(311,'My State',226,1),(312,'My State',227,1),(313,'My State',228,1),(314,'My State',229,1),(315,'My State',230,1),(316,'My State',231,1),(317,'My State',232,1),(318,'My State',233,1),(319,'My State',234,1),(320,'My State',235,1),(321,'My State',236,1),(322,'My State',237,1);
 
+/*Table structure for table `tbl_study_centers` */
+
+DROP TABLE IF EXISTS `tbl_study_centers`;
+
+CREATE TABLE `tbl_study_centers` (
+  `center_id` int(10) NOT NULL AUTO_INCREMENT,
+  `center_prod_id` int(11) DEFAULT NULL COMMENT 'primary of products',
+  `center_name` varchar(150) DEFAULT NULL,
+  `center_addr` text,
+  `center_city` varchar(100) DEFAULT NULL,
+  `center_pin` varchar(50) DEFAULT NULL,
+  `center_state` int(10) DEFAULT NULL,
+  `center_country` int(15) DEFAULT NULL,
+  `center_contact_name` varchar(50) DEFAULT NULL,
+  `center_mobile` varchar(50) DEFAULT NULL,
+  `center_created_at` datetime DEFAULT NULL,
+  `center_status` smallint(5) DEFAULT NULL,
+  PRIMARY KEY (`center_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_study_centers` */
+
 /*Table structure for table `tbl_universities` */
 
 DROP TABLE IF EXISTS `tbl_universities`;
@@ -314,6 +448,7 @@ DROP TABLE IF EXISTS `tbl_user_education_info`;
 CREATE TABLE `tbl_user_education_info` (
   `education_info_id` int(10) NOT NULL AUTO_INCREMENT,
   `user_id` int(150) DEFAULT NULL,
+  `current_class` varchar(50) DEFAULT NULL,
   `id_countries_school` int(10) DEFAULT NULL,
   `college_name` varchar(150) DEFAULT NULL,
   `principal_name` varchar(150) DEFAULT NULL,
@@ -335,27 +470,30 @@ CREATE TABLE `tbl_user_education_info` (
   `bachelors_degree_name` varchar(150) DEFAULT NULL,
   `bachelors_university_name` varchar(150) DEFAULT NULL,
   `bachelors_college` varchar(150) DEFAULT NULL,
+  `user_bac_branch` varchar(150) DEFAULT NULL,
   `bachelors_specialization` varchar(150) DEFAULT NULL,
   `bachelors_year_admission` varchar(150) DEFAULT NULL,
   `id_countries_masters` int(10) DEFAULT NULL,
   `masters_degree` varchar(150) DEFAULT NULL,
   `masters_university` varchar(150) DEFAULT NULL,
   `masters_college` varchar(150) DEFAULT NULL,
+  `user_masters_branch` varchar(150) DEFAULT NULL,
   `masters_specialization` varchar(150) DEFAULT NULL,
   `masters_year_admission` varchar(150) DEFAULT NULL,
   `id_countries_phd` int(10) DEFAULT NULL,
   `doctorate_name` varchar(150) DEFAULT NULL,
   `doctorate_college` varchar(150) DEFAULT NULL,
   `doctorate_university` varchar(150) DEFAULT NULL,
+  `user_doctorate_branch` varchar(150) DEFAULT NULL,
   `doctorate_specialization` varchar(150) DEFAULT NULL,
   `doctorate_year` varchar(150) DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`education_info_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_user_education_info` */
 
-insert  into `tbl_user_education_info`(`education_info_id`,`user_id`,`id_countries_school`,`college_name`,`principal_name`,`principal_phone_num`,`principal_email_id`,`entrance_exam`,`which_year`,`entrance_rank`,`entrance_exam_1`,`which_year_1`,`entrance_rank_1`,`entrance_exam_2`,`which_year_2`,`entrance_rank_2`,`entrance_exam_3`,`which_year_3`,`entrance_rank_3`,`id_countries_bachelors`,`bachelors_degree_name`,`bachelors_university_name`,`bachelors_college`,`bachelors_specialization`,`bachelors_year_admission`,`id_countries_masters`,`masters_degree`,`masters_university`,`masters_college`,`masters_specialization`,`masters_year_admission`,`id_countries_phd`,`doctorate_name`,`doctorate_college`,`doctorate_university`,`doctorate_specialization`,`doctorate_year`,`modified_at`) values (23,28,NULL,'1','Princiapal Name','8500555','dkoda@aapthitech.com','1','1960','789456','','','','','','',NULL,NULL,NULL,NULL,'1','2','1','1','1975',NULL,'2','1','2','1','1977',NULL,'phD','1','1','1','1977','2015-04-21 09:05:38'),(24,29,NULL,'','','','','','2009','2432435','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-21 23:46:36'),(25,30,NULL,'','','','','1','1977','345456','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-21 07:41:10'),(26,31,NULL,'1','522329','99999999999999','55555555','1','1978','45632','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-21 12:31:12'),(28,33,NULL,'1','ddd','dd','ddd','1','1977','123123','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-21 08:08:37'),(29,34,NULL,'1','423423','23423','423423','1','1960','4324','','','','','','',NULL,NULL,NULL,NULL,'1','2','1','1','1960',NULL,'','','','','',NULL,'','','','','','2015-04-21 08:14:40'),(30,35,NULL,'1','Princiapal Name','85555','d@gmail.com','1','1977','312312','','','','','','',NULL,NULL,NULL,NULL,'1','1','1','2','1961',NULL,'','','','','',NULL,'','','','','','2015-04-21 08:58:39'),(31,36,NULL,'1','Principal','9988567485','prince@gmail.com','1','1961','1','1','1972','1','1','1975','1',NULL,NULL,NULL,NULL,'1','3','1','1','1976',NULL,'','','','','',NULL,'','','','','','2015-04-21 08:31:31'),(32,37,NULL,'1','chari','9436430643','s@gmail.com','36','1960','75757527','','','','','','',NULL,NULL,NULL,NULL,'1','1','1','2','1977',NULL,'1','1','1','1','1978',NULL,'phd','1','1','1','1961','2015-04-21 08:57:22'),(33,38,NULL,'','','','','115','1960','9','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-21 09:46:49'),(34,29,NULL,'','','','','','2009','2432435','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-22 00:25:18'),(35,42,NULL,'1','99','66','77','35','1962','66','','','','','','',NULL,NULL,NULL,NULL,'','','','','',NULL,'','','','','',NULL,'','','','','','2015-04-24 22:19:18'),(38,44,78,'1','Principal Name','88888888','dkonda@gmail.com','34','1988','154','35','1975','1458','37','1975','147',NULL,NULL,NULL,78,'Bachelor\'s','1','1','1','1976',78,'Master\'s','1','','1','1978',78,'PhD','','1','1','1977','2015-04-30 11:25:17');
+insert  into `tbl_user_education_info`(`education_info_id`,`user_id`,`current_class`,`id_countries_school`,`college_name`,`principal_name`,`principal_phone_num`,`principal_email_id`,`entrance_exam`,`which_year`,`entrance_rank`,`entrance_exam_1`,`which_year_1`,`entrance_rank_1`,`entrance_exam_2`,`which_year_2`,`entrance_rank_2`,`entrance_exam_3`,`which_year_3`,`entrance_rank_3`,`id_countries_bachelors`,`bachelors_degree_name`,`bachelors_university_name`,`bachelors_college`,`user_bac_branch`,`bachelors_specialization`,`bachelors_year_admission`,`id_countries_masters`,`masters_degree`,`masters_university`,`masters_college`,`user_masters_branch`,`masters_specialization`,`masters_year_admission`,`id_countries_phd`,`doctorate_name`,`doctorate_college`,`doctorate_university`,`user_doctorate_branch`,`doctorate_specialization`,`doctorate_year`,`modified_at`) values (23,28,NULL,NULL,'1','Princiapal Name','8500555','dkoda@aapthitech.com','1','1960','789456','','','','','','',NULL,NULL,NULL,NULL,'1','2','1',NULL,'1','1975',NULL,'2','1','2',NULL,'1','1977',NULL,'phD','1','1',NULL,'1','1977','2015-04-21 09:05:38'),(24,29,NULL,NULL,'','','','','','2009','2432435','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 23:46:36'),(25,30,NULL,NULL,'','','','','1','1977','345456','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 07:41:10'),(26,31,NULL,NULL,'1','522329','99999999999999','55555555','1','1978','45632','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 12:31:12'),(28,33,NULL,NULL,'1','ddd','dd','ddd','1','1977','123123','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 08:08:37'),(29,34,NULL,NULL,'1','423423','23423','423423','1','1960','4324','','','','','','',NULL,NULL,NULL,NULL,'1','2','1',NULL,'1','1960',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 08:14:40'),(30,35,NULL,NULL,'1','Princiapal Name','85555','d@gmail.com','1','1977','312312','','','','','','',NULL,NULL,NULL,NULL,'1','1','1',NULL,'2','1961',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 08:58:39'),(31,36,NULL,NULL,'1','Principal','9988567485','prince@gmail.com','1','1961','1','1','1972','1','1','1975','1',NULL,NULL,NULL,NULL,'1','3','1',NULL,'1','1976',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 08:31:31'),(32,37,NULL,NULL,'1','chari','9436430643','s@gmail.com','36','1960','75757527','','','','','','',NULL,NULL,NULL,NULL,'1','1','1',NULL,'2','1977',NULL,'1','1','1',NULL,'1','1978',NULL,'phd','1','1',NULL,'1','1961','2015-04-21 08:57:22'),(33,38,NULL,NULL,'','','','','115','1960','9','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-21 09:46:49'),(34,29,NULL,NULL,'','','','','','2009','2432435','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-22 00:25:18'),(35,42,NULL,NULL,'1','99','66','77','35','1962','66','','','','','','',NULL,NULL,NULL,NULL,'','','',NULL,'','',NULL,'','','',NULL,'','',NULL,'','','',NULL,'','','2015-04-24 22:19:18'),(38,44,NULL,0,'','','','','','','','','','','','','',NULL,NULL,NULL,0,'Bachelor\'s','','','2','','',0,'Master\'s','','',NULL,'','',0,'PhD','','',NULL,'','','2015-05-30 07:34:00'),(39,44,NULL,0,'','','','','','','','','','','','','',NULL,NULL,NULL,0,'Bachelor\'s','','','2','','',0,'Master\'s','','',NULL,'','',0,'PhD','','',NULL,'','','2015-05-30 07:34:00');
 
 /*Table structure for table `tbl_user_personal_info` */
 
@@ -387,11 +525,11 @@ CREATE TABLE `tbl_user_personal_info` (
   `company_website` varchar(150) DEFAULT NULL,
   `modified_at` datetime DEFAULT NULL,
   PRIMARY KEY (`detailed_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_user_personal_info` */
 
-insert  into `tbl_user_personal_info`(`detailed_id`,`user_id`,`first_name`,`last_name`,`gender`,`date_of_birth`,`mobile_number`,`id_countries_birth`,`state_id`,`district_id`,`parents_name`,`user_parent_lastname`,`p_phone_number`,`p_email_id`,`p_address`,`p_pincode`,`permanent_address`,`permant_pincode`,`annual_family_income`,`family_net_worth`,`id_countries_job`,`employee_ctc`,`company_website`,`modified_at`) values (25,28,'Dileep','Kumar','Male','5/10/1987','8500222765',1,2,1,'Parent First Name','Parent Last Name','8500222765','d@gmail.com',NULL,'85858585',NULL,'58585','8582825','8558455556',NULL,'',NULL,'2015-04-21 09:05:38'),(26,29,'Siva Reddy','Muthuru','Male','1/5/1992','8686151775',1,0,0,'Msvr','','','',NULL,'',NULL,'','','',NULL,'120000',NULL,'2015-04-21 23:46:36'),(27,30,'siva','kumar','Male','5/4/1973','sdfdsf',1,0,0,'','','','',NULL,'',NULL,'','','',NULL,'3435',NULL,'2015-04-21 07:41:10'),(28,31,'Samarasa','Yalavarthy','Male','10/12/1988','9908085650',1,2,4,'Stankababu','Yalavarthi','9908085654','stankababu@gmail.com',NULL,'522329',NULL,'522329','50000','4',NULL,'10000',NULL,'2015-04-21 12:31:12'),(30,33,'First Name','Last name','Male','5/10/1988','8500222765',1,2,1,'Parent First name','Parent Last name','850222765','d@gmail.com',NULL,'85515',NULL,'5455','45445','54545',NULL,'',NULL,'2015-04-21 08:08:37'),(31,34,'sadas','asdasd','Female','1/1/1961','fdfds',97,1,54,'fsdf','sdfsdf','sdfsdf','sdfsd',NULL,'sdf',NULL,'fsd','fsdf','sdfsd',NULL,'',NULL,'2015-04-21 08:14:40'),(32,35,'First Name','Last Name','Male','5/10/1987','8522222',97,2,1,'Parent First Name','Parent Last Name','8500222','d@gmail.com',NULL,'888888',NULL,'888888','8888','8',NULL,'1500',NULL,'2015-04-21 08:58:39'),(33,36,'Pratap','Jajjara','Male','13/7/1984','9393815667',97,2,1,'Jajjara','Raghavarao','9988568745','raghava@gmail.com',NULL,'523211',NULL,'562355','10000','5',NULL,'10000',NULL,'2015-04-21 08:31:31'),(34,37,'siva','reddy','Male','16/2/1978','8686151775',97,2,1,'mvsr','mn','8686151775','siva@gmail.com',NULL,'516172',NULL,'516172','2000','3000',NULL,'',NULL,'2015-04-21 08:57:22'),(35,38,'Murali','Krishna','Female','19/2/1976','99',15,0,0,'','','','',NULL,'',NULL,'','','',NULL,'88',NULL,'2015-04-21 09:46:49'),(36,29,'Venkata Siva ','Muthuru','Male','1/5/1992','8686151775',1,0,0,'Msvr','','','',NULL,'',NULL,'','','',NULL,'120000',NULL,'2015-04-22 00:25:18'),(37,42,'User1','User1','Female','19/3/1977','88',97,2,1,'99','55','88','33',NULL,'66',NULL,'77','88','88',NULL,'',NULL,'2015-04-24 22:19:18'),(40,44,NULL,'Last Name','Female','5/10/1987','8500222765',188,2,1,'Parent First Name','Parent Last Name','8500222765','dkonda@aapthitech.com',NULL,'888888888',NULL,'8888888','88888888888','88888888',78,'88888888888888','aapthitech.com','2015-04-30 11:25:17');
+insert  into `tbl_user_personal_info`(`detailed_id`,`user_id`,`first_name`,`last_name`,`gender`,`date_of_birth`,`mobile_number`,`id_countries_birth`,`state_id`,`district_id`,`parents_name`,`user_parent_lastname`,`p_phone_number`,`p_email_id`,`p_address`,`p_pincode`,`permanent_address`,`permant_pincode`,`annual_family_income`,`family_net_worth`,`id_countries_job`,`employee_ctc`,`company_website`,`modified_at`) values (25,28,'Dileep','Kumar','Male','5/10/1987','8500222765',1,2,1,'Parent First Name','Parent Last Name','8500222765','d@gmail.com',NULL,'85858585',NULL,'58585','8582825','8558455556',NULL,'',NULL,'2015-04-21 09:05:38'),(26,29,'Siva Reddy','Muthuru','Male','1/5/1992','8686151775',1,0,0,'Msvr','','','',NULL,'',NULL,'','','',NULL,'120000',NULL,'2015-04-21 23:46:36'),(27,30,'siva','kumar','Male','5/4/1973','sdfdsf',1,0,0,'','','','',NULL,'',NULL,'','','',NULL,'3435',NULL,'2015-04-21 07:41:10'),(28,31,'Samarasa','Yalavarthy','Male','10/12/1988','9908085650',1,2,4,'Stankababu','Yalavarthi','9908085654','stankababu@gmail.com',NULL,'522329',NULL,'522329','50000','4',NULL,'10000',NULL,'2015-04-21 12:31:12'),(30,33,'First Name','Last name','Male','5/10/1988','8500222765',1,2,1,'Parent First name','Parent Last name','850222765','d@gmail.com',NULL,'85515',NULL,'5455','45445','54545',NULL,'',NULL,'2015-04-21 08:08:37'),(31,34,'sadas','asdasd','Female','1/1/1961','fdfds',97,1,54,'fsdf','sdfsdf','sdfsdf','sdfsd',NULL,'sdf',NULL,'fsd','fsdf','sdfsd',NULL,'',NULL,'2015-04-21 08:14:40'),(32,35,'First Name','Last Name','Male','5/10/1987','8522222',97,2,1,'Parent First Name','Parent Last Name','8500222','d@gmail.com',NULL,'888888',NULL,'888888','8888','8',NULL,'1500',NULL,'2015-04-21 08:58:39'),(33,36,'Pratap','Jajjara','Male','13/7/1984','9393815667',97,2,1,'Jajjara','Raghavarao','9988568745','raghava@gmail.com',NULL,'523211',NULL,'562355','10000','5',NULL,'10000',NULL,'2015-04-21 08:31:31'),(34,37,'siva','reddy','Male','16/2/1978','8686151775',97,2,1,'mvsr','mn','8686151775','siva@gmail.com',NULL,'516172',NULL,'516172','2000','3000',NULL,'',NULL,'2015-04-21 08:57:22'),(35,38,'Murali','Krishna','Female','19/2/1976','99',15,0,0,'','','','',NULL,'',NULL,'','','',NULL,'88',NULL,'2015-04-21 09:46:49'),(36,29,'Venkata Siva ','Muthuru','Male','1/5/1992','8686151775',1,0,0,'Msvr','','','',NULL,'',NULL,'','','',NULL,'120000',NULL,'2015-04-22 00:25:18'),(37,42,'User1','User1','Female','19/3/1977','88',97,2,1,'99','55','88','33',NULL,'66',NULL,'77','88','88',NULL,'',NULL,'2015-04-24 22:19:18'),(40,44,NULL,'','','','',0,0,0,'','','','',NULL,'',NULL,'','','',0,'','','2015-05-30 07:34:00'),(41,44,NULL,'','','','',0,0,0,'','','','',NULL,'',NULL,'','','',0,'','','2015-05-30 07:34:00');
 
 /*Table structure for table `tbl_user_type` */
 
@@ -406,7 +544,7 @@ CREATE TABLE `tbl_user_type` (
 
 /*Data for the table `tbl_user_type` */
 
-insert  into `tbl_user_type`(`user_type_id`,`user_type_name`,`status`) values (1,'High School Grade 12 Student',1),(2,'Employed and Reformer',1),(3,'University-College Student',1),(4,'admin',1),(5,'provider',1);
+insert  into `tbl_user_type`(`user_type_id`,`user_type_name`,`status`) values (1,'Parent of k-12',1),(2,'Student',1),(3,'Employee',1),(4,'admin',1),(5,'provider',1);
 
 /*Table structure for table `tbl_users` */
 
@@ -418,17 +556,34 @@ CREATE TABLE `tbl_users` (
   `user_name` varchar(150) DEFAULT NULL COMMENT 'User name',
   `email_id` varchar(150) DEFAULT NULL COMMENT 'Email',
   `password` varchar(150) DEFAULT NULL COMMENT 'Password',
+  `online_contact` varchar(20) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL COMMENT 'Created date and time',
   `status` smallint(5) DEFAULT NULL COMMENT 'status',
   `direct_user` smallint(5) DEFAULT NULL,
   `sent_mail` smallint(5) DEFAULT NULL,
   `provider_id` int(10) DEFAULT NULL COMMENT 'It''s like user_id',
   PRIMARY KEY (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 /*Data for the table `tbl_users` */
 
-insert  into `tbl_users`(`user_id`,`user_type_id`,`user_name`,`email_id`,`password`,`created_at`,`status`,`direct_user`,`sent_mail`,`provider_id`) values (13,4,'Admin','bjp.murali.krishna@gmail.com','21232f297a57a5a743894a0e4a801fc3','2015-04-17 17:51:10',1,1,1,NULL),(42,1,'Dileep Kumar','dkonda@aapthitech.com','11ddbaf3386aea1f2974eee984542152','2015-04-30 06:50:03',1,0,0,43),(43,5,'Murali Krishna','bjp.murali.krishna@gmail.com','b59c67bf196a4758191e42f76670ceba','2015-05-01 10:16:13',1,0,1,NULL);
+insert  into `tbl_users`(`user_id`,`user_type_id`,`user_name`,`email_id`,`password`,`online_contact`,`created_at`,`status`,`direct_user`,`sent_mail`,`provider_id`) values (13,4,'Admin','admin@gmail.com','21232f297a57a5a743894a0e4a801fc3',NULL,'2015-04-17 17:51:10',1,1,1,NULL),(42,1,'Dileep Kumar','dkonda@aapthitech.com','1ea9f031d087e3a32b00e0e7197e4b72',NULL,'2015-04-30 06:50:03',0,0,1,0),(43,5,'Murali Krishna','bjp.murali.krishna@gmail.com','b6d0a556df04a575e0bdc447b6fc79f4',NULL,'2015-05-01 10:16:13',0,0,1,0),(44,1,'Dileep-','dileepkumarkonda@gmail.com','23679bc61757d55dd21193c6b2290cfa',NULL,'2015-05-30 06:59:10',0,0,1,43),(45,2,'DileepTesting','dkonda1@aapthitech.com','321298bf33eca9c7d609154aebae1c54','8500222765','2015-11-04 05:40:22',0,0,1,43);
+
+/*Table structure for table `tbl_users_cron` */
+
+DROP TABLE IF EXISTS `tbl_users_cron`;
+
+CREATE TABLE `tbl_users_cron` (
+  `cron_id` int(10) NOT NULL AUTO_INCREMENT,
+  `user_id` bigint(10) DEFAULT NULL,
+  `cron_status` smallint(5) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  PRIMARY KEY (`cron_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
+
+/*Data for the table `tbl_users_cron` */
+
+insert  into `tbl_users_cron`(`cron_id`,`user_id`,`cron_status`,`created_at`) values (12,42,0,'2015-11-04 09:40:53'),(13,43,0,'2015-11-04 09:40:53'),(14,44,0,'2015-11-04 09:40:53'),(15,45,0,'2015-11-04 09:40:53');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

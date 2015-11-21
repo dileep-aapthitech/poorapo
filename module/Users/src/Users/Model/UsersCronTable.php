@@ -35,7 +35,7 @@ class UsersCronTable
 		$select = $this->tableGateway->getSql()->select();
 		$select	->join('tbl_users', 'tbl_users.user_id=tbl_users_cron.user_id',array('*'),'left');	
 		$select->where('tbl_users_cron.cron_status=0');
-		$select->limit(200);
+		$select->limit(2);
 		$resultSet = $this->tableGateway->selectWith($select);
 		return $resultSet;
 	}

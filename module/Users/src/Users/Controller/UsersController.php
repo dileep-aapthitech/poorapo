@@ -1580,30 +1580,30 @@ class UsersController extends AbstractActionController
 				$sendCronList[$i]['password']=$pwd;
 				$i++;
 			}
-			if(count($sendCronList)>0){ $j=0;
+			if(count($sendCronList)>0){ $j=1;
 				foreach($sendCronList as $cronUser){
 					$cron_id = $cronUser['cron_id'];
-					$base_user_id = $cronUser['base_user_id'];
-					$username = $cronUser['username'];
-					$emailId = $cronUser['emailId'];
-					$to = $cronUser['to'];
-					$password = $cronUser['password'];
-					$activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
-					if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-						$activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-						$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
-						$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-					}else{
-						$activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-						$activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
-						$activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-					}	
-					sendMail($to,$activeUserSubject,$activeUsersMessage);
-					$update_status = $this->getUsersCronTable()->successToEmails($cron_id);	
-					if($j<=199){
+					// $base_user_id = $cronUser['base_user_id'];
+					// $username = $cronUser['username'];
+					// $emailId = $cronUser['emailId'];
+					// $to = $cronUser['to'];
+					// $password = $cronUser['password'];
+					// $activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
+					// if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+						// $activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
+						// $activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
+						// $activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
+					// }else{
+						// $activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
+						// $activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
+						// $activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
+					// }	
+					// sendMail($to,$activeUserSubject,$activeUsersMessage);
+					if($j<=$i){
+						$update_status = $this->getUsersCronTable()->successToEmails($cron_id);	
 						return $this->redirect()->toUrl($baseUrl.'/users/crontosendmails');
+						echo "SuccessFull Sent....";
 					}
-					echo "SuccessFull Sent....";
 					$j++;
 				}
 			}else{
