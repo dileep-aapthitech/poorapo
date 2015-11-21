@@ -1580,7 +1580,7 @@ class UsersController extends AbstractActionController
 				$sendCronList[$i]['password']=$pwd;
 				$i++;
 			}
-			if(count($sendCronList)>0){
+			if(count($sendCronList)>0){ $j=0;
 				foreach($sendCronList as $cronUser){
 					$cron_id = $cronUser['cron_id'];
 					$base_user_id = $cronUser['base_user_id'];
@@ -1600,8 +1600,11 @@ class UsersController extends AbstractActionController
 					}	
 					sendMail($to,$activeUserSubject,$activeUsersMessage);
 					$update_status = $this->getUsersCronTable()->successToEmails($cron_id);	
-					return $this->redirect()->toUrl($baseUrl.'/users/crontosendmails');
+					if($j<=199){
+						return $this->redirect()->toUrl($baseUrl.'/users/crontosendmails');
+					}
 					echo "SuccessFull Sent....";
+					$j++;
 				}
 			}else{
 				echo "No data found.";exit;
