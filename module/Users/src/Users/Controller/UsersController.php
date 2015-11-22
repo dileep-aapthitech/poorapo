@@ -1554,9 +1554,7 @@ class UsersController extends AbstractActionController
 		$cronUsers = $this->getUsersCronTable()->sentEmailsToCron();
 		$listOfUsers = '';	
 		$id = array();
-		include('public/PHPMailer_5.2.4/sendmail.php');
-		global $activeUserSubject;				
-		global $activeUsersMessage;
+		include('public/PHPMailer_5.2.4/sendmail.php');	
 		$sendCronList =array();
 		if(count($cronUsers)!=""){
 			$i=0;
@@ -1580,32 +1578,56 @@ class UsersController extends AbstractActionController
 				$sendCronList[$i]['password']=$pwd;
 				$i++;
 			}
-			if(count($sendCronList)>0){ $j=1;
+			if(count($sendCronList)>0){ $cnt=1; 
 				foreach($sendCronList as $cronUser){
+					$msg='';$subj='';$url='';
 					$cron_id = $cronUser['cron_id'];
-					// $base_user_id = $cronUser['base_user_id'];
-					// $username = $cronUser['username'];
-					// $emailId = $cronUser['emailId'];
-					// $to = $cronUser['to'];
-					// $password = $cronUser['password'];
-					// $activeUsersMessage = str_replace("<FULLNAME>","$username", $activeUsersMessage);
-					// if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
-						// $activeUsersMessage = str_replace("<ACTIVATIONLINK>","http://" . $_SERVER['HTTP_HOST']."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-						// $activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
-						// $activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-					// }else{
-						// $activeUsersMessage = str_replace("<ACTIVATIONLINK>",$baseUrl."/users/reg-authentication?uid=".$base_user_id, $activeUsersMessage);
-						// $activeUsersMessage = str_replace("<EMAILID>","$emailId", $activeUsersMessage);
-						// $activeUsersMessage = str_replace("<PASSWORD>","$password", $activeUsersMessage);
-					// }	
-					// sendMail($to,$activeUserSubject,$activeUsersMessage);
-					if($j<=$i){
-						$update_status = $this->getUsersCronTable()->successToEmails($cron_id);	
-						return $this->redirect()->toUrl($baseUrl.'/users/crontosendmails');
-						echo "SuccessFull Sent....";
+					$base_user_id = $cronUser['base_user_id'];
+					$username = $cronUser['username'];
+					$emailId = $cronUser['emailId'];
+					$to = $cronUser['to'];
+					$password = $cronUser['password'];
+					if(isset($_SERVER['HTTP_HOST']) && $_SERVER['HTTP_HOST']=='poraapo.com'){
+						$url='http://'. $_SERVER['HTTP_HOST'].'/users/reg-authentication?uid='.$base_user_id;
+					}else{
+						$url=$baseUrl.'/users/reg-authentication?uid='.$base_user_id;
 					}
-					$j++;
-				}
+					$msg .= '<body>';
+					$msg .='<table width="600" border="0" cellspacing="0" cellpadding="0">';
+					$msg .='<tr>';
+					$msg .='<td><table width="600" border="0" cellspacing="0" cellpadding="5" style="border:1px solid #178acc ">';
+			        $msg .='<tr><td bgcolor="#178acc ">';
+				    $msg .='<a href="Javascript:void(0);" target="_blank" style="text-decoration: none;">';
+				    $msg .='<span style="color:#fff; font:normal 30px arial">Poraapo.com</span></a></td>';
+					$msg .='</tr>';
+			        $msg .='<tr>';
+					$msg .='<td>';
+					$msg .='<table width="100%" border="0" cellspacing="0" cellpadding="10" align="left">';
+					$msg .='<tr><td><a href="javascript:void(0);" style="color:#4ca4b6 ; font:bold 12px arial; text-decoration:none;">
+					Dear&nbsp;'.$username.'</a></td></tr>';
+					$msg .='<tr><td><a href="'.$url.'">'.$url.'</a></td></tr>';
+					$msg .='<tr><td>Please click on this link to verfiy your account.</td></tr>';
+					$msg .='<tr><td>Your Login Credentials.</td></tr>';						
+					$msg .='<tr><td>'.$emailId.'</td></tr>';						
+					$msg .='<tr><td>'.$password.'</td></tr>';						
+					$msg .='<tr><td>&nbsp;</td></tr>';
+					$msg .='<tr><td>Sincerely,</td></tr>';
+					$msg .='<tr><td>Poraapo.com Team</td></tr>';
+					$msg .='</table>';
+				    $msg .='</td>';
+			        $msg .='</tr>';  
+			        $msg .='</table></td>';
+		            $msg .='</tr>'; 
+	                $msg .='</table>';
+                    $msg .='<br/><br/>';
+					$msg .='Regards,<br/>';
+                    $msg .='Poraapo.com';
+                    $msg .='</body>';
+					$subj ='Welcome, New User.';
+					sendMail($to,$subj,$msg);
+					$update_status = $this->getUsersCronTable()->successToEmails($cron_id);						
+					echo "SuccessFull Sent....";
+				}exit;
 			}else{
 				echo "No data found.";exit;
 			}
